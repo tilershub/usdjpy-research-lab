@@ -2,7 +2,11 @@ import numpy as np
 import pandas as pd
 from unittest.mock import patch
 
-from model import ModelConfig, backtest, fred_series, prepare_features, scenario_probabilities, score_features
+from model import (
+    PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
+    data_quality, fred_series, prepare_features, scenario_probabilities, score_features,
+    walk_forward_metrics,
+)
 
 
 def fixture():
@@ -18,6 +22,12 @@ def test_probabilities_sum_to_one():
     assert abs(sum(scenario_probabilities(25).values()) - 1) < 1e-12
 
 
+def test_all_seven_major_pairs_have_pair_specific_inputs():
+    assert len(PAIR_CONFIGS) == 7
+    assert set(PAIR_CONFIGS) == {"EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF", "USD/CAD", "AUD/USD", "NZD/USD"}
+    assert all(pair.base_yield and pair.quote_yield and pair.driver for pair in PAIR_CONFIGS.values())
+
+
 def test_scores_bounded_and_backtest_finite():
     scored, _ = score_features(fixture())
     assert scored["score"].dropna().between(-100, 100).all()
@@ -31,6 +41,23 @@ def test_backtest_uses_lagged_position():
     bt, _ = backtest(scored, ModelConfig(entry_threshold=0))
     expected = np.sign(scored.loc[bt.index, "score"].shift(1).fillna(0))
     assert (bt["position"] == expected).all()
+
+
+def test_empirical_calibration_and_walk_forward_are_finite():
+    scored, _ = score_features(fixture())
+    probabilities, sample = calibrated_probabilities(scored, float(scored["score"].dropna().iloc[-1]))
+    assert abs(sum(probabilities.values()) - 1) < 1e-12
+    assert sample >= 40
+    result = walk_forward_metrics(scored)
+    assert result["OOS observations"] > 0
+    assert 0 <= result["OOS directional accuracy"] <= 1
+
+
+def test_quality_and_confidence_penalize_stale_data():
+    scored, _ = score_features(fixture())
+    quality = data_quality(scored, pd.Timestamp("2025-01-01"))
+    assert quality["grade"] == "C"
+    assert confidence_grade({"Bullish": .7, "Range/neutral": .2, "Bearish": .1}, 120, "C") == "Moderate"
 
 
 def test_fred_parser_accepts_observation_date_header():
