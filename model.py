@@ -39,9 +39,16 @@ def fred_series(series_id: str, timeout: int = 15) -> pd.Series:
     with urlopen(f"{url}?{urlencode({'id': series_id})}", timeout=timeout) as response:
         text = response.read().decode("utf-8")
     frame = pd.read_csv(StringIO(text))
-    frame["DATE"] = pd.to_datetime(frame["DATE"])
+    date_column = next(
+        (column for column in frame.columns if column.strip().lower() in {"date", "observation_date"}),
+        frame.columns[0],
+    )
+    frame[date_column] = pd.to_datetime(frame[date_column], errors="coerce")
+    if series_id not in frame.columns:
+        raise ValueError(f"FRED response did not contain the requested series: {series_id}")
     values = pd.to_numeric(frame[series_id], errors="coerce")
-    return pd.Series(values.values, index=frame["DATE"], name=series_id).dropna()
+    series = pd.Series(values.values, index=frame[date_column], name=series_id)
+    return series.loc[series.index.notna()].dropna()
 
 
 def prepare_features(
