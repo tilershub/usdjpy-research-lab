@@ -14,14 +14,24 @@ from model import ModelConfig, backtest, fred_series, prepare_features, scenario
 st.set_page_config(page_title="TRADE90 · USD/JPY Research", page_icon="90", layout="wide")
 st.markdown("""
 <style>
-  :root { --trade90: #34d399; }
-  [data-testid="stAppViewContainer"] { background: #0f172a; }
-  [data-testid="stSidebar"] { background: #0b1220; border-right: 1px solid #1e293b; }
+  :root { --trade90: #059669; --ink: #0f172a; --muted: #475569; --line: #cbd5e1; }
+  [data-testid="stAppViewContainer"], .stApp { background: #ffffff; color: var(--ink); }
+  [data-testid="stHeader"] { background: rgba(255,255,255,.96); }
+  [data-testid="stSidebar"] { background: #f8fafc; border-right: 1px solid var(--line); }
+  [data-testid="stSidebar"] * { color: var(--ink); }
   .trade90-brand { color: var(--trade90); font-size: .72rem; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; }
-  .trade90-title { color: white; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -.045em; line-height: 1; margin: .5rem 0 .8rem; text-transform: uppercase; }
+  .trade90-title { color: var(--ink); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.05; margin: .5rem 0 .8rem; text-transform: uppercase; overflow-wrap: anywhere; }
   .trade90-title span { color: var(--trade90); }
-  .trade90-subtitle { color: #94a3b8; margin-bottom: 1.5rem; }
-  div[data-testid="stMetric"] { background: rgba(15,23,42,.7); border: 1px solid #1e293b; border-radius: 1rem; padding: 1rem; }
+  .trade90-subtitle { color: var(--muted); margin-bottom: 1.5rem; }
+  div[data-testid="stMetric"] { background: #ffffff; border: 1px solid var(--line); border-radius: 1rem; padding: 1rem; box-shadow: 0 8px 24px rgba(15,23,42,.06); }
+  div[data-testid="stMetric"] * { color: var(--ink) !important; opacity: 1 !important; }
+  div[data-testid="stMetricDelta"] * { color: var(--trade90) !important; }
+  [data-testid="stTabs"] button, [data-testid="stMarkdownContainer"], .stCaption { color: var(--ink); }
+  [data-testid="stDataFrame"], [data-testid="stPlotlyChart"] { background: #ffffff; border-radius: .75rem; }
+  @media (max-width: 640px) {
+    .block-container { padding-left: 1rem; padding-right: 1rem; padding-top: 2rem; }
+    .trade90-title { font-size: 2.15rem; }
+  }
 </style>
 <div class="trade90-brand">TRADE90 · Market Research</div>
 <div class="trade90-title">USD/JPY <span>Research Lab</span></div>
