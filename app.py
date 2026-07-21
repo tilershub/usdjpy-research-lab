@@ -11,9 +11,22 @@ import yfinance as yf
 from model import ModelConfig, backtest, fred_series, prepare_features, scenario_probabilities, score_features
 
 
-st.set_page_config(page_title="USD/JPY Research Lab", page_icon="¥", layout="wide")
-st.title("USD/JPY Research Lab")
-st.caption("Swing-horizon decision support · explainable signals · no execution")
+st.set_page_config(page_title="TRADE90 · USD/JPY Research", page_icon="90", layout="wide")
+st.markdown("""
+<style>
+  :root { --trade90: #34d399; }
+  [data-testid="stAppViewContainer"] { background: #0f172a; }
+  [data-testid="stSidebar"] { background: #0b1220; border-right: 1px solid #1e293b; }
+  .trade90-brand { color: var(--trade90); font-size: .72rem; font-weight: 900; letter-spacing: .28em; text-transform: uppercase; }
+  .trade90-title { color: white; font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; letter-spacing: -.045em; line-height: 1; margin: .5rem 0 .8rem; text-transform: uppercase; }
+  .trade90-title span { color: var(--trade90); }
+  .trade90-subtitle { color: #94a3b8; margin-bottom: 1.5rem; }
+  div[data-testid="stMetric"] { background: rgba(15,23,42,.7); border: 1px solid #1e293b; border-radius: 1rem; padding: 1rem; }
+</style>
+<div class="trade90-brand">TRADE90 · Market Research</div>
+<div class="trade90-title">USD/JPY <span>Research Lab</span></div>
+<div class="trade90-subtitle">Swing-horizon decision support · explainable signals · no trade execution</div>
+""", unsafe_allow_html=True)
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -126,4 +139,3 @@ The model combines price trend, 20-day momentum, RSI, the US–Japan 10-year gov
 
 This is an explainable research heuristic, not a trained prediction engine. It does not yet include options-implied volatility, CFTC positioning, surprise indices, intraday market microstructure, intervention detection, or a live economic calendar. Yahoo Finance supplies market prices; FRED supplies government-yield series. Revisions, stale observations, differing market closes, and outages can affect results.
 """)
-
