@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
+from unittest.mock import patch
 
-from model import ModelConfig, backtest, prepare_features, scenario_probabilities, score_features
+from model import ModelConfig, backtest, fred_series, prepare_features, scenario_probabilities, score_features
 
 
 def fixture():
@@ -31,3 +32,19 @@ def test_backtest_uses_lagged_position():
     expected = np.sign(scored.loc[bt.index, "score"].shift(1).fillna(0))
     assert (bt["position"] == expected).all()
 
+
+def test_fred_parser_accepts_observation_date_header():
+    class Response:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return None
+
+        def read(self):
+            return b"observation_date,DGS10\n2026-07-17,4.25\n"
+
+    with patch("model.urlopen", return_value=Response()):
+        result = fred_series("DGS10")
+    assert result.index[0] == pd.Timestamp("2026-07-17")
+    assert result.iloc[0] == 4.25
