@@ -13,6 +13,7 @@ from trade90_model import (
     benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, regime, score_features, walk_forward_metrics,
 )
 from economic_events import event_risk_summary, events_for_pair, fetch_calendar, historical_event_reaction
+from positioning import derivatives_availability, fetch_cftc, pair_positioning
 
 st.set_page_config(page_title="TRADE90 Research Terminal", page_icon="📈", layout="wide")
 st.markdown("""
@@ -57,6 +58,10 @@ def load_yield(series_id: str):
 def load_calendar(start_day: date, end_day: date):
     return fetch_calendar(start_day, end_day)
 
+@st.cache_data(ttl=21600, show_spinner=False)
+def load_positioning():
+    return fetch_cftc()
+
 
 def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float = 0.0):
     pair = PAIR_CONFIGS[symbol]
@@ -73,7 +78,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
-    st.caption("Deployment: evidence-layers v6 · 2026-07-22")
+    st.caption("Deployment: positioning v7 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
@@ -91,6 +96,7 @@ try:
         close = load_prices(start, end)
         results = {symbol: analyse(symbol, close, config, policy if symbol == selected else 0.0) for symbol in PAIR_CONFIGS}
         calendar, calendar_status = load_calendar(end - timedelta(days=35), end + timedelta(days=14))
+        cftc_history, cftc_status = load_positioning()
 except Exception as exc:
     st.error(f"Terminal data could not be loaded: {exc}")
     st.info("Retry shortly. If the warning persists, a public market or macro source may be unavailable.")
@@ -99,6 +105,7 @@ except Exception as exc:
 pair, scored, components, latest, probs, sample, quality = results[selected]
 pair_events = events_for_pair(calendar, pair.base, pair.quote)
 event_risk = event_risk_summary(pair_events)
+positioning = pair_positioning(cftc_history, pair.base, pair.quote)
 confidence = confidence_grade(probs, sample, str(quality["grade"]))
 direction = "Bullish interpretation" if latest.score > threshold else "Bearish interpretation" if latest.score < -threshold else "Neutral interpretation"
 profile = pair_model_profile(selected)
@@ -168,7 +175,7 @@ with st.expander("Data sources, delay and freshness", expanded=quality["grade"] 
         st.warning("Excluded from the current score: " + ", ".join(quality["stale_inputs"]) + ".")
     st.caption("Inputs use their latest published observation. Monthly yield series are valid for macro context but cannot be interpreted as live rates.")
 
-tabs = st.tabs(["Market facts", "Event risk", "Forecast", "Interpretation", "Validation", "Methodology"])
+tabs = st.tabs(["Market facts", "Event risk", "Positioning", "Forecast", "Interpretation", "Validation", "Methodology"])
 with tabs[0]:
     left, right = st.columns([2, 1])
     with left:
@@ -223,6 +230,32 @@ with tabs[1]:
     st.info("Upcoming events change the risk label only. They do not add bullish or bearish points. A surprise is calculated only after actual and consensus values are both available.")
 
 with tabs[2]:
+    st.markdown(f"#### {selected} positioning and derivatives")
+    st.caption("Positioning is contextual evidence, not a live signal. CFTC data is weekly and published with a delay.")
+    if positioning["available"]:
+        base_pos, quote_pos = positioning["base"], positioning["quote"]
+        x1, x2, x3, x4 = st.columns(4)
+        x1.metric(f"{pair.base} leveraged net", f"{base_pos['leveraged_net']:,.0f}", f"{base_pos['percentile_3y']:.0%} percentile")
+        x2.metric(f"{pair.quote} leveraged net", f"{quote_pos['leveraged_net']:,.0f}", f"{quote_pos['percentile_3y']:.0%} percentile")
+        x3.metric("Relative crowding", f"{positioning['relative_percentile']:+.0%}")
+        x4.metric("Latest report age", f"{max(base_pos['age_days'], quote_pos['age_days'])} days")
+        position_rows = pd.DataFrame([
+            {"Currency": pair.base, "Leveraged net": base_pos["leveraged_net"], "Asset-manager net": base_pos["asset_manager_net"], "3Y percentile": base_pos["percentile_3y"], "3Y z-score": base_pos["zscore_3y"], "State": base_pos["crowding"], "Report": base_pos["date"].strftime("%Y-%m-%d")},
+            {"Currency": pair.quote, "Leveraged net": quote_pos["leveraged_net"], "Asset-manager net": quote_pos["asset_manager_net"], "3Y percentile": quote_pos["percentile_3y"], "3Y z-score": quote_pos["zscore_3y"], "State": quote_pos["crowding"], "Report": quote_pos["date"].strftime("%Y-%m-%d")},
+        ])
+        st.dataframe(position_rows.style.format({"Leveraged net":"{:,.0f}", "Asset-manager net":"{:,.0f}", "3Y percentile":"{:.0%}", "3Y z-score":"{:+.2f}"}), use_container_width=True, hide_index=True)
+        if positioning["warning"]:
+            st.warning(positioning["warning"])
+    else:
+        st.info(positioning["warning"])
+    st.caption(f"Provider: {cftc_status.provider} · cadence: {cftc_status.cadence} · fetched {cftc_status.fetched_at:%Y-%m-%d %H:%M} UTC.")
+    if cftc_status.message:
+        st.warning(cftc_status.message)
+    st.markdown("#### Derivatives and sentiment coverage")
+    st.dataframe(derivatives_availability(), use_container_width=True, hide_index=True)
+    st.info("Implied volatility, 25-delta risk reversals and retail positioning remain unavailable until verified provider credentials are configured. The terminal does not manufacture proxies or feed unavailable values into its score.")
+
+with tabs[3]:
     st.markdown(f"#### Empirical {config.forward_days}-trading-day scenarios")
     cols = st.columns(3)
     for col, label in zip(cols, ("Bullish", "Range/neutral", "Bearish")):
@@ -230,14 +263,14 @@ with tabs[2]:
         col.progress(int(probs[label] * 100))
     st.info(f"Calibration uses {sample} historically similar score observations. Confidence: {confidence}. These are empirical research frequencies, not guaranteed forecasts.")
 
-with tabs[3]:
+with tabs[4]:
     st.info(f"Interpretation only — pair model: {profile.thesis}. Weights are pair-specific and change modestly with volatility and trend regime.")
     audit = components.loc[latest.name].sort_values(key=abs, ascending=False).rename("Contribution").to_frame()
     audit["Interpretation"] = np.where(audit.Contribution > 0, f"{pair.base} supportive", np.where(audit.Contribution < 0, f"{pair.quote} supportive", "Neutral"))
     st.dataframe(audit.style.format({"Contribution":"{:+.2f}"}), use_container_width=True)
     st.caption("Every component is bounded. Contributions explain the model interpretation; they are not observed facts or trade instructions.")
 
-with tabs[4]:
+with tabs[6]:
     bt, metrics = backtest(scored, config)
     horizons = horizon_validation(scored, config)
     calibration, reliability = expanding_probability_validation(scored)
