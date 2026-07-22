@@ -9,7 +9,7 @@ def sample_frame():
     return pd.DataFrame({
         "Market_and_Exchange_Names": ["EURO FX", "JAPANESE YEN"] * 3,
         "Report_Date_as_YYYY_MM_DD": ["2026-07-01", "2026-07-01", "2026-07-08", "2026-07-08", "2026-07-15", "2026-07-15"],
-        "Lev_Money_Positions_Long_All": [100, 80, 120, 90, 150, 100],
+        "Lev_Money_Positions_Long_All": [100, 80, 120, 90, 150, 60],
         "Lev_Money_Positions_Short_All": [80, 100, 80, 110, 70, 120],
         "Asset_Mgr_Positions_Long_All": [200, 150, 210, 155, 220, 160],
         "Asset_Mgr_Positions_Short_All": [100, 100, 100, 100, 100, 100],
@@ -23,7 +23,7 @@ def test_cftc_normalization_and_pair_relative_positioning():
     view = pair_positioning(history, "EUR", "JPY", datetime(2026, 7, 18, tzinfo=timezone.utc))
     assert view["available"]
     assert view["base"]["leveraged_net"] == 80
-    assert view["quote"]["leveraged_net"] == -20
+    assert view["quote"]["leveraged_net"] == -60
     assert view["relative_percentile"] > 0
 
 
