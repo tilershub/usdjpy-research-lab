@@ -9,6 +9,10 @@ class ContentPage(Page):
     body = RichTextField(blank=True)
     published_on = models.DateField(blank=True, null=True)
     reading_time = models.PositiveSmallIntegerField(default=5)
+    updated_on = models.DateField(blank=True, null=True)
+    author = models.CharField(max_length=100, default="TRADE90")
+    tags = models.JSONField(default=list, blank=True)
+    metadata = models.JSONField(default=dict, blank=True)
     source_path = models.CharField(max_length=255, blank=True, unique=True, null=True)
 
     content_panels = Page.content_panels + [
@@ -16,6 +20,9 @@ class ContentPage(Page):
         FieldPanel("body"),
         FieldPanel("published_on"),
         FieldPanel("reading_time"),
+        FieldPanel("updated_on"),
+        FieldPanel("author"),
+        FieldPanel("tags"),
     ]
 
     promote_panels = Page.promote_panels
