@@ -3,7 +3,7 @@ name: Publish terminal snapshot
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17,47 * * * 1-5"
+    - cron: "17 */2 * * 1-5"
 
 permissions:
   contents: write
@@ -23,7 +23,7 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
-      - run: python publish_snapshot.py
+      - name: Build snapshot with provider retry\n        run: |\n          python publish_snapshot.py || { sleep 90; python publish_snapshot.py; }
       - name: Commit changed snapshot
         run: |
           git config user.name "trade90-data-bot"
