@@ -4,7 +4,7 @@ from unittest.mock import patch
 
 from model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
-    data_quality, fred_series, prepare_features, scenario_probabilities, score_features,
+    benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, scenario_probabilities, score_features,
     walk_forward_metrics,
 )
 
@@ -75,3 +75,22 @@ def test_fred_parser_accepts_observation_date_header():
         result = fred_series("DGS10")
     assert result.index[0] == pd.Timestamp("2026-07-17")
     assert result.iloc[0] == 4.25
+
+
+def test_validation_suite_is_out_of_sample_and_benchmarked():
+    scored, _ = score_features(fixture())
+    horizons = horizon_validation(scored, ModelConfig(entry_threshold=5), train_days=300)
+    assert set(horizons.index) == {"1D", "5D", "20D"}
+    assert (horizons["OOS observations"] > 0).all()
+    benchmarks = benchmark_comparison(scored)
+    assert {"TRADE90 model", "Buy & hold", "MA trend", "Carry only", "Random direction"} == set(benchmarks.index)
+    assert np.isfinite(benchmarks.loc["TRADE90 model", "Maximum drawdown"])
+
+
+def test_expanding_probability_validation_uses_prior_history():
+    scored, _ = score_features(fixture())
+    metrics, reliability = expanding_probability_validation(scored, train_days=300, step=10)
+    assert metrics["Forecasts"] > 0
+    assert 0 <= metrics["Calibration error"] <= 1
+    assert np.isfinite(metrics["Brier score"])
+    assert reliability["Forecasts"].sum() == metrics["Forecasts"]
