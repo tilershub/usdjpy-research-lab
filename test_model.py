@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from unittest.mock import patch
 
-from model import (
+from trade90_model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
     benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, scenario_probabilities, score_features,
     walk_forward_metrics,
@@ -90,7 +90,7 @@ def test_fred_parser_accepts_observation_date_header():
         def read(self):
             return b"observation_date,DGS10\n2026-07-17,4.25\n"
 
-    with patch("model.urlopen", return_value=Response()):
+    with patch("trade90_model.urlopen", return_value=Response()):
         result = fred_series("DGS10")
     assert result.index[0] == pd.Timestamp("2026-07-17")
     assert result.iloc[0] == 4.25
@@ -113,3 +113,19 @@ def test_expanding_probability_validation_uses_prior_history():
     assert 0 <= metrics["Calibration error"] <= 1
     assert np.isfinite(metrics["Brier score"])
     assert reliability["Forecasts"].sum() == metrics["Forecasts"]
+
+def test_event_engine_filters_pair_and_calculates_risk_without_inventing_values():
+    from datetime import datetime, timezone
+    from economic_events import event_risk_summary, events_for_pair, normalize_calendar
+    now = datetime(2026, 7, 22, 8, tzinfo=timezone.utc)
+    records = [
+        {"Country":"United States","Date":"2026-07-22T10:00:00Z","Event":"CPI","Category":"Inflation Rate","Importance":3,"Forecast":"2.8%","Previous":"2.7%","Actual":""},
+        {"Country":"Japan","Date":"2026-07-23T00:00:00Z","Event":"BoJ decision","Category":"Interest Rate","Importance":3},
+        {"Country":"Canada","Date":"2026-07-22T09:00:00Z","Event":"Retail Sales","Importance":3},
+    ]
+    pair = events_for_pair(normalize_calendar(records, now), "USD", "JPY")
+    assert set(pair["currency"]) == {"USD", "JPY"}
+    assert pd.isna(pair.iloc[0]["surprise"])
+    risk = event_risk_summary(pair, now)
+    assert risk["level"] == "Extreme"
+    assert risk["count_24h"] == 2
