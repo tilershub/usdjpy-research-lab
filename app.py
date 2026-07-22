@@ -73,7 +73,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
-    st.caption("Deployment: pair-models v5 · 2026-07-22")
+    st.caption("Deployment: evidence-layers v6 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
@@ -100,7 +100,9 @@ pair, scored, components, latest, probs, sample, quality = results[selected]
 pair_events = events_for_pair(calendar, pair.base, pair.quote)
 event_risk = event_risk_summary(pair_events)
 confidence = confidence_grade(probs, sample, str(quality["grade"]))
-direction = "Bullish" if latest.score > threshold else "Bearish" if latest.score < -threshold else "Neutral / wait"
+direction = "Bullish interpretation" if latest.score > threshold else "Bearish interpretation" if latest.score < -threshold else "Neutral interpretation"
+profile = pair_model_profile(selected)
+dominant_scenario = max(probs, key=probs.get)
 
 scanner_rows = []
 for symbol, (p, s, _, row, probability, n, q) in results.items():
@@ -120,14 +122,40 @@ st.dataframe(scanner.style.format({"Volatility": "{:.1%}", "Score": "{:+.1f}"}),
 st.caption("Ranking reflects evidence strength, not expected profit. Compare spreads, event risk and your trading horizon before selecting a pair.")
 
 st.divider()
-st.subheader(f"{selected} intelligence")
+st.subheader(f"{selected} research brief")
+st.caption("The terminal keeps observed facts, model interpretation, forecast probabilities, and planning context separate.")
+
+st.markdown("#### 1 · Market facts")
 c1, c2, c3, c4, c5 = st.columns(5)
-c1.metric(selected, f"{latest.close:.{pair.decimals}f}")
-c2.metric("Composite score", f"{latest.score:+.1f}", direction)
-c3.metric(f"{pair.base}–{pair.quote} 10Y spread", f"{latest.yield_spread:+.2f} pp" if pd.notna(latest.yield_spread) else "N/A")
-c4.metric("20D volatility", f"{latest.volatility:.1%}")
-c5.metric("Research confidence", confidence, f"Data {quality['grade']}")
-st.markdown(f"<div class='quality'><b>Data check:</b> last market observation {quality['last_price']:%Y-%m-%d} · age {quality['price_age_days']} day(s) · usable inputs {quality['completeness']:.0%} · cross-asset driver: {pair.driver_label}</div>", unsafe_allow_html=True)
+c1.metric("Observed close", f"{latest.close:.{pair.decimals}f}")
+c2.metric(f"{pair.base}–{pair.quote} 10Y spread", f"{latest.yield_spread:+.2f} pp" if pd.notna(latest.yield_spread) else "N/A")
+c3.metric("20D realised volatility", f"{latest.volatility:.1%}")
+c4.metric("Market regime", regime(latest))
+c5.metric("Data quality", str(quality["grade"]), f"{quality['completeness']:.0%} usable")
+st.markdown(f"<div class='quality'><b>Observed-data check:</b> last FX observation {quality['last_price']:%Y-%m-%d} · age {quality['price_age_days']} day(s) · cross-asset series: {pair.driver_label}. Values above are measurements, not forecasts.</div>", unsafe_allow_html=True)
+
+left_layer, right_layer = st.columns(2)
+with left_layer:
+    with st.container(border=True):
+        st.markdown("#### 2 · Model interpretation")
+        st.metric("Composite evidence score", f"{latest.score:+.1f}", direction)
+        st.write(profile.thesis)
+        st.caption(f"Pair-specific weighted interpretation · threshold ±{threshold} · manual policy overlay {policy:+.1f}. The overlay is disclosed judgment, not observed data.")
+with right_layer:
+    with st.container(border=True):
+        st.markdown(f"#### 3 · {config.forward_days}-day probabilistic forecast")
+        st.metric("Most frequent historical outcome", dominant_scenario, f"{probs[dominant_scenario]:.0%}")
+        st.write(f"Bullish {probs['Bullish']:.0%} · Range/neutral {probs['Range/neutral']:.0%} · Bearish {probs['Bearish']:.0%}")
+        st.caption(f"Based on {sample} similar historical observations · confidence {confidence}. Frequencies are calibrated estimates, not promises.")
+
+with st.container(border=True):
+    st.markdown("#### 4 · Trade-planning context")
+    p1, p2, p3, p4 = st.columns(4)
+    p1.metric("20D support", f"{latest.support20:.{pair.decimals}f}")
+    p2.metric("20D resistance", f"{latest.resistance20:.{pair.decimals}f}")
+    p3.metric("ATR-style daily range", f"{latest.atr20:.{pair.decimals}f}")
+    p4.metric("Scheduled-event risk", event_risk["level"])
+    st.caption("Reference levels describe recent market structure and volatility. They are not entry, stop-loss, take-profit, position-size, or trade recommendations.")
 source_rows = [
     {"Input": f"{selected} close", "Provider": "Yahoo Finance", "Cadence": "End of day", "Age": f"{quality['price_age_days']}d", "Status": "Current" if quality['price_age_days'] <= 4 else "Stale"},
     {"Input": f"{pair.base} 10Y yield", "Provider": "FRED / OECD", "Cadence": "Daily or monthly", "Age": f"{quality['base_yield_age_days']}d" if quality['base_yield_age_days'] is not None else "Missing", "Status": "Usable" if quality['base_yield_age_days'] is not None and quality['base_yield_age_days'] <= 45 else "Excluded"},
@@ -140,7 +168,7 @@ with st.expander("Data sources, delay and freshness", expanded=quality["grade"] 
         st.warning("Excluded from the current score: " + ", ".join(quality["stale_inputs"]) + ".")
     st.caption("Inputs use their latest published observation. Monthly yield series are valid for macro context but cannot be interpreted as live rates.")
 
-tabs = st.tabs(["Market", "Event risk", "Scenarios", "Signal audit", "Validation", "Methodology"])
+tabs = st.tabs(["Market facts", "Event risk", "Forecast", "Interpretation", "Validation", "Methodology"])
 with tabs[0]:
     left, right = st.columns([2, 1])
     with left:
@@ -151,7 +179,7 @@ with tabs[0]:
         fig.update_layout(title="Price structure", height=410, margin=dict(l=10,r=10,t=45,b=10), hovermode="x unified")
         st.plotly_chart(fig, use_container_width=True)
     with right:
-        st.markdown("#### Current map")
+        st.markdown("#### Planning reference map")
         st.metric("Market regime", regime(latest))
         st.metric("20-day support", f"{latest.support20:.{pair.decimals}f}")
         st.metric("20-day resistance", f"{latest.resistance20:.{pair.decimals}f}")
@@ -203,12 +231,11 @@ with tabs[2]:
     st.info(f"Calibration uses {sample} historically similar score observations. Confidence: {confidence}. These are empirical research frequencies, not guaranteed forecasts.")
 
 with tabs[3]:
-    profile = pair_model_profile(selected)
-    st.info(f"Pair model: {profile.thesis}. Weights are pair-specific and change modestly with volatility and trend regime.")
+    st.info(f"Interpretation only — pair model: {profile.thesis}. Weights are pair-specific and change modestly with volatility and trend regime.")
     audit = components.loc[latest.name].sort_values(key=abs, ascending=False).rename("Contribution").to_frame()
     audit["Interpretation"] = np.where(audit.Contribution > 0, f"{pair.base} supportive", np.where(audit.Contribution < 0, f"{pair.quote} supportive", "Neutral"))
     st.dataframe(audit.style.format({"Contribution":"{:+.2f}"}), use_container_width=True)
-    st.caption("Every component is bounded. Positive contributions favor a higher pair; negative contributions favor a lower pair.")
+    st.caption("Every component is bounded. Contributions explain the model interpretation; they are not observed facts or trade instructions.")
 
 with tabs[4]:
     bt, metrics = backtest(scored, config)
