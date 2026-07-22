@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% load wagtailcore_tags %}
+{% block title %}{{ page.seo_title|default:page.title }} | TRADE90{% endblock %}
+{% block description %}{{ page.search_description|default:page.summary }}{% endblock %}
+{% block og_title %}{{ page.title }} | TRADE90{% endblock %}
+{% block content %}<section class="hub-hero"><div class="section"><p class="eyebrow">TRADE90 Learning Hub</p><h1>{{ page.title }}</h1><p class="lede">{{ page.summary }}</p></div></section><section class="section"><div class="hub-list">{% for article in page.article_children %}<a class="article-card" href="{% pageurl article %}"><div><small>{{ article.reading_time }} min read{% if article.published_on %} · {{ article.published_on }}{% endif %}</small><h2>{{ article.title }}</h2><p>{{ article.summary }}</p></div><b>Read →</b></a>{% empty %}<p>No published guides yet.</p>{% endfor %}</div></section>{% endblock %}

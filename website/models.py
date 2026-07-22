@@ -29,3 +29,11 @@ class ContentPage(Page):
 
     class Meta:
         verbose_name = "TRADE90 content page"
+
+    def get_template(self, request, *args, **kwargs):
+        if self.source_path and self.source_path.startswith("section:"):
+            return "website/hub_page.html"
+        return super().get_template(request, *args, **kwargs)
+
+    def article_children(self):
+        return ContentPage.objects.child_of(self).live().order_by("-published_on", "title")

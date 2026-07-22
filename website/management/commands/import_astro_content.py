@@ -12,6 +12,13 @@ from website.models import ContentPage
 
 
 HUB_TITLES = {"psychology": "Trading Psychology", "risk-management": "Risk Management", "trading-plans": "Trading Plans", "prop-firms": "Prop Firms", "performance": "Performance"}
+STATIC_PAGES = {
+    "about": ("About TRADE90", "Education, professional tools, and evidence-led market research for disciplined traders.", "<h2>Built for disciplined traders</h2><p>TRADE90 helps funded and independent traders build repeatable processes around risk, psychology, planning, and performance.</p>"),
+    "contact": ("Contact TRADE90", "Contact the TRADE90 editorial and platform team.", "<h2>Contact</h2><p>Use the official TRADE90 channels for platform, editorial, or partnership enquiries.</p>"),
+    "disclaimer": ("Risk Disclaimer", "Important trading-risk and educational-use disclosure.", "<h2>Educational use only</h2><p>Trading involves substantial risk of loss and is not suitable for every investor. TRADE90 does not provide financial, investment, or trading advice.</p>"),
+    "privacy": ("Privacy Policy", "How TRADE90 handles site and account information.", "<h2>Privacy</h2><p>TRADE90 collects only the information required to operate, secure, and improve the platform. Account and alert features will provide specific controls when enabled.</p>"),
+    "editorial-policy": ("Editorial Policy", "TRADE90 research, corrections, sourcing, and independence standards.", "<h2>Evidence before opinion</h2><p>TRADE90 separates observable facts, model interpretation, probabilistic forecasts, and trade-planning context. Material corrections are made transparently.</p>"),
+}
 
 
 def parse_document(path):
@@ -45,6 +52,8 @@ class Command(BaseCommand):
         parents = {"blog": self.ensure_parent(root, "blog", "Blog")}
         for slug, title in HUB_TITLES.items():
             parents[slug] = self.ensure_parent(root, slug, title)
+        for slug, (title, summary, body) in STATIC_PAGES.items():
+            self.ensure_static_page(root, slug, title, summary, body)
         created = updated = 0
         for path in documents:
             data, body = parse_document(path)
@@ -82,5 +91,18 @@ class Command(BaseCommand):
             return existing.specific
         page = ContentPage(title=title, slug=slug, summary=f"TRADE90 {title}", source_path=f"section:{slug}")
         root.add_child(instance=page)
+        page.save_revision().publish()
+        return page
+
+    def ensure_static_page(self, root, slug, title, summary, body):
+        source_path = f"static:{slug}"
+        page = ContentPage.objects.filter(source_path=source_path).first()
+        if page is None:
+            existing = root.get_children().filter(slug=slug).first()
+            page = existing.specific if existing else ContentPage(title=title, slug=slug, source_path=source_path)
+            if not existing:
+                root.add_child(instance=page)
+        page.title, page.summary, page.body = title, summary, body
+        page.seo_title, page.search_description = title, summary
         page.save_revision().publish()
         return page
