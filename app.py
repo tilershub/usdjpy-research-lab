@@ -270,7 +270,7 @@ with tabs[4]:
     st.dataframe(audit.style.format({"Contribution":"{:+.2f}"}), use_container_width=True)
     st.caption("Every component is bounded. Contributions explain the model interpretation; they are not observed facts or trade instructions.")
 
-with tabs[6]:
+with tabs[5]:
     bt, metrics = backtest(scored, config)
     horizons = horizon_validation(scored, config)
     calibration, reliability = expanding_probability_validation(scored)
@@ -306,7 +306,7 @@ with tabs[6]:
     st.plotly_chart(eq,use_container_width=True)
     st.warning("A positive backtest is not proof of future profitability. Financing, slippage, broker spreads and event gaps remain excluded.")
 
-with tabs[5]:
+with tabs[6]:
     st.markdown(f"""
 ### How TRADE90 evaluates {selected}
 
