@@ -5,9 +5,22 @@
   <p class="eyebrow">TRADE90 · Evidence-led intelligence</p>
   <h1>FX, Gold & Bitcoin Research Terminal</h1>
   <p class="lede">Nine instrument-specific macro-technical models with historical probability calibration.</p>
+  <div class="terminal-controls" aria-label="Terminal preferences">
+    <label class="terminal-toggle"><input id="watchlist-only" type="checkbox"> Watchlist only</label>
+    <label>Alert when evidence score reaches
+      <select id="alert-threshold">
+        <option value="25">±25 · Selective</option>
+        <option value="18">±18 · Standard</option>
+        <option value="10">±10 · Early</option>
+      </select>
+    </label>
+    <span id="terminal-preference-status" role="status"></span>
+  </div>
+  <div id="terminal-alerts" class="terminal-alerts" aria-live="polite"></div>
   <div id="terminal" class="terminal-card" data-endpoint="{% url 'terminal:snapshot' %}">
     {% if snapshot %}{{ snapshot|json_script:"snapshot-data" }}{% else %}<div class="terminal-empty"><strong>Waiting for the first verified snapshot.</strong><p>No forecast values are fabricated while data is unavailable.</p></div>{% endif %}
   </div>
+  <p class="terminal-disclosure">Watchlists and thresholds are research preferences, not trade signals or price alerts. They are saved on this device and can be copied to your account from Account &amp; Sync.</p>
 </section>
 <script src="{% static 'js/terminal.js' %}" defer></script>
 {% endblock %}
