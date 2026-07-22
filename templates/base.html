@@ -32,7 +32,7 @@
           <a href="/prop-firms/"><b>Prop Firms</b><small>Evaluations &amp; funded accounts</small></a>
           <a href="/performance/"><b>Performance</b><small>Journals &amp; metrics</small></a>
         </div></details>
-        <a href="/today/">Today</a><a href="/journal/">Journal</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/search/" aria-label="Search">Search</a>
+        <a href="/today/">Today</a><a href="/journal/">Journal</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/search/" aria-label="Search">Search</a><a href="/account/">{% if request.user.is_authenticated %}Account{% else %}Sign in{% endif %}</a>
       </nav>
       <a class="header-cta" href="/risk-management/position-sizing/">Start Learning</a>
       <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
@@ -40,7 +40,7 @@
     <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
       <a class="mobile-cta" href="/risk-management/position-sizing/">Start Learning</a>
       <p>Learn</p><a href="/psychology/">Psychology</a><a href="/risk-management/">Risk Management</a><a href="/trading-plans/">Trading Plans</a><a href="/prop-firms/">Prop Firms</a><a href="/performance/">Performance</a>
-      <p>Platform</p><a href="/today/">Today</a><a href="/journal/">Journal</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/search/">Search</a>
+      <p>Platform</p><a href="/today/">Today</a><a href="/journal/">Journal</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/search/">Search</a><a href="/account/">{% if request.user.is_authenticated %}Account &amp; Sync{% else %}Sign in{% endif %}</a>
     </nav>
   </header>
   <main id="main-content">{% block content %}{% endblock %}</main>

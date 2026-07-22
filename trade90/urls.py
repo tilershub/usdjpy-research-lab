@@ -7,6 +7,7 @@ from wagtail import urls as wagtail_urls
 from website import views as website_views
 
 urlpatterns = [
+    path("account/", include("accounts.urls")),
     path("django-admin/", admin.site.urls),
     path("cms/", include(wagtailadmin_urls)),
     path("tools/fx-research-terminal/", include("terminal.urls")),
