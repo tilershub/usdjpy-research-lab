@@ -9,7 +9,7 @@ import streamlit as st
 import yfinance as yf
 
 from trade90_model import (
-    PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
+    PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade, pair_model_profile,
     benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, regime, score_features, walk_forward_metrics,
 )
 from economic_events import event_risk_summary, events_for_pair, fetch_calendar, historical_event_reaction
@@ -63,7 +63,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
     price = close[pair.ticker].dropna().rename(symbol)
     driver = close[pair.driver].dropna() if pair.driver in close else None
     features = prepare_features(price, load_yield(pair.base_yield), load_yield(pair.quote_yield), driver, pair.driver_sign, config)
-    scored, components = score_features(features, policy)
+    scored, components = score_features(features, policy, symbol)
     scored = scored.loc[scored.index >= pd.Timestamp(end - timedelta(days=int(years * 365.25)))]
     latest = scored.dropna(subset=["score"]).iloc[-1]
     probs, sample = calibrated_probabilities(scored, float(latest.score))
@@ -73,7 +73,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
-    st.caption("Deployment: event-engine v4 · 2026-07-22")
+    st.caption("Deployment: pair-models v5 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
@@ -203,6 +203,8 @@ with tabs[2]:
     st.info(f"Calibration uses {sample} historically similar score observations. Confidence: {confidence}. These are empirical research frequencies, not guaranteed forecasts.")
 
 with tabs[3]:
+    profile = pair_model_profile(selected)
+    st.info(f"Pair model: {profile.thesis}. Weights are pair-specific and change modestly with volatility and trend regime.")
     audit = components.loc[latest.name].sort_values(key=abs, ascending=False).rename("Contribution").to_frame()
     audit["Interpretation"] = np.where(audit.Contribution > 0, f"{pair.base} supportive", np.where(audit.Contribution < 0, f"{pair.quote} supportive", "Neutral"))
     st.dataframe(audit.style.format({"Contribution":"{:+.2f}"}), use_container_width=True)
@@ -249,6 +251,8 @@ with tabs[5]:
 ### How TRADE90 evaluates {selected}
 
 The terminal combines trend, momentum, RSI, the **{pair.base}–{pair.quote} 10-year yield differential**, its recent impulse, and **{pair.driver_label}**. A manual policy overlay is kept separate so judgment never masquerades as observed data.
+
+This pair uses a dedicated model profile: **{pair_model_profile(selected).thesis}**. Its component weights differ from the other six major pairs and adapt modestly between high-volatility, trending, and transitional regimes. The Validation tab evaluates the selected pair's resulting score independently.
 
 ### Accuracy safeguards
 
