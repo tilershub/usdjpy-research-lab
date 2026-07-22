@@ -10,7 +10,7 @@ import yfinance as yf
 
 from model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
-    data_quality, fred_series, prepare_features, regime, score_features, walk_forward_metrics,
+    benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, regime, score_features, walk_forward_metrics,
 )
 
 st.set_page_config(page_title="TRADE90 Research Terminal", page_icon="📈", layout="wide")
@@ -155,16 +155,40 @@ with tabs[2]:
     st.caption("Every component is bounded. Positive contributions favor a higher pair; negative contributions favor a lower pair.")
 
 with tabs[3]:
-    bt, metrics = backtest(scored, config); oos = walk_forward_metrics(scored, config)
+    bt, metrics = backtest(scored, config)
+    horizons = horizon_validation(scored, config)
+    calibration, reliability = expanding_probability_validation(scored)
+    benchmarks = benchmark_comparison(scored, config)
+    st.markdown("#### Out-of-sample forecast evidence")
     a,b,c,d = st.columns(4)
-    a.metric("Historical CAGR", f"{metrics['CAGR']:.1%}"); b.metric("Sharpe", f"{metrics['Sharpe (0% rf)']:.2f}")
-    c.metric("Max drawdown", f"{metrics['Maximum drawdown']:.1%}"); d.metric("Walk-forward accuracy", f"{oos['OOS directional accuracy']:.1%}" if pd.notna(oos['OOS directional accuracy']) else "N/A")
+    five_day = horizons.loc["5D"]
+    a.metric("5D OOS accuracy", f"{five_day['Model accuracy']:.1%}" if pd.notna(five_day["Model accuracy"]) else "N/A")
+    b.metric("5D lift vs baseline", f"{five_day['Lift vs baseline']:+.1%}" if pd.notna(five_day["Lift vs baseline"]) else "N/A")
+    c.metric("Calibration error", f"{calibration['Calibration error']:.1%}" if pd.notna(calibration["Calibration error"]) else "N/A")
+    d.metric("OOS probability tests", f"{int(calibration['Forecasts'])}")
+    st.dataframe(horizons.style.format({"Model accuracy":"{:.1%}","MA accuracy":"{:.1%}","Majority baseline":"{:.1%}","Lift vs baseline":"{:+.1%}"}), use_container_width=True)
+    st.caption("The first 504 observations are reserved for training. Each forecast is evaluated only against later prices; probability tests use prior observations only.")
+
+    st.markdown("#### Benchmark comparison")
+    st.dataframe(benchmarks.style.format({"Total return":"{:.1%}","CAGR":"{:.1%}","Sharpe":"{:.2f}","Maximum drawdown":"{:.1%}","Hit rate":"{:.1%}","Profit factor":"{:.2f}"}), use_container_width=True)
+    st.caption("All strategies use one-day-lagged positions and the same transaction-cost assumption. The random benchmark is deterministic for reproducibility.")
+
+    if not reliability.empty:
+        st.markdown("#### Probability reliability")
+        chart_data = reliability.reset_index(drop=True)
+        rel = go.Figure()
+        rel.add_trace(go.Scatter(x=chart_data.Mean_confidence, y=chart_data.Observed_accuracy, mode="lines+markers", name="Observed"))
+        rel.add_trace(go.Scatter(x=[.33,1], y=[.33,1], mode="lines", line=dict(dash="dash",color="#64748b"), name="Perfect calibration"))
+        rel.update_layout(xaxis_title="Forecast confidence", yaxis_title="Observed accuracy", height=320, margin=dict(l=10,r=10,t=25,b=10))
+        st.plotly_chart(rel, use_container_width=True)
+
+    st.markdown("#### Historical simulation")
     eq = go.Figure()
-    eq.add_trace(go.Scatter(x=bt.index,y=bt.strategy_equity,name="Research simulation",line=dict(color="#047857",width=2)))
+    eq.add_trace(go.Scatter(x=bt.index,y=bt.strategy_equity,name="TRADE90 simulation",line=dict(color="#047857",width=2)))
     eq.add_trace(go.Scatter(x=bt.index,y=bt.buy_hold_equity,name=f"Hold {selected}",line=dict(color="#64748b",width=1)))
-    eq.update_layout(title="Lagged, cost-aware historical simulation",height=400,margin=dict(l=10,r=10,t=45,b=10))
+    eq.update_layout(title="Lagged, cost-aware simulation",height=400,margin=dict(l=10,r=10,t=45,b=10))
     st.plotly_chart(eq,use_container_width=True)
-    st.caption(f"Walk-forward accuracy uses {int(oos['OOS observations'])} active out-of-sample observations. Simulation excludes financing, slippage, broker spreads and event gaps.")
+    st.warning("A positive backtest is not proof of future profitability. Financing, slippage, broker spreads and event gaps remain excluded.")
 
 with tabs[4]:
     st.markdown(f"""
