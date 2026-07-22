@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 import numpy as np
 import pandas as pd
@@ -12,6 +12,7 @@ from trade90_model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
     benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, regime, score_features, walk_forward_metrics,
 )
+from economic_events import event_risk_summary, events_for_pair, fetch_calendar, historical_event_reaction
 
 st.set_page_config(page_title="TRADE90 Research Terminal", page_icon="📈", layout="wide")
 st.markdown("""
@@ -52,6 +53,10 @@ def load_prices(start: date, end: date):
 def load_yield(series_id: str):
     return fred_series(series_id)
 
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_calendar(start_day: date, end_day: date):
+    return fetch_calendar(start_day, end_day)
+
 
 def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float = 0.0):
     pair = PAIR_CONFIGS[symbol]
@@ -68,7 +73,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
-    st.caption("Deployment: module-fix v3 · 2026-07-22")
+    st.caption("Deployment: event-engine v4 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
@@ -85,12 +90,15 @@ try:
     with st.spinner("Building the major-pair terminal…"):
         close = load_prices(start, end)
         results = {symbol: analyse(symbol, close, config, policy if symbol == selected else 0.0) for symbol in PAIR_CONFIGS}
+        calendar, calendar_status = load_calendar(end - timedelta(days=35), end + timedelta(days=14))
 except Exception as exc:
     st.error(f"Terminal data could not be loaded: {exc}")
     st.info("Retry shortly. If the warning persists, a public market or macro source may be unavailable.")
     st.stop()
 
 pair, scored, components, latest, probs, sample, quality = results[selected]
+pair_events = events_for_pair(calendar, pair.base, pair.quote)
+event_risk = event_risk_summary(pair_events)
 confidence = confidence_grade(probs, sample, str(quality["grade"]))
 direction = "Bullish" if latest.score > threshold else "Bearish" if latest.score < -threshold else "Neutral / wait"
 
@@ -101,6 +109,7 @@ for symbol, (p, s, _, row, probability, n, q) in results.items():
         "Pair": symbol, "Price": round(float(row.close), p.decimals), "Bias": dominant,
         "Score": round(float(row.score), 1), "Confidence": confidence_grade(probability, n, str(q["grade"])),
         "Regime": regime(row), "Volatility": float(row.volatility), "Data": q["grade"],
+        "Event risk": event_risk_summary(events_for_pair(calendar, p.base, p.quote))["level"],
     })
 scanner = pd.DataFrame(scanner_rows)
 scanner["Conviction"] = scanner["Score"].abs()
@@ -131,7 +140,7 @@ with st.expander("Data sources, delay and freshness", expanded=quality["grade"] 
         st.warning("Excluded from the current score: " + ", ".join(quality["stale_inputs"]) + ".")
     st.caption("Inputs use their latest published observation. Monthly yield series are valid for macro context but cannot be interpreted as live rates.")
 
-tabs = st.tabs(["Market", "Scenarios", "Signal audit", "Validation", "Methodology"])
+tabs = st.tabs(["Market", "Event risk", "Scenarios", "Signal audit", "Validation", "Methodology"])
 with tabs[0]:
     left, right = st.columns([2, 1])
     with left:
@@ -153,6 +162,39 @@ with tabs[0]:
     st.plotly_chart(score_fig, use_container_width=True)
 
 with tabs[1]:
+    st.markdown(f"#### {selected} economic-event monitor")
+    e1, e2, e3 = st.columns(3)
+    e1.metric("Current event risk", event_risk["level"])
+    e2.metric("High-impact events / 24h", event_risk["count_24h"])
+    e3.metric("Next event", f"{event_risk['hours']:.1f}h" if event_risk["hours"] is not None else "None scheduled")
+    if event_risk["level"] in {"Extreme", "High"}:
+        st.warning(f"{event_risk['next_event']} is approaching. Spreads, slippage and gap risk can rise; the directional model does not predict the release result.")
+    upcoming = pair_events[pair_events["time"] >= pd.Timestamp(datetime.now(timezone.utc))].head(12).copy()
+    if upcoming.empty:
+        st.info(calendar_status.message or "No upcoming supported high-impact events were returned for this pair.")
+    else:
+        upcoming["UTC"] = upcoming["time"].dt.strftime("%Y-%m-%d %H:%M")
+        upcoming["Countdown"] = upcoming["hours"].clip(lower=0).map(lambda value: f"{value:.1f}h")
+        display = upcoming[["UTC", "Countdown", "currency", "event", "side", "previous", "forecast"]].rename(columns={"currency":"CCY", "event":"Event", "side":"Pair side", "previous":"Previous", "forecast":"Consensus"})
+        st.dataframe(display, use_container_width=True, hide_index=True)
+    st.caption(f"Provider: {calendar_status.provider} · mode: {calendar_status.mode} · fetched {calendar_status.fetched_at:%Y-%m-%d %H:%M} UTC. Calendar figures can change; verify them with the primary release source.")
+    released = pair_events[(pair_events["time"] < pd.Timestamp(datetime.now(timezone.utc))) & pair_events["actual"].ne("—")].tail(15).copy()
+    st.markdown("#### Recent releases and surprises")
+    if released.empty:
+        st.caption("No validated actual-versus-consensus releases are available from the current provider response.")
+    else:
+        released["UTC"] = released["time"].dt.strftime("%Y-%m-%d %H:%M")
+        released["Surprise"] = released["surprise_pct"].map(lambda value: f"{value:+.1%}" if pd.notna(value) else "—")
+        st.dataframe(released[["UTC", "currency", "event", "actual", "forecast", "previous", "Surprise"]].rename(columns={"currency":"CCY", "event":"Event", "actual":"Actual", "forecast":"Consensus", "previous":"Previous"}), use_container_width=True, hide_index=True)
+        selected_category = st.selectbox("Historical reaction category", released["category"].dropna().unique())
+        reaction = historical_event_reaction(pair_events, scored["close"], selected_category)
+        if reaction["observations"]:
+            st.info(f"After {reaction['observations']} comparable releases in the available window, the median next-session absolute move was {reaction['median_move']:.2%}. This measures movement, not direction.")
+        else:
+            st.caption("Not enough aligned observations to estimate a historical reaction.")
+    st.info("Upcoming events change the risk label only. They do not add bullish or bearish points. A surprise is calculated only after actual and consensus values are both available.")
+
+with tabs[2]:
     st.markdown(f"#### Empirical {config.forward_days}-trading-day scenarios")
     cols = st.columns(3)
     for col, label in zip(cols, ("Bullish", "Range/neutral", "Bearish")):
@@ -160,13 +202,13 @@ with tabs[1]:
         col.progress(int(probs[label] * 100))
     st.info(f"Calibration uses {sample} historically similar score observations. Confidence: {confidence}. These are empirical research frequencies, not guaranteed forecasts.")
 
-with tabs[2]:
+with tabs[3]:
     audit = components.loc[latest.name].sort_values(key=abs, ascending=False).rename("Contribution").to_frame()
     audit["Interpretation"] = np.where(audit.Contribution > 0, f"{pair.base} supportive", np.where(audit.Contribution < 0, f"{pair.quote} supportive", "Neutral"))
     st.dataframe(audit.style.format({"Contribution":"{:+.2f}"}), use_container_width=True)
     st.caption("Every component is bounded. Positive contributions favor a higher pair; negative contributions favor a lower pair.")
 
-with tabs[3]:
+with tabs[4]:
     bt, metrics = backtest(scored, config)
     horizons = horizon_validation(scored, config)
     calibration, reliability = expanding_probability_validation(scored)
@@ -202,7 +244,7 @@ with tabs[3]:
     st.plotly_chart(eq,use_container_width=True)
     st.warning("A positive backtest is not proof of future profitability. Financing, slippage, broker spreads and event gaps remain excluded.")
 
-with tabs[4]:
+with tabs[5]:
     st.markdown(f"""
 ### How TRADE90 evaluates {selected}
 
@@ -220,5 +262,5 @@ The terminal combines trend, momentum, RSI, the **{pair.base}–{pair.quote} 10-
 
 ### Current limitations
 
-This public-data edition is end-of-day research, not a real-time dealing terminal. It does not yet include licensed tick data, options surfaces, CFTC positioning, consensus-surprise data, live news, economic-calendar scoring or broker execution. FRED and Yahoo observations may be delayed, revised or aligned to different closes.
+This public-data edition is end-of-day research, not a real-time dealing terminal. The event engine displays provider-supplied high-impact calendar observations and keeps them out of the directional score. It does not yet include licensed tick data, options surfaces, CFTC positioning, live news or broker execution. FRED, Yahoo and calendar observations may be delayed, revised or aligned to different closes.
 """)
