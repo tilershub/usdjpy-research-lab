@@ -24,6 +24,23 @@ class PairConfig:
     decimals: int = 5
 
 
+@dataclass(frozen=True)
+class PairModelProfile:
+    thesis: str
+    weights: Mapping[str, float]
+
+
+PAIR_MODEL_PROFILES: Mapping[str, PairModelProfile] = {
+    "EUR/USD": PairModelProfile("Fed–ECB rate spread, broad USD cycle and euro-area growth sensitivity", {"Trend": 22, "Momentum": 14, "RSI": 8, "Rate differential": 26, "Rate impulse": 12, "Cross-asset driver": 11, "Policy overlay": 7}),
+    "GBP/USD": PairModelProfile("Fed–BoE repricing, UK inflation persistence and broad USD conditions", {"Trend": 23, "Momentum": 16, "RSI": 8, "Rate differential": 23, "Rate impulse": 11, "Cross-asset driver": 12, "Policy overlay": 7}),
+    "USD/JPY": PairModelProfile("US–Japan yield spread, BoJ normalization and risk-off yen demand", {"Trend": 20, "Momentum": 13, "RSI": 7, "Rate differential": 30, "Rate impulse": 14, "Cross-asset driver": 9, "Policy overlay": 7}),
+    "USD/CHF": PairModelProfile("Fed–SNB spread and safe-haven demand during European or global stress", {"Trend": 21, "Momentum": 13, "RSI": 8, "Rate differential": 25, "Rate impulse": 11, "Cross-asset driver": 15, "Policy overlay": 7}),
+    "USD/CAD": PairModelProfile("Fed–BoC spread, Canadian growth and oil-linked terms of trade", {"Trend": 20, "Momentum": 13, "RSI": 7, "Rate differential": 23, "Rate impulse": 10, "Cross-asset driver": 20, "Policy overlay": 7}),
+    "AUD/USD": PairModelProfile("RBA–Fed spread, industrial commodities and China-sensitive risk demand", {"Trend": 20, "Momentum": 14, "RSI": 7, "Rate differential": 21, "Rate impulse": 9, "Cross-asset driver": 22, "Policy overlay": 7}),
+    "NZD/USD": PairModelProfile("RBNZ–Fed spread, global risk appetite and commodity-sensitive growth", {"Trend": 21, "Momentum": 15, "RSI": 7, "Rate differential": 21, "Rate impulse": 9, "Cross-asset driver": 20, "Policy overlay": 7}),
+}
+
+
 PAIR_CONFIGS: Mapping[str, PairConfig] = {
     "EUR/USD": PairConfig("EUR/USD", "EURUSD=X", "EUR", "USD", "IRLTLT01EZM156N", "DGS10", "DX-Y.NYB", "US dollar index", -1),
     "GBP/USD": PairConfig("GBP/USD", "GBPUSD=X", "GBP", "USD", "IRLTLT01GBM156N", "DGS10", "DX-Y.NYB", "US dollar index", -1),
@@ -126,18 +143,31 @@ def prepare_features(
     return df
 
 
-def score_features(df: pd.DataFrame, policy_bias: float = 0.0) -> Tuple[pd.DataFrame, pd.DataFrame]:
+def pair_model_profile(symbol: str | None) -> PairModelProfile:
+    if symbol in PAIR_MODEL_PROFILES:
+        return PAIR_MODEL_PROFILES[symbol]
+    return PairModelProfile("Generic balanced FX model", {"Trend": 24, "Momentum": 16, "RSI": 10, "Rate differential": 22, "Rate impulse": 10, "Cross-asset driver": 11, "Policy overlay": 7})
+
+
+def score_features(df: pd.DataFrame, policy_bias: float = 0.0, pair_symbol: str | None = None) -> Tuple[pd.DataFrame, pd.DataFrame]:
     out = df.copy()
+    profile = pair_model_profile(pair_symbol)
+    weights = profile.weights
     components = pd.DataFrame(index=out.index)
-    components["Trend"] = np.tanh(((out["ema_fast"] / out["ema_slow"]) - 1) * 80) * 24
-    components["Momentum"] = np.tanh(out["momentum"] * 20) * 16
-    components["RSI"] = np.tanh((out["rsi"] - 50) / 15) * 10
+    high_vol = out["volatility"].gt(out["volatility"].rolling(252, min_periods=60).median() * 1.25)
+    strong_trend = ((out["ema_fast"] / out["ema_slow"]) - 1).abs().gt(0.01)
+    trend_multiplier = pd.Series(np.where(strong_trend, 1.12, 0.92), index=out.index)
+    macro_multiplier = pd.Series(np.where(high_vol, 0.88, 1.05), index=out.index)
+    driver_multiplier = pd.Series(np.where(high_vol, 1.18, 0.96), index=out.index)
+    components["Trend"] = np.tanh(((out["ema_fast"] / out["ema_slow"]) - 1) * 80) * weights["Trend"] * trend_multiplier
+    components["Momentum"] = np.tanh(out["momentum"] * 20) * weights["Momentum"] * trend_multiplier
+    components["RSI"] = np.tanh((out["rsi"] - 50) / 15) * weights["RSI"]
     yield_fresh = out.get("base_yield_age_days", pd.Series(0, index=out.index)).le(45) & out.get("quote_yield_age_days", pd.Series(0, index=out.index)).le(45)
     driver_fresh = out.get("driver_age_days", pd.Series(0, index=out.index)).le(7)
-    components["Rate differential"] = (np.tanh(out["spread_z"].fillna(0) / 1.5) * 22).where(yield_fresh, 0)
-    components["Rate impulse"] = (np.tanh(out["spread_change"].fillna(0) * 3) * 10).where(yield_fresh, 0)
-    components["Cross-asset driver"] = (np.tanh(out["driver_z"].fillna(0) / 1.5) * 11).where(driver_fresh, 0)
-    components["Policy overlay"] = float(np.clip(policy_bias, -1, 1)) * 7
+    components["Rate differential"] = (np.tanh(out["spread_z"].fillna(0) / 1.5) * weights["Rate differential"] * macro_multiplier).where(yield_fresh, 0)
+    components["Rate impulse"] = (np.tanh(out["spread_change"].fillna(0) * 3) * weights["Rate impulse"] * macro_multiplier).where(yield_fresh, 0)
+    components["Cross-asset driver"] = (np.tanh(out["driver_z"].fillna(0) / 1.5) * weights["Cross-asset driver"] * driver_multiplier).where(driver_fresh, 0)
+    components["Policy overlay"] = float(np.clip(policy_bias, -1, 1)) * weights["Policy overlay"]
     out["score"] = components.sum(axis=1).clip(-100, 100)
     return out, components
 
