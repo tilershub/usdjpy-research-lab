@@ -117,7 +117,18 @@ c2.metric("Composite score", f"{latest.score:+.1f}", direction)
 c3.metric(f"{pair.base}–{pair.quote} 10Y spread", f"{latest.yield_spread:+.2f} pp" if pd.notna(latest.yield_spread) else "N/A")
 c4.metric("20D volatility", f"{latest.volatility:.1%}")
 c5.metric("Research confidence", confidence, f"Data {quality['grade']}")
-st.markdown(f"<div class='quality'><b>Data check:</b> last market observation {quality['last_price']:%Y-%m-%d} · age {quality['price_age_days']} day(s) · completeness {quality['completeness']:.0%} · cross-asset driver: {pair.driver_label}</div>", unsafe_allow_html=True)
+st.markdown(f"<div class='quality'><b>Data check:</b> last market observation {quality['last_price']:%Y-%m-%d} · age {quality['price_age_days']} day(s) · usable inputs {quality['completeness']:.0%} · cross-asset driver: {pair.driver_label}</div>", unsafe_allow_html=True)
+source_rows = [
+    {"Input": f"{selected} close", "Provider": "Yahoo Finance", "Cadence": "End of day", "Age": f"{quality['price_age_days']}d", "Status": "Current" if quality['price_age_days'] <= 4 else "Stale"},
+    {"Input": f"{pair.base} 10Y yield", "Provider": "FRED / OECD", "Cadence": "Daily or monthly", "Age": f"{quality['base_yield_age_days']}d" if quality['base_yield_age_days'] is not None else "Missing", "Status": "Usable" if quality['base_yield_age_days'] is not None and quality['base_yield_age_days'] <= 45 else "Excluded"},
+    {"Input": f"{pair.quote} 10Y yield", "Provider": "FRED / OECD", "Cadence": "Daily or monthly", "Age": f"{quality['quote_yield_age_days']}d" if quality['quote_yield_age_days'] is not None else "Missing", "Status": "Usable" if quality['quote_yield_age_days'] is not None and quality['quote_yield_age_days'] <= 45 else "Excluded"},
+    {"Input": pair.driver_label, "Provider": "Yahoo Finance", "Cadence": "End of day", "Age": f"{quality['driver_age_days']}d" if quality['driver_age_days'] is not None else "Missing", "Status": "Current" if quality['driver_age_days'] is not None and quality['driver_age_days'] <= 7 else "Excluded"},
+]
+with st.expander("Data sources, delay and freshness", expanded=quality["grade"] == "C"):
+    st.dataframe(pd.DataFrame(source_rows), use_container_width=True, hide_index=True)
+    if quality["stale_inputs"]:
+        st.warning("Excluded from the current score: " + ", ".join(quality["stale_inputs"]) + ".")
+    st.caption("Inputs use their latest published observation. Monthly yield series are valid for macro context but cannot be interpreted as live rates.")
 
 tabs = st.tabs(["Market", "Scenarios", "Signal audit", "Validation", "Methodology"])
 with tabs[0]:
@@ -202,6 +213,8 @@ The terminal combines trend, momentum, RSI, the **{pair.base}–{pair.quote} 10-
 - Scenario percentages are calibrated from historically similar observations.
 - Walk-forward validation uses only prior data to set its adaptive threshold.
 - Data age and completeness directly limit the confidence label.
+- Stale yields and cross-asset observations are automatically excluded from the score.
+- Provider, cadence, age and inclusion status are visible above the analysis tabs.
 - The audit exposes every contribution instead of hiding the result in a black box.
 
 ### Current limitations
