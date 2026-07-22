@@ -60,6 +60,25 @@ def test_quality_and_confidence_penalize_stale_data():
     assert confidence_grade({"Bullish": .7, "Range/neutral": .2, "Bearish": .1}, 120, "C") == "Moderate"
 
 
+def test_quality_reports_component_freshness_and_stale_inputs():
+    scored, _ = score_features(fixture())
+    quality = data_quality(scored, scored.index[-1])
+    assert quality["base_yield_age_days"] == 0
+    assert quality["quote_yield_age_days"] == 0
+    assert quality["driver_age_days"] == 0
+    assert quality["stale_inputs"] == []
+
+
+def test_stale_macro_and_driver_inputs_are_excluded_from_score():
+    frame = fixture()
+    frame.loc[frame.index[-1], ["base_yield_age_days", "quote_yield_age_days", "driver_age_days"]] = [60, 60, 10]
+    _, components = score_features(frame)
+    latest = components.iloc[-1]
+    assert latest["Rate differential"] == 0
+    assert latest["Rate impulse"] == 0
+    assert latest["Cross-asset driver"] == 0
+
+
 def test_fred_parser_accepts_observation_date_header():
     class Response:
         def __enter__(self):
