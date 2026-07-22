@@ -98,21 +98,30 @@ def prepare_features(
     df["resistance20"] = px.rolling(20).max()
 
     if base_yield is not None and quote_yield is not None:
-        macro = pd.concat([base_yield.rename("base_yield"), quote_yield.rename("quote_yield")], axis=1).sort_index().ffill()
+        macro = pd.concat([base_yield.rename("base_yield"), quote_yield.rename("quote_yield")], axis=1).sort_index()
+        macro["base_yield_observed_at"] = pd.Series(macro.index, index=macro.index).where(macro["base_yield"].notna())
+        macro["quote_yield_observed_at"] = pd.Series(macro.index, index=macro.index).where(macro["quote_yield"].notna())
+        macro = macro.ffill()
         macro["yield_spread"] = macro["base_yield"] - macro["quote_yield"]
         df = df.join(macro, how="left").ffill()
+        dates = pd.Series(df.index, index=df.index)
+        df["base_yield_age_days"] = (dates - pd.to_datetime(df["base_yield_observed_at"])).dt.days
+        df["quote_yield_age_days"] = (dates - pd.to_datetime(df["quote_yield_observed_at"])).dt.days
         df["spread_z"] = rolling_zscore(df["yield_spread"], 252)
         df["spread_change"] = df["yield_spread"].diff(20)
     else:
-        df[["base_yield", "quote_yield", "yield_spread", "spread_z", "spread_change"]] = np.nan
+        df[["base_yield", "quote_yield", "yield_spread", "spread_z", "spread_change", "base_yield_age_days", "quote_yield_age_days"]] = np.nan
 
     if driver is not None:
         aligned = driver.reindex(df.index).ffill()
         df["driver"] = aligned
+        observed = pd.Series(driver.index, index=driver.index).reindex(df.index).ffill()
+        df["driver_observed_at"] = observed
+        df["driver_age_days"] = (pd.Series(df.index, index=df.index) - pd.to_datetime(observed)).dt.days
         df["driver_return"] = aligned.pct_change(20) * float(driver_sign)
         df["driver_z"] = rolling_zscore(df["driver_return"], 252)
     else:
-        df[["driver", "driver_return", "driver_z"]] = np.nan
+        df[["driver", "driver_return", "driver_z", "driver_age_days"]] = np.nan
     df["forward_return"] = px.pct_change(config.forward_days).shift(-config.forward_days)
     return df
 
@@ -123,9 +132,11 @@ def score_features(df: pd.DataFrame, policy_bias: float = 0.0) -> Tuple[pd.DataF
     components["Trend"] = np.tanh(((out["ema_fast"] / out["ema_slow"]) - 1) * 80) * 24
     components["Momentum"] = np.tanh(out["momentum"] * 20) * 16
     components["RSI"] = np.tanh((out["rsi"] - 50) / 15) * 10
-    components["Rate differential"] = np.tanh(out["spread_z"].fillna(0) / 1.5) * 22
-    components["Rate impulse"] = np.tanh(out["spread_change"].fillna(0) * 3) * 10
-    components["Cross-asset driver"] = np.tanh(out["driver_z"].fillna(0) / 1.5) * 11
+    yield_fresh = out.get("base_yield_age_days", pd.Series(0, index=out.index)).le(45) & out.get("quote_yield_age_days", pd.Series(0, index=out.index)).le(45)
+    driver_fresh = out.get("driver_age_days", pd.Series(0, index=out.index)).le(7)
+    components["Rate differential"] = (np.tanh(out["spread_z"].fillna(0) / 1.5) * 22).where(yield_fresh, 0)
+    components["Rate impulse"] = (np.tanh(out["spread_change"].fillna(0) * 3) * 10).where(yield_fresh, 0)
+    components["Cross-asset driver"] = (np.tanh(out["driver_z"].fillna(0) / 1.5) * 11).where(driver_fresh, 0)
     components["Policy overlay"] = float(np.clip(policy_bias, -1, 1)) * 7
     out["score"] = components.sum(axis=1).clip(-100, 100)
     return out, components
@@ -162,11 +173,22 @@ def data_quality(scored: pd.DataFrame, today: pd.Timestamp | None = None) -> Dic
     today = (today or pd.Timestamp.utcnow()).tz_localize(None).normalize()
     age = max(int((today - pd.Timestamp(last_price).tz_localize(None).normalize()).days), 0)
     latest = scored.loc[last_price]
-    macro_available = pd.notna(latest.get("yield_spread"))
-    driver_available = pd.notna(latest.get("driver"))
-    completeness = float(pd.Series([macro_available, driver_available, pd.notna(latest.get("atr20"))]).mean())
-    grade = "A" if age <= 3 and completeness == 1 else "B" if age <= 4 and completeness >= 2 / 3 else "C"
-    return {"grade": grade, "price_age_days": age, "completeness": completeness, "last_price": last_price}
+    base_age = int(latest.get("base_yield_age_days")) if pd.notna(latest.get("base_yield_age_days")) else None
+    quote_age = int(latest.get("quote_yield_age_days")) if pd.notna(latest.get("quote_yield_age_days")) else None
+    driver_age = int(latest.get("driver_age_days")) if pd.notna(latest.get("driver_age_days")) else None
+    checks = [age <= 4, base_age is not None and base_age <= 45, quote_age is not None and quote_age <= 45, driver_age is not None and driver_age <= 7]
+    completeness = float(np.mean(checks))
+    if age <= 3 and base_age is not None and quote_age is not None and max(base_age, quote_age) <= 5 and driver_age is not None and driver_age <= 3:
+        grade = "A"
+    elif age <= 4 and completeness == 1:
+        grade = "B"
+    else:
+        grade = "C"
+    return {
+        "grade": grade, "price_age_days": age, "completeness": completeness, "last_price": last_price,
+        "base_yield_age_days": base_age, "quote_yield_age_days": quote_age, "driver_age_days": driver_age,
+        "stale_inputs": [name for name, ok in zip(("FX price", "base yield", "quote yield", "cross-asset driver"), checks) if not ok],
+    }
 
 
 def confidence_grade(probabilities: Dict[str, float], sample_size: int, quality_grade: str) -> str:
