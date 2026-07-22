@@ -7,6 +7,12 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 import yfinance as yf
+import importlib
+import trade90_model as _trade90_model
+
+# Streamlit Cloud can retain an older imported module across hot redeploys.
+# Reload the synchronized engine file before resolving named imports.
+importlib.reload(_trade90_model)
 
 from trade90_model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade, pair_model_profile,
@@ -78,7 +84,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
-    st.caption("Deployment: positioning v7 · 2026-07-22")
+    st.caption("Deployment: import-sync v8 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
