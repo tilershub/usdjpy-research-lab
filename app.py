@@ -8,7 +8,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import yfinance as yf
 
-from model import (
+from trade90_model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
     benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, regime, score_features, walk_forward_metrics,
 )
@@ -68,7 +68,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
-    st.caption("Deployment: data-layer v2 · 2026-07-22")
+    st.caption("Deployment: module-fix v3 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
