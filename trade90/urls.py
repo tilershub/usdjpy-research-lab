@@ -10,6 +10,12 @@ urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("cms/", include(wagtailadmin_urls)),
     path("tools/fx-research-terminal/", include("terminal.urls")),
+    path("tools/position-size-calculator/", website_views.calculator, {"tool": "position"}),
+    path("tools/drawdown-calculator/", website_views.calculator, {"tool": "drawdown"}),
+    path("risk-reward-calculator/", website_views.calculator, {"tool": "risk_reward"}),
+    path("pip-value-calculator/", website_views.calculator, {"tool": "pip_value"}),
+    path("tools/profit-calculator/", website_views.calculator, {"tool": "profit"}),
+    path("tools/compounding-calculator/", website_views.calculator, {"tool": "compounding"}),
     path("", website_views.home, name="home"),
     path("", include(wagtail_urls)),
 ]
