@@ -16,6 +16,9 @@ urlpatterns = [
     path("pip-value-calculator/", website_views.calculator, {"tool": "pip_value"}),
     path("tools/profit-calculator/", website_views.calculator, {"tool": "profit"}),
     path("tools/compounding-calculator/", website_views.calculator, {"tool": "compounding"}),
+    path("today/", website_views.today, name="today"),
+    path("journal/", website_views.journal, name="journal"),
+    path("tools/trading-plan-builder/", website_views.trading_plan, name="trading-plan"),
     path("", website_views.home, name="home"),
     path("", include(wagtail_urls)),
 ]
