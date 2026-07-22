@@ -25,9 +25,12 @@ The dashboard downloads end-of-day market observations through `yfinance` and go
 - Price, moving averages, yields and volatility
 - Configurable entry threshold, transaction-cost assumption, and policy overlay
 - Lagged, cost-aware backtest plus expanding walk-forward validation
+- High-impact economic calendar with pair relevance and UTC countdowns
+- Previous, consensus and actual values with post-release surprise calculation
+- Event-risk warnings and historical absolute-reaction estimates
 
 ## Research caveats
 
-This is an end-of-day public-data research product, not a real-time institutional feed. Empirical frequencies are not guarantees. The simulation excludes financing, taxes, broker spreads, execution slippage, and intraday gaps. Public data may be delayed, revised, missing, or aligned to different market closes. Validate source observations before using the output.
+This is an end-of-day public-data research product, not a real-time institutional feed. Empirical frequencies are not guarantees. The simulation excludes financing, taxes, broker spreads, execution slippage, and intraday gaps. Public data may be delayed, revised, missing, or aligned to different market closes. Calendar coverage uses Trading Economics guest access by default; set `TRADING_ECONOMICS_KEY` for licensed coverage. Upcoming events affect risk warnings, never the directional score. Validate source observations before using the output.
 
 This software is for research and education, not individualized financial advice or an offer to trade.
