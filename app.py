@@ -68,6 +68,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 
 with st.sidebar:
     st.header("Terminal controls")
+    st.caption("Deployment: data-layer v2 · 2026-07-22")
     selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
