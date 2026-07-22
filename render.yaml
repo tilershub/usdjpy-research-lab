@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: trade90-platform
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements-web.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    startCommand: gunicorn trade90.wsgi:application
+    healthCheckPath: /tools/fx-research-terminal/
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: trade90.settings.production
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false
+      - key: WAGTAILADMIN_BASE_URL
+        sync: false
+  - type: cron
+    name: trade90-market-refresh
+    runtime: python
+    plan: free
+    schedule: "15 22 * * 1-5"
+    buildCommand: pip install -r requirements-web.txt
+    startCommand: python manage.py publish_market_snapshot
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: trade90.settings.production
+      - key: DATABASE_URL
+        sync: false
+      - key: DJANGO_SECRET_KEY
+        sync: false

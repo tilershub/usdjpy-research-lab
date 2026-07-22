@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}Multi-Asset Research Terminal | TRADE90{% endblock %}
+{% block content %}
+<section class="page-shell">
+  <p class="eyebrow">TRADE90 · Evidence-led intelligence</p>
+  <h1>FX, Gold & Bitcoin Research Terminal</h1>
+  <p class="lede">Nine instrument-specific macro-technical models with historical probability calibration.</p>
+  <div id="terminal" class="terminal-card" data-endpoint="{% url 'terminal:snapshot' %}">
+    {% if snapshot %}{{ snapshot|json_script:"snapshot-data" }}{% else %}<div class="terminal-empty"><strong>Waiting for the first verified snapshot.</strong><p>No forecast values are fabricated while data is unavailable.</p></div>{% endif %}
+  </div>
+</section>
+<script src="{% static 'js/terminal.js' %}" defer></script>
+{% endblock %}
