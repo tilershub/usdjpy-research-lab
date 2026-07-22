@@ -210,6 +210,108 @@ def backtest(scored: pd.DataFrame, config: ModelConfig = ModelConfig()) -> Tuple
     return bt, metrics
 
 
+
+def _risk_metrics(returns: pd.Series) -> Dict[str, float]:
+    returns = returns.dropna().astype(float)
+    if returns.empty:
+        return {"Total return": np.nan, "CAGR": np.nan, "Sharpe": np.nan, "Maximum drawdown": np.nan, "Hit rate": np.nan, "Profit factor": np.nan}
+    equity = (1 + returns).cumprod()
+    years = max((returns.index[-1] - returns.index[0]).days / 365.25, 1 / 252)
+    vol = returns.std() * np.sqrt(252)
+    losses = -returns[returns < 0].sum()
+    return {
+        "Total return": float(equity.iloc[-1] - 1),
+        "CAGR": float(equity.iloc[-1] ** (1 / years) - 1),
+        "Sharpe": float(returns.mean() * 252 / vol) if vol > 0 else np.nan,
+        "Maximum drawdown": float((equity / equity.cummax() - 1).min()),
+        "Hit rate": float((returns > 0).mean()),
+        "Profit factor": float(returns[returns > 0].sum() / losses) if losses > 0 else np.nan,
+    }
+
+
+def benchmark_comparison(scored: pd.DataFrame, config: ModelConfig = ModelConfig(), seed: int = 90) -> pd.DataFrame:
+    data = scored[["return", "score", "ema_fast", "ema_slow", "yield_spread"]].dropna(subset=["return", "score"]).copy()
+    model_signal = np.where(data["score"] > config.entry_threshold, 1, np.where(data["score"] < -config.entry_threshold, -1, 0))
+    signals = {
+        "TRADE90 model": pd.Series(model_signal, index=data.index),
+        "Buy & hold": pd.Series(1.0, index=data.index),
+        "MA trend": np.sign(data["ema_fast"] - data["ema_slow"]).fillna(0),
+        "Carry only": np.sign(data["yield_spread"]).fillna(0),
+        "Random direction": pd.Series(np.random.default_rng(seed).choice([-1, 0, 1], len(data)), index=data.index),
+    }
+    rows = []
+    for name, raw_signal in signals.items():
+        position = raw_signal.shift(1).fillna(0)
+        turnover = position.diff().abs().fillna(position.abs())
+        cost = turnover * (config.round_trip_cost_bps / 2) / 10_000
+        strategy_return = position * data["return"] - cost
+        rows.append({"Benchmark": name, **_risk_metrics(strategy_return), "Active days": int((position != 0).sum())})
+    return pd.DataFrame(rows).set_index("Benchmark")
+
+
+def horizon_validation(
+    scored: pd.DataFrame,
+    config: ModelConfig = ModelConfig(),
+    horizons: Tuple[int, ...] = (1, 5, 20),
+    train_days: int = 504,
+) -> pd.DataFrame:
+    data = scored[["close", "score", "ema_fast", "ema_slow"]].dropna().copy()
+    rows = []
+    for horizon in horizons:
+        future_return = data["close"].shift(-horizon) / data["close"] - 1
+        test = data.iloc[train_days:].copy()
+        test["future_return"] = future_return.reindex(test.index)
+        test = test.dropna(subset=["future_return"])
+        signal = np.where(test["score"] > config.entry_threshold, 1, np.where(test["score"] < -config.entry_threshold, -1, 0))
+        active = pd.Series(signal, index=test.index) != 0
+        model_correct = (np.sign(pd.Series(signal, index=test.index)[active] * test.loc[active, "future_return"]) > 0)
+        ma_signal = np.sign(test["ema_fast"] - test["ema_slow"])
+        ma_correct = np.sign(ma_signal[active] * test.loc[active, "future_return"]) > 0
+        base_rate = max(float((test.loc[active, "future_return"] > 0).mean()), float((test.loc[active, "future_return"] < 0).mean())) if active.any() else np.nan
+        rows.append({
+            "Horizon": f"{horizon}D",
+            "OOS observations": int(active.sum()),
+            "Model accuracy": float(model_correct.mean()) if len(model_correct) else np.nan,
+            "MA accuracy": float(ma_correct.mean()) if len(ma_correct) else np.nan,
+            "Majority baseline": base_rate,
+            "Lift vs baseline": float(model_correct.mean() - base_rate) if len(model_correct) else np.nan,
+        })
+    return pd.DataFrame(rows).set_index("Horizon")
+
+
+def expanding_probability_validation(
+    scored: pd.DataFrame,
+    train_days: int = 504,
+    step: int = 5,
+    min_sample: int = 40,
+) -> Tuple[Dict[str, float], pd.DataFrame]:
+    data = scored[["score", "forward_return"]].dropna().copy()
+    records = []
+    for i in range(train_days, len(data), step):
+        history = data.iloc[:i]
+        current = data.iloc[i]
+        probabilities, sample = calibrated_probabilities(history, float(current["score"]), min_sample)
+        neutral_band = max(float(history["forward_return"].abs().median()) * 0.35, 0.0005)
+        actual = "Bullish" if current["forward_return"] > neutral_band else "Bearish" if current["forward_return"] < -neutral_band else "Range/neutral"
+        records.append({"date": data.index[i], **probabilities, "actual": actual, "sample": sample})
+    if not records:
+        return {"Brier score": np.nan, "Log loss": np.nan, "Calibration error": np.nan, "Forecasts": 0.0}, pd.DataFrame()
+    forecasts = pd.DataFrame(records).set_index("date")
+    labels = ["Bullish", "Range/neutral", "Bearish"]
+    y = np.column_stack([(forecasts["actual"] == label).astype(float) for label in labels])
+    p = forecasts[labels].to_numpy()
+    brier = float(np.mean(np.sum((p - y) ** 2, axis=1)))
+    log_loss = float(-np.mean(np.log(np.clip(p[np.arange(len(p)), np.argmax(y, axis=1)], 1e-9, 1))))
+    confidence = p.max(axis=1)
+    correct = (np.array(labels)[p.argmax(axis=1)] == forecasts["actual"].to_numpy()).astype(float)
+    bins = pd.cut(confidence, bins=[0, .4, .5, .6, .7, .8, 1], include_lowest=True)
+    reliability = pd.DataFrame({"confidence": confidence, "correct": correct, "bin": bins}).groupby("bin", observed=True).agg(
+        Forecasts=("correct", "size"), Mean_confidence=("confidence", "mean"), Observed_accuracy=("correct", "mean")
+    )
+    ece = float(sum(reliability["Forecasts"] / len(forecasts) * (reliability["Mean_confidence"] - reliability["Observed_accuracy"]).abs()))
+    return {"Brier score": brier, "Log loss": log_loss, "Calibration error": ece, "Forecasts": float(len(forecasts))}, reliability
+
+
 def walk_forward_metrics(scored: pd.DataFrame, config: ModelConfig = ModelConfig(), train_days: int = 504) -> Dict[str, float]:
     data = scored[["return", "score"]].dropna().copy()
     if len(data) <= train_days + 20:
