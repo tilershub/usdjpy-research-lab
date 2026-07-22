@@ -5,7 +5,7 @@ from unittest.mock import patch
 from trade90_model import (
     PAIR_CONFIGS, ModelConfig, backtest, calibrated_probabilities, confidence_grade,
     benchmark_comparison, data_quality, expanding_probability_validation, fred_series, horizon_validation, prepare_features, scenario_probabilities, score_features,
-    walk_forward_metrics,
+    walk_forward_metrics, PAIR_MODEL_PROFILES, pair_model_profile,
 )
 
 
@@ -129,3 +129,20 @@ def test_event_engine_filters_pair_and_calculates_risk_without_inventing_values(
     risk = event_risk_summary(pair, now)
     assert risk["level"] == "Extreme"
     assert risk["count_24h"] == 2
+
+
+def test_pair_models_are_distinct_and_normalized():
+    assert set(PAIR_MODEL_PROFILES) == set(PAIR_CONFIGS)
+    signatures = {tuple(profile.weights.values()) for profile in PAIR_MODEL_PROFILES.values()}
+    assert len(signatures) == 7
+    assert all(sum(profile.weights.values()) == 100 for profile in PAIR_MODEL_PROFILES.values())
+    assert "oil" in pair_model_profile("USD/CAD").thesis.lower()
+
+
+def test_pair_profiles_change_scores_and_remain_bounded():
+    frame = fixture()
+    cad, _ = score_features(frame, pair_symbol="USD/CAD")
+    jpy, _ = score_features(frame, pair_symbol="USD/JPY")
+    assert not cad["score"].equals(jpy["score"])
+    assert cad["score"].dropna().between(-100, 100).all()
+    assert jpy["score"].dropna().between(-100, 100).all()
