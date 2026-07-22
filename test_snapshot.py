@@ -15,6 +15,6 @@ def test_snapshot_contract_if_present():
         return
     payload = json.loads(path.read_text())
     assert payload["schema_version"] == 1
-    assert len(payload["pairs"]) == 7
+    assert len(payload["pairs"]) == 9
     required = {"symbol", "price", "score", "bias", "probabilities", "quality", "market", "model"}
     assert all(required <= set(pair) for pair in payload["pairs"])

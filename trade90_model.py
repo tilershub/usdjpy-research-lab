@@ -22,6 +22,10 @@ class PairConfig:
     driver_label: str
     driver_sign: float
     decimals: int = 5
+    asset_class: str = "FX"
+    macro_mode: str = "spread"
+    macro_label: str = "10Y yield spread"
+    price_note: str = "Yahoo Finance end-of-day market price"
 
 
 @dataclass(frozen=True)
@@ -38,6 +42,8 @@ PAIR_MODEL_PROFILES: Mapping[str, PairModelProfile] = {
     "USD/CAD": PairModelProfile("Fed–BoC spread, Canadian growth and oil-linked terms of trade", {"Trend": 20, "Momentum": 13, "RSI": 7, "Rate differential": 23, "Rate impulse": 10, "Cross-asset driver": 20, "Policy overlay": 7}),
     "AUD/USD": PairModelProfile("RBA–Fed spread, industrial commodities and China-sensitive risk demand", {"Trend": 20, "Momentum": 14, "RSI": 7, "Rate differential": 21, "Rate impulse": 9, "Cross-asset driver": 22, "Policy overlay": 7}),
     "NZD/USD": PairModelProfile("RBNZ–Fed spread, global risk appetite and commodity-sensitive growth", {"Trend": 21, "Momentum": 15, "RSI": 7, "Rate differential": 21, "Rate impulse": 9, "Cross-asset driver": 20, "Policy overlay": 7}),
+    "XAU/USD": PairModelProfile("Gold trend, US real-yield pressure, dollar conditions, inflation hedging and defensive demand", {"Trend": 20, "Momentum": 14, "RSI": 7, "Rate differential": 25, "Rate impulse": 12, "Cross-asset driver": 15, "Policy overlay": 7}),
+    "BTC/USD": PairModelProfile("Bitcoin trend and momentum, US liquidity conditions, equity risk appetite and crypto-specific volatility", {"Trend": 29, "Momentum": 23, "RSI": 10, "Rate differential": 10, "Rate impulse": 6, "Cross-asset driver": 15, "Policy overlay": 7}),
 }
 
 
@@ -49,6 +55,8 @@ PAIR_CONFIGS: Mapping[str, PairConfig] = {
     "USD/CAD": PairConfig("USD/CAD", "CAD=X", "USD", "CAD", "DGS10", "IRLTLT01CAM156N", "CL=F", "WTI crude oil", -1),
     "AUD/USD": PairConfig("AUD/USD", "AUDUSD=X", "AUD", "USD", "IRLTLT01AUM156N", "DGS10", "HG=F", "Copper", 1),
     "NZD/USD": PairConfig("NZD/USD", "NZDUSD=X", "NZD", "USD", "IRLTLT01NZM156N", "DGS10", "^GSPC", "Global risk proxy", 1),
+    "XAU/USD": PairConfig("XAU/USD", "GC=F", "XAU", "USD", "DFII10", "DGS10", "DX-Y.NYB", "US dollar index", -1, 2, "Commodity", "inverse_base", "US 10Y real yield", "COMEX gold futures proxy; confirm spot XAU/USD with your broker"),
+    "BTC/USD": PairConfig("BTC/USD", "BTC-USD", "BTC", "USD", "DGS10", "DGS10", "^IXIC", "Nasdaq risk proxy", 1, 2, "Crypto", "inverse_base", "US 10Y nominal yield", "Yahoo Finance BTC-USD composite; exchange prices can differ"),
 }
 
 
@@ -99,6 +107,7 @@ def prepare_features(
     driver: pd.Series | None = None,
     driver_sign: float = 1.0,
     config: ModelConfig = ModelConfig(),
+    macro_mode: str = "spread",
 ) -> pd.DataFrame:
     px = price.dropna().astype(float).sort_index()
     df = pd.DataFrame(index=px.index)
@@ -119,7 +128,7 @@ def prepare_features(
         macro["base_yield_observed_at"] = pd.Series(macro.index, index=macro.index).where(macro["base_yield"].notna())
         macro["quote_yield_observed_at"] = pd.Series(macro.index, index=macro.index).where(macro["quote_yield"].notna())
         macro = macro.ffill()
-        macro["yield_spread"] = macro["base_yield"] - macro["quote_yield"]
+        macro["yield_spread"] = -macro["base_yield"] if macro_mode == "inverse_base" else macro["base_yield"] - macro["quote_yield"]
         df = df.join(macro, how="left").ffill()
         dates = pd.Series(df.index, index=df.index)
         df["base_yield_age_days"] = (dates - pd.to_datetime(df["base_yield_observed_at"])).dt.days

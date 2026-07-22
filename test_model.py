@@ -22,9 +22,9 @@ def test_probabilities_sum_to_one():
     assert abs(sum(scenario_probabilities(25).values()) - 1) < 1e-12
 
 
-def test_all_seven_major_pairs_have_pair_specific_inputs():
-    assert len(PAIR_CONFIGS) == 7
-    assert set(PAIR_CONFIGS) == {"EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF", "USD/CAD", "AUD/USD", "NZD/USD"}
+def test_all_supported_markets_have_pair_specific_inputs():
+    assert len(PAIR_CONFIGS) == 9
+    assert set(PAIR_CONFIGS) == {"EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF", "USD/CAD", "AUD/USD", "NZD/USD", "XAU/USD", "BTC/USD"}
     assert all(pair.base_yield and pair.quote_yield and pair.driver for pair in PAIR_CONFIGS.values())
 
 
@@ -134,9 +134,19 @@ def test_event_engine_filters_pair_and_calculates_risk_without_inventing_values(
 def test_pair_models_are_distinct_and_normalized():
     assert set(PAIR_MODEL_PROFILES) == set(PAIR_CONFIGS)
     signatures = {tuple(profile.weights.values()) for profile in PAIR_MODEL_PROFILES.values()}
-    assert len(signatures) == 7
+    assert len(signatures) == 9
     assert all(sum(profile.weights.values()) == 100 for profile in PAIR_MODEL_PROFILES.values())
     assert "oil" in pair_model_profile("USD/CAD").thesis.lower()
+    assert "real-yield" in pair_model_profile("XAU/USD").thesis.lower()
+    assert "liquidity" in pair_model_profile("BTC/USD").thesis.lower()
+
+
+def test_non_fx_markets_use_inverse_us_yield_macro_inputs():
+    idx = pd.bdate_range("2024-01-01", periods=80)
+    price = pd.Series(np.linspace(100, 120, len(idx)), index=idx)
+    yields = pd.Series(np.linspace(2, 4, len(idx)), index=idx)
+    frame = prepare_features(price, yields, yields, config=ModelConfig(), macro_mode="inverse_base")
+    assert np.allclose(frame["yield_spread"].dropna(), -yields.reindex(frame.index).dropna())
 
 
 def test_pair_profiles_change_scores_and_remain_bounded():

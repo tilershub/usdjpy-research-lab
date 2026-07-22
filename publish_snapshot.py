@@ -57,6 +57,7 @@ def main() -> None:
             driver,
             pair.driver_sign,
             ModelConfig(),
+            pair.macro_mode,
         )
         scored, _ = score_features(features, pair_symbol=symbol)
         scored = scored.loc[scored.index >= pd.Timestamp(end - timedelta(days=int(YEARS * 365.25)))]
@@ -70,6 +71,7 @@ def main() -> None:
             "symbol": symbol,
             "base": pair.base,
             "quote": pair.quote,
+            "asset_class": pair.asset_class,
             "price": clean(latest.close),
             "decimals": pair.decimals,
             "score": round(score, 1),
@@ -86,6 +88,7 @@ def main() -> None:
             },
             "market": {
                 "yield_spread": clean(latest.get("yield_spread")),
+                "macro_label": pair.macro_label,
                 "volatility": clean(latest.get("volatility")),
                 "regime": regime(latest),
                 "support20": clean(latest.get("support20")),
@@ -93,13 +96,13 @@ def main() -> None:
                 "atr20": clean(latest.get("atr20")),
                 "driver": pair.driver_label,
             },
-            "model": {"thesis": profile.thesis},
+            "model": {"thesis": profile.thesis, "price_note": pair.price_note},
         })
 
     payload = {
         "schema_version": 1,
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "cadence": "End-of-day market data; macro series may be daily or monthly",
+        "cadence": "End-of-day FX, gold-futures and crypto data; macro series may be daily or monthly",
         "pairs": sorted(pairs, key=lambda item: abs(item["score"]), reverse=True),
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

@@ -41,9 +41,9 @@ div[data-testid="stMetricDelta"] *{color:var(--green)!important}
 .quality{padding:.75rem 1rem;border:1px solid #a7f3d0;background:#ecfdf5;border-radius:.7rem;color:#064e3b;margin:.5rem 0 1rem}
 @media(max-width:640px){.block-container{padding:1.3rem .8rem}.title{font-size:2rem}}
 </style>
-<div class="brand">TRADE90 · FX intelligence</div>
+<div class="brand">TRADE90 · Multi-asset intelligence</div>
 <div class="title">Research <span>Terminal</span></div>
-<div class="subtitle">Major-pair scanner · macro and cross-asset context · calibrated swing scenarios</div>
+<div class="subtitle">FX, gold and Bitcoin · macro and cross-asset context · calibrated swing scenarios</div>
 """, unsafe_allow_html=True)
 
 
@@ -73,7 +73,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
     pair = PAIR_CONFIGS[symbol]
     price = close[pair.ticker].dropna().rename(symbol)
     driver = close[pair.driver].dropna() if pair.driver in close else None
-    features = prepare_features(price, load_yield(pair.base_yield), load_yield(pair.quote_yield), driver, pair.driver_sign, config)
+    features = prepare_features(price, load_yield(pair.base_yield), load_yield(pair.quote_yield), driver, pair.driver_sign, config, pair.macro_mode)
     scored, components = score_features(features, policy, symbol)
     scored = scored.loc[scored.index >= pd.Timestamp(end - timedelta(days=int(years * 365.25)))]
     latest = scored.dropna(subset=["score"]).iloc[-1]
@@ -85,7 +85,7 @@ def analyse(symbol: str, close: pd.DataFrame, config: ModelConfig, policy: float
 with st.sidebar:
     st.header("Terminal controls")
     st.caption("Deployment: import-sync v8 · 2026-07-22")
-    selected = st.selectbox("Currency pair", list(PAIR_CONFIGS), index=2)
+    selected = st.selectbox("Market", list(PAIR_CONFIGS), index=2)
     years = st.slider("Research history (years)", 3, 15, 7)
     threshold = st.slider("Signal threshold", 8, 40, 18)
     cost_bps = st.slider("Round-trip cost (bps)", 0.0, 12.0, 2.0, .5)
@@ -98,7 +98,7 @@ start = end - timedelta(days=int(years * 365.25 + 450))
 config = ModelConfig(entry_threshold=float(threshold), round_trip_cost_bps=float(cost_bps))
 
 try:
-    with st.spinner("Building the major-pair terminal…"):
+    with st.spinner("Building the multi-asset terminal…"):
         close = load_prices(start, end)
         results = {symbol: analyse(symbol, close, config, policy if symbol == selected else 0.0) for symbol in PAIR_CONFIGS}
         calendar, calendar_status = load_calendar(end - timedelta(days=35), end + timedelta(days=14))
@@ -318,7 +318,7 @@ with tabs[6]:
 
 The terminal combines trend, momentum, RSI, the **{pair.base}–{pair.quote} 10-year yield differential**, its recent impulse, and **{pair.driver_label}**. A manual policy overlay is kept separate so judgment never masquerades as observed data.
 
-This pair uses a dedicated model profile: **{pair_model_profile(selected).thesis}**. Its component weights differ from the other six major pairs and adapt modestly between high-volatility, trending, and transitional regimes. The Validation tab evaluates the selected pair's resulting score independently.
+This market uses a dedicated model profile: **{pair_model_profile(selected).thesis}**. Its component weights differ by instrument and adapt modestly between high-volatility, trending, and transitional regimes. The Validation tab evaluates the selected instrument independently.
 
 ### Accuracy safeguards
 
