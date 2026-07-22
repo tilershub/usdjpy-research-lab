@@ -1,16 +1,48 @@
 {% load static %}<!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{% block title %}TRADE90{% endblock %}</title>
-  <meta name="description" content="{% block description %}Professional trading education, tools and multi-asset research.{% endblock %}">
+  <title>{% block title %}TRADE90 — Become a Consistently Funded Trader{% endblock %}</title>
+  <meta name="description" content="{% block description %}Master risk management, trading psychology, and disciplined execution with practical education and professional tools.{% endblock %}">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+  <meta property="og:site_name" content="TRADE90">
+  <meta property="og:title" content="{% block og_title %}TRADE90{% endblock %}">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/og-image.png' %}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="{% static 'images/favicon.svg' %}" type="image/svg+xml">
   <link rel="stylesheet" href="{% static 'css/trade90.css' %}">
   <link rel="stylesheet" href="{% static 'css/article.css' %}">
+  {% block structured_data %}<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"TRADE90","url":"{{ request.scheme }}://{{ request.get_host }}/","potentialAction":{"@type":"SearchAction","target":"{{ request.scheme }}://{{ request.get_host }}/search/?q={search_term_string}","query-input":"required name=search_term_string"}}</script>{% endblock %}
 </head>
 <body>
-  <header class="site-header"><a class="brand" href="/">TRADE<span>90</span></a><nav><a href="/risk-management/">Learn</a><a href="/tools/">Tools</a><a href="/tools/fx-research-terminal/">Terminal</a><a href="/blog/">Blog</a></nav></header>
-  <main>{% block content %}{% endblock %}</main>
-  <footer class="site-footer">TRADE90 · Education and research, not financial advice.</footer>
-</body>
-</html>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/">TRADE<span>90</span></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <details class="learn-menu"><summary>Learn</summary><div class="learn-panel">
+          <a href="/psychology/"><b>Psychology</b><small>Discipline &amp; mindset</small></a>
+          <a href="/risk-management/"><b>Risk Management</b><small>Sizing, limits &amp; drawdown</small></a>
+          <a href="/trading-plans/"><b>Trading Plans</b><small>Plans &amp; routines</small></a>
+          <a href="/prop-firms/"><b>Prop Firms</b><small>Evaluations &amp; funded accounts</small></a>
+          <a href="/performance/"><b>Performance</b><small>Journals &amp; metrics</small></a>
+        </div></details>
+        <a href="/today/">Today</a><a href="/journal/">Journal</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/search/" aria-label="Search">Search</a>
+      </nav>
+      <a class="header-cta" href="/risk-management/position-sizing/">Start Learning</a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <a class="mobile-cta" href="/risk-management/position-sizing/">Start Learning</a>
+      <p>Learn</p><a href="/psychology/">Psychology</a><a href="/risk-management/">Risk Management</a><a href="/trading-plans/">Trading Plans</a><a href="/prop-firms/">Prop Firms</a><a href="/performance/">Performance</a>
+      <p>Platform</p><a href="/today/">Today</a><a href="/journal/">Journal</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a><a href="/search/">Search</a>
+    </nav>
+  </header>
+  <main id="main-content">{% block content %}{% endblock %}</main>
+  <footer class="site-footer"><div class="footer-grid"><section><a class="brand" href="/">TRADE<span>90</span></a><p>An education platform for funded traders. Practical guidance, professional tools, and evidence-led market research.</p></section><section><b>Learn</b><a href="/psychology/">Trading Psychology</a><a href="/risk-management/">Risk Management</a><a href="/trading-plans/">Trading Plans</a></section><section><b>Platform</b><a href="/tools/fx-research-terminal/">Research Terminal</a><a href="/tools/">All Tools</a><a href="/blog/">Blog</a></section><section><b>Company</b><a href="/about/">About</a><a href="/editorial-policy/">Editorial Policy</a><a href="/contact/">Contact</a></section></div><div class="risk"><b>Risk disclosure.</b> Trading involves substantial risk of loss. TRADE90 content is educational and does not constitute financial, investment, or trading advice.</div><div class="footer-bottom"><span><a href="/disclaimer/">Disclaimer</a><a href="/privacy/">Privacy</a><a href="/editorial-policy/">Editorial Policy</a></span><span>© 2026 TRADE90</span></div></footer>
+  <script src="{% static 'js/site.js' %}" defer></script>
+</body></html>
