@@ -21,17 +21,3 @@ services:
         sync: false
       - key: WAGTAILADMIN_BASE_URL
         sync: false
-  - type: cron
-    name: trade90-market-refresh
-    runtime: python
-    plan: free
-    schedule: "15 22 * * 1-5"
-    buildCommand: pip install -r requirements-web.txt
-    startCommand: python manage.py publish_market_snapshot
-    envVars:
-      - key: DJANGO_SETTINGS_MODULE
-        value: trade90.settings.production
-      - key: DATABASE_URL
-        sync: false
-      - key: DJANGO_SECRET_KEY
-        sync: false
