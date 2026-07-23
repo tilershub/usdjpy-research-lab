@@ -9,6 +9,8 @@ class TerminalContractTests(TestCase):
         response = self.client.get(reverse("terminal:terminal"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No forecast values are fabricated")
+        self.assertContains(response, "Watchlist only")
+        self.assertContains(response, "Account &amp; Sync")
 
     def test_snapshot_api_fails_honestly_without_data(self):
         response = self.client.get(reverse("terminal:snapshot"))
