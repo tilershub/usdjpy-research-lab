@@ -3,7 +3,7 @@ services:
     name: trade90-platform
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements-web.txt && python manage.py collectstatic --noinput && python manage.py migrate
+    buildCommand: pip install -r requirements-web.txt && python manage.py collectstatic --noinput && python manage.py migrate && python manage.py import_astro_content
     startCommand: gunicorn trade90.wsgi:application
     healthCheckPath: /tools/fx-research-terminal/
     envVars:
