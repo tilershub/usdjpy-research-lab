@@ -1,6 +1,7 @@
 from pathlib import Path
 
 import yaml
+from django.contrib.staticfiles import finders
 from django.test import TestCase
 from django.urls import reverse
 
@@ -36,6 +37,18 @@ class DeploymentReadinessTests(TestCase):
             "manage.py bootstrap_admin",
         ):
             self.assertIn(command, script)
+
+    def test_base_template_static_assets_exist(self):
+        for asset in (
+            "images/favicon.svg",
+            "images/og-image.png",
+            "css/trade90.css",
+            "css/workflow-tools.css",
+            "css/article.css",
+            "css/calculators.css",
+            "js/site.js",
+        ):
+            self.assertIsNotNone(finders.find(asset), asset)
 
     def test_market_refresh_workflow_is_valid_yaml(self):
         workflow = yaml.safe_load(
