@@ -3,7 +3,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from django.core.management import call_command
 from django.test import TestCase
-from wagtail.models import Site
+from wagtail.models import Revision, Site
 from website.models import ContentPage
 
 
@@ -35,5 +35,9 @@ class ContentImportTests(TestCase):
         source = Path(__file__).resolve().parents[1] / "content_source"
         call_command("import_astro_content", source=source, stdout=StringIO())
         count = ContentPage.objects.count()
-        call_command("import_astro_content", source=source, stdout=StringIO())
+        revision_count = Revision.objects.count()
+        output = StringIO()
+        call_command("import_astro_content", source=source, stdout=output)
         self.assertEqual(ContentPage.objects.count(), count)
+        self.assertEqual(Revision.objects.count(), revision_count)
+        self.assertIn("0 updated, 38 unchanged", output.getvalue())

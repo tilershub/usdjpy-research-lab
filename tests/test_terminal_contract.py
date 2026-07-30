@@ -12,7 +12,10 @@ from terminal.models import MarketSnapshot
 
 class TerminalContractTests(TestCase):
     def test_terminal_renders_without_snapshot(self):
-        response = self.client.get(reverse("terminal:terminal"))
+        with TemporaryDirectory() as directory:
+            missing = Path(directory) / "missing.json"
+            with override_settings(TERMINAL_SNAPSHOT_PATH=missing):
+                response = self.client.get(reverse("terminal:terminal"))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No forecast values are fabricated")
         self.assertContains(response, "Watchlist only")

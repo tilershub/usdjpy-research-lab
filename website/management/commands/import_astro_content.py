@@ -54,7 +54,7 @@ class Command(BaseCommand):
             parents[slug] = self.ensure_parent(root, slug, title)
         for slug, (title, summary, body) in STATIC_PAGES.items():
             self.ensure_static_page(root, slug, title, summary, body)
-        created = updated = 0
+        created = updated = unchanged = 0
         for path in documents:
             data, body = parse_document(path)
             is_article = path.parts[-3] == "articles"
@@ -77,13 +77,18 @@ class Command(BaseCommand):
                 page = ContentPage(source_path=source_key, **values)
                 parents[section].add_child(instance=page)
                 created += 1
+                page.save_revision().publish()
             else:
-                for key, value in values.items():
-                    setattr(page, key, value)
-                page.save()
-                updated += 1
-            page.save_revision().publish()
-        self.stdout.write(self.style.SUCCESS(f"Imported 38 documents: {created} created, {updated} updated"))
+                if self.update_fields(page, values):
+                    updated += 1
+                    page.save_revision().publish()
+                else:
+                    unchanged += 1
+        self.stdout.write(
+            self.style.SUCCESS(
+                f"Imported 38 documents: {created} created, {updated} updated, {unchanged} unchanged"
+            )
+        )
 
     def ensure_parent(self, root, slug, title):
         existing = root.get_children().filter(slug=slug).first()
@@ -97,12 +102,35 @@ class Command(BaseCommand):
     def ensure_static_page(self, root, slug, title, summary, body):
         source_path = f"static:{slug}"
         page = ContentPage.objects.filter(source_path=source_path).first()
+        created = False
         if page is None:
             existing = root.get_children().filter(slug=slug).first()
             page = existing.specific if existing else ContentPage(title=title, slug=slug, source_path=source_path)
             if not existing:
                 root.add_child(instance=page)
-        page.title, page.summary, page.body = title, summary, body
-        page.seo_title, page.search_description = title, summary
-        page.save_revision().publish()
+                created = True
+        values = {
+            "title": title,
+            "slug": slug,
+            "summary": summary,
+            "body": body,
+            "source_path": source_path,
+            "seo_title": title,
+            "search_description": summary,
+        }
+        changed = self.update_fields(page, values)
+        if created or changed:
+            page.save_revision().publish()
         return page
+
+    @staticmethod
+    def update_fields(page, values):
+        changed = False
+        for key, value in values.items():
+            current = getattr(page, key)
+            if key == "body":
+                current = str(current)
+            if current != value:
+                setattr(page, key, value)
+                changed = True
+        return changed
