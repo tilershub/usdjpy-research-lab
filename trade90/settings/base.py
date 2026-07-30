@@ -88,4 +88,5 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 WAGTAIL_SITE_NAME = "TRADE90"
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
+TERMINAL_SNAPSHOT_PATH = Path(os.environ.get("TERMINAL_SNAPSHOT_PATH", BASE_DIR / "public" / "terminal-snapshot.json"))
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024

@@ -5,6 +5,15 @@ from .base import *
 DEBUG = False
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY"]
 DATABASES = {"default": dj_database_url.config(conn_max_age=600, conn_health_checks=True, ssl_require=True)}
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
+RENDER_EXTERNAL_URL = os.environ.get("RENDER_EXTERNAL_URL", "").rstrip("/")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS = list(dict.fromkeys([*ALLOWED_HOSTS, RENDER_EXTERNAL_HOSTNAME]))
+if RENDER_EXTERNAL_URL:
+    CSRF_TRUSTED_ORIGINS = list(dict.fromkeys([*CSRF_TRUSTED_ORIGINS, RENDER_EXTERNAL_URL]))
+    WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", RENDER_EXTERNAL_URL)
+
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = True
 SESSION_COOKIE_SECURE = True
