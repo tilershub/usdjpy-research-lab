@@ -15,17 +15,25 @@ from trade90_model import (
     confidence_grade,
     data_quality,
     fred_series,
+    horizon_validation,
     pair_model_profile,
     prepare_features,
     regime,
     score_features,
+    walk_forward_metrics,
 )
+from economic_events import event_risk_summary, events_for_pair, fetch_calendar
+from positioning import fetch_cftc, pair_positioning
 
 OUTPUT = Path("public/terminal-snapshot.json")
 YEARS = 7
 
 
 def clean(value):
+    if isinstance(value, dict):
+        return {str(key): clean(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [clean(item) for item in value]
     if value is None or (isinstance(value, (float, np.floating)) and not np.isfinite(value)):
         return None
     if isinstance(value, (pd.Timestamp, datetime, date)):
@@ -37,14 +45,58 @@ def clean(value):
     return value
 
 
+def history_payload(scored: pd.DataFrame, limit: int = 120) -> list[dict]:
+    columns = ["close", "ema_fast", "ema_slow", "score"]
+    history = scored[columns].dropna(subset=["close"]).tail(limit)
+    return [
+        {
+            "date": clean(index),
+            "close": clean(row.get("close")),
+            "ema_fast": clean(row.get("ema_fast")),
+            "ema_slow": clean(row.get("ema_slow")),
+            "score": clean(row.get("score")),
+        }
+        for index, row in history.iterrows()
+    ]
+
+
+def event_payload(events: pd.DataFrame, now: datetime) -> dict:
+    risk = event_risk_summary(events, now)
+    upcoming = events.loc[events["time"] >= pd.Timestamp(now)].head(8) if not events.empty else events
+    rows = []
+    for _, row in upcoming.iterrows():
+        rows.append({
+            "time": clean(row.get("time")),
+            "currency": clean(row.get("currency")),
+            "event": clean(row.get("event")),
+            "side": clean(row.get("side")),
+            "previous": clean(row.get("previous")),
+            "forecast": clean(row.get("forecast")),
+        })
+    return {"risk": clean(risk), "upcoming": rows}
+
+
+def validation_payload(scored: pd.DataFrame) -> dict:
+    walk_forward = clean(walk_forward_metrics(scored))
+    horizons = horizon_validation(scored).reset_index()
+    return {
+        "walk_forward": walk_forward,
+        "horizons": clean(horizons.to_dict(orient="records")),
+    }
+
+
 def main() -> None:
     end = date.today()
+    generated_at = datetime.now(timezone.utc)
     start = end - timedelta(days=int(YEARS * 365.25 + 450))
     tickers = sorted({p.ticker for p in PAIR_CONFIGS.values()} | {p.driver for p in PAIR_CONFIGS.values()})
     raw = yf.download(tickers, start=start, end=end + timedelta(days=1), auto_adjust=True, progress=False, threads=True)
     if raw.empty:
         raise RuntimeError("Market-data provider returned no observations")
     close = raw["Close"] if isinstance(raw.columns, pd.MultiIndex) else raw
+
+    calendar, calendar_status = fetch_calendar(end - timedelta(days=35), end + timedelta(days=14))
+    cftc_history, cftc_status = fetch_cftc()
 
     pairs = []
     for symbol, pair in PAIR_CONFIGS.items():
@@ -59,7 +111,7 @@ def main() -> None:
             ModelConfig(),
             pair.macro_mode,
         )
-        scored, _ = score_features(features, pair_symbol=symbol)
+        scored, components = score_features(features, pair_symbol=symbol)
         scored = scored.loc[scored.index >= pd.Timestamp(end - timedelta(days=int(YEARS * 365.25)))]
         latest = scored.dropna(subset=["score"]).iloc[-1]
         probabilities, sample = calibrated_probabilities(scored, float(latest.score))
@@ -67,6 +119,9 @@ def main() -> None:
         profile = pair_model_profile(symbol)
         score = float(latest.score)
         bias = max(probabilities, key=probabilities.get)
+        pair_events = events_for_pair(calendar, pair.base, pair.quote)
+        positioning = pair_positioning(cftc_history, pair.base, pair.quote, generated_at)
+        audit = components.loc[latest.name].sort_values(key=abs, ascending=False)
         pairs.append({
             "symbol": symbol,
             "base": pair.base,
@@ -96,13 +151,44 @@ def main() -> None:
                 "atr20": clean(latest.get("atr20")),
                 "driver": pair.driver_label,
             },
-            "model": {"thesis": profile.thesis, "price_note": pair.price_note},
+            "model": {
+                "thesis": profile.thesis,
+                "price_note": pair.price_note,
+                "audit": [
+                    {"name": str(name), "contribution": clean(value)}
+                    for name, value in audit.items()
+                ],
+            },
+            "history": history_payload(scored),
+            "events": event_payload(pair_events, generated_at),
+            "positioning": {
+                **clean(positioning),
+                "provider": cftc_status.provider,
+                "cadence": cftc_status.cadence,
+                "fetched_at": clean(cftc_status.fetched_at),
+                "provider_message": cftc_status.message,
+            },
+            "validation": validation_payload(scored),
         })
 
     payload = {
         "schema_version": 1,
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "cadence": "End-of-day FX, gold-futures and crypto data; macro series may be daily or monthly",
+        "generated_at": generated_at.isoformat(),
+        "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
+        "sources": {
+            "calendar": {
+                "provider": calendar_status.provider,
+                "mode": calendar_status.mode,
+                "fetched_at": clean(calendar_status.fetched_at),
+                "message": calendar_status.message,
+            },
+            "positioning": {
+                "provider": cftc_status.provider,
+                "cadence": cftc_status.cadence,
+                "fetched_at": clean(cftc_status.fetched_at),
+                "message": cftc_status.message,
+            },
+        },
         "pairs": sorted(pairs, key=lambda item: abs(item["score"]), reverse=True),
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

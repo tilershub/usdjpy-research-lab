@@ -1,6 +1,6 @@
 # TRADE90 FX Research Terminal
 
-An explainable, light-theme swing-research terminal for the seven liquid FX majors: EUR/USD, GBP/USD, USD/JPY, USD/CHF, USD/CAD, AUD/USD and NZD/USD.
+An explainable, light-theme swing-research terminal for seven liquid FX majors, XAU/USD and BTC/USD. The published snapshot now includes native charts, event risk, positioning context, contribution audit and validation data for the TRADE90 website.
 
 ## Run locally
 
