@@ -11,6 +11,7 @@ import pandas as pd
 CFTC_URL = "https://www.cftc.gov/dea/newcot/FinFutWk.txt"
 
 CURRENCY_NAMES = {
+    "USD": ("USD INDEX", "U.S. DOLLAR INDEX"),
     "EUR": ("EURO FX",),
     "GBP": ("BRITISH POUND",),
     "JPY": ("JAPANESE YEN",),
