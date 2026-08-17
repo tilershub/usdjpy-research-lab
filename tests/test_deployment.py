@@ -2,8 +2,10 @@ from pathlib import Path
 
 import yaml
 from django.contrib.staticfiles import finders
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
+
+from website.middleware import HEALTH_PATH
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,6 +17,30 @@ class DeploymentReadinessTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json(), {"status": "ok"})
         self.assertEqual(response["Cache-Control"], "no-store")
+
+    def test_health_check_path_matches_blueprint_and_middleware(self):
+        blueprint = yaml.safe_load((ROOT / "render.yaml").read_text(encoding="utf-8"))
+        self.assertEqual(reverse("health"), blueprint["services"][0]["healthCheckPath"])
+        self.assertEqual(reverse("health"), HEALTH_PATH)
+
+    @override_settings(SECURE_SSL_REDIRECT=True)
+    def test_health_check_survives_probe_without_forwarded_proto(self):
+        """Render probes over plain HTTP; a 301 would fail the deploy."""
+        response = self.client.get(reverse("health"))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"status": "ok"})
+
+    @override_settings(ALLOWED_HOSTS=["trade90.example"])
+    def test_health_check_survives_probe_from_unlisted_host(self):
+        """Render probes the instance directly, so the Host is not the public one."""
+        response = self.client.get(reverse("health"), headers={"host": "10.0.0.5"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), {"status": "ok"})
+
+    @override_settings(ALLOWED_HOSTS=["trade90.example"])
+    def test_unlisted_host_is_still_rejected_off_the_health_path(self):
+        response = self.client.get("/", headers={"host": "10.0.0.5"})
+        self.assertEqual(response.status_code, 400)
 
     def test_render_blueprint_is_free_web_only_and_singapore_based(self):
         blueprint = yaml.safe_load((ROOT / "render.yaml").read_text(encoding="utf-8"))

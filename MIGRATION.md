@@ -29,3 +29,4 @@ Cloudflare Pages and Streamlit remain production until staging reaches URL, desi
 - Render's generated hostname is added to Django hosts, CSRF origins and Wagtail automatically.
 - GitHub Actions replaces the unsupported free Render Cron Job. It publishes the verified nine-market research snapshot every six hours, including weekends for Bitcoin and event-risk freshness.
 - The terminal prefers an approved database snapshot and falls back to the validated committed snapshot, so a data refresh never fabricates values.
+- `/health/` is answered ahead of host and TLS enforcement, because Render probes the instance directly rather than through the public router. Every other path keeps the HTTPS redirect and the `ALLOWED_HOSTS` rejection.
