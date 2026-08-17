@@ -24,6 +24,7 @@ from trade90_model import (
 )
 from economic_events import event_risk_summary, events_for_pair, fetch_calendar
 from newsfeed import fetch_news, news_for_pair
+from policy_calendar import fetch_fomc_calendar, upcoming as upcoming_meetings
 from policy_expectations import fetch_policy_expectations
 from positioning import fetch_cftc, pair_positioning
 
@@ -101,6 +102,7 @@ def main() -> None:
     cftc_history, cftc_status = fetch_cftc()
     policy, policy_status = fetch_policy_expectations()
     news, news_status = fetch_news()
+    meetings, meeting_status = fetch_fomc_calendar()
 
     pairs = []
     for symbol, pair in PAIR_CONFIGS.items():
@@ -201,6 +203,12 @@ def main() -> None:
                 "fetched_at": clean(policy_status.fetched_at),
                 "message": policy_status.message,
             },
+            "policy_calendar": {
+                "provider": meeting_status.provider,
+                "cadence": meeting_status.cadence,
+                "fetched_at": clean(meeting_status.fetched_at),
+                "message": meeting_status.message,
+            },
             "news": {
                 "provider": news_status.provider,
                 "cadence": news_status.cadence,
@@ -209,6 +217,7 @@ def main() -> None:
             },
         },
         "policy_expectations": clean(policy),
+        "policy_calendar": clean(upcoming_meetings(meetings, generated_at)),
         "pairs": sorted(pairs, key=lambda item: abs(item["score"]), reverse=True),
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

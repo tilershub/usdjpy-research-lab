@@ -114,7 +114,7 @@ class SourceHealthTests(TestCase):
     def test_snapshot_reports_health_for_every_configured_source(self):
         payload = json.loads((Path(__file__).resolve().parents[1] / "public" / "terminal-snapshot.json").read_text(encoding="utf-8"))
         sources = payload["sources"]
-        for name in ("calendar", "positioning", "policy_expectations", "news"):
+        for name in ("calendar", "positioning", "policy_expectations", "policy_calendar", "news"):
             self.assertIn(name, sources, name)
             self.assertIn("provider", sources[name], name)
 

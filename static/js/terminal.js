@@ -52,6 +52,12 @@
       ? `<small class="market-line"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${label}</a></small>`
       : `<small class="market-line">${label}</small>`;
   };
+  const nextMeeting = (payload) => {
+    const meeting = Array.isArray(payload?.policy_calendar) ? payload.policy_calendar[0] : null;
+    if (!meeting) return '';
+    const projections = meeting.projections ? ' · economic projections released' : '';
+    return `<p class="policy-next">Next FOMC decision <strong>${escapeHtml(meeting.date)}</strong>, ${meeting.days_away} ${meeting.days_away === 1 ? 'day' : 'days'} away${projections}</p>`;
+  };
   const renderPolicy = (payload) => {
     const panel = document.querySelector('#policy-panel');
     if (!panel) return;
@@ -63,7 +69,7 @@
       + `<span>Target range ${escapeHtml(policy.target_range || '—')} · ${escapeHtml(policy.next_meeting_bias || '')} · as of ${escapeHtml(policy.observed || '')}</span></div>`
       + `<table class="policy-table"><thead><tr><th scope="col">Window from</th><th scope="col">Cut</th><th scope="col">Hold</th><th scope="col">Hike</th><th scope="col">Expected rate</th></tr></thead><tbody>`
       + outlook.map((w) => `<tr><th scope="row">${escapeHtml(w.reference_start)}</th><td>${pct(w.cut_probability)}</td><td>${pct(w.hold_probability)}</td><td>${pct(w.hike_probability)}</td><td>${typeof w.expected_rate_bps === 'number' ? `${w.expected_rate_bps.toFixed(0)}bps` : '—'}</td></tr>`).join('')
-      + `</tbody></table><p class="policy-source">Atlanta Fed Market Probability Tracker, derived from CME three-month SOFR options. Probabilities are market pricing, not forecasts.</p>`;
+      + `</tbody></table>${nextMeeting(payload)}<p class="policy-source">Atlanta Fed Market Probability Tracker, derived from CME three-month SOFR options. Probabilities are market pricing, not forecasts.</p>`;
   };
   // A feed that dies quietly is worse than one that is visibly missing, so every
   // configured source reports its own health rather than just vanishing.
