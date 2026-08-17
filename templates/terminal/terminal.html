@@ -18,6 +18,7 @@
   </div>
   <div id="terminal-alerts" class="terminal-alerts" aria-live="polite"></div>
   <div id="policy-panel" class="policy-panel" aria-label="Market-implied Federal Reserve policy expectations"></div>
+  <div id="source-health" class="source-health" aria-label="Data source health"></div>
   <div id="terminal" class="terminal-card" data-endpoint="{% url 'terminal:snapshot' %}">
     {% if snapshot %}{{ snapshot|json_script:"snapshot-data" }}{% else %}<div class="terminal-empty"><strong>Waiting for the first verified snapshot.</strong><p>No forecast values are fabricated while data is unavailable.</p></div>{% endif %}
   </div>

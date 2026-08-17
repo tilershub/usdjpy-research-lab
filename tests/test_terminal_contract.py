@@ -108,3 +108,21 @@ class PriceBasisDisclosureTests(TestCase):
         script = (Path(__file__).resolve().parents[1] / "static" / "js" / "terminal.js").read_text(encoding="utf-8")
         self.assertIn("price_basis", script)
         self.assertIn("price_note", script)
+
+
+class SourceHealthTests(TestCase):
+    def test_snapshot_reports_health_for_every_configured_source(self):
+        payload = json.loads((Path(__file__).resolve().parents[1] / "public" / "terminal-snapshot.json").read_text(encoding="utf-8"))
+        sources = payload["sources"]
+        for name in ("calendar", "positioning", "policy_expectations", "news"):
+            self.assertIn(name, sources, name)
+            self.assertIn("provider", sources[name], name)
+
+    def test_terminal_page_exposes_the_source_health_region(self):
+        response = self.client.get(reverse("terminal:terminal"))
+        self.assertContains(response, 'id="source-health"')
+
+    def test_script_marks_a_failing_source_rather_than_hiding_it(self):
+        script = (Path(__file__).resolve().parents[1] / "static" / "js" / "terminal.js").read_text(encoding="utf-8")
+        self.assertIn("source-down", script)
+        self.assertIn("renderSourceHealth", script)

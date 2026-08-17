@@ -65,9 +65,27 @@
       + outlook.map((w) => `<tr><th scope="row">${escapeHtml(w.reference_start)}</th><td>${pct(w.cut_probability)}</td><td>${pct(w.hold_probability)}</td><td>${pct(w.hike_probability)}</td><td>${typeof w.expected_rate_bps === 'number' ? `${w.expected_rate_bps.toFixed(0)}bps` : '—'}</td></tr>`).join('')
       + `</tbody></table><p class="policy-source">Atlanta Fed Market Probability Tracker, derived from CME three-month SOFR options. Probabilities are market pricing, not forecasts.</p>`;
   };
+  // A feed that dies quietly is worse than one that is visibly missing, so every
+  // configured source reports its own health rather than just vanishing.
+  const renderSourceHealth = (payload) => {
+    const panel = document.querySelector('#source-health');
+    if (!panel) return;
+    const sources = payload?.sources;
+    if (!sources || typeof sources !== 'object') { panel.innerHTML = ''; panel.hidden = true; return; }
+    const items = Object.entries(sources).map(([name, meta]) => {
+      const down = Boolean(meta?.message);
+      const label = escapeHtml(name.replace(/_/g, ' '));
+      const detail = down ? escapeHtml(meta.message) : `${escapeHtml(meta?.provider ?? '')}`;
+      return `<li class="${down ? 'source-down' : 'source-ok'}"><strong>${label}</strong> ${detail}</li>`;
+    });
+    const down = Object.values(sources).filter((meta) => meta?.message).length;
+    panel.hidden = false;
+    panel.innerHTML = `<details${down ? ' open' : ''}><summary>${down ? `${down} data ${down === 1 ? 'source is' : 'sources are'} unavailable` : 'All data sources reporting'}</summary><ul>${items.join('')}</ul></details>`;
+  };
   const render = (payload) => {
     latestPayload = payload;
     renderPolicy(payload);
+    renderSourceHealth(payload);
     const pairs = Array.isArray(payload?.pairs) ? payload.pairs : [];
     if (!pairs.length) return;
     const watched = normalizedWatchlist();
