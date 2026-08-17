@@ -1,25 +1,52 @@
 from __future__ import annotations
 
+import json
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import datetime, timezone
-from io import StringIO
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 import numpy as np
 import pandas as pd
 
-CFTC_URL = "https://www.cftc.gov/dea/newcot/FinFutWk.txt"
+# The legacy newcot text file is published without a header row, so a positional
+# parse silently mislabels every column. CFTC's public reporting API serves the
+# same weekly reports as named JSON fields and needs no key.
+TFF_URL = "https://publicreporting.cftc.gov/resource/gpe5-46if.json"
+DISAGGREGATED_URL = "https://publicreporting.cftc.gov/resource/72hh-3qpy.json"
 
-CURRENCY_NAMES = {
-    "USD": ("USD INDEX", "U.S. DOLLAR INDEX"),
-    "EUR": ("EURO FX",),
-    "GBP": ("BRITISH POUND",),
-    "JPY": ("JAPANESE YEN",),
-    "CHF": ("SWISS FRANC",),
-    "CAD": ("CANADIAN DOLLAR",),
-    "AUD": ("AUSTRALIAN DOLLAR",),
-    "NZD": ("NEW ZEALAND DOLLAR",),
+# Traders in Financial Futures covers currencies, rates and equity indices only.
+# Metals are commodities and appear exclusively in the Disaggregated report, so
+# gold needs a second request against a different dataset and column vocabulary.
+TFF_MARKETS = {
+    "USD": "USD INDEX - ICE FUTURES U.S.",
+    "EUR": "EURO FX - CHICAGO MERCANTILE EXCHANGE",
+    "GBP": "BRITISH POUND - CHICAGO MERCANTILE EXCHANGE",
+    "JPY": "JAPANESE YEN - CHICAGO MERCANTILE EXCHANGE",
+    "CHF": "SWISS FRANC - CHICAGO MERCANTILE EXCHANGE",
+    "CAD": "CANADIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE",
+    "AUD": "AUSTRALIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE",
+    "NZD": "NZ DOLLAR - CHICAGO MERCANTILE EXCHANGE",
+    "BTC": "BITCOIN - CHICAGO MERCANTILE EXCHANGE",
 }
+DISAGGREGATED_MARKETS = {
+    "XAU": "GOLD - COMMODITY EXCHANGE INC.",
+}
+
+# Speculative leg first, intermediary leg second. The two reports name these
+# groups differently, so each dataset maps onto the same pair of series.
+TFF_FIELDS = ("lev_money_positions_long", "lev_money_positions_short", "asset_mgr_positions_long", "asset_mgr_positions_short")
+DISAGGREGATED_FIELDS = ("m_money_positions_long_all", "m_money_positions_short_all", "swap_positions_long_all", "swap__positions_short_all")
+
+REPORT_LABELS = {
+    "TFF": "CFTC Traders in Financial Futures",
+    "DISAGGREGATED": "CFTC Disaggregated (commodities)",
+}
+SPECULATIVE_LABELS = {"TFF": "Leveraged funds", "DISAGGREGATED": "Managed money"}
+INTERMEDIARY_LABELS = {"TFF": "Asset managers", "DISAGGREGATED": "Swap dealers"}
+
+COLUMNS = ["currency", "date", "leveraged_net", "asset_manager_net", "open_interest", "report"]
 
 @dataclass(frozen=True)
 class PositioningStatus:
@@ -29,64 +56,63 @@ class PositioningStatus:
     message: str = ""
 
 
-def _column(frame: pd.DataFrame, *needles: str) -> str | None:
-    normalized = {str(c).lower().replace("_", " ").strip(): c for c in frame.columns}
-    for name, original in normalized.items():
-        if all(needle.lower() in name for needle in needles):
-            return original
-    return None
-
-
-def normalize_cftc(frame: pd.DataFrame) -> pd.DataFrame:
-    if frame.empty:
-        return pd.DataFrame(columns=["currency", "date", "leveraged_net", "asset_manager_net", "open_interest"])
-    market_col = _column(frame, "market") or frame.columns[0]
-    date_col = _column(frame, "report", "date") or _column(frame, "as of date")
-    lev_long = _column(frame, "lev", "long")
-    lev_short = _column(frame, "lev", "short")
-    am_long = _column(frame, "asset", "long")
-    am_short = _column(frame, "asset", "short")
-    oi_col = _column(frame, "open interest")
-    if date_col is None or lev_long is None or lev_short is None:
-        raise ValueError("CFTC file does not contain the expected TFF columns")
-
-    records = []
-    market = frame[market_col].astype(str).str.upper()
-    for currency, aliases in CURRENCY_NAMES.items():
-        mask = pd.Series(False, index=frame.index)
-        for alias in aliases:
-            mask |= market.str.contains(alias, regex=False)
-        subset = frame.loc[mask].copy()
-        if subset.empty:
+def normalize_cftc(records: Iterable[dict], markets: Mapping[str, str], fields: Sequence[str], report: str) -> pd.DataFrame:
+    """Reduce one CFTC report to a net-position series per traded asset."""
+    spec_long, spec_short, inter_long, inter_short = fields
+    by_market = {name: key for key, name in markets.items()}
+    rows = []
+    for record in records:
+        key = by_market.get(str(record.get("market_and_exchange_names", "")).strip())
+        if key is None:
             continue
-        dates = pd.to_datetime(subset[date_col], errors="coerce", utc=True)
-        for idx in subset.index:
-            records.append({
-                "currency": currency,
-                "date": dates.loc[idx],
-                "leveraged_net": pd.to_numeric(subset.loc[idx, lev_long], errors="coerce") - pd.to_numeric(subset.loc[idx, lev_short], errors="coerce"),
-                "asset_manager_net": (
-                    pd.to_numeric(subset.loc[idx, am_long], errors="coerce") - pd.to_numeric(subset.loc[idx, am_short], errors="coerce")
-                    if am_long is not None and am_short is not None else np.nan
-                ),
-                "open_interest": pd.to_numeric(subset.loc[idx, oi_col], errors="coerce") if oi_col is not None else np.nan,
-            })
-    result = pd.DataFrame(records).dropna(subset=["date", "leveraged_net"])
-    return result.sort_values(["currency", "date"]).reset_index(drop=True)
+        rows.append({
+            "currency": key,
+            "date": pd.to_datetime(record.get("report_date_as_yyyy_mm_dd"), errors="coerce", utc=True),
+            "leveraged_net": _numeric(record.get(spec_long)) - _numeric(record.get(spec_short)),
+            "asset_manager_net": _numeric(record.get(inter_long)) - _numeric(record.get(inter_short)),
+            "open_interest": _numeric(record.get("open_interest_all")),
+            "report": report,
+        })
+    if not rows:
+        return pd.DataFrame(columns=COLUMNS)
+    return pd.DataFrame(rows).dropna(subset=["date", "leveraged_net"])
 
 
-def fetch_cftc(timeout: int = 15) -> tuple[pd.DataFrame, PositioningStatus]:
+def _numeric(value) -> float:
+    return pd.to_numeric(value, errors="coerce")
+
+
+def _request(url: str, markets: Mapping[str, str], timeout: int) -> list[dict]:
+    names = ",".join("'" + name.replace("'", "''") + "'" for name in markets.values())
+    query = urlencode({
+        "$where": f"market_and_exchange_names in({names})",
+        "$order": "report_date_as_yyyy_mm_dd DESC",
+        "$limit": 5000,
+    })
+    request = Request(f"{url}?{query}", headers={"User-Agent": "TRADE90-research/1.0", "Accept": "application/json"})
+    with urlopen(request, timeout=timeout) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def fetch_cftc(timeout: int = 30) -> tuple[pd.DataFrame, PositioningStatus]:
     now = datetime.now(timezone.utc)
-    request = Request(CFTC_URL, headers={"User-Agent": "TRADE90-research/1.0"})
-    try:
-        with urlopen(request, timeout=timeout) as response:
-            raw = response.read().decode("utf-8", errors="replace")
-        frame = pd.read_csv(StringIO(raw))
-        return normalize_cftc(frame), PositioningStatus("CFTC Traders in Financial Futures", now, "Weekly; normally published Friday")
-    except Exception as exc:
-        return pd.DataFrame(columns=["currency", "date", "leveraged_net", "asset_manager_net", "open_interest"]), PositioningStatus(
-            "CFTC Traders in Financial Futures", now, "Weekly", f"Positioning unavailable: {exc}"
-        )
+    frames, failures = [], []
+    for url, markets, fields, report in (
+        (TFF_URL, TFF_MARKETS, TFF_FIELDS, "TFF"),
+        (DISAGGREGATED_URL, DISAGGREGATED_MARKETS, DISAGGREGATED_FIELDS, "DISAGGREGATED"),
+    ):
+        try:
+            frames.append(normalize_cftc(_request(url, markets, timeout), markets, fields, report))
+        except Exception as exc:
+            failures.append(f"{REPORT_LABELS[report]}: {exc}")
+    combined = pd.concat([f for f in frames if not f.empty], ignore_index=True) if any(not f.empty for f in frames) else pd.DataFrame(columns=COLUMNS)
+    if not combined.empty:
+        combined = combined.sort_values(["currency", "date"]).reset_index(drop=True)
+    provider = "CFTC Commitments of Traders (TFF + Disaggregated)"
+    cadence = "Weekly; positions as of Tuesday, published Friday"
+    if failures and combined.empty:
+        return combined, PositioningStatus(provider, now, cadence, "Positioning unavailable: " + "; ".join(failures))
+    return combined, PositioningStatus(provider, now, cadence, "; ".join(failures))
 
 
 def currency_snapshot(history: pd.DataFrame, currency: str, now: datetime | None = None) -> dict:
@@ -107,11 +133,16 @@ def currency_snapshot(history: pd.DataFrame, currency: str, now: datetime | None
         report_date = report_date.tz_localize("UTC")
     age = max((current.normalize() - report_date.normalize()).days, 0)
     crowded = "Crowded long" if percentile >= .9 else "Crowded short" if percentile <= .1 else "Balanced"
+    report = str(latest["report"]) if "report" in subset.columns else "TFF"
     return {
         "currency": currency, "available": True, "date": report_date, "age_days": int(age),
         "leveraged_net": float(latest["leveraged_net"]), "asset_manager_net": float(latest["asset_manager_net"]) if pd.notna(latest["asset_manager_net"]) else np.nan,
         "percentile_3y": percentile, "zscore_3y": float(zscore), "crowding": crowded,
         "stale": age > 10,
+        "report": REPORT_LABELS.get(report, report),
+        "speculative_label": SPECULATIVE_LABELS.get(report, "Speculative"),
+        "intermediary_label": INTERMEDIARY_LABELS.get(report, "Intermediary"),
+        "open_interest": float(latest["open_interest"]) if pd.notna(latest["open_interest"]) else np.nan,
     }
 
 

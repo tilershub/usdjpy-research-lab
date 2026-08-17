@@ -10,10 +10,22 @@
       "message": "HTTP Error 410: Gone"
     },
     "positioning": {
-      "provider": "CFTC Traders in Financial Futures",
-      "cadence": "Weekly",
-      "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-      "message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+      "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+      "cadence": "Weekly; positions as of Tuesday, published Friday",
+      "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+      "message": ""
+    },
+    "policy_expectations": {
+      "provider": "Atlanta Fed Market Probability Tracker",
+      "cadence": "Business daily, derived from CME 3-month SOFR options",
+      "fetched_at": "2026-08-17T18:12:30.072327+00:00",
+      "message": ""
+    },
+    "news": {
+      "provider": "Central bank press releases (Federal Reserve, European Central Bank)",
+      "cadence": "Continuous; official primary sources",
+      "fetched_at": "2026-08-17T18:12:28.597276+00:00",
+      "message": ""
     }
   },
   "pairs": [
@@ -940,21 +952,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "NZD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": -33461.0,
+          "asset_manager_net": -29247.0,
+          "percentile_3y": 0.00641025641025641,
+          "zscore_3y": -2.753543427730113,
+          "crowding": "Crowded short",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 96840.0
         },
         "quote": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": -0.8205128205128205,
+        "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -987,7 +1023,37 @@
             "Lift vs baseline": -0.13454545454545458
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804b.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804a.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "AUD/USD",
@@ -1912,21 +1978,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "AUD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 48541.0,
+          "asset_manager_net": -42679.0,
+          "percentile_3y": 0.9230769230769231,
+          "zscore_3y": 1.7117064445402617,
+          "crowding": "Crowded long",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 267222.0
         },
         "quote": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": 0.09615384615384626,
+        "warning": "",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -1959,7 +2049,37 @@
             "Lift vs baseline": -0.07682926829268294
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804b.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804a.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "GBP/USD",
@@ -2884,21 +3004,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "GBP",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 40670.0,
+          "asset_manager_net": -119863.0,
+          "percentile_3y": 0.6987179487179487,
+          "zscore_3y": 0.4601742011245791,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 256447.0
         },
         "quote": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": -0.1282051282051282,
+        "warning": "",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -2931,7 +3075,37 @@
             "Lift vs baseline": -0.04039167686658507
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804b.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804a.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "BTC/USD",
@@ -3854,21 +4028,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "BTC",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": -7052.0,
+          "asset_manager_net": 2234.0,
+          "percentile_3y": 0.9294871794871795,
+          "zscore_3y": 1.453217900932638,
+          "crowding": "Crowded long",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 21185.0
         },
         "quote": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": 0.10256410256410264,
+        "warning": "",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -3901,7 +4099,37 @@
             "Lift vs baseline": -0.007678676904902537
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Philip R. Lane: The rise in defence spending and the euro area economy",
+          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260817~1f9f7149c9.en.pdf",
+          "published_at": "2026-08-17T09:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Cash remains most widely accepted payment method in euro area",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260813~389729d6a9.en.html",
+          "published_at": "2026-08-13T09:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "ECB and Frankfurt Radio Symphony invite the public to Europa Open Air concert on 20 August 2026",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260811~47cd3ee040.en.html",
+          "published_at": "2026-08-11T08:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "USD/CHF",
@@ -4826,21 +5054,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
         "quote": {
           "currency": "CHF",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": -11432.0,
+          "asset_manager_net": -38322.0,
+          "percentile_3y": 0.1987179487179487,
+          "zscore_3y": -1.010084561067432,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 109874.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": 0.6282051282051282,
+        "warning": "",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -4873,7 +5125,37 @@
             "Lift vs baseline": -0.023622047244094557
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804b.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804a.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "EUR/USD",
@@ -5798,21 +6080,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "EUR",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": -60600.0,
+          "asset_manager_net": 225389.0,
+          "percentile_3y": 0.01282051282051282,
+          "zscore_3y": -2.571657619227015,
+          "crowding": "Crowded short",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 801884.0
         },
         "quote": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": -0.8141025641025641,
+        "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -5845,7 +6151,37 @@
             "Lift vs baseline": 0.0011862396204033177
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Philip R. Lane: The rise in defence spending and the euro area economy",
+          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260817~1f9f7149c9.en.pdf",
+          "published_at": "2026-08-17T09:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Cash remains most widely accepted payment method in euro area",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260813~389729d6a9.en.html",
+          "published_at": "2026-08-13T09:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "ECB and Frankfurt Radio Symphony invite the public to Europa Open Air concert on 20 August 2026",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260811~47cd3ee040.en.html",
+          "published_at": "2026-08-11T08:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "USD/CAD",
@@ -6770,21 +7106,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
         "quote": {
           "currency": "CAD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": -92005.0,
+          "asset_manager_net": -104545.0,
+          "percentile_3y": 0.0641025641025641,
+          "zscore_3y": -1.6520124327281078,
+          "crowding": "Crowded short",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 364104.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": 0.7628205128205128,
+        "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -6817,7 +7177,37 @@
             "Lift vs baseline": -0.1364275668073136
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804b.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804a.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "USD/JPY",
@@ -7742,21 +8132,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
         "quote": {
           "currency": "JPY",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": -53070.0,
+          "asset_manager_net": -26251.0,
+          "percentile_3y": 0.44871794871794873,
+          "zscore_3y": -0.22892358647514321,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 391874.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": 0.37820512820512814,
+        "warning": "",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -7789,7 +8203,37 @@
             "Lift vs baseline": -0.1039903264812575
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Coastal Bend Bancshares, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804c.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by FS Bancorp, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804b.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of the application by Banco Santander, S.A. and Santander Holdings USA, Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260804a.htm",
+          "published_at": "2026-08-04T20:30:00+00:00"
+        }
+      ]
     },
     {
       "symbol": "XAU/USD",
@@ -8712,21 +9156,45 @@
         "upcoming": []
       },
       "positioning": {
-        "available": false,
+        "available": true,
         "base": {
           "currency": "XAU",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 137662.0,
+          "asset_manager_net": -224705.0,
+          "percentile_3y": 0.6153846153846154,
+          "zscore_3y": 0.22577559346728532,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Disaggregated (commodities)",
+          "speculative_label": "Managed money",
+          "intermediary_label": "Swap dealers",
+          "open_interest": 400309.0
         },
         "quote": {
           "currency": "USD",
-          "available": false
+          "available": true,
+          "date": "2026-08-11T00:00:00+00:00",
+          "age_days": 6,
+          "leveraged_net": 5772.0,
+          "asset_manager_net": 16527.0,
+          "percentile_3y": 0.8269230769230769,
+          "zscore_3y": 0.8042362274225794,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 49541.0
         },
-        "relative_percentile": null,
-        "warning": "A complete base/quote CFTC comparison is unavailable.",
-        "provider": "CFTC Traders in Financial Futures",
-        "cadence": "Weekly",
-        "fetched_at": "2026-08-17T13:03:40.005056+00:00",
-        "provider_message": "Positioning unavailable: CFTC file does not contain the expected TFF columns"
+        "relative_percentile": -0.21153846153846145,
+        "warning": "",
+        "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
+        "cadence": "Weekly; positions as of Tuesday, published Friday",
+        "fetched_at": "2026-08-17T18:12:17.865609+00:00",
+        "provider_message": ""
       },
       "validation": {
         "walk_forward": {
@@ -8759,7 +9227,76 @@
             "Lift vs baseline": -0.048458149779735615
           }
         ]
-      }
+      },
+      "news": [
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Philip R. Lane: The rise in defence spending and the euro area economy",
+          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260817~1f9f7149c9.en.pdf",
+          "published_at": "2026-08-17T09:30:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement action with former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260813a.htm",
+          "published_at": "2026-08-13T15:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Cash remains most widely accepted payment method in euro area",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260813~389729d6a9.en.html",
+          "published_at": "2026-08-13T09:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "ECB and Frankfurt Radio Symphony invite the public to Europa Open Air concert on 20 August 2026",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260811~47cd3ee040.en.html",
+          "published_at": "2026-08-11T08:30:00+00:00"
+        }
+      ]
     }
-  ]
+  ],
+  "policy_expectations": {
+    "observed": "2026-08-14",
+    "target_range": "350bps - 375bps",
+    "outlook": [
+      {
+        "reference_start": "2026-09-16",
+        "cut_probability": 0.91,
+        "hold_probability": 42.18,
+        "hike_probability": 56.91,
+        "expected_rate_bps": 378.5,
+        "modal_rate_bps": 374.62
+      },
+      {
+        "reference_start": "2026-12-16",
+        "cut_probability": 5.2,
+        "hold_probability": 27.72,
+        "hike_probability": 67.08,
+        "expected_rate_bps": 393.49,
+        "modal_rate_bps": 375.52
+      },
+      {
+        "reference_start": "2027-03-17",
+        "cut_probability": 13.64,
+        "hold_probability": 17.36,
+        "hike_probability": 69.0,
+        "expected_rate_bps": 401.97,
+        "modal_rate_bps": 380.72
+      },
+      {
+        "reference_start": "2027-06-16",
+        "cut_probability": 19.55,
+        "hold_probability": 13.51,
+        "hike_probability": 66.94,
+        "expected_rate_bps": 405.55,
+        "modal_rate_bps": 388.82
+      }
+    ],
+    "next_meeting_bias": "Tightening leaning"
+  }
 }

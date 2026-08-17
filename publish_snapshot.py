@@ -23,6 +23,8 @@ from trade90_model import (
     walk_forward_metrics,
 )
 from economic_events import event_risk_summary, events_for_pair, fetch_calendar
+from newsfeed import fetch_news, news_for_pair
+from policy_expectations import fetch_policy_expectations
 from positioning import fetch_cftc, pair_positioning
 
 OUTPUT = Path("public/terminal-snapshot.json")
@@ -97,6 +99,8 @@ def main() -> None:
 
     calendar, calendar_status = fetch_calendar(end - timedelta(days=35), end + timedelta(days=14))
     cftc_history, cftc_status = fetch_cftc()
+    policy, policy_status = fetch_policy_expectations()
+    news, news_status = fetch_news()
 
     pairs = []
     for symbol, pair in PAIR_CONFIGS.items():
@@ -163,6 +167,7 @@ def main() -> None:
             },
             "history": history_payload(scored),
             "events": event_payload(pair_events, generated_at),
+            "news": clean(news_for_pair(news, pair.base, pair.quote)),
             "positioning": {
                 **clean(positioning),
                 "provider": cftc_status.provider,
@@ -190,7 +195,20 @@ def main() -> None:
                 "fetched_at": clean(cftc_status.fetched_at),
                 "message": cftc_status.message,
             },
+            "policy_expectations": {
+                "provider": policy_status.provider,
+                "cadence": policy_status.cadence,
+                "fetched_at": clean(policy_status.fetched_at),
+                "message": policy_status.message,
+            },
+            "news": {
+                "provider": news_status.provider,
+                "cadence": news_status.cadence,
+                "fetched_at": clean(news_status.fetched_at),
+                "message": news_status.message,
+            },
         },
+        "policy_expectations": clean(policy),
         "pairs": sorted(pairs, key=lambda item: abs(item["score"]), reverse=True),
     }
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

@@ -25,11 +25,18 @@ The dashboard downloads end-of-day market observations through `yfinance` and go
 - Price, moving averages, yields and volatility
 - Configurable entry threshold, transaction-cost assumption, and policy overlay
 - Lagged, cost-aware backtest plus expanding walk-forward validation
+- Market-implied Fed policy path: cut, hold and hike probabilities per quarterly window
+- CFTC Commitments of Traders positioning, including gold from the Disaggregated report
+- Official central-bank press releases mapped to the currencies each pair trades
 - High-impact economic calendar with pair relevance and UTC countdowns
 - Previous, consensus and actual values with post-release surprise calculation
 - Event-risk warnings and historical absolute-reaction estimates
 
 ## Research caveats
+
+Prices are end-of-day. XAU/USD is quoted from COMEX front-month gold futures, which carry a premium to spot that widens with rates and time to delivery, so it will not match a spot broker quote; BTC/USD is a Yahoo composite. Each market declares its basis in the terminal.
+
+Fundamental data comes from official primary sources with no licence restriction: the Atlanta Fed Market Probability Tracker for rate probabilities, the CFTC public reporting API for positioning, and central-bank RSS for policy communications. Rate probabilities are market pricing, not forecasts. Newswire text from Bloomberg and Reuters is deliberately absent because their terms do not permit redistribution here.
 
 This is an end-of-day public-data research product, not a real-time institutional feed. Empirical frequencies are not guarantees. The simulation excludes financing, taxes, broker spreads, execution slippage, and intraday gaps. Public data may be delayed, revised, missing, or aligned to different market closes. Calendar coverage uses Trading Economics guest access by default; set `TRADING_ECONOMICS_KEY` for licensed coverage. Upcoming events affect risk warnings, never the directional score. Validate source observations before using the output.
 
