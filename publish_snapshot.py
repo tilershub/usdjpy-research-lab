@@ -128,6 +128,8 @@ def main() -> None:
             "quote": pair.quote,
             "asset_class": pair.asset_class,
             "price": clean(latest.close),
+            "price_basis": pair.price_basis,
+            "price_note": pair.price_note,
             "decimals": pair.decimals,
             "score": round(score, 1),
             "bias": bias,

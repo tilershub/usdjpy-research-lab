@@ -24,13 +24,23 @@
     preferenceStatus.textContent = 'Saved on this device';
     window.setTimeout(() => { preferenceStatus.textContent = ''; }, 1800);
   };
+  // A price quoted off a futures or composite feed does not equal a spot broker
+  // quote, so the basis is shown beside the number rather than buried in the payload.
+  const basisTag = (p) => {
+    const basis = p.price_basis;
+    return basis && basis !== 'Spot' ? `<span class="price-basis">${escapeHtml(basis)}</span>` : '';
+  };
+  const priceNote = (p) => {
+    const note = p.price_note ?? p.model?.price_note;
+    return note && p.price_basis && p.price_basis !== 'Spot' ? `<p class="price-note">${escapeHtml(note)}</p>` : '';
+  };
   const render = (payload) => {
     latestPayload = payload;
     const pairs = Array.isArray(payload?.pairs) ? payload.pairs : [];
     if (!pairs.length) return;
     const watched = normalizedWatchlist();
     const shown = only.checked ? pairs.filter((p) => watched.includes(p.symbol)) : pairs;
-    root.innerHTML = shown.length ? `<div class="terminal-grid">${shown.map((p) => `<article class="market"><div class="market-heading"><h2>${escapeHtml(p.symbol)}</h2><button class="watch-button${watched.includes(p.symbol) ? ' watched' : ''}" data-symbol="${escapeHtml(p.symbol)}" aria-pressed="${watched.includes(p.symbol)}">${watched.includes(p.symbol) ? '★ Watching' : '☆ Watch'}</button></div><div class="price">${Number(p.price).toFixed(p.decimals ?? 2)}</div><strong class="${p.score > 18 ? 'positive' : p.score < -18 ? 'negative' : ''}">${p.score >= 0 ? '+' : ''}${p.score} · ${escapeHtml(p.bias)}</strong><br><small>Grade ${escapeHtml(p.quality?.grade ?? '—')} · ${escapeHtml(p.market?.regime ?? 'Unknown')}</small></article>`).join('')}</div>` : '<div class="terminal-empty"><strong>Your watchlist is empty.</strong><p>Turn off “Watchlist only” and add the markets you want to follow.</p></div>';
+    root.innerHTML = shown.length ? `<div class="terminal-grid">${shown.map((p) => `<article class="market"><div class="market-heading"><h2>${escapeHtml(p.symbol)}</h2><button class="watch-button${watched.includes(p.symbol) ? ' watched' : ''}" data-symbol="${escapeHtml(p.symbol)}" aria-pressed="${watched.includes(p.symbol)}">${watched.includes(p.symbol) ? '★ Watching' : '☆ Watch'}</button></div><div class="price">${Number(p.price).toFixed(p.decimals ?? 2)}${basisTag(p)}</div><strong class="${p.score > 18 ? 'positive' : p.score < -18 ? 'negative' : ''}">${p.score >= 0 ? '+' : ''}${p.score} · ${escapeHtml(p.bias)}</strong><br><small>Grade ${escapeHtml(p.quality?.grade ?? '—')} · ${escapeHtml(p.market?.regime ?? 'Unknown')}</small>${priceNote(p)}</article>`).join('')}</div>` : '<div class="terminal-empty"><strong>Your watchlist is empty.</strong><p>Turn off “Watchlist only” and add the markets you want to follow.</p></div>';
     const level = Number(threshold.value);
     const candidates = pairs.filter((p) => watched.includes(p.symbol) && Math.abs(Number(p.score)) >= level);
     alertBox.innerHTML = candidates.length ? `<strong>${candidates.length} watchlist ${candidates.length === 1 ? 'market meets' : 'markets meet'} your ±${level} evidence threshold:</strong> ${candidates.map((p) => `${escapeHtml(p.symbol)} (${Number(p.score) >= 0 ? '+' : ''}${escapeHtml(p.score)})`).join(' · ')}` : '';
