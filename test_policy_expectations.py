@@ -71,3 +71,47 @@ def test_a_workbook_without_observations_fails_rather_than_guessing():
 ])
 def test_bias_labels_follow_the_priced_probabilities(cut, hike, expected):
     assert _bias({"cut_probability": cut, "hike_probability": hike}) == expected
+
+
+def rows_with_distribution(observed="2026-08-14"):
+    base = rows_for(observed, cut="0.91", hike="56.91")
+    for field, value in (
+        ("Prob: 325bps - 350bps", "0.20"),
+        ("Prob: 350bps - 375bps", "42.88"),
+        ("Prob: 375bps - 400bps", "52.14"),
+        ("Prob: 400bps - 425bps", "4.98"),
+    ):
+        base.append({"observed": observed, "serial": SEPT_SERIAL, "target": "350bps - 375bps",
+                     "field": field, "value": value})
+    return base
+
+
+def test_distribution_is_ordered_by_rate_and_labelled():
+    window = _summarise(parse_workbook(workbook(rows_with_distribution())))["outlook"][0]
+    assert [r["label"] for r in window["distribution"]] == ["350-375bps", "375-400bps", "400-425bps"]
+    assert window["distribution"][0]["probability"] == 42.88
+
+
+def test_negligible_tails_are_trimmed():
+    """A 0.20% tail is noise on a probability bar chart."""
+    window = _summarise(parse_workbook(workbook(rows_with_distribution())))["outlook"][0]
+    assert "325-350bps" not in [r["label"] for r in window["distribution"]]
+
+
+def test_most_likely_range_is_the_modal_bucket():
+    window = _summarise(parse_workbook(workbook(rows_with_distribution())))["outlook"][0]
+    assert window["most_likely"] == "375-400bps"
+
+
+def test_distribution_is_consistent_with_the_directional_odds():
+    """Ranges above the current target should sum close to the hike probability."""
+    window = _summarise(parse_workbook(workbook(rows_with_distribution())))["outlook"][0]
+    above = sum(r["probability"] for r in window["distribution"] if r["lower_bps"] >= 375)
+    assert abs(above - window["hike_probability"]) < 1.0
+
+
+def test_a_window_without_ranges_still_reports_direction():
+    window = _summarise(parse_workbook(workbook(rows_for("2026-08-14"))))["outlook"][0]
+    assert window["distribution"] == []
+    assert window["most_likely"] is None
+    assert window["hold_probability"] == 70.0

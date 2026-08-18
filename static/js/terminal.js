@@ -52,6 +52,22 @@
       ? `<small class="market-line"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${label}</a></small>`
       : `<small class="market-line">${label}</small>`;
   };
+  // The rate distribution is the part a policy tool exists to show: where the
+  // market thinks the target range actually lands, not just the direction.
+  const distribution = (payload) => {
+    const horizon = payload?.policy_expectations?.outlook?.[0];
+    const rows = Array.isArray(horizon?.distribution) ? horizon.distribution : [];
+    if (!rows.length) return '';
+    const peak = Math.max(...rows.map((r) => r.probability));
+    const bars = rows.map((r) => {
+      const width = peak > 0 ? Math.round((r.probability / peak) * 100) : 0;
+      const leading = r.label === horizon.most_likely ? ' policy-bar--peak' : '';
+      return `<li class="policy-bar${leading}"><span class="policy-bar__label">${escapeHtml(r.label)}</span>`
+        + `<span class="policy-bar__track"><span class="policy-bar__fill" style="width:${width}%"></span></span>`
+        + `<span class="policy-bar__value">${r.probability.toFixed(1)}%</span></li>`;
+    }).join('');
+    return `<div class="policy-distribution"><h3>Where the rate lands from ${escapeHtml(horizon.reference_start)}</h3><ul>${bars}</ul></div>`;
+  };
   const nextMeeting = (payload) => {
     const meeting = Array.isArray(payload?.policy_calendar) ? payload.policy_calendar[0] : null;
     if (!meeting) return '';
@@ -69,7 +85,7 @@
       + `<span>Target range ${escapeHtml(policy.target_range || '—')} · ${escapeHtml(policy.next_meeting_bias || '')} · as of ${escapeHtml(policy.observed || '')}</span></div>`
       + `<table class="policy-table"><thead><tr><th scope="col">Window from</th><th scope="col">Cut</th><th scope="col">Hold</th><th scope="col">Hike</th><th scope="col">Expected rate</th></tr></thead><tbody>`
       + outlook.map((w) => `<tr><th scope="row">${escapeHtml(w.reference_start)}</th><td>${pct(w.cut_probability)}</td><td>${pct(w.hold_probability)}</td><td>${pct(w.hike_probability)}</td><td>${typeof w.expected_rate_bps === 'number' ? `${w.expected_rate_bps.toFixed(0)}bps` : '—'}</td></tr>`).join('')
-      + `</tbody></table>${nextMeeting(payload)}<p class="policy-source">Atlanta Fed Market Probability Tracker, derived from CME three-month SOFR options. Probabilities are market pricing, not forecasts.</p>`;
+      + `</tbody></table>${distribution(payload)}${nextMeeting(payload)}<p class="policy-source">Atlanta Fed Market Probability Tracker, derived from CME three-month SOFR options. Probabilities are market pricing, not forecasts.</p>`;
   };
   // A feed that dies quietly is worse than one that is visibly missing, so every
   // configured source reports its own health rather than just vanishing.

@@ -11,6 +11,7 @@ raise on load, so the sheet XML is read straight out of the zip container.
 
 from __future__ import annotations
 
+import re
 import zipfile
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
@@ -26,7 +27,13 @@ CUT_FIELD = "Prob: cut"
 HIKE_FIELD = "Prob: hike"
 MEAN_FIELD = "Rate: mean"
 MODE_FIELD = "Rate: mode"
-WANTED_FIELDS = (CUT_FIELD, HIKE_FIELD, MEAN_FIELD, MODE_FIELD)
+LOWER_QUARTILE_FIELD = "Rate: 25th percentile"
+UPPER_QUARTILE_FIELD = "Rate: 75th percentile"
+WANTED_FIELDS = (CUT_FIELD, HIKE_FIELD, MEAN_FIELD, MODE_FIELD, LOWER_QUARTILE_FIELD, UPPER_QUARTILE_FIELD)
+
+# "Prob: 375bps - 400bps" — the per-target-range odds that make up the
+# distribution a rate-probability tool actually displays.
+RANGE_FIELD = re.compile(r"^Prob:\s*(\d+)bps\s*-\s*(\d+)bps$")
 
 
 @dataclass(frozen=True)
@@ -82,7 +89,7 @@ def parse_workbook(payload: bytes) -> dict:
         windows: dict[str, dict] = {}
         target_range = ""
         for observed, reference_start, current_range, field, value in (r[:5] for r in rows):
-            if not observed or field not in WANTED_FIELDS:
+            if not observed or (field not in WANTED_FIELDS and not RANGE_FIELD.match(str(field or ""))):
                 continue
             observed = str(observed).strip()
             if observed < latest_date:
@@ -103,6 +110,17 @@ def parse_workbook(payload: bytes) -> dict:
     return {"observed": latest_date, "target_range": target_range, "windows": windows}
 
 
+def _distribution(fields: dict, floor: float = 0.5) -> list[dict]:
+    """Per-target-range odds, ordered by rate and trimmed of negligible tails."""
+    ranges = []
+    for field, value in fields.items():
+        match = RANGE_FIELD.match(field)
+        if match and value >= floor:
+            lower, upper = int(match.group(1)), int(match.group(2))
+            ranges.append({"lower_bps": lower, "upper_bps": upper, "label": f"{lower}-{upper}bps", "probability": value})
+    return sorted(ranges, key=lambda item: item["lower_bps"])
+
+
 def _summarise(parsed: dict, horizons: int = 4) -> dict:
     ordered = sorted(parsed["windows"].items())[:horizons]
     outlook = []
@@ -110,6 +128,7 @@ def _summarise(parsed: dict, horizons: int = 4) -> dict:
         cut = fields.get(CUT_FIELD)
         hike = fields.get(HIKE_FIELD)
         hold = None if cut is None or hike is None else max(0.0, round(100.0 - cut - hike, 2))
+        distribution = _distribution(fields)
         outlook.append({
             "reference_start": window,
             "cut_probability": cut,
@@ -117,6 +136,10 @@ def _summarise(parsed: dict, horizons: int = 4) -> dict:
             "hike_probability": hike,
             "expected_rate_bps": fields.get(MEAN_FIELD),
             "modal_rate_bps": fields.get(MODE_FIELD),
+            "rate_25th_bps": fields.get(LOWER_QUARTILE_FIELD),
+            "rate_75th_bps": fields.get(UPPER_QUARTILE_FIELD),
+            "distribution": distribution,
+            "most_likely": max(distribution, key=lambda item: item["probability"])["label"] if distribution else None,
         })
     return {
         "observed": parsed["observed"],
