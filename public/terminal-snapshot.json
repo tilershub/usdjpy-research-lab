@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-22T01:47:52.754539+00:00",
+  "generated_at": "2026-08-22T06:57:12.828423+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-08-22T01:47:53.894078+00:00",
+      "fetched_at": "2026-08-22T06:57:13.685638+00:00",
       "message": "HTTP Error 410: Gone"
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+      "fetched_at": "2026-08-22T06:57:14.051595+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-08-22T01:47:59.680267+00:00",
+      "fetched_at": "2026-08-22T06:57:20.856802+00:00",
       "message": ""
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-08-22T01:48:06.972467+00:00",
+      "fetched_at": "2026-08-22T06:57:27.399356+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-08-22T01:48:06.443454+00:00",
+      "fetched_at": "2026-08-22T06:57:26.440678+00:00",
       "message": ""
     }
   },
@@ -347,17 +347,17 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 77943.8203125,
+      "price": 77454.3203125,
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 61.6,
+      "score": 59.4,
       "bias": "Bullish",
-      "confidence": "Moderate",
+      "confidence": "High",
       "probabilities": {
-        "Bullish": 0.4923,
-        "Range/neutral": 0.2142,
-        "Bearish": 0.2935
+        "Bullish": 0.5323,
+        "Range/neutral": 0.1983,
+        "Bearish": 0.2694
       },
       "sample_size": 120,
       "quality": {
@@ -370,11 +370,11 @@
       "market": {
         "yield_spread": -4.69,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.38973673063207115,
+        "volatility": 0.37747907328642477,
         "regime": "High volatility",
         "support20": 62818.65234375,
-        "resistance20": 77943.8203125,
-        "atr20": 1008.1500000000015,
+        "resistance20": 77454.3203125,
+        "atr20": 983.6750000000017,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -383,27 +383,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 28.107441150742385
+            "contribution": 27.828838536480607
           },
           {
             "name": "Momentum",
-            "contribution": 25.75676216958062
+            "contribution": 25.75557687648814
           },
           {
             "name": "RSI",
-            "contribution": 9.830216303237592
+            "contribution": 9.821130250116498
           },
           {
             "name": "Rate differential",
-            "contribution": -7.092200244252125
+            "contribution": -8.462284382346287
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 4.051037218139166
+            "contribution": 3.2957590927233897
           },
           {
             "name": "Rate impulse",
-            "contribution": 0.9402669836594976
+            "contribution": 1.1219094691391733
           },
           {
             "name": "Policy overlay",
@@ -1247,10 +1247,10 @@
         },
         {
           "date": "2026-08-22T00:00:00",
-          "close": 77943.8203125,
-          "ema_fast": 66434.63301616025,
-          "ema_slow": 65360.78021669356,
-          "score": 61.593523581107135
+          "close": 77454.3203125,
+          "ema_fast": 66388.0139685412,
+          "ema_slow": 65341.58413826219,
+          "score": 59.360929842601514
         }
       ],
       "events": {
@@ -1330,7 +1330,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1371,17 +1371,17 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 4661.60009765625,
+      "price": 4624.10009765625,
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month gold futures (GC=F). Futures carry a premium to spot XAU/USD that widens with rates and time to delivery, so this price will not match a spot broker quote.",
       "decimals": 2,
-      "score": 33.1,
+      "score": 32.6,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4534,
-        "Range/neutral": 0.2069,
-        "Bearish": 0.3397
+        "Bullish": 0.4619,
+        "Range/neutral": 0.1834,
+        "Bearish": 0.3547
       },
       "sample_size": 120,
       "quality": {
@@ -1394,11 +1394,11 @@
       "market": {
         "yield_spread": -2.35,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.22941131521651859,
+        "volatility": 0.21895188339803776,
         "regime": "High volatility",
         "support20": 4033.699951171875,
-        "resistance20": 4661.60009765625,
-        "atr20": 50.40996093750004,
+        "resistance20": 4624.10009765625,
+        "atr20": 48.534960937500045,
         "driver": "US dollar index"
       },
       "model": {
@@ -1411,19 +1411,19 @@
           },
           {
             "name": "Trend",
-            "contribution": 17.2481502463354
+            "contribution": 16.882509919467648
           },
           {
             "name": "Momentum",
-            "contribution": 15.589159485373461
+            "contribution": 15.548818449915803
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 12.627932120644823
+            "contribution": 12.689638937025691
           },
           {
             "name": "RSI",
-            "contribution": 6.516359580912904
+            "contribution": 6.431193050349901
           },
           {
             "name": "Rate impulse",
@@ -2271,10 +2271,10 @@
         },
         {
           "date": "2026-08-21T00:00:00",
-          "close": 4661.60009765625,
-          "ema_fast": 4336.231758058746,
-          "ema_slow": 4281.622645789311,
-          "score": 33.05752774817492
+          "close": 4624.10009765625,
+          "ema_fast": 4332.6603294873175,
+          "ema_slow": 4280.152057554017,
+          "score": 32.628086671667376
         }
       ],
       "events": {
@@ -2354,7 +2354,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2399,13 +2399,13 @@
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 30.6,
+      "score": 30.7,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3098,
-        "Range/neutral": 0.2299,
-        "Bearish": 0.4603
+        "Bullish": 0.3172,
+        "Range/neutral": 0.2301,
+        "Bearish": 0.4526
       },
       "sample_size": 120,
       "quality": {
@@ -2433,7 +2433,7 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": 10.128084164574682
+            "contribution": 10.176553880926463
           },
           {
             "name": "RSI",
@@ -3300,7 +3300,7 @@
           "close": 1.3647964000701904,
           "ema_fast": 1.3496942894804205,
           "ema_slow": 1.3441066386275036,
-          "score": 30.61948928864981
+          "score": 30.667959005001592
         }
       ],
       "events": {
@@ -3380,7 +3380,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3421,17 +3421,17 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5977286100387573,
+      "price": 0.5978358387947083,
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 30.4,
+      "score": 30.5,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3272,
+        "Bullish": 0.3346,
         "Range/neutral": 0.1997,
-        "Bearish": 0.4731
+        "Bearish": 0.4658
       },
       "sample_size": 120,
       "quality": {
@@ -3446,11 +3446,11 @@
       "market": {
         "yield_spread": -0.23000000000000043,
         "macro_label": "10Y yield spread",
-        "volatility": 0.07740925951051911,
+        "volatility": 0.07748525450905844,
         "regime": "Range / transition",
         "support20": 0.5770406723022461,
-        "resistance20": 0.5977286100387573,
-        "atr20": 0.002348092198371903,
+        "resistance20": 0.5978358387947083,
+        "atr20": 0.0023534536361694497,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -3459,7 +3459,7 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 9.285083155977565
+            "contribution": 9.297239945147702
           },
           {
             "name": "Cross-asset driver",
@@ -3467,11 +3467,11 @@
           },
           {
             "name": "Momentum",
-            "contribution": 7.572991593635558
+            "contribution": 7.608588131008772
           },
           {
             "name": "RSI",
-            "contribution": 5.82915876920922
+            "contribution": 5.84395973430605
           },
           {
             "name": "Rate differential",
@@ -4323,10 +4323,10 @@
         },
         {
           "date": "2026-08-22T00:00:00",
-          "close": 0.5977286100387573,
-          "ema_fast": 0.5882462089374048,
-          "ema_slow": 0.5844200338443991,
-          "score": 30.445047216364816
+          "close": 0.5978358387947083,
+          "ema_fast": 0.5882564211998763,
+          "ema_slow": 0.5844242388936521,
+          "score": 30.507601508004996
         }
       ],
       "events": {
@@ -4406,7 +4406,7 @@
         "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4485,7 +4485,7 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": 9.284077150860124
+            "contribution": 9.328507724182591
           },
           {
             "name": "RSI",
@@ -5352,7 +5352,7 @@
           "close": 1.1678149700164795,
           "ema_fast": 1.1547993727749897,
           "ema_slow": 1.1521529759083315,
-          "score": 26.38421036233241
+          "score": 26.428640935654876
         }
       ],
       "events": {
@@ -5432,7 +5432,7 @@
         "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5477,20 +5477,20 @@
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 20.6,
+      "score": 19.4,
       "bias": "Bullish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.444,
-        "Range/neutral": 0.1508,
-        "Bearish": 0.4052
+        "Bullish": 0.4285,
+        "Range/neutral": 0.1433,
+        "Bearish": 0.4282
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-08-21T00:00:00",
-        "price_age_days": 1,
+        "last_price": "2026-08-22T00:00:00",
+        "price_age_days": 0,
         "stale_inputs": [
           "base yield"
         ]
@@ -5498,11 +5498,11 @@
       "market": {
         "yield_spread": 0.14100000000000001,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06619522104628348,
+        "volatility": 0.06698059133860157,
         "regime": "Range / transition",
         "support20": 0.695928156375885,
         "resistance20": 0.7174630165100098,
-        "atr20": 0.002461993694305433,
+        "atr20": 0.002382442355155958,
         "driver": "Copper"
       },
       "model": {
@@ -5511,19 +5511,19 @@
         "audit": [
           {
             "name": "Momentum",
-            "contribution": 6.875405534141918
+            "contribution": 6.106486653563192
           },
           {
             "name": "RSI",
-            "contribution": 6.075272002034678
+            "contribution": 6.043418249688845
           },
           {
             "name": "Trend",
-            "contribution": 5.211524049242669
+            "contribution": 5.703841330665188
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 2.455082693866508
+            "contribution": 1.5940669629971018
           },
           {
             "name": "Rate differential",
@@ -5540,13 +5540,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-03-09T00:00:00",
-          "close": 0.6966199278831482,
-          "ema_fast": 0.7036576460012941,
-          "ema_slow": 0.6933454498176466,
-          "score": 26.2630435311566
-        },
         {
           "date": "2026-03-10T00:00:00",
           "close": 0.7068586349487305,
@@ -6375,10 +6368,17 @@
         },
         {
           "date": "2026-08-21T00:00:00",
+          "close": 0.7119398713111877,
+          "ema_fast": 0.7057329782963437,
+          "ema_slow": 0.7034809764856141,
+          "score": 17.342526927150605
+        },
+        {
+          "date": "2026-08-22T00:00:00",
           "close": 0.7174630165100098,
-          "ema_fast": 0.7062589921248029,
-          "ema_slow": 0.7036975704149797,
-          "score": 20.617284279285776
+          "ema_fast": 0.7068501247928833,
+          "ema_slow": 0.7040292917806885,
+          "score": 19.447813196914325
         }
       ],
       "events": {
@@ -6458,7 +6458,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6499,24 +6499,24 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.3762999773025513,
+      "price": 1.3763999938964844,
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -10.9,
-      "bias": "Bullish",
-      "confidence": "Low",
+      "score": -18.3,
+      "bias": "Bearish",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4129,
-        "Range/neutral": 0.2458,
-        "Bearish": 0.3413
+        "Bullish": 0.382,
+        "Range/neutral": 0.1589,
+        "Bearish": 0.4591
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-08-21T00:00:00",
-        "price_age_days": 1,
+        "last_price": "2026-08-22T00:00:00",
+        "price_age_days": 0,
         "stale_inputs": [
           "quote yield"
         ]
@@ -6524,11 +6524,11 @@
       "market": {
         "yield_spread": 1.2700000000000005,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04161733193823024,
+        "volatility": 0.04066785017719984,
         "regime": "Range / transition",
-        "support20": 1.3762999773025513,
+        "support20": 1.3763999938964844,
         "resistance20": 1.4124200344085693,
-        "atr20": 0.0030785262584686482,
+        "atr20": 0.0030655205249786586,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -6537,19 +6537,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": -6.534676158682855
+            "contribution": -6.535828714677702
           },
           {
             "name": "Momentum",
-            "contribution": -5.115354725675416
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": 4.846432022513232
+            "contribution": -5.123180373859108
           },
           {
             "name": "Trend",
-            "contribution": -4.128762773028093
+            "contribution": -4.88257453665948
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -1.7754582868390902
           },
           {
             "name": "Rate differential",
@@ -6566,13 +6566,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-03-09T00:00:00",
-          "close": 1.3602099418640137,
-          "ema_fast": 1.3661238648216028,
-          "ema_slow": 1.3708627166513012,
-          "score": -53.73899619328749
-        },
         {
           "date": "2026-03-10T00:00:00",
           "close": 1.358739972114563,
@@ -7401,10 +7394,17 @@
         },
         {
           "date": "2026-08-21T00:00:00",
-          "close": 1.3762999773025513,
-          "ema_fast": 1.3943376315335643,
-          "ema_slow": 1.3983276433090441,
-          "score": -10.932361634873132
+          "close": 1.3781399726867676,
+          "ema_fast": 1.394512869189204,
+          "ema_slow": 1.398399799990778,
+          "score": -10.855547844728628
+        },
+        {
+          "date": "2026-08-22T00:00:00",
+          "close": 1.3763999938964844,
+          "ema_fast": 1.39278783344704,
+          "ema_slow": 1.3975370624968841,
+          "score": -18.31704191203538
         }
       ],
       "events": {
@@ -7484,7 +7484,7 @@
         "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8510,7 +8510,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -9536,7 +9536,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-08-22T01:47:54.013859+00:00",
+        "fetched_at": "2026-08-22T06:57:14.051595+00:00",
         "provider_message": ""
       },
       "validation": {
