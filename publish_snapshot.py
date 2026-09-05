@@ -48,6 +48,39 @@ def clean(value):
     return value
 
 
+MIN_PRICE_OBSERVATIONS = 500
+MAX_PRICE_AGE_DAYS = 7
+
+
+def usable_price(series: pd.Series | None, today: date) -> bool:
+    """A price feed is only usable if it is both deep enough and current."""
+    if series is None or series.dropna().empty:
+        return False
+    clean_series = series.dropna()
+    if len(clean_series) < MIN_PRICE_OBSERVATIONS:
+        return False
+    last = pd.Timestamp(clean_series.index[-1]).date()
+    return (today - last).days <= MAX_PRICE_AGE_DAYS
+
+
+def resolve_price(close: pd.DataFrame, pair, today: date) -> tuple[pd.Series, str, str]:
+    """Prefer the configured feed, fall back only when it cannot carry the model.
+
+    The basis and note travel with whichever series wins, so the terminal never
+    labels a futures proxy as spot.
+    """
+    preferred = close[pair.ticker] if pair.ticker in close else None
+    if usable_price(preferred, today):
+        return preferred.dropna().rename(pair.symbol), pair.price_basis, pair.price_note
+    if pair.fallback_ticker:
+        fallback = close[pair.fallback_ticker] if pair.fallback_ticker in close else None
+        if usable_price(fallback, today):
+            return fallback.dropna().rename(pair.symbol), pair.fallback_basis, pair.fallback_note
+    if preferred is not None and not preferred.dropna().empty:
+        return preferred.dropna().rename(pair.symbol), pair.price_basis, pair.price_note
+    raise RuntimeError(f"No usable price series for {pair.symbol}")
+
+
 def history_payload(scored: pd.DataFrame, limit: int = 120) -> list[dict]:
     columns = ["close", "ema_fast", "ema_slow", "score"]
     history = scored[columns].dropna(subset=["close"]).tail(limit)
@@ -92,7 +125,11 @@ def main() -> None:
     end = date.today()
     generated_at = datetime.now(timezone.utc)
     start = end - timedelta(days=int(YEARS * 365.25 + 450))
-    tickers = sorted({p.ticker for p in PAIR_CONFIGS.values()} | {p.driver for p in PAIR_CONFIGS.values()})
+    tickers = sorted(
+        {p.ticker for p in PAIR_CONFIGS.values()}
+        | {p.driver for p in PAIR_CONFIGS.values()}
+        | {p.fallback_ticker for p in PAIR_CONFIGS.values() if p.fallback_ticker}
+    )
     raw = yf.download(tickers, start=start, end=end + timedelta(days=1), auto_adjust=True, progress=False, threads=True)
     if raw.empty:
         raise RuntimeError("Market-data provider returned no observations")
@@ -106,7 +143,7 @@ def main() -> None:
 
     pairs = []
     for symbol, pair in PAIR_CONFIGS.items():
-        price = close[pair.ticker].dropna().rename(symbol)
+        price, price_basis, price_note = resolve_price(close, pair, end)
         driver = close[pair.driver].dropna() if pair.driver in close else None
         features = prepare_features(
             price,
@@ -134,8 +171,8 @@ def main() -> None:
             "quote": pair.quote,
             "asset_class": pair.asset_class,
             "price": clean(latest.close),
-            "price_basis": pair.price_basis,
-            "price_note": pair.price_note,
+            "price_basis": price_basis,
+            "price_note": price_note,
             "decimals": pair.decimals,
             "score": round(score, 1),
             "bias": bias,
@@ -161,7 +198,7 @@ def main() -> None:
             },
             "model": {
                 "thesis": profile.thesis,
-                "price_note": pair.price_note,
+                "price_note": price_note,
                 "audit": [
                     {"name": str(name), "contribution": clean(value)}
                     for name, value in audit.items()

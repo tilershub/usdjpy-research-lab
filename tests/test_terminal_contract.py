@@ -89,13 +89,19 @@ class TerminalContractTests(TestCase):
 
 
 class PriceBasisDisclosureTests(TestCase):
-    def test_non_spot_markets_declare_their_basis_and_note(self):
+    def test_gold_is_quoted_spot_with_a_declared_futures_fallback(self):
         from trade90_model import PAIR_CONFIGS
 
         gold = PAIR_CONFIGS["XAU/USD"]
-        self.assertEqual(gold.ticker, "GC=F")
-        self.assertEqual(gold.price_basis, "COMEX futures")
-        self.assertIn("spot", gold.price_note.lower())
+        self.assertEqual(gold.ticker, "XAUUSD=X")
+        self.assertEqual(gold.price_basis, "Spot")
+        self.assertEqual(gold.fallback_ticker, "GC=F")
+        self.assertEqual(gold.fallback_basis, "COMEX futures")
+        self.assertIn("will not match a spot broker quote", gold.fallback_note)
+
+    def test_non_spot_markets_still_declare_their_basis(self):
+        from trade90_model import PAIR_CONFIGS
+
         self.assertEqual(PAIR_CONFIGS["BTC/USD"].price_basis, "Composite")
 
     def test_fx_majors_are_spot_quoted(self):

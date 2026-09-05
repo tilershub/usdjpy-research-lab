@@ -34,7 +34,7 @@ The dashboard downloads end-of-day market observations through `yfinance` and go
 
 ## Research caveats
 
-Prices are end-of-day. XAU/USD is quoted from COMEX front-month gold futures, which carry a premium to spot that widens with rates and time to delivery, so it will not match a spot broker quote; BTC/USD is a Yahoo composite. Each market declares its basis in the terminal.
+Prices are end-of-day. XAU/USD is quoted spot, on the same basis as a spot gold CFD. If the spot feed is unavailable or too sparse to carry the model, the publisher falls back to COMEX front-month futures and relabels the market accordingly — futures carry a premium to spot that widens with rates and time to delivery, so a fallback quote will not match a broker. BTC/USD is a Yahoo composite. Every market declares the basis it was actually priced on, so a fallback is never presented as spot.
 
 Fundamental data comes from official primary sources with no licence restriction: the Atlanta Fed Market Probability Tracker for rate probabilities, the CFTC public reporting API for positioning, and central-bank RSS for policy communications. Rate probabilities are market pricing, not forecasts. Newswire text from Bloomberg and Reuters is deliberately absent because their terms do not permit redistribution here.
 
