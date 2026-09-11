@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-11T17:01:32.482427+00:00",
+  "generated_at": "2026-09-11T19:42:53.842028+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-11T17:01:34.097657+00:00",
+      "fetched_at": "2026-09-11T19:42:55.403478+00:00",
       "message": "HTTP Error 410: Gone"
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+      "fetched_at": "2026-09-11T19:42:55.537782+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-11T17:01:43.495319+00:00",
+      "fetched_at": "2026-09-11T19:43:03.453460+00:00",
       "message": ""
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-11T17:01:48.740447+00:00",
+      "fetched_at": "2026-09-11T19:43:08.877179+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-11T17:01:48.205854+00:00",
+      "fetched_at": "2026-09-11T19:43:08.371221+00:00",
       "message": ""
     }
   },
@@ -353,19 +353,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 153.73800659179688,
-      "live_price": 153.73800659179688,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 153.70799255371094,
+      "live_price": 153.70799255371094,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": -33.4,
+      "score": -33.8,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4704,
-        "Range/neutral": 0.2068,
-        "Bearish": 0.3227
+        "Bullish": 0.498,
+        "Range/neutral": 0.2077,
+        "Bearish": 0.2943
       },
       "sample_size": 120,
       "quality": {
@@ -380,11 +380,11 @@
       "market": {
         "yield_spread": 2.16,
         "macro_label": "10Y yield spread",
-        "volatility": 0.10224840249883639,
+        "volatility": 0.10217798805325787,
         "regime": "Trending",
         "support20": 153.47799682617188,
         "resistance20": 160.1959991455078,
-        "atr20": 0.6263000488281291,
+        "atr20": 0.6247993469238322,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -393,19 +393,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -15.163847835544484
+            "contribution": -15.174195314920391
           },
           {
             "name": "Momentum",
-            "contribution": -8.923873432517917
+            "contribution": -8.95802268879425
           },
           {
             "name": "RSI",
-            "contribution": -6.396555586741383
+            "contribution": -6.414506329271561
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -2.922828817327675
+            "contribution": -3.2163572635241646
           },
           {
             "name": "Rate differential",
@@ -1257,10 +1257,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 153.73800659179688,
-          "ema_fast": 157.16224032480966,
-          "ema_slow": 158.7968078205336,
-          "score": -33.40710567213146
+          "close": 153.70799255371094,
+          "ema_fast": 157.15938184499194,
+          "ema_slow": 158.79563079943216,
+          "score": -33.76308159651037
         }
       ],
       "events": {
@@ -1307,40 +1307,40 @@
         "base": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
         "quote": {
           "currency": "JPY",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": -102188.0,
-          "asset_manager_net": -24521.0,
-          "percentile_3y": 0.05128205128205128,
-          "zscore_3y": -1.578113573989896,
-          "crowding": "Crowded short",
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": -49098.0,
+          "asset_manager_net": -570.0,
+          "percentile_3y": 0.532051282051282,
+          "zscore_3y": -0.08894519896318882,
+          "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 411882.0
+          "open_interest": 499635.0
         },
-        "relative_percentile": 0.782051282051282,
-        "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
+        "relative_percentile": 0.28205128205128205,
+        "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1381,19 +1381,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 77892.109375,
-      "live_price": 77892.109375,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 77268.203125,
+      "live_price": 77268.203125,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 30.7,
+      "score": 25.5,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3661,
-        "Range/neutral": 0.2136,
-        "Bearish": 0.4204
+        "Bullish": 0.3401,
+        "Range/neutral": 0.2244,
+        "Bearish": 0.4355
       },
       "sample_size": 120,
       "quality": {
@@ -1406,11 +1406,11 @@
       "market": {
         "yield_spread": -4.83,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.28458854767826364,
+        "volatility": 0.2797056008191265,
         "regime": "High volatility",
         "support20": 76568.125,
         "resistance20": 81271.7421875,
-        "atr20": 1043.9199218750014,
+        "atr20": 1012.7246093750013,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -1419,27 +1419,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.47340490757837
+            "contribution": 32.472900743695206
           },
           {
             "name": "Rate differential",
             "contribution": -9.070708838234799
           },
           {
-            "name": "Momentum",
-            "contribution": 5.327103236840224
-          },
-          {
             "name": "RSI",
-            "contribution": 4.2760218832358206
+            "contribution": 3.257371943777251
           },
           {
             "name": "Rate impulse",
             "contribution": -1.6608364634748785
           },
           {
+            "name": "Momentum",
+            "contribution": 1.2341233689506785
+          },
+          {
             "name": "Cross-asset driver",
-            "contribution": -0.6559626586294326
+            "contribution": -0.7290133614949574
           },
           {
             "name": "Policy overlay",
@@ -2283,10 +2283,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 77892.109375,
-          "ema_fast": 77069.06880482072,
-          "ema_slow": 72880.66282473014,
-          "score": 30.6890220673153
+          "close": 77268.203125,
+          "ema_fast": 77009.64916196358,
+          "ema_slow": 72856.19591296543,
+          "score": 25.503837393218497
         }
       ],
       "events": {
@@ -2333,40 +2333,40 @@
         "base": {
           "currency": "BTC",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": -7620.0,
-          "asset_manager_net": 3698.0,
-          "percentile_3y": 0.8782051282051282,
-          "zscore_3y": 1.3334229677794678,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": -7892.0,
+          "asset_manager_net": 3743.0,
+          "percentile_3y": 0.8717948717948718,
+          "zscore_3y": 1.2750335873636944,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 19697.0
+          "open_interest": 21083.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
-        "relative_percentile": 0.04487179487179482,
+        "relative_percentile": 0.05769230769230771,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2407,19 +2407,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.3860000371932983,
-      "live_price": 1.3863600492477417,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 1.3869500160217285,
+      "live_price": 1.3869500160217285,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -22.8,
+      "score": -22.4,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3257,
-        "Range/neutral": 0.1903,
-        "Bearish": 0.484
+        "Bullish": 0.3333,
+        "Range/neutral": 0.1905,
+        "Bearish": 0.4762
       },
       "sample_size": 120,
       "quality": {
@@ -2434,11 +2434,11 @@
       "market": {
         "yield_spread": 1.4100000000000001,
         "macro_label": "10Y yield spread",
-        "volatility": 0.0497906406096057,
+        "volatility": 0.0506200314603903,
         "regime": "Range / transition",
         "support20": 1.377750039100647,
         "resistance20": 1.3899099826812744,
-        "atr20": 0.0037735164165497138,
+        "atr20": 0.00382101535797122,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -2447,19 +2447,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -14.686330518204933
+            "contribution": -14.998696365568247
           },
           {
             "name": "Trend",
-            "contribution": -6.048069121873749
+            "contribution": -5.9976604580665045
           },
           {
             "name": "Momentum",
-            "contribution": -1.148887427051038
+            "contribution": -0.9870306786195142
           },
           {
             "name": "RSI",
-            "contribution": -0.9037579579747949
+            "contribution": -0.45265588292126596
           },
           {
             "name": "Rate differential",
@@ -3311,10 +3311,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 1.3860000371932983,
-          "ema_fast": 1.3857519382221246,
-          "ema_slow": 1.3916904452498389,
-          "score": -22.787045025104515
+          "close": 1.3869500160217285,
+          "ema_fast": 1.385842412396261,
+          "ema_slow": 1.391727699321542,
+          "score": -22.43604338517553
         }
       ],
       "events": {
@@ -3361,40 +3361,40 @@
         "base": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
         "quote": {
           "currency": "CAD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": -68750.0,
-          "asset_manager_net": -49544.0,
-          "percentile_3y": 0.28846153846153844,
-          "zscore_3y": -0.6441542635964507,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": -55448.0,
+          "asset_manager_net": -30008.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.033935877058103255,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 334800.0
+          "open_interest": 334861.0
         },
-        "relative_percentile": 0.5448717948717949,
+        "relative_percentile": 0.391025641025641,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3435,19 +3435,19 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5817674398422241,
-      "live_price": 0.5817674398422241,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 0.5815306305885315,
+      "live_price": 0.5815306305885315,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -11.7,
+      "score": -12.1,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4675,
-        "Range/neutral": 0.1749,
-        "Bearish": 0.3576
+        "Bullish": 0.4455,
+        "Range/neutral": 0.1898,
+        "Bearish": 0.3647
       },
       "sample_size": 120,
       "quality": {
@@ -3462,11 +3462,11 @@
       "market": {
         "yield_spread": -0.3700000000000001,
         "macro_label": "10Y yield spread",
-        "volatility": 0.07587018537931756,
+        "volatility": 0.07619038696925663,
         "regime": "Range / transition",
-        "support20": 0.5817674398422241,
+        "support20": 0.5815306305885315,
         "resistance20": 0.5977500677108765,
-        "atr20": 0.0022770792245864957,
+        "atr20": 0.0022889196872711284,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -3475,19 +3475,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -9.994122219144385
-          },
-          {
-            "name": "Trend",
-            "contribution": 4.588851764692715
+            "contribution": -10.226445195990747
           },
           {
             "name": "RSI",
-            "contribution": -4.547476165944104
+            "contribution": -4.629966583736564
+          },
+          {
+            "name": "Trend",
+            "contribution": 4.555919580740999
           },
           {
             "name": "Momentum",
-            "contribution": -1.7266438132147084
+            "contribution": -1.8364222583400354
           },
           {
             "name": "Rate differential",
@@ -4339,10 +4339,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 0.5817674398422241,
-          "ema_fast": 0.588304540231937,
-          "ema_slow": 0.5865292460562144,
-          "score": -11.679390433610482
+          "close": 0.5815306305885315,
+          "ema_fast": 0.5882819869696806,
+          "ema_slow": 0.5865199594188146,
+          "score": -12.136914457326348
         }
       ],
       "events": {
@@ -4389,40 +4389,40 @@
         "base": {
           "currency": "NZD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": -22338.0,
-          "asset_manager_net": 2959.0,
-          "percentile_3y": 0.07692307692307693,
-          "zscore_3y": -1.5987158038288058,
-          "crowding": "Crowded short",
-          "stale": false,
-          "report": "CFTC Traders in Financial Futures",
-          "speculative_label": "Leveraged funds",
-          "intermediary_label": "Asset managers",
-          "open_interest": 107274.0
-        },
-        "quote": {
-          "currency": "USD",
-          "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": -17350.0,
+          "asset_manager_net": 14024.0,
+          "percentile_3y": 0.1282051282051282,
+          "zscore_3y": -1.1324689616723573,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 125978.0
         },
-        "relative_percentile": -0.7564102564102564,
-        "warning": "Positioning is extremely one-sided; reversal and squeeze risk may be elevated.",
+        "quote": {
+          "currency": "USD",
+          "available": true,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 57858.0
+        },
+        "relative_percentile": -0.6858974358974359,
+        "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4463,19 +4463,19 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.1602274179458618,
-      "live_price": 1.1602274179458618,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 1.1598236560821533,
+      "live_price": 1.1598236560821533,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 10.9,
+      "score": 10.3,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4131,
-        "Range/neutral": 0.1905,
-        "Bearish": 0.3964
+        "Bullish": 0.4282,
+        "Range/neutral": 0.1831,
+        "Bearish": 0.3887
       },
       "sample_size": 120,
       "quality": {
@@ -4490,11 +4490,11 @@
       "market": {
         "yield_spread": -1.6090159091,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04476119435272026,
+        "volatility": 0.0450862890515937,
         "regime": "Range / transition",
         "support20": 1.1573940515518188,
         "resistance20": 1.1687841415405273,
-        "atr20": 0.002220624685287498,
+        "atr20": 0.0022408127784729233,
         "driver": "US dollar index"
       },
       "model": {
@@ -4503,19 +4503,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 5.158963568847355
+            "contribution": 5.129418582116875
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 3.5174566042608215
+            "contribution": 3.429113592892477
           },
           {
             "name": "Momentum",
-            "contribution": 1.487702396953811
+            "contribution": 1.3986693419496785
           },
           {
             "name": "RSI",
-            "contribution": 0.7087940051739224
+            "contribution": 0.3475295595047272
           },
           {
             "name": "Rate differential",
@@ -5367,10 +5367,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 1.1602274179458618,
-          "ema_fast": 1.1607250382988354,
-          "ema_slow": 1.1569557467628129,
-          "score": 10.87291657523591
+          "close": 1.1598236560821533,
+          "ema_fast": 1.160686584788006,
+          "ema_slow": 1.156939912964236,
+          "score": 10.304731076463758
         }
       ],
       "events": {
@@ -5417,40 +5417,40 @@
         "base": {
           "currency": "EUR",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": -38173.0,
-          "asset_manager_net": 263253.0,
-          "percentile_3y": 0.10256410256410256,
-          "zscore_3y": -1.5746474607445067,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": -33285.0,
+          "asset_manager_net": 250678.0,
+          "percentile_3y": 0.14102564102564102,
+          "zscore_3y": -1.3643286129223136,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 865412.0
+          "open_interest": 942464.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
-        "relative_percentile": -0.7307692307692308,
+        "relative_percentile": -0.6730769230769231,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5491,19 +5491,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3523015975952148,
-      "live_price": 1.3523015975952148,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 1.352594256401062,
+      "live_price": 1.352594256401062,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 9.7,
+      "score": 9.9,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3168,
-        "Range/neutral": 0.2148,
-        "Bearish": 0.4684
+        "Bullish": 0.3013,
+        "Range/neutral": 0.207,
+        "Bearish": 0.4917
       },
       "sample_size": 120,
       "quality": {
@@ -5518,11 +5518,11 @@
       "market": {
         "yield_spread": -0.03399999999999981,
         "macro_label": "10Y yield spread",
-        "volatility": 0.039781591455616286,
+        "volatility": 0.03962601494491914,
         "regime": "Range / transition",
         "support20": 1.3483631610870361,
         "resistance20": 1.3653554916381836,
-        "atr20": 0.002640873193740874,
+        "atr20": 0.002626240253448512,
         "driver": "US dollar index"
       },
       "model": {
@@ -5531,19 +5531,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 5.4075570284529775
+            "contribution": 5.42673416250824
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 3.837225386466351
+            "contribution": 3.7408511922463386
           },
           {
             "name": "Momentum",
-            "contribution": 0.7041123131802889
+            "contribution": 0.7678177370100913
           },
           {
             "name": "RSI",
-            "contribution": -0.266865086111622
+            "contribution": -0.05860300745104265
           },
           {
             "name": "Rate differential",
@@ -6395,10 +6395,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 1.3523015975952148,
-          "ema_fast": 1.3537056990252025,
-          "ema_slow": 1.349297751162979,
-          "score": 9.682029641987995
+          "close": 1.352594256401062,
+          "ema_fast": 1.353733571292426,
+          "ema_slow": 1.3493092279788945,
+          "score": 9.876800084313627
         }
       ],
       "events": {
@@ -6445,40 +6445,40 @@
         "base": {
           "currency": "GBP",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 43167.0,
-          "asset_manager_net": -107333.0,
-          "percentile_3y": 0.7628205128205128,
-          "zscore_3y": 0.6103202195637688,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 34627.0,
+          "asset_manager_net": -105864.0,
+          "percentile_3y": 0.5576923076923077,
+          "zscore_3y": 0.08425056340292501,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 317961.0
+          "open_interest": 318608.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
-        "relative_percentile": -0.0705128205128206,
+        "relative_percentile": -0.2564102564102564,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6519,19 +6519,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.7178235650062561,
-      "live_price": 0.7178235650062561,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 0.7175145149230957,
+      "live_price": 0.7175145149230957,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 7.8,
+      "score": 7.5,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4841,
-        "Range/neutral": 0.1583,
-        "Bearish": 0.3576
+        "Bullish": 0.4752,
+        "Range/neutral": 0.1744,
+        "Bearish": 0.3503
       },
       "sample_size": 120,
       "quality": {
@@ -6546,11 +6546,11 @@
       "market": {
         "yield_spread": 0.001000000000000334,
         "macro_label": "10Y yield spread",
-        "volatility": 0.0559636331296786,
+        "volatility": 0.05666141582231186,
         "regime": "Range / transition",
         "support20": 0.7081500887870789,
         "resistance20": 0.722089946269989,
-        "atr20": 0.0020735859870910727,
+        "atr20": 0.0020890384912490927,
         "driver": "Copper"
       },
       "model": {
@@ -6559,19 +6559,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 10.48849454065081
+            "contribution": 10.4643843900972
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -9.814979234177613
+            "contribution": -9.798899501953926
           },
           {
             "name": "Momentum",
-            "contribution": 4.036448020709325
+            "contribution": 3.9345353344791674
           },
           {
             "name": "RSI",
-            "contribution": 3.1143605597419324
+            "contribution": 2.8698792114065235
           },
           {
             "name": "Rate differential",
@@ -7423,10 +7423,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 0.7178235650062561,
-          "ema_fast": 0.716089860135696,
-          "ema_slow": 0.7103399894904247,
-          "score": 7.824323886924454
+          "close": 0.7175145149230957,
+          "ema_fast": 0.7160604267944426,
+          "ema_slow": 0.7103278698793203,
+          "score": 7.469899434028964
         }
       ],
       "events": {
@@ -7473,40 +7473,40 @@
         "base": {
           "currency": "AUD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 49662.0,
-          "asset_manager_net": -30467.0,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 49779.0,
+          "asset_manager_net": -40199.0,
           "percentile_3y": 0.9166666666666666,
-          "zscore_3y": 1.6739415005478002,
+          "zscore_3y": 1.6528783891731018,
           "crowding": "Crowded long",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 391678.0
+          "open_interest": 455468.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
-        "relative_percentile": 0.08333333333333326,
+        "relative_percentile": 0.10256410256410253,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7547,19 +7547,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8162199854850769,
-      "live_price": 0.8162199854850769,
-      "live_price_at": "2026-09-11T17:00:00+00:00",
+      "price": 0.8167300224304199,
+      "live_price": 0.8167300224304199,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 4.2,
+      "score": 4.1,
       "bias": "Bearish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3893,
-        "Range/neutral": 0.2068,
-        "Bearish": 0.4039
+        "Bullish": 0.3894,
+        "Range/neutral": 0.199,
+        "Bearish": 0.4116
       },
       "sample_size": 120,
       "quality": {
@@ -7574,11 +7574,11 @@
       "market": {
         "yield_spread": 4.5200000000000005,
         "macro_label": "10Y yield spread",
-        "volatility": 0.08449464714845063,
+        "volatility": 0.08526561596783762,
         "regime": "Range / transition",
         "support20": 0.7977700233459473,
-        "resistance20": 0.8162199854850769,
-        "atr20": 0.0027679920196533427,
+        "resistance20": 0.8167300224304199,
+        "atr20": 0.00279349386692049,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -7586,20 +7586,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "RSI",
-            "contribution": 4.9136778816212825
+            "name": "Cross-asset driver",
+            "contribution": -5.360595439206941
           },
           {
-            "name": "Cross-asset driver",
-            "contribution": -4.871381362212792
+            "name": "RSI",
+            "contribution": 5.086495853172778
           },
           {
             "name": "Trend",
-            "contribution": 3.5229311475874514
+            "contribution": 3.5757062319010053
           },
           {
             "name": "Momentum",
-            "contribution": 0.6164602962527715
+            "contribution": 0.7658139836869844
           },
           {
             "name": "Rate differential",
@@ -8451,10 +8451,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 0.8162199854850769,
-          "ema_fast": 0.809111844196535,
-          "ema_slow": 0.8072510432409011,
-          "score": 4.181687963248714
+          "close": 0.8167300224304199,
+          "ema_fast": 0.8091604191437106,
+          "ema_slow": 0.8072710446897381,
+          "score": 4.067420629553826
         }
       ],
       "events": {
@@ -8501,40 +8501,40 @@
         "base": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
         "quote": {
           "currency": "CHF",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": -10298.0,
-          "asset_manager_net": -32117.0,
-          "percentile_3y": 0.23076923076923078,
-          "zscore_3y": -0.8045995267077791,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": -13440.0,
+          "asset_manager_net": -35677.0,
+          "percentile_3y": 0.14743589743589744,
+          "zscore_3y": -1.2841598214429484,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 136962.0
+          "open_interest": 153683.0
         },
-        "relative_percentile": 0.6025641025641026,
+        "relative_percentile": 0.6666666666666666,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8575,19 +8575,19 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 4403.5,
-      "live_price": 4403.5,
-      "live_price_at": "2026-09-11T16:00:00+00:00",
+      "price": 4388.5,
+      "live_price": 4388.5,
+      "live_price_at": "2026-09-11T19:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month gold futures, which track spot closely: over the last 60 sessions the average difference against the LBMA benchmark was under $1. A gap against your broker is timing, not basis \u2014 gold moves about $48 in a typical session.",
       "decimals": 2,
-      "score": 1.8,
-      "bias": "Bearish",
+      "score": 0.1,
+      "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3838,
-        "Range/neutral": 0.1976,
-        "Bearish": 0.4186
+        "Bullish": 0.4513,
+        "Range/neutral": 0.1837,
+        "Bearish": 0.365
       },
       "sample_size": 120,
       "quality": {
@@ -8600,11 +8600,11 @@
       "market": {
         "yield_spread": -2.46,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.2397320046291745,
+        "volatility": 0.2384470036460329,
         "regime": "High volatility",
         "support20": 4348.0,
         "resistance20": 4640.7998046875,
-        "atr20": 52.53498535156261,
+        "atr20": 51.784985351562604,
         "driver": "US dollar index"
       },
       "model": {
@@ -8617,23 +8617,23 @@
           },
           {
             "name": "Trend",
-            "contribution": 17.721184424234014
+            "contribution": 17.59151932164473
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 6.390106403685634
-          },
-          {
-            "name": "Momentum",
-            "contribution": 2.8359522057231006
+            "contribution": 6.281170326382726
           },
           {
             "name": "Rate impulse",
             "contribution": -2.6077778965910965
           },
           {
+            "name": "Momentum",
+            "contribution": 1.781758978884873
+          },
+          {
             "name": "RSI",
-            "contribution": 0.28132113404543857
+            "contribution": -0.21199269334585877
           },
           {
             "name": "Policy overlay",
@@ -9477,10 +9477,10 @@
         },
         {
           "date": "2026-09-11T00:00:00",
-          "close": 4403.5,
-          "ema_fast": 4415.5200761259075,
-          "ema_slow": 4357.003893872639,
-          "score": 1.8494269503792573
+          "close": 4388.5,
+          "ema_fast": 4414.091504697336,
+          "ema_slow": 4356.415658578521,
+          "score": 0.06331871625754015
         }
       ],
       "events": {
@@ -9527,40 +9527,40 @@
         "base": {
           "currency": "XAU",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 136771.0,
-          "asset_manager_net": -233429.0,
-          "percentile_3y": 0.5833333333333334,
-          "zscore_3y": 0.16957784017256974,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 134972.0,
+          "asset_manager_net": -239313.0,
+          "percentile_3y": 0.5512820512820513,
+          "zscore_3y": 0.11717117384248756,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Disaggregated (commodities)",
           "speculative_label": "Managed money",
           "intermediary_label": "Swap dealers",
-          "open_interest": 415196.0
+          "open_interest": 411227.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-01T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_net": 7133.0,
-          "asset_manager_net": 16241.0,
-          "percentile_3y": 0.8333333333333334,
-          "zscore_3y": 0.8957229705266462,
+          "date": "2026-09-08T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_net": 6186.0,
+          "asset_manager_net": 16344.0,
+          "percentile_3y": 0.8141025641025641,
+          "zscore_3y": 0.7961859034826926,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 50020.0
+          "open_interest": 57858.0
         },
-        "relative_percentile": -0.25,
+        "relative_percentile": -0.2628205128205128,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-11T17:01:34.168473+00:00",
+        "fetched_at": "2026-09-11T19:42:55.537782+00:00",
         "provider_message": ""
       },
       "validation": {
