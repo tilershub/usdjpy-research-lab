@@ -52,6 +52,34 @@ MIN_PRICE_OBSERVATIONS = 500
 MAX_PRICE_AGE_DAYS = 7
 
 
+def latest_intraday(tickers: list[str]) -> dict:
+    """Most recent intraday mark per ticker, for display alongside the daily close.
+
+    The model runs on daily bars, but a daily close is up to a full session old by
+    the time anyone reads it, and gold routinely moves more between sessions than
+    any basis difference between feeds. This is the number a reader compares
+    against their broker, so it is fetched separately and stamped with its own time.
+    """
+    try:
+        frame = yf.download(tickers, period="5d", interval="1h", auto_adjust=True, progress=False, threads=True)
+    except Exception:
+        return {}
+    if frame is None or frame.empty:
+        return {}
+    closes = frame["Close"] if isinstance(frame.columns, pd.MultiIndex) else frame
+    marks = {}
+    for ticker in tickers:
+        if ticker not in closes:
+            continue
+        series = closes[ticker].dropna()
+        if series.empty:
+            continue
+        stamp = pd.Timestamp(series.index[-1])
+        stamp = stamp.tz_localize("UTC") if stamp.tzinfo is None else stamp.tz_convert("UTC")
+        marks[ticker] = {"price": float(series.iloc[-1]), "observed_at": stamp.isoformat()}
+    return marks
+
+
 def usable_price(series: pd.Series | None, today: date) -> bool:
     """A price feed is only usable if it is both deep enough and current."""
     if series is None or series.dropna().empty:
@@ -63,7 +91,7 @@ def usable_price(series: pd.Series | None, today: date) -> bool:
     return (today - last).days <= MAX_PRICE_AGE_DAYS
 
 
-def resolve_price(close: pd.DataFrame, pair, today: date) -> tuple[pd.Series, str, str]:
+def resolve_price(close: pd.DataFrame, pair, today: date) -> tuple[pd.Series, str, str, str]:
     """Prefer the configured feed, fall back only when it cannot carry the model.
 
     The basis and note travel with whichever series wins, so the terminal never
@@ -71,13 +99,13 @@ def resolve_price(close: pd.DataFrame, pair, today: date) -> tuple[pd.Series, st
     """
     preferred = close[pair.ticker] if pair.ticker in close else None
     if usable_price(preferred, today):
-        return preferred.dropna().rename(pair.symbol), pair.price_basis, pair.price_note
+        return preferred.dropna().rename(pair.symbol), pair.price_basis, pair.price_note, pair.ticker
     if pair.fallback_ticker:
         fallback = close[pair.fallback_ticker] if pair.fallback_ticker in close else None
         if usable_price(fallback, today):
-            return fallback.dropna().rename(pair.symbol), pair.fallback_basis, pair.fallback_note
+            return fallback.dropna().rename(pair.symbol), pair.fallback_basis, pair.fallback_note, pair.fallback_ticker
     if preferred is not None and not preferred.dropna().empty:
-        return preferred.dropna().rename(pair.symbol), pair.price_basis, pair.price_note
+        return preferred.dropna().rename(pair.symbol), pair.price_basis, pair.price_note, pair.ticker
     raise RuntimeError(f"No usable price series for {pair.symbol}")
 
 
@@ -134,6 +162,7 @@ def main() -> None:
     if raw.empty:
         raise RuntimeError("Market-data provider returned no observations")
     close = raw["Close"] if isinstance(raw.columns, pd.MultiIndex) else raw
+    intraday = latest_intraday(tickers)
 
     calendar, calendar_status = fetch_calendar(end - timedelta(days=35), end + timedelta(days=14))
     cftc_history, cftc_status = fetch_cftc()
@@ -143,7 +172,8 @@ def main() -> None:
 
     pairs = []
     for symbol, pair in PAIR_CONFIGS.items():
-        price, price_basis, price_note = resolve_price(close, pair, end)
+        price, price_basis, price_note, price_ticker = resolve_price(close, pair, end)
+        mark = intraday.get(price_ticker) or {}
         driver = close[pair.driver].dropna() if pair.driver in close else None
         features = prepare_features(
             price,
@@ -171,6 +201,8 @@ def main() -> None:
             "quote": pair.quote,
             "asset_class": pair.asset_class,
             "price": clean(latest.close),
+            "live_price": clean(mark.get("price")),
+            "live_price_at": clean(mark.get("observed_at")),
             "price_basis": price_basis,
             "price_note": price_note,
             "decimals": pair.decimals,

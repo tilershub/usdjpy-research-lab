@@ -34,6 +34,29 @@
     const note = p.price_note ?? p.model?.price_note;
     return note && p.price_basis && p.price_basis !== 'Spot' ? `<p class="price-note">${escapeHtml(note)}</p>` : '';
   };
+  // The daily close is what the model scores, but it can be a full session old.
+  // The headline shows the freshest mark available and always states its age, so a
+  // stale number is never mistaken for a live one.
+  const ageLabel = (iso) => {
+    const then = Date.parse(iso);
+    if (!Number.isFinite(then)) return '';
+    const mins = Math.max(0, Math.round((Date.now() - then) / 60000));
+    if (mins < 90) return `${mins}m ago`;
+    const hours = Math.round(mins / 60);
+    return hours < 48 ? `${hours}h ago` : `${Math.round(hours / 24)}d ago`;
+  };
+  const headlinePrice = (p) => {
+    const dp = p.decimals ?? 2;
+    const live = typeof p.live_price === 'number' ? p.live_price : null;
+    if (live === null) {
+      return `<div class="price">${Number(p.price).toFixed(dp)}${basisTag(p)}`
+        + `<span class="price-age">daily close</span></div>`;
+    }
+    const age = ageLabel(p.live_price_at);
+    return `<div class="price">${live.toFixed(dp)}${basisTag(p)}`
+      + `<span class="price-age">${escapeHtml(age)}</span></div>`
+      + `<small class="market-line">Model scores the ${Number(p.price).toFixed(dp)} daily close</small>`;
+  };
   const pct = (value) => (typeof value === 'number' ? `${value.toFixed(1)}%` : '—');
   // Positioning is a crowding read, not a direction call, so the percentile is
   // shown next to the label that names which CFTC trader group it describes.
@@ -112,7 +135,7 @@
     if (!pairs.length) return;
     const watched = normalizedWatchlist();
     const shown = only.checked ? pairs.filter((p) => watched.includes(p.symbol)) : pairs;
-    root.innerHTML = shown.length ? `<div class="terminal-grid">${shown.map((p) => `<article class="market"><div class="market-heading"><h2>${escapeHtml(p.symbol)}</h2><button class="watch-button${watched.includes(p.symbol) ? ' watched' : ''}" data-symbol="${escapeHtml(p.symbol)}" aria-pressed="${watched.includes(p.symbol)}">${watched.includes(p.symbol) ? '★ Watching' : '☆ Watch'}</button></div><div class="price">${Number(p.price).toFixed(p.decimals ?? 2)}${basisTag(p)}</div><strong class="${p.score > 18 ? 'positive' : p.score < -18 ? 'negative' : ''}">${p.score >= 0 ? '+' : ''}${p.score} · ${escapeHtml(p.bias)}</strong><br><small>Grade ${escapeHtml(p.quality?.grade ?? '—')} · ${escapeHtml(p.market?.regime ?? 'Unknown')}</small>${positioningLine(p)}${newsLine(p)}${priceNote(p)}</article>`).join('')}</div>` : '<div class="terminal-empty"><strong>Your watchlist is empty.</strong><p>Turn off “Watchlist only” and add the markets you want to follow.</p></div>';
+    root.innerHTML = shown.length ? `<div class="terminal-grid">${shown.map((p) => `<article class="market"><div class="market-heading"><h2>${escapeHtml(p.symbol)}</h2><button class="watch-button${watched.includes(p.symbol) ? ' watched' : ''}" data-symbol="${escapeHtml(p.symbol)}" aria-pressed="${watched.includes(p.symbol)}">${watched.includes(p.symbol) ? '★ Watching' : '☆ Watch'}</button></div>${headlinePrice(p)}<strong class="${p.score > 18 ? 'positive' : p.score < -18 ? 'negative' : ''}">${p.score >= 0 ? '+' : ''}${p.score} · ${escapeHtml(p.bias)}</strong><br><small>Grade ${escapeHtml(p.quality?.grade ?? '—')} · ${escapeHtml(p.market?.regime ?? 'Unknown')}</small>${positioningLine(p)}${newsLine(p)}${priceNote(p)}</article>`).join('')}</div>` : '<div class="terminal-empty"><strong>Your watchlist is empty.</strong><p>Turn off “Watchlist only” and add the markets you want to follow.</p></div>';
     const level = Number(threshold.value);
     const candidates = pairs.filter((p) => watched.includes(p.symbol) && Math.abs(Number(p.score)) >= level);
     alertBox.innerHTML = candidates.length ? `<strong>${candidates.length} watchlist ${candidates.length === 1 ? 'market meets' : 'markets meet'} your ±${level} evidence threshold:</strong> ${candidates.map((p) => `${escapeHtml(p.symbol)} (${Number(p.score) >= 0 ? '+' : ''}${escapeHtml(p.score)})`).join(' · ')}` : '';

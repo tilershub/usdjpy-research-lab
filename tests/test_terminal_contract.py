@@ -89,15 +89,14 @@ class TerminalContractTests(TestCase):
 
 
 class PriceBasisDisclosureTests(TestCase):
-    def test_gold_is_quoted_spot_with_a_declared_futures_fallback(self):
+    def test_gold_declares_the_futures_feed_it_actually_uses(self):
+        """Yahoo publishes no spot XAU/USD series, so the note must not imply one."""
         from trade90_model import PAIR_CONFIGS
 
         gold = PAIR_CONFIGS["XAU/USD"]
-        self.assertEqual(gold.ticker, "XAUUSD=X")
-        self.assertEqual(gold.price_basis, "Spot")
-        self.assertEqual(gold.fallback_ticker, "GC=F")
-        self.assertEqual(gold.fallback_basis, "COMEX futures")
-        self.assertIn("will not match a spot broker quote", gold.fallback_note)
+        self.assertEqual(gold.ticker, "GC=F")
+        self.assertEqual(gold.price_basis, "COMEX futures")
+        self.assertIn("timing, not basis", gold.price_note)
 
     def test_non_spot_markets_still_declare_their_basis(self):
         from trade90_model import PAIR_CONFIGS

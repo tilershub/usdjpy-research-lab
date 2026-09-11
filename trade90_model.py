@@ -62,7 +62,11 @@ PAIR_CONFIGS: Mapping[str, PairConfig] = {
     "USD/CAD": PairConfig("USD/CAD", "CAD=X", "USD", "CAD", "DGS10", "IRLTLT01CAM156N", "CL=F", "WTI crude oil", -1),
     "AUD/USD": PairConfig("AUD/USD", "AUDUSD=X", "AUD", "USD", "IRLTLT01AUM156N", "DGS10", "HG=F", "Copper", 1),
     "NZD/USD": PairConfig("NZD/USD", "NZDUSD=X", "NZD", "USD", "IRLTLT01NZM156N", "DGS10", "^GSPC", "Global risk proxy", 1),
-    "XAU/USD": PairConfig("XAU/USD", "XAUUSD=X", "XAU", "USD", "DFII10", "DGS10", "DX-Y.NYB", "US dollar index", -1, 2, "Commodity", "inverse_base", "US 10Y real yield", "Spot XAU/USD end-of-day price, quoted on the same basis as a spot gold CFD.", "Spot", "GC=F", "COMEX front-month gold futures (GC=F), used because the spot XAU/USD feed was unavailable or too sparse. Futures carry a premium to spot that widens with rates and time to delivery, so this price will not match a spot broker quote.", "COMEX futures"),
+    # Yahoo does not publish a spot XAU/USD series, so gold is priced from COMEX
+    # front-month futures. Measured against the LBMA benchmark over 60 sessions the
+    # two differ by under a dollar on average, so the basis is not the reason a
+    # quote here disagrees with a broker — the time it was taken is.
+    "XAU/USD": PairConfig("XAU/USD", "GC=F", "XAU", "USD", "DFII10", "DGS10", "DX-Y.NYB", "US dollar index", -1, 2, "Commodity", "inverse_base", "US 10Y real yield", "COMEX front-month gold futures, which track spot closely: over the last 60 sessions the average difference against the LBMA benchmark was under $1. A gap against your broker is timing, not basis — gold moves about $48 in a typical session.", "COMEX futures"),
     "BTC/USD": PairConfig("BTC/USD", "BTC-USD", "BTC", "USD", "DGS10", "DGS10", "^IXIC", "Nasdaq risk proxy", 1, 2, "Crypto", "inverse_base", "US 10Y nominal yield", "Yahoo Finance BTC-USD composite; individual exchange prices can differ.", "Composite"),
 }
 

@@ -1,3 +1,4 @@
+from dataclasses import replace
 from datetime import date, timedelta
 
 import pandas as pd
@@ -7,6 +8,19 @@ from publish_snapshot import MIN_PRICE_OBSERVATIONS, resolve_price, usable_price
 from trade90_model import PAIR_CONFIGS
 
 TODAY = date(2026, 8, 18)
+
+# A stand-in for any market with a preferred feed plus a declared proxy. Gold no
+# longer needs one — Yahoo publishes no spot XAU/USD series — but the fallback
+# mechanism still has to work for whatever market next needs it.
+WITH_FALLBACK = replace(
+    PAIR_CONFIGS["XAU/USD"],
+    ticker="PREFERRED=X",
+    price_basis="Spot",
+    price_note="preferred feed",
+    fallback_ticker="PROXY=F",
+    fallback_basis="Proxy futures",
+    fallback_note="proxy feed, will not match a spot quote",
+)
 
 
 def series(count, end=TODAY, start_value=4400.0):
@@ -18,64 +32,54 @@ def frame(**columns):
     return pd.DataFrame(columns)
 
 
-def test_gold_prefers_spot_so_the_quote_matches_a_broker():
+def test_gold_is_priced_from_the_futures_feed_that_exists():
+    """Yahoo has no spot XAU/USD series, so the config must not claim one."""
     gold = PAIR_CONFIGS["XAU/USD"]
-    assert gold.ticker == "XAUUSD=X"
-    assert gold.fallback_ticker == "GC=F"
-    assert gold.price_basis == "Spot"
-    assert gold.fallback_basis == "COMEX futures"
+    assert gold.ticker == "GC=F"
+    assert gold.price_basis == "COMEX futures"
+    assert "timing, not basis" in gold.price_note
 
 
-def test_spot_is_used_when_it_is_deep_and_current():
-    gold = PAIR_CONFIGS["XAU/USD"]
-    close = frame(**{"XAUUSD=X": series(800), "GC=F": series(800, start_value=4460.0)})
-    chosen, basis, note = resolve_price(close, gold, TODAY)
-    assert basis == "Spot"
-    assert "spot gold CFD" in note
+def test_preferred_feed_is_used_when_deep_and_current():
+    close = frame(**{"PREFERRED=X": series(800), "PROXY=F": series(800, start_value=4460.0)})
+    chosen, basis, note, ticker = resolve_price(close, WITH_FALLBACK, TODAY)
+    assert (basis, ticker) == ("Spot", "PREFERRED=X")
+    assert note == "preferred feed"
     assert chosen.iloc[-1] == 4400.0 + 799
 
 
-def test_futures_fallback_is_used_when_spot_is_too_sparse():
-    gold = PAIR_CONFIGS["XAU/USD"]
-    close = frame(**{"XAUUSD=X": series(20), "GC=F": series(800, start_value=4460.0)})
-    _, basis, note = resolve_price(close, gold, TODAY)
-    assert basis == "COMEX futures"
-    assert "will not match a spot broker quote" in note
+def test_fallback_is_used_when_the_preferred_feed_is_too_sparse():
+    close = frame(**{"PREFERRED=X": series(20), "PROXY=F": series(800, start_value=4460.0)})
+    _, basis, note, ticker = resolve_price(close, WITH_FALLBACK, TODAY)
+    assert (basis, ticker) == ("Proxy futures", "PROXY=F")
+    assert "will not match a spot quote" in note
 
 
-def test_futures_fallback_is_used_when_spot_has_gone_stale():
-    gold = PAIR_CONFIGS["XAU/USD"]
+def test_fallback_is_used_when_the_preferred_feed_has_gone_stale():
     stale = series(800, end=TODAY - timedelta(days=30))
-    close = frame(**{"XAUUSD=X": stale, "GC=F": series(800, start_value=4460.0)})
-    _, basis, _ = resolve_price(close, gold, TODAY)
-    assert basis == "COMEX futures"
+    close = frame(**{"PREFERRED=X": stale, "PROXY=F": series(800, start_value=4460.0)})
+    assert resolve_price(close, WITH_FALLBACK, TODAY)[1] == "Proxy futures"
 
 
-def test_a_missing_spot_column_falls_back_rather_than_raising():
-    gold = PAIR_CONFIGS["XAU/USD"]
-    close = frame(**{"GC=F": series(800, start_value=4460.0)})
-    _, basis, _ = resolve_price(close, gold, TODAY)
-    assert basis == "COMEX futures"
+def test_a_missing_preferred_column_falls_back_rather_than_raising():
+    close = frame(**{"PROXY=F": series(800, start_value=4460.0)})
+    assert resolve_price(close, WITH_FALLBACK, TODAY)[1] == "Proxy futures"
 
 
-def test_thin_spot_is_still_used_when_no_fallback_qualifies():
+def test_a_thin_preferred_feed_is_kept_when_no_fallback_qualifies():
     """Better a labelled thin series than no market at all."""
-    gold = PAIR_CONFIGS["XAU/USD"]
-    close = frame(**{"XAUUSD=X": series(20), "GC=F": series(20, start_value=4460.0)})
-    _, basis, _ = resolve_price(close, gold, TODAY)
-    assert basis == "Spot"
+    close = frame(**{"PREFERRED=X": series(20), "PROXY=F": series(20, start_value=4460.0)})
+    assert resolve_price(close, WITH_FALLBACK, TODAY)[1] == "Spot"
 
 
 def test_no_data_at_all_fails_loudly():
-    gold = PAIR_CONFIGS["XAU/USD"]
     with pytest.raises(RuntimeError, match="XAU/USD"):
-        resolve_price(frame(**{"AUDUSD=X": series(800)}), gold, TODAY)
+        resolve_price(frame(**{"AUDUSD=X": series(800)}), PAIR_CONFIGS["XAU/USD"], TODAY)
 
 
 def test_fx_pairs_have_no_fallback_and_report_spot():
     close = frame(**{"EURUSD=X": series(800)})
-    _, basis, _ = resolve_price(close, PAIR_CONFIGS["EUR/USD"], TODAY)
-    assert basis == "Spot"
+    assert resolve_price(close, PAIR_CONFIGS["EUR/USD"], TODAY)[1] == "Spot"
     for symbol in ("EUR/USD", "GBP/USD", "USD/JPY", "USD/CHF", "USD/CAD", "AUD/USD", "NZD/USD"):
         assert PAIR_CONFIGS[symbol].fallback_ticker == "", symbol
 
