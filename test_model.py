@@ -156,3 +156,43 @@ def test_pair_profiles_change_scores_and_remain_bounded():
     assert not cad["score"].equals(jpy["score"])
     assert cad["score"].dropna().between(-100, 100).all()
     assert jpy["score"].dropna().between(-100, 100).all()
+
+
+def test_rsi_handles_one_direction_and_flat_prices():
+    from trade90_model import rsi
+    assert rsi(pd.Series(range(1,40))).iloc[-1] == 100
+    assert rsi(pd.Series(range(40,1,-1))).iloc[-1] == 0
+    assert rsi(pd.Series([5.0]*40)).iloc[-1] == 50
+
+
+def test_horizon_baseline_cannot_choose_direction_using_test_outcomes():
+    idx=pd.bdate_range('2020-01-01',periods=100)
+    close=pd.Series(np.r_[np.arange(100,150),np.arange(148,48,-2)],index=idx)
+    frame=pd.DataFrame({'close':close,'score':30,'ema_fast':close,'ema_slow':close-1})
+    result=horizon_validation(frame,train_days=50,horizons=(5,)).iloc[0]
+    assert result['Majority baseline'] == 0
+    assert result['OOS observations'] == 9
+    assert result['Coverage'] == 1
+
+
+def test_probability_validation_purges_unfinished_labels():
+    scored,_=score_features(fixture())
+    original=calibrated_probabilities
+    captured=[]
+    def inspect(history,score,min_sample):
+        captured.append(history.index[-1])
+        return original(history,score,min_sample)
+    with patch('trade90_model.calibrated_probabilities',side_effect=inspect):
+        expanding_probability_validation(scored,train_days=300,step=5)
+    # First test row is 305; final allowed training row is 299, not 304.
+    usable=scored[['score','forward_return']].dropna()
+    assert captured[0] == usable.index[299]
+
+
+def test_off_calendar_macro_observation_is_not_lost():
+    idx=pd.bdate_range('2024-06-03',periods=30)
+    px=pd.Series(np.arange(100,130),index=idx)
+    yields=pd.Series([3.0],index=pd.to_datetime(['2024-06-01']))
+    frame=prepare_features(px,yields,yields)
+    assert frame.iloc[0].base_yield == 3.0
+    assert frame.iloc[0].base_yield_age_days == 2

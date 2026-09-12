@@ -55,10 +55,8 @@ MAX_PRICE_AGE_DAYS = 7
 def latest_intraday(tickers: list[str]) -> dict:
     """Most recent intraday mark per ticker, for display alongside the daily close.
 
-    The model runs on daily bars, but a daily close is up to a full session old by
-    the time anyone reads it, and gold routinely moves more between sessions than
-    any basis difference between feeds. This is the number a reader compares
-    against their broker, so it is fetched separately and stamped with its own time.
+    The model runs on daily bars. Intraday marks carry their own timestamps
+    and the configured instrument basis; a futures mark is not a spot CFD quote.
     """
     try:
         frame = yf.download(tickers, period="5d", interval="1h", auto_adjust=True, progress=False, threads=True)
@@ -84,11 +82,13 @@ def usable_price(series: pd.Series | None, today: date) -> bool:
     """A price feed is only usable if it is both deep enough and current."""
     if series is None or series.dropna().empty:
         return False
-    clean_series = series.dropna()
+    clean_series = series.dropna().sort_index()
+    if clean_series.index.has_duplicates or not np.isfinite(clean_series.to_numpy(dtype=float)).all() or (clean_series <= 0).any():
+        return False
     if len(clean_series) < MIN_PRICE_OBSERVATIONS:
         return False
     last = pd.Timestamp(clean_series.index[-1]).date()
-    return (today - last).days <= MAX_PRICE_AGE_DAYS
+    return 0 <= (today - last).days <= MAX_PRICE_AGE_DAYS
 
 
 def resolve_price(close: pd.DataFrame, pair, today: date) -> tuple[pd.Series, str, str, str]:
@@ -144,6 +144,8 @@ def validation_payload(scored: pd.DataFrame) -> dict:
     walk_forward = clean(walk_forward_metrics(scored))
     horizons = horizon_validation(scored).reset_index()
     return {
+        "methodology_version": "2-purged",
+        "limitations": ["Macro observations are not release-vintage data; historical results are not fully point-in-time.", "Directional accuracy is not a CFD strategy return after broker costs."],
         "walk_forward": walk_forward,
         "horizons": clean(horizons.to_dict(orient="records")),
     }

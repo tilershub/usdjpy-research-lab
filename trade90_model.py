@@ -62,11 +62,8 @@ PAIR_CONFIGS: Mapping[str, PairConfig] = {
     "USD/CAD": PairConfig("USD/CAD", "CAD=X", "USD", "CAD", "DGS10", "IRLTLT01CAM156N", "CL=F", "WTI crude oil", -1),
     "AUD/USD": PairConfig("AUD/USD", "AUDUSD=X", "AUD", "USD", "IRLTLT01AUM156N", "DGS10", "HG=F", "Copper", 1),
     "NZD/USD": PairConfig("NZD/USD", "NZDUSD=X", "NZD", "USD", "IRLTLT01NZM156N", "DGS10", "^GSPC", "Global risk proxy", 1),
-    # Yahoo does not publish a spot XAU/USD series, so gold is priced from COMEX
-    # front-month futures. Measured against the LBMA benchmark over 60 sessions the
-    # two differ by under a dollar on average, so the basis is not the reason a
-    # quote here disagrees with a broker — the time it was taken is.
-    "XAU/USD": PairConfig("XAU/USD", "GC=F", "XAU", "USD", "DFII10", "DGS10", "DX-Y.NYB", "US dollar index", -1, 2, "Commodity", "inverse_base", "US 10Y real yield", "COMEX front-month gold futures, which track spot closely: over the last 60 sessions the average difference against the LBMA benchmark was under $1. A gap against your broker is timing, not basis — gold moves about $48 in a typical session.", "COMEX futures"),
+    # This historical series is a futures proxy; no fixed spot basis is assumed.
+    "XAU/USD": PairConfig("XAU/USD", "GC=F", "XAU", "USD", "DFII10", "DGS10", "DX-Y.NYB", "US dollar index", -1, 2, "Commodity", "inverse_base", "US 10Y real yield", "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.", "COMEX futures"),
     "BTC/USD": PairConfig("BTC/USD", "BTC-USD", "BTC", "USD", "DGS10", "DGS10", "^IXIC", "Nasdaq risk proxy", 1, 2, "Crypto", "inverse_base", "US 10Y nominal yield", "Yahoo Finance BTC-USD composite; individual exchange prices can differ.", "Composite"),
 }
 
@@ -87,7 +84,7 @@ def rsi(series: pd.Series, period: int = 14) -> pd.Series:
     gain = delta.clip(lower=0).ewm(alpha=1 / period, adjust=False).mean()
     loss = -delta.clip(upper=0).ewm(alpha=1 / period, adjust=False).mean()
     rs = gain / loss.replace(0, np.nan)
-    return (100 - 100 / (1 + rs)).fillna(50)
+    return (100 - 100 / (1 + rs)).mask((loss == 0) & (gain > 0), 100).mask((gain == 0) & (loss > 0), 0).fillna(50)
 
 
 def rolling_zscore(series: pd.Series, window: int = 252) -> pd.Series:
@@ -140,7 +137,7 @@ def prepare_features(
         macro["quote_yield_observed_at"] = pd.Series(macro.index, index=macro.index).where(macro["quote_yield"].notna())
         macro = macro.ffill()
         macro["yield_spread"] = -macro["base_yield"] if macro_mode == "inverse_base" else macro["base_yield"] - macro["quote_yield"]
-        df = df.join(macro, how="left").ffill()
+        df = df.join(macro.reindex(macro.index.union(df.index)).sort_index().ffill().reindex(df.index), how="left")
         dates = pd.Series(df.index, index=df.index)
         df["base_yield_age_days"] = (dates - pd.to_datetime(df["base_yield_observed_at"])).dt.days
         df["quote_yield_age_days"] = (dates - pd.to_datetime(df["quote_yield_observed_at"])).dt.days
@@ -150,9 +147,10 @@ def prepare_features(
         df[["base_yield", "quote_yield", "yield_spread", "spread_z", "spread_change", "base_yield_age_days", "quote_yield_age_days"]] = np.nan
 
     if driver is not None:
-        aligned = driver.reindex(df.index).ffill()
+        driver = driver.dropna().sort_index()
+        aligned = driver.reindex(driver.index.union(df.index)).sort_index().ffill().reindex(df.index)
         df["driver"] = aligned
-        observed = pd.Series(driver.index, index=driver.index).reindex(df.index).ffill()
+        observed = pd.Series(driver.index, index=driver.index).reindex(driver.index.union(df.index)).sort_index().ffill().reindex(df.index)
         df["driver_observed_at"] = observed
         df["driver_age_days"] = (pd.Series(df.index, index=df.index) - pd.to_datetime(observed)).dt.days
         df["driver_return"] = aligned.pct_change(20) * float(driver_sign)
@@ -160,6 +158,8 @@ def prepare_features(
     else:
         df[["driver", "driver_return", "driver_z", "driver_age_days"]] = np.nan
     df["forward_return"] = px.pct_change(config.forward_days).shift(-config.forward_days)
+    df["forward_end"] = pd.Series(px.index, index=px.index).shift(-config.forward_days)
+    df.attrs["forward_days"] = config.forward_days
     return df
 
 
@@ -200,7 +200,7 @@ def calibrated_probabilities(scored: pd.DataFrame, score: float, min_sample: int
     sample = history.loc[distance.nsmallest(min(min_sample * 3, len(history))).index].copy()
     bandwidth = max(float(sample["score"].std()), 8.0)
     weights = np.exp(-0.5 * ((sample["score"] - score) / bandwidth) ** 2)
-    neutral_band = max(float(sample["forward_return"].abs().median()) * 0.35, 0.0005)
+    neutral_band = max(float(history["forward_return"].abs().median()) * 0.35, 0.0005)
     outcomes = np.where(sample["forward_return"] > neutral_band, 0, np.where(sample["forward_return"] < -neutral_band, 2, 1))
     weighted = np.array([weights[outcomes == i].sum() for i in range(3)]) + 2.0
     probs = weighted / weighted.sum()
@@ -331,7 +331,8 @@ def horizon_validation(
     rows = []
     for horizon in horizons:
         future_return = data["close"].shift(-horizon) / data["close"] - 1
-        test = data.iloc[train_days:].copy()
+        # Non-overlapping evaluation windows; the baseline is fixed using training only.
+        test = data.iloc[train_days::horizon].copy()
         test["future_return"] = future_return.reindex(test.index)
         test = test.dropna(subset=["future_return"])
         signal = np.where(test["score"] > config.entry_threshold, 1, np.where(test["score"] < -config.entry_threshold, -1, 0))
@@ -339,10 +340,15 @@ def horizon_validation(
         model_correct = (np.sign(pd.Series(signal, index=test.index)[active] * test.loc[active, "future_return"]) > 0)
         ma_signal = np.sign(test["ema_fast"] - test["ema_slow"])
         ma_correct = np.sign(ma_signal[active] * test.loc[active, "future_return"]) > 0
-        base_rate = max(float((test.loc[active, "future_return"] > 0).mean()), float((test.loc[active, "future_return"] < 0).mean())) if active.any() else np.nan
+        training_returns = future_return.iloc[:max(0, train_days - horizon)].dropna()
+        baseline_direction = 1 if (training_returns > 0).mean() >= (training_returns < 0).mean() else -1
+        base_rate = float((baseline_direction * test.loc[active, "future_return"] > 0).mean()) if active.any() else np.nan
         rows.append({
             "Horizon": f"{horizon}D",
             "OOS observations": int(active.sum()),
+            "Evaluation windows": len(test),
+            "Coverage": float(active.mean()) if len(test) else 0.0,
+            "Validation method": "Non-overlapping; training-only majority baseline",
             "Model accuracy": float(model_correct.mean()) if len(model_correct) else np.nan,
             "MA accuracy": float(ma_correct.mean()) if len(ma_correct) else np.nan,
             "Majority baseline": base_rate,
@@ -356,11 +362,19 @@ def expanding_probability_validation(
     train_days: int = 504,
     step: int = 5,
     min_sample: int = 40,
+    forward_days: int | None = None,
 ) -> Tuple[Dict[str, float], pd.DataFrame]:
     data = scored[["score", "forward_return"]].dropna().copy()
     records = []
-    for i in range(train_days, len(data), step):
-        history = data.iloc[:i]
+    horizon = forward_days or int(scored.attrs.get("forward_days", 5))
+    if horizon < 1 or step < 1:
+        raise ValueError("Horizon and step must be positive")
+    for i in range(train_days + horizon, len(data), max(step, horizon)):
+        # Purge rows whose future outcome was not observable before forecast time.
+        history = data.iloc[:i - horizon]
+        if "forward_end" in scored:
+            ends = scored["forward_end"].reindex(history.index)
+            history = history.loc[ends < data.index[i]]
         current = data.iloc[i]
         probabilities, sample = calibrated_probabilities(history, float(current["score"]), min_sample)
         neutral_band = max(float(history["forward_return"].abs().median()) * 0.35, 0.0005)
