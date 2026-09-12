@@ -70,7 +70,7 @@ def event_risk_summary(events: pd.DataFrame, now: datetime | None = None) -> dic
     now=now or datetime.now(timezone.utc)
     if events.empty: return {"level":"Unknown","next_event":None,"hours":None,"count_24h":0}
     upcoming=events[events["time"]>=pd.Timestamp(now)].sort_values("time")
-    if upcoming.empty: return {"level":"Low","next_event":None,"hours":None,"count_24h":0}
+    if upcoming.empty: return {"level":"Unknown","next_event":None,"hours":None,"count_24h":0}
     hours=(upcoming.iloc[0]["time"].to_pydatetime()-now).total_seconds()/3600
     count=int((upcoming["time"]<=pd.Timestamp(now+timedelta(hours=24))).sum())
     level="Extreme" if hours<=2 else "High" if hours<=8 else "Elevated" if hours<=24 else "Normal"
