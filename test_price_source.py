@@ -37,7 +37,7 @@ def test_gold_is_priced_from_the_futures_feed_that_exists():
     gold = PAIR_CONFIGS["XAU/USD"]
     assert gold.ticker == "GC=F"
     assert gold.price_basis == "COMEX futures"
-    assert "timing, not basis" in gold.price_note
+    assert "not spot execution prices" in gold.price_note
 
 
 def test_preferred_feed_is_used_when_deep_and_current():
@@ -95,3 +95,10 @@ def test_depth_threshold_is_applied_at_the_boundary(count, expected):
 def test_an_empty_or_missing_series_is_never_usable():
     assert usable_price(None, TODAY) is False
     assert usable_price(pd.Series(dtype=float), TODAY) is False
+
+
+def test_future_and_nonpositive_prices_are_not_usable():
+    future=pd.Series([100.0]*600,index=pd.bdate_range('2030-01-01',periods=600))
+    assert not usable_price(future,TODAY)
+    invalid=pd.Series([100.0]*600,index=pd.bdate_range(end=TODAY,periods=600));invalid.iloc[0]=0
+    assert not usable_price(invalid,TODAY)
