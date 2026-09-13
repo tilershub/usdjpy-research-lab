@@ -1,12 +1,5 @@
-"""Market-implied Federal Reserve policy expectations.
-
-Source: the Atlanta Fed's Market Probability Tracker, which fits probability
-distributions to CME three-month SOFR options. It is the official, free, no-key
-equivalent of the rate-probability tools traders quote, and unlike a scraped
-FedWatch page it carries no licensing restriction.
-
-The workbook is emitted with a broken drawing relationship that makes openpyxl
-raise on load, so the sheet XML is read straight out of the zip container.
+"""Atlanta Fed reference-window probability estimates.
+Not next-meeting probabilities; public access alone does not establish redistribution rights.
 """
 
 from __future__ import annotations

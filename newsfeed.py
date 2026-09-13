@@ -1,10 +1,4 @@
-"""Official central-bank communications.
-
-Bloomberg and Reuters do not license their wires on terms this product can meet,
-and republishing their text without a licence is not an option, so the feed is
-built from primary sources instead: the central banks that actually move rates,
-publishing their own statements, decisions and speeches.
-"""
+"""Official central-bank publication headlines and source links."""
 
 from __future__ import annotations
 
@@ -15,6 +9,7 @@ from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 
 FEEDS = (
+    ("Bank of Japan", "JPY", "https://www.boj.or.jp/en/rss/whatsnew.xml"),
     ("Federal Reserve", "USD", "https://www.federalreserve.gov/feeds/press_all.xml"),
     ("European Central Bank", "EUR", "https://www.ecb.europa.eu/rss/press.html"),
 )
@@ -58,16 +53,18 @@ def _published(raw: str) -> datetime | None:
 def parse_feed(payload: bytes, source: str, currency: str, limit: int = 8) -> list[dict]:
     root = ET.fromstring(payload)
     items = []
-    for item in root.iter("item"):
+    for item in root.iter():
+        if item.tag.split("}")[-1] != "item":
+            continue
         published = _published(_text(item, "pubDate", "{http://purl.org/dc/elements/1.1/}date"))
-        title = _text(item, "title")
+        title = _text(item, "title", "{http://purl.org/rss/1.0/}title")
         if not title:
             continue
         items.append({
             "source": source,
             "currency": currency,
             "headline": title,
-            "url": _text(item, "link"),
+            "url": _text(item, "link", "{http://purl.org/rss/1.0/}link"),
             "published_at": published.astimezone(timezone.utc).isoformat() if published else "",
         })
     items.sort(key=lambda entry: entry["published_at"], reverse=True)

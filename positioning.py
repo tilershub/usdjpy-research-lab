@@ -136,6 +136,9 @@ def currency_snapshot(history: pd.DataFrame, currency: str, now: datetime | None
     report = str(latest["report"]) if "report" in subset.columns else "TFF"
     return {
         "currency": currency, "available": True, "date": report_date, "age_days": int(age),
+        "leveraged_change": float(latest["leveraged_net"]-subset.iloc[-2]["leveraged_net"]) if len(subset)>1 else np.nan,
+        "open_interest_change": float(latest["open_interest"]-subset.iloc[-2]["open_interest"]) if len(subset)>1 else np.nan,
+        "history_observations": len(window),
         "leveraged_net": float(latest["leveraged_net"]), "asset_manager_net": float(latest["asset_manager_net"]) if pd.notna(latest["asset_manager_net"]) else np.nan,
         "percentile_3y": percentile, "zscore_3y": float(zscore), "crowding": crowded,
         "stale": age > 10,
