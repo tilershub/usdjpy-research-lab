@@ -42,12 +42,12 @@ def normalize_calendar(records: Iterable[dict], now: datetime | None = None) -> 
         actual, forecast, previous = (_number(item.get(key)) for key in ("Actual", "Forecast", "Previous"))
         surprise = actual - forecast if np.isfinite(actual) and np.isfinite(forecast) else np.nan
         scale = max(abs(forecast), abs(previous) if np.isfinite(previous) else 0.0, 1e-9)
-        rows.append({"time":timestamp,"currency":currency,"country":country,"event":str(item.get("Event") or item.get("Category") or "Economic release"),"category":str(item.get("Category") or ""),"importance":int(float(item.get("Importance") or 0)),"actual":item.get("Actual") or "—","forecast":item.get("Forecast") or "—","previous":item.get("Previous") or "—","surprise":surprise,"surprise_pct":surprise/scale if np.isfinite(surprise) else np.nan,"hours":(timestamp.to_pydatetime()-now).total_seconds()/3600})
-    columns=["time","currency","country","event","category","importance","actual","forecast","previous","surprise","surprise_pct","hours"]
+        rows.append({"time":timestamp,"currency":currency,"country":country,"event":str(item.get("Event") or item.get("Category") or "Economic release"),"category":str(item.get("Category") or ""),"importance":int(float(item.get("Importance") or 0)),"actual":item.get("Actual") if item.get("Actual") not in (None, "") else "—","forecast":item.get("Forecast") if item.get("Forecast") not in (None, "") else "—","previous":item.get("Previous") if item.get("Previous") not in (None, "") else "—","revised":item.get("Revised"),"source_url":item.get("SourceURL"),"unit":item.get("Unit"),"surprise":surprise,"surprise_pct":surprise/scale if np.isfinite(surprise) else np.nan,"hours":(timestamp.to_pydatetime()-now).total_seconds()/3600})
+    columns=["time","currency","country","event","category","importance","actual","forecast","previous","surprise","surprise_pct","hours","revised","source_url","unit"]
     return pd.DataFrame(rows,columns=columns).sort_values("time") if rows else pd.DataFrame(columns=columns)
 
 def fetch_calendar(start: date, end: date, timeout: int = 15) -> tuple[pd.DataFrame, CalendarStatus]:
-    key=os.getenv("TRADING_ECONOMICS_KEY","guest:guest")
+    key=(os.getenv("TRADING_ECONOMICS_KEY") or "guest:guest")
     countries=",".join(CURRENCY_COUNTRIES.values())
     base=f"https://api.tradingeconomics.com/calendar/country/{quote(countries,safe=',')}"
     url=f"{base}/{start.isoformat()}/{end.isoformat()}?{urlencode({'c':key,'importance':3})}"
@@ -58,7 +58,7 @@ def fetch_calendar(start: date, end: date, timeout: int = 15) -> tuple[pd.DataFr
         frame=normalize_calendar(payload,fetched_at)
         return frame,CalendarStatus("Trading Economics",fetched_at,"licensed" if key!="guest:guest" else "guest","" if not frame.empty else "No supported high-impact events were returned for this window.")
     except Exception as exc:
-        return normalize_calendar([],fetched_at),CalendarStatus("Trading Economics",fetched_at,"unavailable",str(exc))
+        return normalize_calendar([],fetched_at),CalendarStatus("Trading Economics",fetched_at,"unavailable","Calendar retrieval failed; check provider access.")
 
 def events_for_pair(events: pd.DataFrame, base: str, quote_currency: str) -> pd.DataFrame:
     if events.empty: return events.copy()
