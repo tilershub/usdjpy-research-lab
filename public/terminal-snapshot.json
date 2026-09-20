@@ -1,37 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-20T01:05:40.919463+00:00",
+  "generated_at": "2026-09-20T06:12:27.101633+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-20T01:05:42.590570+00:00",
+      "fetched_at": "2026-09-20T06:12:28.386379+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+      "fetched_at": "2026-09-20T06:12:28.516120+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-20T01:05:47.925659+00:00",
+      "fetched_at": "2026-09-20T06:12:35.102900+00:00",
       "message": ""
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-20T01:05:53.763729+00:00",
+      "fetched_at": "2026-09-20T06:12:40.811431+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-20T01:05:52.590882+00:00",
-      "message": "Federal Reserve: HTTP Error 404: Not Found"
+      "fetched_at": "2026-09-20T06:12:40.099287+00:00",
+      "message": ""
     }
   },
   "policy_expectations": {
@@ -419,19 +419,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 81240.328125,
-      "live_price": 81240.328125,
-      "live_price_at": "2026-09-20T01:00:00+00:00",
+      "price": 80420.25,
+      "live_price": 80420.25,
+      "live_price_at": "2026-09-20T06:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 44.5,
+      "score": 40.6,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4453,
-        "Range/neutral": 0.159,
-        "Bearish": 0.3957
+        "Bullish": 0.4759,
+        "Range/neutral": 0.2015,
+        "Bearish": 0.3227
       },
       "sample_size": 120,
       "quality": {
@@ -444,11 +444,11 @@
       "market": {
         "yield_spread": -4.94,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.3470004280737396,
+        "volatility": 0.3481996436655934,
         "regime": "High volatility",
         "support20": 75612.5078125,
         "resistance20": 81271.7421875,
-        "atr20": 1139.9417968750015,
+        "atr20": 1147.0589843750015,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -457,11 +457,11 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.43469385380423
+            "contribution": 32.430137234932346
           },
           {
             "name": "Momentum",
-            "contribution": 18.699272985276767
+            "contribution": 15.712224238290956
           },
           {
             "name": "Rate differential",
@@ -469,7 +469,7 @@
           },
           {
             "name": "RSI",
-            "contribution": 7.421321303547988
+            "contribution": 6.548930557700796
           },
           {
             "name": "Rate impulse",
@@ -1321,10 +1321,10 @@
         },
         {
           "date": "2026-09-20T00:00:00",
-          "close": 81240.328125,
-          "ema_fast": 77616.85624943895,
-          "ema_slow": 74244.5808088845,
-          "score": 44.48130047067961
+          "close": 80420.25,
+          "ema_fast": 77538.75357086753,
+          "ema_slow": 74212.4208824139,
+          "score": 40.61730435897472
         }
       ],
       "events": {
@@ -1338,6 +1338,20 @@
       },
       "news": [
         {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
           "source": "European Central Bank",
           "currency": "EUR",
           "headline": "ECB Consumer Expectations Survey results \u2013 August 2026",
@@ -1350,20 +1364,6 @@
           "headline": "Boris Vuj\u010di\u0107: Interview with Reuters",
           "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260918~33f023fe26.en.html",
           "published_at": "2026-09-18T06:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Change in the Guideline for Money Market Operations",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918a.pdf",
-          "published_at": "2026-09-18T03:40:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Amendment to \"Principal Terms and Conditions of Complementary Deposit Facility\"",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
-          "published_at": "2026-09-18T03:30:00+00:00"
         }
       ],
       "positioning": {
@@ -1410,7 +1410,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1420,7 +1420,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.4937127729980146,
+          "OOS directional accuracy": 0.4930509596293845,
           "OOS observations": 1511.0
         },
         "horizons": [
@@ -1430,9 +1430,9 @@
             "Evaluation windows": 2051,
             "Coverage": 0.833252072159922,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.489174956114687,
-            "MA accuracy": 0.49151550614394385,
-            "Majority baseline": 0.49795201872440026,
+            "Model accuracy": 0.4885898186073727,
+            "MA accuracy": 0.4909303686366296,
+            "Majority baseline": 0.497366881217086,
             "Lift vs baseline": -0.008777062609713282
           },
           {
@@ -2384,6 +2384,20 @@
       },
       "news": [
         {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
           "source": "European Central Bank",
           "currency": "EUR",
           "headline": "ECB Consumer Expectations Survey results \u2013 August 2026",
@@ -2396,20 +2410,6 @@
           "headline": "Boris Vuj\u010di\u0107: Interview with Reuters",
           "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260918~33f023fe26.en.html",
           "published_at": "2026-09-18T06:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Change in the Guideline for Money Market Operations",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918a.pdf",
-          "published_at": "2026-09-18T03:40:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Amendment to \"Principal Terms and Conditions of Complementary Deposit Facility\"",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
-          "published_at": "2026-09-18T03:30:00+00:00"
         }
       ],
       "positioning": {
@@ -2456,7 +2456,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2529,8 +2529,8 @@
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-19T00:00:00",
-        "price_age_days": 1,
+        "last_price": "2026-09-20T00:00:00",
+        "price_age_days": 0,
         "stale_inputs": [
           "base yield"
         ]
@@ -3414,7 +3414,7 @@
           "score": -24.497933257569983
         },
         {
-          "date": "2026-09-19T00:00:00",
+          "date": "2026-09-20T00:00:00",
           "close": 0.5724098682403564,
           "ema_fast": 0.5821155318751666,
           "ema_slow": 0.5840382167353118,
@@ -3430,7 +3430,36 @@
         },
         "upcoming": []
       },
-      "news": [],
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        }
+      ],
       "positioning": {
         "available": true,
         "base": {
@@ -3475,7 +3504,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4449,7 +4478,36 @@
         },
         "upcoming": []
       },
-      "news": [],
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        }
+      ],
       "positioning": {
         "available": true,
         "base": {
@@ -4494,7 +4552,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4567,8 +4625,8 @@
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-19T00:00:00",
-        "price_age_days": 1,
+        "last_price": "2026-09-20T00:00:00",
+        "price_age_days": 0,
         "stale_inputs": [
           "quote yield"
         ]
@@ -5452,7 +5510,7 @@
           "score": -21.263156630754672
         },
         {
-          "date": "2026-09-19T00:00:00",
+          "date": "2026-09-20T00:00:00",
           "close": 156.85499572753906,
           "ema_fast": 156.4664533062793,
           "ema_slow": 158.09962045070057,
@@ -5470,6 +5528,20 @@
       },
       "news": [
         {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
           "source": "Bank of Japan",
           "currency": "JPY",
           "headline": "Change in the Guideline for Money Market Operations",
@@ -5482,20 +5554,6 @@
           "headline": "Amendment to \"Principal Terms and Conditions of Complementary Deposit Facility\"",
           "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
           "published_at": "2026-09-18T03:30:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Amendment to \"Principal Terms and Conditions of the Funds-Supplying Operations to Support Financing for Climate Change Responses\"",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/mpr260918a.pdf",
-          "published_at": "2026-09-18T03:15:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "(Reference) Change in the Guideline for Money Market Operations (September 2026 MPM)",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918b.pdf",
-          "published_at": "2026-09-18T02:54:00+00:00"
         }
       ],
       "positioning": {
@@ -5542,7 +5600,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6516,7 +6574,36 @@
         },
         "upcoming": []
       },
-      "news": [],
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        }
+      ],
       "positioning": {
         "available": true,
         "base": {
@@ -6561,7 +6648,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7537,6 +7624,20 @@
       },
       "news": [
         {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
           "source": "European Central Bank",
           "currency": "EUR",
           "headline": "ECB Consumer Expectations Survey results \u2013 August 2026",
@@ -7549,20 +7650,6 @@
           "headline": "Boris Vuj\u010di\u0107: Interview with Reuters",
           "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260918~33f023fe26.en.html",
           "published_at": "2026-09-18T06:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "ECB wage tracker at 2.7% in H1 2027, pointing to a modest uptick in negotiated wage growth",
-          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260916~7bc58ebef4.en.html",
-          "published_at": "2026-09-16T08:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Christine Lagarde: A new age of capital: growth, sovereignty and AI",
-          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260914_2~a3f0efbee4.en.html",
-          "published_at": "2026-09-14T15:15:00+00:00"
         }
       ],
       "positioning": {
@@ -7609,7 +7696,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7670,13 +7757,13 @@
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -4.7,
+      "score": -1.6,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.42,
-        "Range/neutral": 0.1749,
-        "Bearish": 0.4051
+        "Bullish": 0.4197,
+        "Range/neutral": 0.1744,
+        "Bearish": 0.4058
       },
       "sample_size": 120,
       "quality": {
@@ -7704,7 +7791,7 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -9.756087180325133
+            "contribution": -6.607835547760196
           },
           {
             "name": "RSI",
@@ -8564,14 +8651,14 @@
           "close": 1.3990299701690674,
           "ema_fast": 1.3888762653214106,
           "ema_slow": 1.3919666783898257,
-          "score": -3.4058796885642106
+          "score": -0.04589824472820769
         },
         {
           "date": "2026-09-20T00:00:00",
           "close": 1.3986999988555908,
           "ema_fast": 1.3898118589913324,
           "ema_slow": 1.392230730172797,
-          "score": -4.734491541764446
+          "score": -1.5862399091995085
         }
       ],
       "events": {
@@ -8583,7 +8670,36 @@
         },
         "upcoming": []
       },
-      "news": [],
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        }
+      ],
       "positioning": {
         "available": true,
         "base": {
@@ -8628,7 +8744,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8689,20 +8805,20 @@
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -3.1,
+      "score": -0.2,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3428,
-        "Range/neutral": 0.1584,
-        "Bearish": 0.4988
+        "Bullish": 0.3493,
+        "Range/neutral": 0.1833,
+        "Bearish": 0.4674
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-19T00:00:00",
-        "price_age_days": 1,
+        "last_price": "2026-09-20T00:00:00",
+        "price_age_days": 0,
         "stale_inputs": [
           "base yield"
         ]
@@ -8722,12 +8838,12 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "Cross-asset driver",
-            "contribution": -7.112116529716934
-          },
-          {
             "name": "Trend",
             "contribution": 6.915429366403733
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -4.2312686532009485
           },
           {
             "name": "Momentum",
@@ -9583,14 +9699,14 @@
           "close": 0.7115498185157776,
           "ema_fast": 0.7144061980660604,
           "ema_slow": 0.7106204960705602,
-          "score": -0.8078231681898949
+          "score": 2.148656310190431
         },
         {
-          "date": "2026-09-19T00:00:00",
+          "date": "2026-09-20T00:00:00",
           "close": 0.7121492624282837,
           "ema_fast": 0.7141912518148437,
           "ema_slow": 0.7106804476924318,
-          "score": -3.082476167843632
+          "score": -0.2016282913276468
         }
       ],
       "events": {
@@ -9602,7 +9718,36 @@
         },
         "upcoming": []
       },
-      "news": [],
+      "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        },
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "published_at": "2026-09-16T18:00:00+00:00"
+        }
+      ],
       "positioning": {
         "available": true,
         "base": {
@@ -9647,7 +9792,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-20T01:05:42.788221+00:00",
+        "fetched_at": "2026-09-20T06:12:28.516120+00:00",
         "provider_message": ""
       },
       "validation": {
