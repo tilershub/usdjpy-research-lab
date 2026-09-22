@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-22T18:52:28.494807+00:00",
+  "generated_at": "2026-09-22T22:06:12.388310+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-22T18:52:30.979204+00:00",
+      "fetched_at": "2026-09-22T22:06:13.903218+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+      "fetched_at": "2026-09-22T22:06:14.035572+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-22T18:52:37.503798+00:00",
+      "fetched_at": "2026-09-22T22:06:19.835837+00:00",
       "message": "Policy expectations unavailable: File is not a zip file"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-22T18:52:38.608018+00:00",
+      "fetched_at": "2026-09-22T22:06:21.355828+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-22T18:52:37.832938+00:00",
+      "fetched_at": "2026-09-22T22:06:20.136244+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 86496.359375,
-      "live_price": 86468.75,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 86179.7890625,
+      "live_price": 86179.7890625,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 59.3,
+      "score": 60.0,
       "bias": "Bullish",
       "confidence": "High",
       "probabilities": {
-        "Bullish": 0.5165,
-        "Range/neutral": 0.2379,
-        "Bearish": 0.2455
+        "Bullish": 0.5555,
+        "Range/neutral": 0.2147,
+        "Bearish": 0.2298
       },
       "sample_size": 120,
       "quality": {
@@ -90,13 +90,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -5.01,
+        "yield_spread": -4.96,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.41011623114620493,
+        "volatility": 0.41116844023259264,
         "regime": "High volatility",
         "support20": 75612.5078125,
         "resistance20": 86602.9140625,
-        "atr20": 1316.0449218750014,
+        "atr20": 1331.873437500001,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -105,27 +105,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.46844574387482
+            "contribution": 32.468019906686465
           },
           {
             "name": "Momentum",
-            "contribution": 25.321802062769432
+            "contribution": 25.244585814450566
           },
           {
             "name": "Rate differential",
-            "contribution": -9.6249101626309
+            "contribution": -9.370945434686751
           },
           {
             "name": "RSI",
-            "contribution": 9.15749630915601
+            "contribution": 9.014410881439588
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 5.5741187913947785
+            "contribution": 5.56737293003301
           },
           {
             "name": "Rate impulse",
-            "contribution": -3.6436895021803832
+            "contribution": -2.9606547532781358
           },
           {
             "name": "Policy overlay",
@@ -965,14 +965,14 @@
           "close": 86602.9140625,
           "ema_fast": 78775.95934990786,
           "ema_slow": 74988.88330612822,
-          "score": 59.27403932176748
+          "score": 60.209736693722526
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 86496.359375,
-          "ema_fast": 79511.23554277378,
-          "ema_slow": 75440.15687745654,
-          "score": 59.253263242383746
+          "close": 86179.7890625,
+          "ema_fast": 79481.08598920234,
+          "ema_slow": 75427.74235539771,
+          "score": 59.96278934464473
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -1005,13 +1012,6 @@
           "headline": "Eurosystem brings central bank money to tokenised finance",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260921~e754847a7b.en.html",
           "published_at": "2026-09-21T10:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1113,19 +1113,19 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 4388.7001953125,
-      "live_price": 4388.89990234375,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 4396.2001953125,
+      "live_price": 4396.2001953125,
+      "live_price_at": "2026-09-22T20:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -46.0,
+      "score": -43.3,
       "bias": "Bullish",
       "confidence": "High",
       "probabilities": {
-        "Bullish": 0.5135,
-        "Range/neutral": 0.1923,
-        "Bearish": 0.2942
+        "Bullish": 0.5222,
+        "Range/neutral": 0.1914,
+        "Bearish": 0.2864
       },
       "sample_size": 120,
       "quality": {
@@ -1136,13 +1136,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -2.68,
+        "yield_spread": -2.62,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.19583406764138184,
+        "volatility": 0.19643941506037663,
         "regime": "High volatility",
         "support20": 4332.7998046875,
         "resistance20": 4694.5,
-        "atr20": 42.895068359375045,
+        "atr20": 43.27006835937506,
         "driver": "US dollar index"
       },
       "model": {
@@ -1151,27 +1151,27 @@
         "audit": [
           {
             "name": "Rate differential",
-            "contribution": -24.66849797197397
+            "contribution": -24.13059956716087
           },
           {
             "name": "Momentum",
-            "contribution": -11.151105747983697
+            "contribution": -11.045217937167056
           },
           {
             "name": "Trend",
-            "contribution": 9.050077134369905
-          },
-          {
-            "name": "Rate impulse",
-            "contribution": -9.025353164507713
+            "contribution": 9.155918702558628
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -8.959873070019542
+            "contribution": -8.613605366046398
+          },
+          {
+            "name": "Rate impulse",
+            "contribution": -7.773057216251024
           },
           {
             "name": "RSI",
-            "contribution": -1.2114404588551366
+            "contribution": -0.9005506485706066
           },
           {
             "name": "Policy overlay",
@@ -2011,14 +2011,14 @@
           "close": 4383.89990234375,
           "ema_fast": 4425.199345713268,
           "ema_slow": 4392.299650095138,
-          "score": -45.071087411822326
+          "score": -43.18469522843989
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 4388.7001953125,
-          "ema_fast": 4421.72323615129,
-          "ema_slow": 4392.158495005623,
-          "score": -45.96619327897015
+          "close": 4396.2001953125,
+          "ema_fast": 4422.437521865576,
+          "ema_slow": 4392.452612652682,
+          "score": -43.30711203263733
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -2051,13 +2058,6 @@
           "headline": "Eurosystem brings central bank money to tokenised finance",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260921~e754847a7b.en.html",
           "published_at": "2026-09-21T10:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2159,19 +2159,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8211299777030945,
-      "live_price": 0.821120023727417,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 0.8204799890518188,
+      "live_price": 0.8204799890518188,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 23.2,
+      "score": 22.8,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.5007,
-        "Range/neutral": 0.1831,
-        "Bearish": 0.3163
+        "Bullish": 0.485,
+        "Range/neutral": 0.1828,
+        "Bearish": 0.3323
       },
       "sample_size": 120,
       "quality": {
@@ -2184,13 +2184,13 @@
         ]
       },
       "market": {
-        "yield_spread": 4.54,
+        "yield_spread": 4.49,
         "macro_label": "10Y yield spread",
-        "volatility": 0.053951514414280935,
+        "volatility": 0.05461406875458248,
         "regime": "Range / transition",
         "support20": 0.8017200231552124,
         "resistance20": 0.8253200054168701,
-        "atr20": 0.002237498760223413,
+        "atr20": 0.0022699981927871947,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 8.200360092838297
+            "contribution": 8.143571680037205
           },
           {
             "name": "Momentum",
-            "contribution": 5.308848938143149
+            "contribution": 5.152069838622567
           },
           {
             "name": "RSI",
-            "contribution": 5.304322034680315
+            "contribution": 4.930602908364736
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 4.406204658590883
+            "contribution": 4.572932788710906
           },
           {
             "name": "Rate differential",
@@ -3063,10 +3063,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 0.8211299777030945,
-          "ema_fast": 0.8151457853426372,
-          "ema_slow": 0.8105549379828898,
-          "score": 23.219735724252644
+          "close": 0.8204799890518188,
+          "ema_fast": 0.8150838816615633,
+          "ema_slow": 0.8105294482318595,
+          "score": 22.799177215735412
         }
       ],
       "events": {
@@ -3082,9 +3082,9 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
         },
         {
           "source": "Federal Reserve",
@@ -3096,15 +3096,15 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve issues FOMC statement",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-          "published_at": "2026-09-16T18:00:00+00:00"
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
         },
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
           "published_at": "2026-09-16T18:00:00+00:00"
         }
       ],
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3207,18 +3207,18 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5726392865180969,
-      "live_price": 0.5726392865180969,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 0.5732301473617554,
+      "live_price": 0.5732301473617554,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -21.4,
+      "score": -21.3,
       "bias": "Bearish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3649,
-        "Range/neutral": 0.2307,
+        "Bullish": 0.3721,
+        "Range/neutral": 0.2235,
         "Bearish": 0.4044
       },
       "sample_size": 120,
@@ -3232,13 +3232,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.2999999999999998,
+        "yield_spread": -0.25,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05708718747148545,
+        "volatility": 0.05783178411471692,
         "regime": "Range / transition",
         "support20": 0.5719907283782959,
         "resistance20": 0.5976000428199768,
-        "atr20": 0.0019115567207336503,
+        "atr20": 0.001941099762916574,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -3247,19 +3247,19 @@
         "audit": [
           {
             "name": "Momentum",
-            "contribution": -9.189107707131491
+            "contribution": -9.034949267451438
           },
           {
             "name": "Trend",
-            "contribution": -6.097105153859163
+            "contribution": -6.017833019462882
           },
           {
             "name": "RSI",
-            "contribution": -6.064731836857349
+            "contribution": -5.873772485726948
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -0.09749075499059565
+            "contribution": -0.4230693312865753
           },
           {
             "name": "Rate differential",
@@ -4111,10 +4111,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 0.5726392865180969,
-          "ema_fast": 0.581203576939257,
-          "ema_slow": 0.583587065396228,
-          "score": -21.4484354528386
+          "close": 0.5732301473617554,
+          "ema_fast": 0.5812598494005577,
+          "ema_slow": 0.5836102364097048,
+          "score": -21.349624103927844
         }
       ],
       "events": {
@@ -4130,9 +4130,9 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
         },
         {
           "source": "Federal Reserve",
@@ -4144,15 +4144,15 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve issues FOMC statement",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-          "published_at": "2026-09-16T18:00:00+00:00"
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
         },
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
           "published_at": "2026-09-16T18:00:00+00:00"
         }
       ],
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4255,19 +4255,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3336355686187744,
-      "live_price": 1.3336355686187744,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 1.3342584371566772,
+      "live_price": 1.3342584371566772,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -20.2,
+      "score": -19.7,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4249,
-        "Range/neutral": 0.1833,
-        "Bearish": 0.3918
+        "Bullish": 0.4097,
+        "Range/neutral": 0.1911,
+        "Bearish": 0.3992
       },
       "sample_size": 120,
       "quality": {
@@ -4280,13 +4280,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.021399999999999864,
+        "yield_spread": 0.02859999999999996,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04089936466753392,
+        "volatility": 0.04050962820724166,
         "regime": "Range / transition",
-        "support20": 1.3336355686187744,
+        "support20": 1.3342584371566772,
         "resistance20": 1.3647032976150513,
-        "atr20": 0.0030191361904144598,
+        "atr20": 0.0029879927635193208,
         "driver": "US dollar index"
       },
       "model": {
@@ -4295,19 +4295,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -7.355423509248079
+            "contribution": -7.090560962919012
           },
           {
             "name": "RSI",
-            "contribution": -6.5176814855859355
+            "contribution": -6.43348459564291
           },
           {
             "name": "Momentum",
-            "contribution": -6.122579027273209
+            "contribution": -6.010964827696644
           },
           {
             "name": "Trend",
-            "contribution": -0.1830113343939261
+            "contribution": -0.13917299957687415
           },
           {
             "name": "Rate differential",
@@ -5159,10 +5159,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 1.3336355686187744,
-          "ema_fast": 1.3472943401979864,
-          "ema_slow": 1.3474400177409596,
-          "score": -20.17869535650115
+          "close": 1.3342584371566772,
+          "ema_fast": 1.34735366101112,
+          "ema_slow": 1.3474644439581323,
+          "score": -19.67418338583544
         }
       ],
       "events": {
@@ -5178,9 +5178,9 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
         },
         {
           "source": "Federal Reserve",
@@ -5192,15 +5192,15 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve issues FOMC statement",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-          "published_at": "2026-09-16T18:00:00+00:00"
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
         },
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
           "published_at": "2026-09-16T18:00:00+00:00"
         }
       ],
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5303,19 +5303,19 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.1445575952529907,
-      "live_price": 1.1445575952529907,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 1.145213007926941,
+      "live_price": 1.145213007926941,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -18.3,
+      "score": -17.8,
       "bias": "Bearish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.372,
-        "Range/neutral": 0.1903,
-        "Bearish": 0.4377
+        "Bullish": 0.3873,
+        "Range/neutral": 0.1827,
+        "Bearish": 0.43
       },
       "sample_size": 120,
       "quality": {
@@ -5328,13 +5328,13 @@
         ]
       },
       "market": {
-        "yield_spread": -1.7890159090999997,
+        "yield_spread": -1.7390159091,
         "macro_label": "10Y yield spread",
-        "volatility": 0.03850260868374641,
+        "volatility": 0.03815805050564716,
         "regime": "Range / transition",
-        "support20": 1.1445575952529907,
+        "support20": 1.145213007926941,
         "resistance20": 1.1674741506576538,
-        "atr20": 0.0022093951702118093,
+        "atr20": 0.002176624536514302,
         "driver": "US dollar index"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": -6.776381365496106
+            "contribution": -6.674415341879141
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -6.742471550144073
+            "contribution": -6.499680882675761
           },
           {
             "name": "Momentum",
-            "contribution": -4.6920655913654805
+            "contribution": -4.566062923037861
           },
           {
             "name": "Trend",
-            "contribution": -0.1284754214523026
+            "contribution": -0.07701667588597036
           },
           {
             "name": "Rate differential",
@@ -6207,10 +6207,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 1.1445575952529907,
-          "ema_fast": 1.155277959846456,
-          "ema_slow": 1.1553696338794956,
-          "score": -18.33939392845796
+          "close": 1.145213007926941,
+          "ema_fast": 1.155340380101118,
+          "ema_slow": 1.1553953363372977,
+          "score": -17.817175823478735
         }
       ],
       "events": {
@@ -6223,6 +6223,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -6243,13 +6250,6 @@
           "headline": "Eurosystem brings central bank money to tokenised finance",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260921~e754847a7b.en.html",
           "published_at": "2026-09-21T10:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6351,19 +6351,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 157.48399353027344,
-      "live_price": 157.48399353027344,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 157.36700439453125,
+      "live_price": 157.36700439453125,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": -9.9,
+      "score": -10.2,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4443,
-        "Range/neutral": 0.1904,
-        "Bearish": 0.3653
+        "Bullish": 0.4516,
+        "Range/neutral": 0.1909,
+        "Bearish": 0.3574
       },
       "sample_size": 120,
       "quality": {
@@ -6376,13 +6376,13 @@
         ]
       },
       "market": {
-        "yield_spread": 2.07,
+        "yield_spread": 2.02,
         "macro_label": "10Y yield spread",
-        "volatility": 0.11411150366338484,
+        "volatility": 0.11385727748435091,
         "regime": "Range / transition",
         "support20": 153.4239959716797,
         "resistance20": 160.1959991455078,
-        "atr20": 0.7860496520996129,
+        "atr20": 0.7802001953125035,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -11.801676430804957
+            "contribution": -11.83776106568718
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 3.249575935710776
+            "contribution": 3.372537931674293
           },
           {
             "name": "Momentum",
-            "contribution": -2.4523689435552423
+            "contribution": -2.6203022621653815
           },
           {
             "name": "RSI",
-            "contribution": 1.134422075703137
+            "contribution": 0.8766383962890192
           },
           {
             "name": "Rate differential",
@@ -7255,10 +7255,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 157.48399353027344,
-          "ema_fast": 156.57982076937265,
-          "ema_slow": 158.0826750401746,
-          "score": -9.870047362946286
+          "close": 157.36700439453125,
+          "ema_fast": 156.568678946921,
+          "ema_slow": 158.0780872309298,
+          "score": -10.20888699988925
         }
       ],
       "events": {
@@ -7274,9 +7274,9 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
         },
         {
           "source": "Federal Reserve",
@@ -7286,18 +7286,18 @@
           "published_at": "2026-09-18T15:00:00+00:00"
         },
         {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
+        },
+        {
           "source": "Bank of Japan",
           "currency": "JPY",
           "headline": "Change in the Guideline for Money Market Operations",
           "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918a.pdf",
           "published_at": "2026-09-18T03:40:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Amendment to \"Principal Terms and Conditions of Complementary Deposit Facility\"",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
-          "published_at": "2026-09-18T03:30:00+00:00"
         }
       ],
       "positioning": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7399,19 +7399,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.4065699577331543,
-      "live_price": 1.4065699577331543,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 1.4064799547195435,
+      "live_price": 1.4064799547195435,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 3.5,
+      "score": 4.4,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.46,
-        "Range/neutral": 0.1907,
-        "Bearish": 0.3494
+        "Bullish": 0.4524,
+        "Range/neutral": 0.1821,
+        "Bearish": 0.3655
       },
       "sample_size": 120,
       "quality": {
@@ -7424,13 +7424,13 @@
         ]
       },
       "market": {
-        "yield_spread": 1.335,
+        "yield_spread": 1.2850000000000001,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04437949708298641,
+        "volatility": 0.044297233653694756,
         "regime": "Range / transition",
         "support20": 1.377750039100647,
-        "resistance20": 1.4065699577331543,
-        "atr20": 0.003494507074356109,
+        "resistance20": 1.4064799547195435,
+        "atr20": 0.0034900069236755726,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -7439,19 +7439,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": 5.740513597302159
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": -4.545869310627744
+            "contribution": 5.730906436956314
           },
           {
             "name": "Momentum",
-            "contribution": 3.7554728750492425
+            "contribution": 3.7414462621171967
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -3.6917711825596333
           },
           {
             "name": "Trend",
-            "contribution": -1.4246875653437987
+            "contribution": -1.429987936203194
           },
           {
             "name": "Rate differential",
@@ -8303,10 +8303,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 1.4065699577331543,
-          "ema_fast": 1.3914690484408607,
-          "ema_slow": 1.3928198044684355,
-          "score": 3.5254295963798583
+          "close": 1.4064799547195435,
+          "ema_fast": 1.3914604767252787,
+          "ema_slow": 1.39281627493849,
+          "score": 4.350593580310684
         }
       ],
       "events": {
@@ -8322,9 +8322,9 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
         },
         {
           "source": "Federal Reserve",
@@ -8336,15 +8336,15 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve issues FOMC statement",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-          "published_at": "2026-09-16T18:00:00+00:00"
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
         },
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
           "published_at": "2026-09-16T18:00:00+00:00"
         }
       ],
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8447,19 +8447,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.7114905714988708,
-      "live_price": 0.7114905714988708,
-      "live_price_at": "2026-09-22T18:00:00+00:00",
+      "price": 0.711895763874054,
+      "live_price": 0.711895763874054,
+      "live_price_at": "2026-09-22T22:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 1.8,
-      "bias": "Bearish",
-      "confidence": "Moderate",
+      "score": 3.7,
+      "bias": "Bullish",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3804,
-        "Range/neutral": 0.1827,
-        "Bearish": 0.4369
+        "Bullish": 0.4204,
+        "Range/neutral": 0.167,
+        "Bearish": 0.4125
       },
       "sample_size": 120,
       "quality": {
@@ -8472,13 +8472,13 @@
         ]
       },
       "market": {
-        "yield_spread": 0.004999999999999893,
+        "yield_spread": 0.054999999999999716,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05326701107341385,
+        "volatility": 0.053210971851704814,
         "regime": "Range / transition",
         "support20": 0.7088101506233215,
         "resistance20": 0.722089946269989,
-        "atr20": 0.0017803490161895866,
+        "atr20": 0.0017600893974304317,
         "driver": "Copper"
       },
       "model": {
@@ -8487,19 +8487,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 6.395931694095564
+            "contribution": 6.437097303200926
           },
           {
             "name": "RSI",
-            "contribution": -1.6394607841711482
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": -1.551187012482685
+            "contribution": -1.3155166127626623
           },
           {
             "name": "Momentum",
-            "contribution": -1.4309796457163297
+            "contribution": -1.286720655814838
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -0.14548582523735742
           },
           {
             "name": "Rate differential",
@@ -9351,10 +9351,10 @@
         },
         {
           "date": "2026-09-22T00:00:00",
-          "close": 0.7114905714988708,
-          "ema_fast": 0.7139349635099068,
-          "ema_slow": 0.7107126192468091,
-          "score": 1.774304251725401
+          "close": 0.711895763874054,
+          "ema_fast": 0.7139735532599243,
+          "ema_slow": 0.710728509143875,
+          "score": 3.6893742093860684
         }
       ],
       "events": {
@@ -9370,9 +9370,9 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
+          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
+          "published_at": "2026-09-22T20:30:00+00:00"
         },
         {
           "source": "Federal Reserve",
@@ -9384,15 +9384,15 @@
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve issues FOMC statement",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-          "published_at": "2026-09-16T18:00:00+00:00"
+          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
+          "published_at": "2026-09-18T15:00:00+00:00"
         },
         {
           "source": "Federal Reserve",
           "currency": "USD",
-          "headline": "Federal Reserve Board and Federal Open Market Committee release economic projections from the September 15-16 FOMC meeting",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916b.htm",
+          "headline": "Federal Reserve issues FOMC statement",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
           "published_at": "2026-09-16T18:00:00+00:00"
         }
       ],
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-22T18:52:31.118493+00:00",
+        "fetched_at": "2026-09-22T22:06:14.035572+00:00",
         "provider_message": ""
       },
       "validation": {
