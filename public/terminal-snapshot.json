@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T15:03:01.560622+00:00",
+  "generated_at": "2026-09-24T19:07:26.905050+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-24T15:03:04.654570+00:00",
+      "fetched_at": "2026-09-24T19:07:28.562254+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+      "fetched_at": "2026-09-24T19:07:28.621824+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-24T15:03:11.123637+00:00",
+      "fetched_at": "2026-09-24T19:07:33.641075+00:00",
       "message": "Policy expectations unavailable: File is not a zip file"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-24T15:03:12.915302+00:00",
+      "fetched_at": "2026-09-24T19:07:35.251873+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-24T15:03:11.604095+00:00",
+      "fetched_at": "2026-09-24T19:07:33.877751+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 4295.5,
-      "live_price": 4295.5,
-      "live_price_at": "2026-09-24T14:00:00+00:00",
+      "price": 4308.60009765625,
+      "live_price": 4308.60009765625,
+      "live_price_at": "2026-09-24T18:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -54.6,
+      "score": -53.9,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4323,
-        "Range/neutral": 0.1831,
-        "Bearish": 0.3847
+        "Bullish": 0.4341,
+        "Range/neutral": 0.1836,
+        "Bearish": 0.3822
       },
       "sample_size": 120,
       "quality": {
@@ -92,11 +92,11 @@
       "market": {
         "yield_spread": -2.63,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.19724753008050092,
+        "volatility": 0.19725919363233713,
         "regime": "High volatility",
-        "support20": 4295.5,
+        "support20": 4308.60009765625,
         "resistance20": 4664.0,
-        "atr20": 44.85004882812505,
+        "atr20": 44.19504394531255,
         "driver": "US dollar index"
       },
       "model": {
@@ -109,11 +109,11 @@
           },
           {
             "name": "Momentum",
-            "contribution": -11.743410126616222
+            "contribution": -11.614589980896223
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -10.735018837745367
+            "contribution": -10.738163101073889
           },
           {
             "name": "Rate impulse",
@@ -121,11 +121,11 @@
           },
           {
             "name": "Trend",
-            "contribution": 4.818319778470413
+            "contribution": 5.046404416116059
           },
           {
             "name": "RSI",
-            "contribution": -4.04854990445712
+            "contribution": -3.745922895446804
           },
           {
             "name": "Policy overlay",
@@ -969,10 +969,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 4295.5,
-          "ema_fast": 4399.8398837933055,
-          "ema_slow": 4385.1436293507895,
-          "score": -54.591122085545564
+          "close": 4308.60009765625,
+          "ema_fast": 4401.08751214152,
+          "ema_slow": 4385.657358670643,
+          "score": -53.93473455649812
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -1005,13 +1012,6 @@
           "headline": "Philip R. Lane: The outlook for the euro area economy",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260924~e0eceef02c.en.pdf",
           "published_at": "2026-09-24T09:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Statistics on Securities Financing Transactions in Japan",
-          "url": "http://www.boj.or.jp/en/statistics/bis/repo/index.htm",
-          "published_at": "2026-09-23T23:50:00+00:00"
         }
       ],
       "positioning": {
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1113,19 +1113,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 83486.2421875,
-      "live_price": 83486.2421875,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 84354.7890625,
+      "live_price": 84354.7890625,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 45.7,
+      "score": 50.1,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4743,
-        "Range/neutral": 0.1501,
-        "Bearish": 0.3757
+        "Bullish": 0.4449,
+        "Range/neutral": 0.1666,
+        "Bearish": 0.3884
       },
       "sample_size": 120,
       "quality": {
@@ -1138,11 +1138,11 @@
       "market": {
         "yield_spread": -4.96,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.37835429446976615,
+        "volatility": 0.3753321368302374,
         "regime": "High volatility",
         "support20": 75612.5078125,
         "resistance20": 86602.9140625,
-        "atr20": 1187.9988281250012,
+        "atr20": 1144.571484375001,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -1151,11 +1151,11 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.47059282448748
+            "contribution": 32.47147367254182
           },
           {
             "name": "Momentum",
-            "contribution": 19.143728982896278
+            "contribution": 21.278670937693597
           },
           {
             "name": "Rate differential",
@@ -1163,7 +1163,7 @@
           },
           {
             "name": "RSI",
-            "contribution": 6.772978530723855
+            "contribution": 7.719761608323287
           },
           {
             "name": "Rate impulse",
@@ -1171,7 +1171,7 @@
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -0.32318189327184865
+            "contribution": 1.0380879016495688
           },
           {
             "name": "Policy overlay",
@@ -2015,10 +2015,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 83486.2421875,
-          "ema_fast": 80284.3319390204,
-          "ema_slow": 76080.90501806568,
-          "score": 45.663698648485436
+          "close": 84354.7890625,
+          "ema_fast": 80367.0506890204,
+          "ema_slow": 76114.96567983039,
+          "score": 50.107574323857946
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -2051,13 +2058,6 @@
           "headline": "Philip R. Lane: The outlook for the euro area economy",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260924~e0eceef02c.en.pdf",
           "published_at": "2026-09-24T09:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Statistics on Securities Financing Transactions in Japan",
-          "url": "http://www.boj.or.jp/en/statistics/bis/repo/index.htm",
-          "published_at": "2026-09-23T23:50:00+00:00"
         }
       ],
       "positioning": {
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2159,19 +2159,19 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5660911202430725,
-      "live_price": 0.5660911202430725,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 0.5658668875694275,
+      "live_price": 0.5658668875694275,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -32.8,
+      "score": -31.5,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.5238,
-        "Range/neutral": 0.1497,
-        "Bearish": 0.3266
+        "Bullish": 0.4931,
+        "Range/neutral": 0.1816,
+        "Bearish": 0.3253
       },
       "sample_size": 120,
       "quality": {
@@ -2186,11 +2186,11 @@
       "market": {
         "yield_spread": -0.25,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06467649585431644,
+        "volatility": 0.06538167876915069,
         "regime": "Range / transition",
-        "support20": 0.5660911202430725,
+        "support20": 0.5658668875694275,
         "resistance20": 0.5954897403717041,
-        "atr20": 0.002146035432815559,
+        "atr20": 0.002157247066497811,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Momentum",
-            "contribution": -10.311802118891338
+            "contribution": -10.357493192067835
           },
           {
             "name": "Trend",
-            "contribution": -8.70310676212842
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": -7.280565479385389
+            "contribution": -8.729770601220324
           },
           {
             "name": "RSI",
-            "contribution": -6.5075898056255
+            "contribution": -6.518777082950753
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -5.912449731394771
           },
           {
             "name": "Rate differential",
@@ -3063,10 +3063,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 0.5660911202430725,
-          "ema_fast": 0.5788946894142484,
-          "ema_slow": 0.5824277799683375,
-          "score": -32.803064166030644
+          "close": 0.5658668875694275,
+          "ema_fast": 0.5788733339215203,
+          "ema_slow": 0.5824189865301553,
+          "score": -31.51849060763368
         }
       ],
       "events": {
@@ -3079,6 +3079,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -3098,13 +3105,6 @@
           "currency": "USD",
           "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
           "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3207,19 +3207,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3220168352127075,
-      "live_price": 1.3220168352127075,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 1.3217023611068726,
+      "live_price": 1.3217023611068726,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -25.9,
+      "score": -26.0,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4523,
-        "Range/neutral": 0.1415,
-        "Bearish": 0.4062
+        "Bullish": 0.4521,
+        "Range/neutral": 0.1416,
+        "Bearish": 0.4063
       },
       "sample_size": 120,
       "quality": {
@@ -3234,11 +3234,11 @@
       "market": {
         "yield_spread": 0.02859999999999996,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04799174850654504,
+        "volatility": 0.04850529622615999,
         "regime": "Range / transition",
-        "support20": 1.3220168352127075,
+        "support20": 1.3217023611068726,
         "resistance20": 1.3597116470336914,
-        "atr20": 0.003305834531784091,
+        "atr20": 0.0033215582370758417,
         "driver": "US dollar index"
       },
       "model": {
@@ -3247,19 +3247,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -8.541543862121628
-          },
-          {
-            "name": "RSI",
-            "contribution": -7.433367591460793
+            "contribution": -8.544063138947177
           },
           {
             "name": "Momentum",
-            "contribution": -7.413791233782448
+            "contribution": -7.464490340221892
+          },
+          {
+            "name": "RSI",
+            "contribution": -7.444521978407153
           },
           {
             "name": "Trend",
-            "contribution": -2.547846741100331
+            "contribution": -2.5697016769764547
           },
           {
             "name": "Rate differential",
@@ -4111,10 +4111,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 1.3220168352127075,
-          "ema_fast": 1.3440375606948867,
-          "ema_slow": 1.3460734236488372,
-          "score": -25.936549428465202
+          "close": 1.3217023611068726,
+          "ema_fast": 1.3440076107800454,
+          "ema_slow": 1.3460610913309614,
+          "score": -26.022777134552676
         }
       ],
       "events": {
@@ -4127,6 +4127,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -4146,13 +4153,6 @@
           "currency": "USD",
           "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
           "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4257,7 +4257,7 @@
       "asset_class": "FX",
       "price": 1.1377859115600586,
       "live_price": 1.1377859115600586,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
@@ -4295,7 +4295,7 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -7.829748540278159
+            "contribution": -7.8320578773682445
           },
           {
             "name": "RSI",
@@ -5162,7 +5162,7 @@
           "close": 1.1377859115600586,
           "ema_fast": 1.1528569655478247,
           "ema_slow": 1.154350469111693,
-          "score": -23.061575520149198
+          "score": -23.06388485723928
         }
       ],
       "events": {
@@ -5175,6 +5175,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -5195,13 +5202,6 @@
           "headline": "Philip R. Lane: The outlook for the euro area economy",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260924~e0eceef02c.en.pdf",
           "published_at": "2026-09-24T09:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Philip R. Lane: The Outlook for the Euro Area Economy",
-          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260923_1~ac21bf46e3.en.pdf",
-          "published_at": "2026-09-23T16:30:00+00:00"
         }
       ],
       "positioning": {
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5303,19 +5303,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8289899826049805,
-      "live_price": 0.829039990901947,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 0.8282700181007385,
+      "live_price": 0.8282700181007385,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 19.4,
+      "score": 19.9,
       "bias": "Bearish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3654,
-        "Range/neutral": 0.191,
-        "Bearish": 0.4436
+        "Bullish": 0.3814,
+        "Range/neutral": 0.1904,
+        "Bearish": 0.4282
       },
       "sample_size": 120,
       "quality": {
@@ -5330,11 +5330,11 @@
       "market": {
         "yield_spread": 4.49,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06174855503011407,
+        "volatility": 0.060210239024077856,
         "regime": "Range / transition",
         "support20": 0.8037599921226501,
-        "resistance20": 0.8289899826049805,
-        "atr20": 0.0024829983711242925,
+        "resistance20": 0.8282700181007385,
+        "atr20": 0.002447000145912194,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 9.227760759051618
+            "contribution": 9.168631910599846
           },
           {
             "name": "RSI",
-            "contribution": 6.944524905756599
+            "contribution": 6.8635563812502784
           },
           {
             "name": "Momentum",
-            "contribution": 6.378262778058457
+            "contribution": 6.22372653376409
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -3.175422679699493
+            "contribution": -2.385878367806115
           },
           {
             "name": "Rate differential",
@@ -6207,10 +6207,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 0.8289899826049805,
-          "ema_fast": 0.8169274876644419,
-          "ema_slow": 0.8116527000021624,
-          "score": 19.37512576316718
+          "close": 0.8282700181007385,
+          "ema_fast": 0.8168589196164189,
+          "ema_slow": 0.8116244661000352,
+          "score": 19.870036457808098
         }
       ],
       "events": {
@@ -6223,6 +6223,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -6242,13 +6249,6 @@
           "currency": "USD",
           "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
           "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6351,19 +6351,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 158.8939971923828,
-      "live_price": 158.89599609375,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 158.86700439453125,
+      "live_price": 158.86700439453125,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": -9.2,
+      "score": -8.7,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4374,
-        "Range/neutral": 0.1821,
-        "Bearish": 0.3805
+        "Bullish": 0.4686,
+        "Range/neutral": 0.1664,
+        "Bearish": 0.3649
       },
       "sample_size": 120,
       "quality": {
@@ -6378,11 +6378,11 @@
       "market": {
         "yield_spread": 2.02,
         "macro_label": "10Y yield spread",
-        "volatility": 0.1188804861796657,
+        "volatility": 0.11870657691890531,
         "regime": "Range / transition",
         "support20": 153.4239959716797,
         "resistance20": 160.1959991455078,
-        "atr20": 0.8507499694824249,
+        "atr20": 0.8494003295898462,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -10.104409817836904
+            "contribution": -10.114293148346228
           },
           {
             "name": "RSI",
-            "contribution": 3.820276283925258
+            "contribution": 3.7840147855733877
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -2.341874226278376
+            "contribution": -1.7595852962570098
           },
           {
             "name": "Momentum",
-            "contribution": -0.5418600405040853
+            "contribution": -0.5823134625350015
           },
           {
             "name": "Rate differential",
@@ -7255,10 +7255,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 158.8939971923828,
-          "ema_fast": 156.867441899506,
-          "ema_slow": 158.08701876508812,
-          "score": -9.167867800694108
+          "close": 158.86700439453125,
+          "ema_fast": 156.86487115685347,
+          "ema_slow": 158.0859602239959,
+          "score": -8.672177121564852
         }
       ],
       "events": {
@@ -7271,6 +7271,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -7291,13 +7298,6 @@
           "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
           "published_at": "2026-09-22T20:30:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7399,19 +7399,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.7023458480834961,
-      "live_price": 0.7023458480834961,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 0.701557457447052,
+      "live_price": 0.701557457447052,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -7.3,
+      "score": -6.4,
       "bias": "Bearish",
-      "confidence": "Low",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4046,
-        "Range/neutral": 0.1677,
-        "Bearish": 0.4277
+        "Bullish": 0.3967,
+        "Range/neutral": 0.1595,
+        "Bearish": 0.4438
       },
       "sample_size": 120,
       "quality": {
@@ -7426,11 +7426,11 @@
       "market": {
         "yield_spread": 0.054999999999999716,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06708974176285258,
+        "volatility": 0.06964601273340341,
         "regime": "Range / transition",
-        "support20": 0.7023458480834961,
+        "support20": 0.701557457447052,
         "resistance20": 0.722089946269989,
-        "atr20": 0.002104172110557567,
+        "atr20": 0.002143591642379772,
         "driver": "Copper"
       },
       "model": {
@@ -7439,19 +7439,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": -5.674120225799947
+            "contribution": -5.796670404907692
           },
           {
             "name": "Momentum",
-            "contribution": -5.329136654271133
+            "contribution": -5.561372809961983
           },
           {
             "name": "Trend",
-            "contribution": 4.487468061432782
+            "contribution": 4.401475718703968
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -0.8166449708539479
+            "contribution": 0.5486467068030857
           },
           {
             "name": "Rate differential",
@@ -8303,10 +8303,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 0.7023458480834961,
-          "ema_fast": 0.7126283610630229,
-          "ema_slow": 0.7104180750370525,
-          "score": -7.332433789492246
+          "close": 0.701557457447052,
+          "ema_fast": 0.7125532762405044,
+          "ema_slow": 0.7103871577571919,
+          "score": -6.407920789362621
         }
       ],
       "events": {
@@ -8319,6 +8319,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -8338,13 +8345,6 @@
           "currency": "USD",
           "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
           "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8447,19 +8447,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.4141199588775635,
-      "live_price": 1.4138000011444092,
-      "live_price_at": "2026-09-24T15:00:00+00:00",
+      "price": 1.4136699438095093,
+      "live_price": 1.4136699438095093,
+      "live_price_at": "2026-09-24T19:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 4.2,
+      "score": 4.8,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4447,
-        "Range/neutral": 0.1898,
-        "Bearish": 0.3654
+        "Bullish": 0.4527,
+        "Range/neutral": 0.1743,
+        "Bearish": 0.3729
       },
       "sample_size": 120,
       "quality": {
@@ -8474,11 +8474,11 @@
       "market": {
         "yield_spread": 1.2850000000000001,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04478208480263268,
+        "volatility": 0.044376464759063226,
         "regime": "Range / transition",
         "support20": 1.377750039100647,
-        "resistance20": 1.4141199588775635,
-        "atr20": 0.0036550045013428096,
+        "resistance20": 1.4136699438095093,
+        "atr20": 0.0036325037479400996,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -8487,19 +8487,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -7.150933750465777
+            "contribution": -6.437343951839753
           },
           {
             "name": "RSI",
-            "contribution": 6.345066355230793
+            "contribution": 6.323277721958207
           },
           {
             "name": "Momentum",
-            "contribution": 4.376467905034882
+            "contribution": 4.309116208370103
           },
           {
             "name": "Trend",
-            "contribution": 0.6511401817108564
+            "contribution": 0.6245595267475643
           },
           {
             "name": "Rate differential",
@@ -9351,10 +9351,10 @@
         },
         {
           "date": "2026-09-24T00:00:00",
-          "close": 1.4141199588775635,
-          "ema_fast": 1.3946710021611826,
-          "ema_slow": 1.394054083796197,
-          "score": 4.221740691510755
+          "close": 1.4136699438095093,
+          "ema_fast": 1.3946281435832726,
+          "ema_slow": 1.3940364361464694,
+          "score": 4.81960950523612
         }
       ],
       "events": {
@@ -9367,6 +9367,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board requests public comment on two proposals related to establishing a regulatory framework for Board-supervised payment stablecoin issuers under the GENIUS Act",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20260924a.htm",
+          "published_at": "2026-09-24T18:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -9386,13 +9393,6 @@
           "currency": "USD",
           "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
           "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-24T15:03:04.921615+00:00",
+        "fetched_at": "2026-09-24T19:07:28.621824+00:00",
         "provider_message": ""
       },
       "validation": {
