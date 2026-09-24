@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T23:41:41.273267+00:00",
+  "generated_at": "2026-09-24T04:44:53.694851+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-23T23:41:42.562561+00:00",
+      "fetched_at": "2026-09-24T04:44:54.987943+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+      "fetched_at": "2026-09-24T04:44:55.352935+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-23T23:41:47.923614+00:00",
+      "fetched_at": "2026-09-24T04:45:03.190272+00:00",
       "message": "Policy expectations unavailable: File is not a zip file"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-23T23:41:49.107428+00:00",
+      "fetched_at": "2026-09-24T04:45:04.979883+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-23T23:41:48.212349+00:00",
+      "fetched_at": "2026-09-24T04:45:03.740659+00:00",
       "message": ""
     }
   },
@@ -40,25 +40,25 @@
       "date": "2026-10-28",
       "label": "FOMC decision (October 27-28)",
       "projections": false,
-      "days_away": 35
+      "days_away": 34
     },
     {
       "date": "2026-12-09",
       "label": "FOMC decision (December 8-9)",
       "projections": true,
-      "days_away": 77
+      "days_away": 76
     },
     {
       "date": "2027-01-27",
       "label": "FOMC decision (January 26-27)",
       "projections": false,
-      "days_away": 126
+      "days_away": 125
     },
     {
       "date": "2027-03-17",
       "label": "FOMC decision (March 16-17)",
       "projections": true,
-      "days_away": 175
+      "days_away": 174
     }
   ],
   "pairs": [
@@ -67,36 +67,36 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 4321.89990234375,
-      "live_price": 4321.89990234375,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 4323.5,
+      "live_price": 4323.5,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -52.6,
+      "score": -52.5,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.435,
-        "Range/neutral": 0.1998,
-        "Bearish": 0.3652
+        "Bullish": 0.44,
+        "Range/neutral": 0.2001,
+        "Bearish": 0.3599
       },
       "sample_size": 120,
       "quality": {
         "grade": "A",
         "completeness": 1.0,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": []
       },
       "market": {
         "yield_spread": -2.63,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.19748374415538292,
+        "volatility": 0.19798561641425855,
         "regime": "High volatility",
-        "support20": 4321.89990234375,
+        "support20": 4318.39990234375,
         "resistance20": 4664.0,
-        "atr20": 45.59006347656255,
+        "atr20": 43.96005859375005,
         "driver": "US dollar index"
       },
       "model": {
@@ -105,27 +105,27 @@
         "audit": [
           {
             "name": "Rate differential",
-            "contribution": -24.1391275816379
+            "contribution": -24.04514894537453
           },
           {
             "name": "Momentum",
-            "contribution": -11.84635652813849
+            "contribution": -11.451269124732722
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -11.073829034994883
+            "contribution": -10.14377324371242
           },
           {
             "name": "Rate impulse",
-            "contribution": -9.205483090808892
+            "contribution": -8.837314049822739
           },
           {
             "name": "Trend",
-            "contribution": 7.0689285218715
+            "contribution": 5.303734139846405
           },
           {
             "name": "RSI",
-            "contribution": -3.4076308687079804
+            "contribution": -3.304391854953359
           },
           {
             "name": "Policy overlay",
@@ -134,13 +134,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-02T00:00:00",
-          "close": 4679.7001953125,
-          "ema_fast": 4741.06823056943,
-          "ema_slow": 4798.016875158858,
-          "score": -49.44248625170618
-        },
         {
           "date": "2026-04-06T00:00:00",
           "close": 4684.7001953125,
@@ -969,10 +962,17 @@
         },
         {
           "date": "2026-09-23T00:00:00",
-          "close": 4321.89990234375,
-          "ema_fast": 4411.156362789093,
-          "ema_slow": 4388.939807899721,
-          "score": -52.60349858241665
+          "close": 4318.39990234375,
+          "ema_fast": 4410.823029455759,
+          "ema_slow": 4388.80255299776,
+          "score": -52.73268104962493
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 4323.5,
+          "ema_fast": 4402.5065504599725,
+          "ema_slow": 4386.241668566477,
+          "score": -52.47816307874936
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Bank of Japan",
+          "currency": "JPY",
+          "headline": "Statistics on Securities Financing Transactions in Japan",
+          "url": "http://www.boj.or.jp/en/statistics/bis/repo/index.htm",
+          "published_at": "2026-09-23T23:50:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -1005,13 +1012,6 @@
           "headline": "Almost ten million people took part in ECB survey on new euro banknotes",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260923~6ebddaf01e.en.html",
           "published_at": "2026-09-23T09:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
-          "published_at": "2026-09-22T20:30:00+00:00"
         }
       ],
       "positioning": {
@@ -1020,7 +1020,7 @@
           "currency": "XAU",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -1856.0,
           "open_interest_change": -1328.0,
           "history_observations": 156,
@@ -1039,7 +1039,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1068,8 +1068,8 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5239263803680981,
-          "OOS observations": 815.0
+          "OOS directional accuracy": 0.5232843137254902,
+          "OOS observations": 816.0
         },
         "horizons": [
           {
@@ -1079,31 +1079,31 @@
             "Coverage": 0.7319013524264121,
             "Validation method": "Non-overlapping; training-only majority baseline",
             "Model accuracy": 0.5239130434782608,
-            "MA accuracy": 0.5402173913043479,
+            "MA accuracy": 0.5413043478260869,
             "Majority baseline": 0.5510869565217391,
             "Lift vs baseline": -0.02717391304347827
           },
           {
             "Horizon": "5D",
-            "OOS observations": 185,
+            "OOS observations": 182,
             "Evaluation windows": 251,
-            "Coverage": 0.7370517928286853,
+            "Coverage": 0.7250996015936255,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5297297297297298,
-            "MA accuracy": 0.5891891891891892,
-            "Majority baseline": 0.6054054054054054,
-            "Lift vs baseline": -0.07567567567567568
+            "Model accuracy": 0.510989010989011,
+            "MA accuracy": 0.532967032967033,
+            "Majority baseline": 0.5659340659340659,
+            "Lift vs baseline": -0.05494505494505497
           },
           {
             "Horizon": "20D",
-            "OOS observations": 47,
+            "OOS observations": 45,
             "Evaluation windows": 62,
-            "Coverage": 0.7580645161290323,
+            "Coverage": 0.7258064516129032,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5531914893617021,
-            "MA accuracy": 0.6382978723404256,
-            "Majority baseline": 0.6382978723404256,
-            "Lift vs baseline": -0.08510638297872342
+            "Model accuracy": 0.5777777777777777,
+            "MA accuracy": 0.5555555555555556,
+            "Majority baseline": 0.6222222222222222,
+            "Lift vs baseline": -0.04444444444444451
           }
         ]
       }
@@ -1113,36 +1113,36 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 84461.96875,
-      "live_price": 84461.296875,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 83861.84375,
+      "live_price": 83864.09375,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 45.2,
+      "score": 42.2,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4378,
-        "Range/neutral": 0.1723,
-        "Bearish": 0.3899
+        "Bullish": 0.4831,
+        "Range/neutral": 0.1989,
+        "Bearish": 0.318
       },
       "sample_size": 120,
       "quality": {
         "grade": "A",
         "completeness": 1.0,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": []
       },
       "market": {
         "yield_spread": -4.96,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.38316831284709874,
+        "volatility": 0.3892319738871531,
         "regime": "High volatility",
         "support20": 75612.5078125,
         "resistance20": 86602.9140625,
-        "atr20": 1219.2011718750014,
+        "atr20": 1249.2074218750013,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -1151,19 +1151,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.47031408104541
+            "contribution": 32.469629851037006
           },
           {
             "name": "Momentum",
-            "contribution": 16.888534502136856
+            "contribution": 14.50601737945024
           },
           {
             "name": "Rate differential",
-            "contribution": -9.333197185803758
+            "contribution": -9.333197185804494
           },
           {
             "name": "RSI",
-            "contribution": 7.818013549323374
+            "contribution": 7.246277603634197
           },
           {
             "name": "Rate impulse",
@@ -1171,7 +1171,7 @@
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 0.5560445256603663
+            "contribution": 0.5560594920314476
           },
           {
             "name": "Policy overlay",
@@ -1185,840 +1185,840 @@
           "close": 74344.703125,
           "ema_fast": 77316.34126197154,
           "ema_slow": 76628.73262603945,
-          "score": -15.658903896360204
+          "score": -15.658903896362457
         },
         {
           "date": "2026-05-28T00:00:00",
           "close": 73536.5546875,
           "ema_fast": 76956.36158821234,
           "ema_slow": 76507.47074609672,
-          "score": -23.16947393222871
+          "score": -23.169473932231224
         },
         {
           "date": "2026-05-29T00:00:00",
           "close": 73372.5234375,
           "ema_fast": 76615.04366909688,
           "ema_slow": 76384.53163595566,
-          "score": -28.543418431448305
+          "score": -28.543418431450828
         },
         {
           "date": "2026-05-30T00:00:00",
           "close": 73754.8359375,
           "ema_fast": 76342.64293275432,
           "ema_slow": 76281.4063144476,
-          "score": -32.83616731317596
+          "score": -32.83616731317846
         },
         {
           "date": "2026-05-31T00:00:00",
           "close": 73579.6875,
           "ema_fast": 76079.50432011105,
           "ema_slow": 76175.45655701829,
-          "score": -36.76386800899112
+          "score": -36.763868008993626
         },
         {
           "date": "2026-06-01T00:00:00",
           "close": 71319.7734375,
           "ema_fast": 75626.19661700523,
           "ema_slow": 75985.03761115482,
-          "score": -43.184017532967864
+          "score": -43.18401753297021
         },
         {
           "date": "2026-06-02T00:00:00",
           "close": 66703.65625,
           "ema_fast": 74776.43086776664,
           "ema_slow": 75621.06187150169,
-          "score": -64.52822422772417
+          "score": -64.52822422772658
         },
         {
           "date": "2026-06-03T00:00:00",
           "close": 64014.3671875,
           "ema_fast": 73751.47242202697,
           "ema_slow": 75165.89737408987,
-          "score": -75.54837067399414
+          "score": -75.54837067399632
         },
         {
           "date": "2026-06-04T00:00:00",
           "close": 63801.57421875,
           "ema_fast": 72803.86306933392,
           "ema_slow": 74720.23764250791,
-          "score": -71.52918718542706
+          "score": -71.52918718542936
         },
         {
           "date": "2026-06-05T00:00:00",
           "close": 60922.66796875,
           "ema_fast": 71672.32067880212,
           "ema_slow": 74179.15647883114,
-          "score": -83.11487359457136
+          "score": -83.11487359457303
         },
         {
           "date": "2026-06-06T00:00:00",
           "close": 60867.4140625,
           "ema_fast": 70643.28195344002,
           "ema_slow": 73657.12736446522,
-          "score": -83.22955506533775
+          "score": -83.22955506533943
         },
         {
           "date": "2026-06-07T00:00:00",
           "close": 63239.51953125,
           "ema_fast": 69938.16172275525,
           "ema_slow": 73248.59372394698,
-          "score": -81.32378997893855
+          "score": -81.32378997894023
         },
         {
           "date": "2026-06-08T00:00:00",
           "close": 63090.58984375,
           "ema_fast": 69286.01201999285,
           "ema_slow": 72850.24063060593,
-          "score": -77.28196263333976
+          "score": -77.28196263334137
         },
         {
           "date": "2026-06-09T00:00:00",
           "close": 61643.78125,
           "ema_fast": 68558.18051808877,
           "ema_slow": 72410.77163528804,
-          "score": -82.93644725924537
+          "score": -82.93644725924719
         },
         {
           "date": "2026-06-10T00:00:00",
           "close": 61449.2890625,
           "ema_fast": 67881.14323660413,
           "ema_slow": 71980.90957361009,
-          "score": -86.21094380247598
+          "score": -86.21094380247769
         },
         {
           "date": "2026-06-11T00:00:00",
           "close": 63561.0546875,
           "ema_fast": 67469.70623192754,
           "ema_slow": 71650.7191859195,
-          "score": -78.55195305036307
+          "score": -78.55195305036538
         },
         {
           "date": "2026-06-12T00:00:00",
           "close": 63543.19921875,
           "ema_fast": 67095.75318305349,
           "ema_slow": 71332.77722642265,
-          "score": -79.09258508360215
+          "score": -79.09258508360432
         },
         {
           "date": "2026-06-13T00:00:00",
           "close": 64421.32421875,
           "ema_fast": 66841.04566264364,
           "ema_slow": 71061.73985357274,
-          "score": -77.98176119903948
+          "score": -77.98176119904166
         },
         {
           "date": "2026-06-14T00:00:00",
           "close": 65710.3984375,
           "ema_fast": 66733.36497453472,
           "ema_slow": 70851.88332745225,
-          "score": -75.7617511612043
+          "score": -75.76175116120646
         },
         {
           "date": "2026-06-15T00:00:00",
           "close": 66289.5,
           "ema_fast": 66691.09211981713,
           "ema_slow": 70672.96633421883,
-          "score": -71.6094959009239
+          "score": -71.60949590092609
         },
         {
           "date": "2026-06-16T00:00:00",
           "close": 65600.640625,
           "ema_fast": 66587.23959650121,
           "ema_slow": 70474.05160052398,
-          "score": -73.64865235349683
+          "score": -73.64865235349913
         },
         {
           "date": "2026-06-17T00:00:00",
           "close": 64418.4453125,
           "ema_fast": 66380.68775992967,
           "ema_slow": 70236.57684413089,
-          "score": -81.59701624440694
+          "score": -81.59701624440905
         },
         {
           "date": "2026-06-18T00:00:00",
           "close": 62896.47265625,
           "ema_fast": 66048.85775005541,
           "ema_slow": 69948.72962107674,
-          "score": -79.2845587729326
+          "score": -79.28455877293483
         },
         {
           "date": "2026-06-19T00:00:00",
           "close": 63540.8359375,
           "ema_fast": 65809.99852981203,
           "ema_slow": 69697.43967270118,
-          "score": -78.33878407305212
+          "score": -78.33878407305434
         },
         {
           "date": "2026-06-20T00:00:00",
           "close": 64239.67578125,
           "ema_fast": 65660.44398232993,
           "ema_slow": 69483.40971617367,
-          "score": -76.97453018719045
+          "score": -76.97453018719267
         },
         {
           "date": "2026-06-21T00:00:00",
           "close": 63237.5390625,
           "ema_fast": 65429.69113282232,
           "ema_slow": 69238.47361210805,
-          "score": -78.17863013772124
+          "score": -78.17863013772347
         },
         {
           "date": "2026-06-22T00:00:00",
           "close": 63952.10546875,
           "ema_fast": 65288.96868862496,
           "ema_slow": 69031.16505746657,
-          "score": -73.08504459684326
+          "score": -73.08504459684526
         },
         {
           "date": "2026-06-23T00:00:00",
           "close": 62668.01953125,
           "ema_fast": 65039.35448316068,
           "ema_slow": 68781.6299387914,
-          "score": -67.91744304479013
+          "score": -67.9174430447922
         },
         {
           "date": "2026-06-24T00:00:00",
           "close": 60995.1328125,
           "ema_fast": 64654.19051452633,
           "ema_slow": 68476.2771103094,
-          "score": -74.01036232107569
+          "score": -74.0103623210779
         },
         {
           "date": "2026-06-25T00:00:00",
           "close": 59721.67578125,
           "ema_fast": 64184.427206595254,
           "ema_slow": 68132.9594111306,
-          "score": -58.94511876187566
+          "score": -58.94511876187784
         },
         {
           "date": "2026-06-26T00:00:00",
           "close": 60016.4296875,
           "ema_fast": 63787.47506191952,
           "ema_slow": 67814.66412785098,
-          "score": -55.49416843755301
+          "score": -55.49416843755508
         },
         {
           "date": "2026-06-27T00:00:00",
           "close": 59940.09765625,
           "ema_fast": 63421.05816614147,
           "ema_slow": 67505.85759955291,
-          "score": -68.52680994408014
+          "score": -68.52680994408222
         },
         {
           "date": "2026-06-28T00:00:00",
           "close": 59532.33984375,
           "ema_fast": 63050.70404019943,
           "ema_slow": 67193.1706287371,
-          "score": -70.71079821601714
+          "score": -70.71079821601921
         },
         {
           "date": "2026-06-29T00:00:00",
           "close": 60138.37890625,
           "ema_fast": 62773.33974172805,
           "ema_slow": 66916.51212981605,
-          "score": -55.661025730208635
+          "score": -55.66102573021072
         },
         {
           "date": "2026-06-30T00:00:00",
           "close": 58558.859375,
           "ema_fast": 62371.96065918252,
           "ema_slow": 66588.76104139189,
-          "score": -59.10767307431696
+          "score": -59.107673074319294
         },
         {
           "date": "2026-07-01T00:00:00",
           "close": 60003.7578125,
           "ema_fast": 62146.41753092704,
           "ema_slow": 66330.52562065104,
-          "score": -68.96244432468191
+          "score": -68.96244432468418
         },
         {
           "date": "2026-07-02T00:00:00",
           "close": 61485.30078125,
           "ema_fast": 62083.4540309578,
           "ema_slow": 66140.51680341962,
-          "score": -61.925280524281106
+          "score": -61.92528052428335
         },
         {
           "date": "2026-07-03T00:00:00",
           "close": 62544.19921875,
           "ema_fast": 62127.33452503325,
           "ema_slow": 65999.48474127572,
-          "score": -58.16672906538714
+          "score": -58.16672906538939
         },
         {
           "date": "2026-07-04T00:00:00",
           "close": 63088.3046875,
           "ema_fast": 62218.855492887225,
           "ema_slow": 65885.32081759824,
-          "score": -60.327169882637705
+          "score": -60.32716988263997
         },
         {
           "date": "2026-07-05T00:00:00",
           "close": 63547.8828125,
           "ema_fast": 62345.42952332654,
           "ema_slow": 65793.65658210419,
-          "score": -64.85663160037413
+          "score": -64.8566316003764
         },
         {
           "date": "2026-07-06T00:00:00",
           "close": 63995.015625,
           "ema_fast": 62502.53296158116,
           "ema_slow": 65723.12164260991,
-          "score": -54.540909098379
+          "score": -54.54090909838131
         },
         {
           "date": "2026-07-07T00:00:00",
           "close": 63297.39453125,
           "ema_fast": 62578.23406345438,
           "ema_slow": 65627.99508922326,
-          "score": -54.36849477403343
+          "score": -54.36849477403541
         },
         {
           "date": "2026-07-08T00:00:00",
           "close": 62257.57421875,
           "ema_fast": 62547.695030625386,
           "ema_slow": 65495.821721753724,
-          "score": -57.27372337863759
+          "score": -57.27372337863951
         },
         {
           "date": "2026-07-09T00:00:00",
           "close": 63193.1484375,
           "ema_fast": 62609.16678366106,
           "ema_slow": 65405.52080864574,
-          "score": -49.41137210231156
+          "score": -49.41137210231361
         },
         {
           "date": "2026-07-10T00:00:00",
           "close": 64127.140625,
           "ema_fast": 62753.73572093143,
           "ema_slow": 65355.38825242434,
-          "score": -45.12292505124507
+          "score": -45.122925051247
         },
         {
           "date": "2026-07-11T00:00:00",
           "close": 63802.02734375,
           "ema_fast": 62853.57301834272,
           "ema_slow": 65294.47213835868,
-          "score": -40.439845611371226
+          "score": -40.43984561137316
         },
         {
           "date": "2026-07-12T00:00:00",
           "close": 63758.21875,
           "ema_fast": 62939.729754691034,
           "ema_slow": 65234.22690744265,
-          "score": -42.984677908756346
+          "score": -42.98467790875828
         },
         {
           "date": "2026-07-13T00:00:00",
           "close": 62239.12109375,
           "ema_fast": 62873.00512031569,
           "ema_slow": 65116.77177749392,
-          "score": -49.62168346167318
+          "score": -49.621683461674735
         },
         {
           "date": "2026-07-14T00:00:00",
           "close": 64956.11328125,
           "ema_fast": 63071.396373738,
           "ema_slow": 65110.47144430789,
-          "score": -14.553058548584069
+          "score": -14.553058548585884
         },
         {
           "date": "2026-07-15T00:00:00",
           "close": 64712.375,
           "ema_fast": 63227.68005242963,
           "ema_slow": 65094.85981904092,
-          "score": -10.228585976140398
+          "score": -10.228585976142384
         },
         {
           "date": "2026-07-16T00:00:00",
           "close": 63789.28125,
           "ema_fast": 63281.165880769666,
           "ema_slow": 65043.66065947068,
-          "score": -17.875029373878522
+          "score": -17.8750293738804
         },
         {
           "date": "2026-07-17T00:00:00",
           "close": 63899.4609375,
           "ema_fast": 63340.0511242678,
           "ema_slow": 64998.7900821385,
-          "score": -19.21484189537291
+          "score": -19.214841895374896
         },
         {
           "date": "2026-07-18T00:00:00",
           "close": 64796.6015625,
           "ema_fast": 63478.77021362324,
           "ema_slow": 64990.86112058405,
-          "score": -14.545230784383204
+          "score": -14.545230784385186
         },
         {
           "date": "2026-07-19T00:00:00",
           "close": 64690.8046875,
           "ema_fast": 63594.20206827817,
           "ema_slow": 64979.09420163958,
-          "score": -19.27346862860335
+          "score": -19.273468628605336
         },
         {
           "date": "2026-07-20T00:00:00",
           "close": 65230.02734375,
           "ema_fast": 63749.994951656445,
           "ema_slow": 64988.93471701646,
-          "score": -18.493990585770764
+          "score": -18.493990585772487
         },
         {
           "date": "2026-07-21T00:00:00",
           "close": 66505.125,
           "ema_fast": 64012.388289593924,
           "ema_slow": 65048.393159486404,
-          "score": -11.365857553529766
+          "score": -11.365857553531319
         },
         {
           "date": "2026-07-22T00:00:00",
           "close": 66100.796875,
           "ema_fast": 64211.28434534688,
           "ema_slow": 65089.663893428115,
-          "score": -12.355549284577064
+          "score": -12.355549284578393
         },
         {
           "date": "2026-07-23T00:00:00",
           "close": 65044.8125,
           "ema_fast": 64290.66797912337,
           "ema_slow": 65087.905015254466,
-          "score": -24.888965987289826
+          "score": -24.88896598729095
         },
         {
           "date": "2026-07-24T00:00:00",
           "close": 64098.49609375,
           "ema_fast": 64272.3658948021,
           "ema_slow": 65049.10466539155,
-          "score": -37.01361380055207
+          "score": -37.01361380055331
         },
         {
           "date": "2026-07-25T00:00:00",
           "close": 64311.8125,
           "ema_fast": 64276.122714344754,
           "ema_slow": 65020.1912471409,
-          "score": -37.612443975747695
+          "score": -37.61244397574894
         },
         {
           "date": "2026-07-26T00:00:00",
           "close": 65340.30078125,
           "ema_fast": 64377.47300643096,
           "ema_slow": 65032.744562204,
-          "score": -30.268829943692847
+          "score": -30.268829943694097
         },
         {
           "date": "2026-07-27T00:00:00",
           "close": 63724.8984375,
           "ema_fast": 64315.32304748516,
           "ema_slow": 64981.45647888228,
-          "score": -38.715471457642415
+          "score": -38.71547145764388
         },
         {
           "date": "2026-07-28T00:00:00",
           "close": 63871.36328125,
           "ema_fast": 64273.04116498657,
           "ema_slow": 64937.923412308475,
-          "score": -28.62988423263563
+          "score": -28.62988423263729
         },
         {
           "date": "2026-07-29T00:00:00",
           "close": 63908.16796875,
           "ema_fast": 64238.29133677357,
           "ema_slow": 64897.540845894415,
-          "score": -39.94483036763852
+          "score": -39.944830367639895
         },
         {
           "date": "2026-07-30T00:00:00",
           "close": 64725.30859375,
           "ema_fast": 64284.67393267608,
           "ema_slow": 64890.786639927974,
-          "score": -31.934228639279304
+          "score": -31.934228639280636
         },
         {
           "date": "2026-07-31T00:00:00",
           "close": 62813.74609375,
           "ema_fast": 64144.58556706407,
           "ema_slow": 64809.334069489625,
-          "score": -54.35805958371591
+          "score": -54.358059583716916
         },
         {
           "date": "2026-08-01T00:00:00",
           "close": 62763.3203125,
           "ema_fast": 64013.036495200824,
           "ema_slow": 64729.098235882186,
-          "score": -55.612742685243546
+          "score": -55.61274268524457
         },
         {
           "date": "2026-08-02T00:00:00",
           "close": 63482.0,
           "ema_fast": 63962.46159089598,
           "ema_slow": 64680.19242271034,
-          "score": -32.512484864885785
+          "score": -32.512484864886815
         },
         {
           "date": "2026-08-03T00:00:00",
           "close": 63460.8984375,
           "ema_fast": 63914.69367152493,
           "ema_slow": 64632.37697230994,
-          "score": -50.65102500338657
+          "score": -50.651025003387836
         },
         {
           "date": "2026-08-04T00:00:00",
           "close": 64055.953125,
           "ema_fast": 63928.14695280827,
           "ema_slow": 64609.77211555269,
-          "score": -36.4613296286592
+          "score": -36.461329628660785
         },
         {
           "date": "2026-08-05T00:00:00",
           "close": 64597.5,
           "ema_fast": 63991.89486206462,
           "ema_slow": 64609.290856119245,
-          "score": -17.36304102239528
+          "score": -17.36304102239687
         },
         {
           "date": "2026-08-06T00:00:00",
           "close": 64262.11328125,
           "ema_fast": 64017.62994960609,
           "ema_slow": 64595.67604926163,
-          "score": -19.992641059197574
+          "score": -19.992641059198924
         },
         {
           "date": "2026-08-07T00:00:00",
           "close": 64880.19140625,
           "ema_fast": 64099.77865976265,
           "ema_slow": 64606.833514241574,
-          "score": -14.800497117431396
+          "score": -14.800497117432931
         },
         {
           "date": "2026-08-08T00:00:00",
           "close": 64904.6875,
           "ema_fast": 64176.43664454716,
           "ema_slow": 64618.51406270269,
-          "score": -12.316519620443302
+          "score": -12.316519620444843
         },
         {
           "date": "2026-08-09T00:00:00",
           "close": 64844.88671875,
           "ema_fast": 64240.098556376004,
           "ema_slow": 64627.39142176337,
-          "score": -14.066770140455414
+          "score": -14.06677014045697
         },
         {
           "date": "2026-08-10T00:00:00",
           "close": 63910.5859375,
           "ema_fast": 64208.71640219734,
           "ema_slow": 64599.281402772656,
-          "score": -33.75848366542983
+          "score": -33.758483665431086
         },
         {
           "date": "2026-08-11T00:00:00",
           "close": 63551.875,
           "ema_fast": 64146.160078178546,
           "ema_slow": 64558.20664187961,
-          "score": -34.32811577709166
+          "score": -34.32811577709302
         },
         {
           "date": "2026-08-12T00:00:00",
           "close": 63402.43359375,
           "ema_fast": 64075.328984423446,
           "ema_slow": 64512.88220861963,
-          "score": -25.628271392508836
+          "score": -25.628271392510285
         },
         {
           "date": "2026-08-13T00:00:00",
           "close": 63402.171875,
           "ema_fast": 64011.218783525976,
           "ema_slow": 64469.32494063454,
-          "score": -17.767377060378823
+          "score": -17.76737706038046
         },
         {
           "date": "2026-08-14T00:00:00",
           "close": 62975.59375,
           "ema_fast": 63912.58782795207,
           "ema_slow": 64410.747246884166,
-          "score": -25.97222637295021
+          "score": -25.972226372951674
         },
         {
           "date": "2026-08-15T00:00:00",
           "close": 63024.3203125,
           "ema_fast": 63827.990921718534,
           "ema_slow": 64356.37756318283,
-          "score": -31.02792962967765
+          "score": -31.027929629679114
         },
         {
           "date": "2026-08-16T00:00:00",
           "close": 62818.65234375,
           "ema_fast": 63731.86343810248,
           "ema_slow": 64296.07461340116,
-          "score": -26.027743037781985
+          "score": -26.027743037783456
         },
         {
           "date": "2026-08-17T00:00:00",
           "close": 64506.25390625,
           "ema_fast": 63805.61491125939,
           "ema_slow": 64304.316938610915,
-          "score": -8.617252923706708
+          "score": -8.617252923708016
         },
         {
           "date": "2026-08-18T00:00:00",
           "close": 64680.7109375,
           "ema_fast": 63888.95738994898,
           "ema_slow": 64319.077487586954,
-          "score": -3.6178304845111313
+          "score": -3.6178304845124796
         },
         {
           "date": "2026-08-19T00:00:00",
           "close": 69266.1875,
           "ema_fast": 64401.07454328717,
           "ema_slow": 64513.08180179923,
-          "score": 23.7430994112645
+          "score": 23.743099411262936
         },
         {
           "date": "2026-08-20T00:00:00",
           "close": 73032.7578125,
           "ema_fast": 65223.13961654554,
           "ema_slow": 64847.18674339534,
-          "score": 38.215479068685575
+          "score": 38.21547906868414
         },
         {
           "date": "2026-08-21T00:00:00",
           "close": 78335.1875,
           "ema_fast": 66471.90608163644,
           "ema_slow": 65376.1279495367,
-          "score": 61.62361604744022
+          "score": 61.62361604743918
         },
         {
           "date": "2026-08-22T00:00:00",
           "close": 77083.4140625,
           "ema_fast": 67482.52588933773,
           "ema_slow": 65835.2372088686,
-          "score": 64.47139902349885
+          "score": 64.4713990234978
         },
         {
           "date": "2026-08-23T00:00:00",
           "close": 77755.265625,
           "ema_fast": 68460.8820546389,
           "ema_slow": 66302.68930361886,
-          "score": 59.283884121457454
+          "score": 59.28388412145641
         },
         {
           "date": "2026-08-24T00:00:00",
           "close": 78964.484375,
           "ema_fast": 69461.22513276854,
           "ema_slow": 66799.23028681027,
-          "score": 51.80265758872541
+          "score": 51.80265758872424
         },
         {
           "date": "2026-08-25T00:00:00",
           "close": 78564.9765625,
           "ema_fast": 70328.24907845724,
           "ema_slow": 67260.6321015432,
-          "score": 56.728835624023475
+          "score": 56.728835624022174
         },
         {
           "date": "2026-08-26T00:00:00",
           "close": 79027.421875,
           "ema_fast": 71156.74172574702,
           "ema_slow": 67722.0748377572,
-          "score": 57.10008808209119
+          "score": 57.10008808208991
         },
         {
           "date": "2026-08-27T00:00:00",
           "close": 80257.5390625,
           "ema_fast": 72023.48432924731,
           "ema_slow": 68213.66167010006,
-          "score": 56.90533066475313
+          "score": 56.90533066475188
         },
         {
           "date": "2026-08-28T00:00:00",
           "close": 77830.2890625,
           "ema_fast": 72576.51335146185,
           "ema_slow": 68590.78431293927,
-          "score": 53.23835220545655
+          "score": 53.23835220545545
         },
         {
           "date": "2026-08-29T00:00:00",
           "close": 78245.8125,
           "ema_fast": 73116.44660370357,
           "ema_slow": 68969.4128692946,
-          "score": 53.38800638568291
+          "score": 53.388006385681805
         },
         {
           "date": "2026-08-30T00:00:00",
           "close": 77667.5703125,
           "ema_fast": 73549.88695692227,
           "ema_slow": 69310.51708275363,
-          "score": 54.85690562742354
+          "score": 54.85690562742244
         },
         {
           "date": "2026-08-31T00:00:00",
           "close": 78548.6328125,
           "ema_fast": 74025.95799078683,
           "ema_slow": 69672.79613097898,
-          "score": 55.52251564172195
+          "score": 55.5225156417209
         },
         {
           "date": "2026-09-01T00:00:00",
           "close": 77403.625,
           "ema_fast": 74347.64056309283,
           "ema_slow": 69975.96589054844,
-          "score": 49.7658168500696
+          "score": 49.76581685006866
         },
         {
           "date": "2026-09-02T00:00:00",
           "close": 77300.4765625,
           "ema_fast": 74628.86303922685,
           "ema_slow": 70263.201603174,
-          "score": 48.30673443150846
+          "score": 48.30673443150752
         },
         {
           "date": "2026-09-03T00:00:00",
           "close": 81271.7421875,
           "ema_fast": 75261.51819620526,
           "ema_slow": 70694.90907706915,
-          "score": 54.57875193326204
+          "score": 54.57875193326104
         },
         {
           "date": "2026-09-04T00:00:00",
           "close": 79671.96875,
           "ema_fast": 75681.56110609048,
           "ema_slow": 71046.95063287036,
-          "score": 52.61207721306312
+          "score": 52.61207721306214
         },
         {
           "date": "2026-09-05T00:00:00",
           "close": 79823.8671875,
           "ema_fast": 76076.06644717709,
           "ema_slow": 71391.14343893426,
-          "score": 52.72473358565792
+          "score": 52.72473358565694
         },
         {
           "date": "2026-09-06T00:00:00",
           "close": 80350.046875,
           "ema_fast": 76483.11220220785,
           "ema_slow": 71742.47298544664,
-          "score": 54.338760595257845
+          "score": 54.33876059525686
         },
         {
           "date": "2026-09-07T00:00:00",
           "close": 79115.8515625,
           "ema_fast": 76733.84928414044,
           "ema_slow": 72031.62508650757,
-          "score": 56.12190855824211
+          "score": 56.12190855824112
         },
         {
           "date": "2026-09-08T00:00:00",
           "close": 78438.578125,
           "ema_fast": 76896.20441184135,
           "ema_slow": 72282.87814684061,
-          "score": 52.32840161727115
+          "score": 52.32840161727021
         },
         {
           "date": "2026-09-09T00:00:00",
           "close": 78259.5234375,
           "ema_fast": 77026.04431904692,
           "ema_slow": 72517.25639353314,
-          "score": 48.61327918764887
+          "score": 48.61327918764785
         },
         {
           "date": "2026-09-10T00:00:00",
           "close": 76568.125,
           "ema_fast": 76982.43295532817,
           "ema_slow": 72676.11398594361,
-          "score": 7.2308665971217305
+          "score": 7.230866597121063
         },
         {
           "date": "2026-09-11T00:00:00",
           "close": 77173.796875,
           "ema_fast": 77000.65809053501,
           "ema_slow": 72852.49370708308,
-          "score": 21.706516396878676
+          "score": 21.706516396878023
         },
         {
           "date": "2026-09-12T00:00:00",
           "close": 77270.46875,
           "ema_fast": 77026.3543438174,
           "ema_slow": 73025.74763033472,
-          "score": 18.123990481645226
+          "score": 18.12399048164456
         },
         {
           "date": "2026-09-13T00:00:00",
           "close": 76838.15625,
           "ema_fast": 77008.4307158348,
           "ema_slow": 73175.25385071375,
-          "score": 8.705405958479258
+          "score": 8.70540595847859
         },
         {
           "date": "2026-09-14T00:00:00",
           "close": 78163.3828125,
           "ema_fast": 77118.42615361242,
           "ema_slow": 73370.86675117596,
-          "score": 18.188449008256626
+          "score": 18.188449008255972
         },
         {
           "date": "2026-09-15T00:00:00",
           "close": 75612.5078125,
           "ema_fast": 76975.00535922077,
           "ema_slow": 73458.77424377689,
-          "score": -4.677743409086675
+          "score": -4.677743409087263
         },
         {
           "date": "2026-09-16T00:00:00",
           "close": 76150.3203125,
           "ema_fast": 76896.46392619974,
           "ema_slow": 73564.32507000133,
-          "score": -8.123707498422512
+          "score": -8.123707498423087
         },
         {
           "date": "2026-09-17T00:00:00",
           "close": 76403.7734375,
           "ema_fast": 76849.54102251405,
           "ema_slow": 73675.67598637383,
-          "score": 9.069661806816441
+          "score": 9.069661806815692
         },
         {
           "date": "2026-09-18T00:00:00",
           "close": 80901.4609375,
           "ema_fast": 77235.43815727462,
           "ema_slow": 73959.04010210426,
-          "score": 39.57041522121002
+          "score": 39.57041522120942
         },
         {
           "date": "2026-09-19T00:00:00",
           "close": 81233.6796875,
           "ema_fast": 77616.22306491515,
           "ema_slow": 74244.32008584528,
-          "score": 43.31256932674087
+          "score": 43.312569326740274
         },
         {
           "date": "2026-09-20T00:00:00",
           "close": 81142.609375,
           "ema_fast": 77952.06938016132,
           "ema_slow": 74514.84123443958,
-          "score": 39.92466544709613
+          "score": 39.92466544709552
         },
         {
           "date": "2026-09-21T00:00:00",
           "close": 86602.9140625,
           "ema_fast": 78775.95934990786,
           "ema_slow": 74988.88330612822,
-          "score": 60.20973669372325
+          "score": 60.209736693722526
         },
         {
           "date": "2026-09-22T00:00:00",
           "close": 86172.28125,
           "ema_fast": 79480.37095944045,
           "ema_slow": 75427.4479313781,
-          "score": 59.12993511274189
+          "score": 59.12993511274116
         },
         {
-          "date": "2026-09-23T00:00:00",
-          "close": 84461.96875,
-          "ema_fast": 79954.80884425565,
-          "ema_slow": 75781.74286544172,
-          "score": 45.15294602091556
+          "date": "2026-09-24T00:00:00",
+          "close": 83861.84375,
+          "ema_fast": 79897.65408235088,
+          "ema_slow": 75758.20855171622,
+          "score": 42.198023688901706
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Bank of Japan",
+          "currency": "JPY",
+          "headline": "Statistics on Securities Financing Transactions in Japan",
+          "url": "http://www.boj.or.jp/en/statistics/bis/repo/index.htm",
+          "published_at": "2026-09-23T23:50:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -2051,13 +2058,6 @@
           "headline": "Almost ten million people took part in ECB survey on new euro banknotes",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260923~6ebddaf01e.en.html",
           "published_at": "2026-09-23T09:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
-          "published_at": "2026-09-22T20:30:00+00:00"
         }
       ],
       "positioning": {
@@ -2066,7 +2066,7 @@
           "currency": "BTC",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": 1538.0,
           "open_interest_change": -310.0,
           "history_observations": 156,
@@ -2085,7 +2085,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2114,20 +2114,20 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.49272486772486773,
-          "OOS observations": 1512.0
+          "OOS directional accuracy": 0.4930509596293845,
+          "OOS observations": 1511.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 1710,
-            "Evaluation windows": 2052,
-            "Coverage": 0.8333333333333334,
+            "OOS observations": 1709,
+            "Evaluation windows": 2051,
+            "Coverage": 0.833252072159922,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.48830409356725146,
-            "MA accuracy": 0.49064327485380116,
-            "Majority baseline": 0.49707602339181284,
-            "Lift vs baseline": -0.008771929824561375
+            "Model accuracy": 0.4885898186073727,
+            "MA accuracy": 0.4909303686366296,
+            "Majority baseline": 0.497366881217086,
+            "Lift vs baseline": -0.008777062609713282
           },
           {
             "Horizon": "5D",
@@ -2135,21 +2135,21 @@
             "Evaluation windows": 410,
             "Coverage": 0.8292682926829268,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.4970588235294118,
-            "MA accuracy": 0.5029411764705882,
-            "Majority baseline": 0.5205882352941177,
-            "Lift vs baseline": -0.02352941176470591
+            "Model accuracy": 0.49411764705882355,
+            "MA accuracy": 0.5058823529411764,
+            "Majority baseline": 0.5294117647058824,
+            "Lift vs baseline": -0.03529411764705881
           },
           {
             "Horizon": "20D",
-            "OOS observations": 88,
+            "OOS observations": 87,
             "Evaluation windows": 102,
-            "Coverage": 0.8627450980392157,
+            "Coverage": 0.8529411764705882,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5340909090909091,
-            "MA accuracy": 0.5568181818181818,
-            "Majority baseline": 0.5,
-            "Lift vs baseline": 0.03409090909090906
+            "Model accuracy": 0.5287356321839081,
+            "MA accuracy": 0.5402298850574713,
+            "Majority baseline": 0.47126436781609193,
+            "Lift vs baseline": 0.05747126436781613
           }
         ]
       }
@@ -2159,25 +2159,25 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5724491477012634,
-      "live_price": 0.567794680595398,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 0.5674402713775635,
+      "live_price": 0.5674402713775635,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -25.8,
+      "score": -30.9,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4686,
-        "Range/neutral": 0.2047,
-        "Bearish": 0.3267
+        "Bullish": 0.4996,
+        "Range/neutral": 0.1834,
+        "Bearish": 0.3169
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "base yield"
@@ -2186,11 +2186,11 @@
       "market": {
         "yield_spread": -0.25,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05679938437266185,
+        "volatility": 0.06093310711809901,
         "regime": "Range / transition",
-        "support20": 0.5711609125137329,
+        "support20": 0.5674402713775635,
         "resistance20": 0.5954897403717041,
-        "atr20": 0.0019660592079162676,
+        "atr20": 0.0020785778760910117,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Momentum",
-            "contribution": -9.476795529109909
+            "contribution": -10.025839793863978
           },
           {
             "name": "Trend",
-            "contribution": -7.196521172147345
+            "contribution": -8.541817230589029
           },
           {
             "name": "RSI",
-            "contribution": -5.896981511878024
+            "contribution": -6.430722798234619
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -3.257334052603698
+            "contribution": -5.853006647633843
           },
           {
             "name": "Rate differential",
@@ -2228,13 +2228,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 0.5825400948524475,
-          "ema_fast": 0.5796785379000309,
-          "ema_slow": 0.5844399401723805,
-          "score": 2.9514723431743217
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 0.585048496723175,
@@ -3067,6 +3060,13 @@
           "ema_fast": 0.58024243353753,
           "ema_slow": 0.5830945824061035,
           "score": -25.827632265738977
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 0.5674402713775635,
+          "ema_fast": 0.5790231799984856,
+          "ema_slow": 0.5824806878559646,
+          "score": -30.85138647032147
         }
       ],
       "events": {
@@ -3114,7 +3114,7 @@
           "currency": "NZD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": 15584.0,
           "open_interest_change": 9144.0,
           "history_observations": 156,
@@ -3133,7 +3133,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3162,42 +3162,42 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5038560411311054,
-          "OOS observations": 778.0
+          "OOS directional accuracy": 0.5044929396662388,
+          "OOS observations": 779.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 844,
+            "OOS observations": 845,
             "Evaluation windows": 1317,
-            "Coverage": 0.6408504176157934,
+            "Coverage": 0.6416097190584662,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.504739336492891,
-            "MA accuracy": 0.49644549763033174,
-            "Majority baseline": 0.476303317535545,
-            "Lift vs baseline": 0.028436018957346043
+            "Model accuracy": 0.5053254437869823,
+            "MA accuracy": 0.4970414201183432,
+            "Majority baseline": 0.4757396449704142,
+            "Lift vs baseline": 0.029585798816568087
           },
           {
             "Horizon": "5D",
-            "OOS observations": 159,
+            "OOS observations": 169,
             "Evaluation windows": 263,
-            "Coverage": 0.6045627376425855,
+            "Coverage": 0.6425855513307985,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.4968553459119497,
-            "MA accuracy": 0.48427672955974843,
-            "Majority baseline": 0.44654088050314467,
-            "Lift vs baseline": 0.05031446540880502
+            "Model accuracy": 0.47928994082840237,
+            "MA accuracy": 0.48520710059171596,
+            "Majority baseline": 0.47928994082840237,
+            "Lift vs baseline": 0.0
           },
           {
             "Horizon": "20D",
-            "OOS observations": 39,
+            "OOS observations": 42,
             "Evaluation windows": 65,
-            "Coverage": 0.6,
+            "Coverage": 0.6461538461538462,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.38461538461538464,
-            "MA accuracy": 0.358974358974359,
-            "Majority baseline": 0.5641025641025641,
-            "Lift vs baseline": -0.17948717948717946
+            "Model accuracy": 0.42857142857142855,
+            "MA accuracy": 0.40476190476190477,
+            "Majority baseline": 0.5,
+            "Lift vs baseline": -0.07142857142857145
           }
         ]
       }
@@ -3207,25 +3207,25 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3343117237091064,
-      "live_price": 1.3238720893859863,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 1.3242928981781006,
+      "live_price": 1.3242928981781006,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -21.6,
+      "score": -24.8,
       "bias": "Bullish",
-      "confidence": "Low",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4276,
-        "Range/neutral": 0.1587,
-        "Bearish": 0.4137
+        "Bullish": 0.4456,
+        "Range/neutral": 0.1197,
+        "Bearish": 0.4347
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "base yield"
@@ -3234,11 +3234,11 @@
       "market": {
         "yield_spread": 0.02859999999999996,
         "macro_label": "10Y yield spread",
-        "volatility": 0.03925918579563104,
+        "volatility": 0.0445675539526874,
         "regime": "Range / transition",
-        "support20": 1.3343117237091064,
+        "support20": 1.3242928981781006,
         "resistance20": 1.3597116470336914,
-        "atr20": 0.0029415905475616783,
+        "atr20": 0.0031920313835144378,
         "driver": "US dollar index"
       },
       "model": {
@@ -3247,19 +3247,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -8.118644975554686
+            "contribution": -8.068364947139345
           },
           {
             "name": "RSI",
-            "contribution": -6.455791991864887
+            "contribution": -7.340974799410513
           },
           {
             "name": "Momentum",
-            "contribution": -6.1545205706423465
+            "contribution": -7.039823739663584
           },
           {
             "name": "Trend",
-            "contribution": -0.8789013485162765
+            "contribution": -2.38951804592445
           },
           {
             "name": "Rate differential",
@@ -3276,13 +3276,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 1.3394052982330322,
-          "ema_fast": 1.3324510367989335,
-          "ema_slow": 1.3385081044693203,
-          "score": 15.129366833607344
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 1.3430029153823853,
@@ -4114,7 +4107,14 @@
           "close": 1.3343117237091064,
           "ema_fast": 1.346355531798274,
           "ema_slow": 1.347055325217659,
-          "score": -21.607858886578192
+          "score": -21.565133841557394
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 1.3242928981781006,
+          "ema_fast": 1.3442543285963529,
+          "ema_slow": 1.3461626810200291,
+          "score": -24.83868153213789
         }
       ],
       "events": {
@@ -4162,7 +4162,7 @@
           "currency": "GBP",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -15749.0,
           "open_interest_change": -4315.0,
           "history_observations": 156,
@@ -4181,7 +4181,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4227,25 +4227,25 @@
           },
           {
             "Horizon": "5D",
-            "OOS observations": 165,
+            "OOS observations": 163,
             "Evaluation windows": 263,
-            "Coverage": 0.6273764258555133,
+            "Coverage": 0.6197718631178707,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5333333333333333,
-            "MA accuracy": 0.5333333333333333,
-            "Majority baseline": 0.5151515151515151,
-            "Lift vs baseline": 0.018181818181818188
+            "Model accuracy": 0.48466257668711654,
+            "MA accuracy": 0.49079754601226994,
+            "Majority baseline": 0.4601226993865031,
+            "Lift vs baseline": 0.024539877300613466
           },
           {
             "Horizon": "20D",
-            "OOS observations": 44,
+            "OOS observations": 45,
             "Evaluation windows": 65,
-            "Coverage": 0.676923076923077,
+            "Coverage": 0.6923076923076923,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.45454545454545453,
-            "MA accuracy": 0.45454545454545453,
-            "Majority baseline": 0.5454545454545454,
-            "Lift vs baseline": -0.09090909090909088
+            "Model accuracy": 0.4,
+            "MA accuracy": 0.4222222222222222,
+            "Majority baseline": 0.5777777777777777,
+            "Lift vs baseline": -0.1777777777777777
           }
         ]
       }
@@ -4255,25 +4255,25 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.1447935104370117,
-      "live_price": 1.1384334564208984,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 1.1385631561279297,
+      "live_price": 1.1385631561279297,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -19.8,
+      "score": -22.4,
       "bias": "Bearish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3419,
-        "Range/neutral": 0.2061,
-        "Bearish": 0.452
+        "Bullish": 0.3719,
+        "Range/neutral": 0.1997,
+        "Bearish": 0.4283
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "base yield"
@@ -4282,11 +4282,11 @@
       "market": {
         "yield_spread": -1.7390159091,
         "macro_label": "10Y yield spread",
-        "volatility": 0.037459564913422845,
+        "volatility": 0.040636880548379245,
         "regime": "Range / transition",
-        "support20": 1.1447935104370117,
+        "support20": 1.1385631561279297,
         "resistance20": 1.1656370162963867,
-        "atr20": 0.0021655857563018946,
+        "atr20": 0.0023777782917022853,
         "driver": "US dollar index"
       },
       "model": {
@@ -4294,20 +4294,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "Cross-asset driver",
-            "contribution": -7.442091227591795
+            "name": "RSI",
+            "contribution": -7.401966216266381
           },
           {
-            "name": "RSI",
-            "contribution": -6.760413876415825
+            "name": "Cross-asset driver",
+            "contribution": -7.3960012015444
           },
           {
             "name": "Momentum",
-            "contribution": -4.766922323468641
+            "contribution": -5.560772114442815
           },
           {
             "name": "Trend",
-            "contribution": -0.8171013822335979
+            "contribution": -2.0269789506953124
           },
           {
             "name": "Rate differential",
@@ -4324,13 +4324,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 1.16593599319458,
-          "ema_fast": 1.1583765997847701,
-          "ema_slow": 1.1634059956176006,
-          "score": 1.8828460921788817
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 1.1691256761550903,
@@ -5162,7 +5155,14 @@
           "close": 1.1447935104370117,
           "ema_fast": 1.154443392283379,
           "ema_slow": 1.1550265735015557,
-          "score": -19.78652880970986
+          "score": -19.747364185107458
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 1.1385631561279297,
+          "ema_fast": 1.152930988840003,
+          "ema_slow": 1.1543809492908252,
+          "score": -22.38571848294891
         }
       ],
       "events": {
@@ -5210,7 +5210,7 @@
           "currency": "EUR",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": 5129.0,
           "open_interest_change": -22429.0,
           "history_observations": 156,
@@ -5229,7 +5229,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5258,8 +5258,8 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5141318977119784,
-          "OOS observations": 743.0
+          "OOS directional accuracy": 0.5134770889487871,
+          "OOS observations": 742.0
         },
         "horizons": [
           {
@@ -5275,25 +5275,25 @@
           },
           {
             "Horizon": "5D",
-            "OOS observations": 170,
+            "OOS observations": 169,
             "Evaluation windows": 263,
-            "Coverage": 0.6463878326996197,
+            "Coverage": 0.6425855513307985,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5235294117647059,
-            "MA accuracy": 0.5294117647058824,
-            "Majority baseline": 0.5176470588235295,
-            "Lift vs baseline": 0.00588235294117645
+            "Model accuracy": 0.4911242603550296,
+            "MA accuracy": 0.47337278106508873,
+            "Majority baseline": 0.47928994082840237,
+            "Lift vs baseline": 0.011834319526627224
           },
           {
             "Horizon": "20D",
-            "OOS observations": 45,
+            "OOS observations": 46,
             "Evaluation windows": 65,
-            "Coverage": 0.6923076923076923,
+            "Coverage": 0.7076923076923077,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5555555555555556,
-            "MA accuracy": 0.5777777777777777,
-            "Majority baseline": 0.4666666666666667,
-            "Lift vs baseline": 0.0888888888888889
+            "Model accuracy": 0.5,
+            "MA accuracy": 0.4782608695652174,
+            "Majority baseline": 0.4782608695652174,
+            "Lift vs baseline": 0.021739130434782594
           }
         ]
       }
@@ -5303,25 +5303,25 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8208199739456177,
-      "live_price": 0.8250799775123596,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 0.8242200016975403,
+      "live_price": 0.8242400288581848,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 19.8,
+      "score": 19.0,
       "bias": "Bearish",
-      "confidence": "Low",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3813,
-        "Range/neutral": 0.1904,
-        "Bearish": 0.4283
+        "Bullish": 0.3649,
+        "Range/neutral": 0.1913,
+        "Bearish": 0.4438
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "quote yield"
@@ -5330,11 +5330,11 @@
       "market": {
         "yield_spread": 4.49,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05414866640258144,
+        "volatility": 0.054140440372495414,
         "regime": "Range / transition",
         "support20": 0.8037599921226501,
         "resistance20": 0.8253200054168701,
-        "atr20": 0.002240997552871728,
+        "atr20": 0.0022444993257522833,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 8.386362011054345
-          },
-          {
-            "name": "Momentum",
-            "contribution": 5.303250409237456
+            "contribution": 8.831807428436687
           },
           {
             "name": "RSI",
-            "contribution": 5.12530167241559
+            "contribution": 6.189568304758376
+          },
+          {
+            "name": "Momentum",
+            "contribution": 5.301030865364591
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 0.9856885366466915
+            "contribution": -1.3211498081135928
           },
           {
             "name": "Rate differential",
@@ -5372,13 +5372,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 0.7914000153541565,
-          "ema_fast": 0.7917570568487484,
-          "ema_slow": 0.7875732654673372,
-          "score": 7.74716205686569
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 0.7908700108528137,
@@ -6211,6 +6204,13 @@
           "ema_fast": 0.8156577513549116,
           "ema_slow": 0.8109450558142922,
           "score": 19.80060262935408
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 0.8242200016975403,
+          "ema_fast": 0.8164732037684953,
+          "ema_slow": 0.8114656419273608,
+          "score": 19.00125679044606
         }
       ],
       "events": {
@@ -6258,7 +6258,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -6277,7 +6277,7 @@
           "currency": "CHF",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -1524.0,
           "open_interest_change": 17630.0,
           "history_observations": 156,
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6306,42 +6306,42 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.525096525096525,
-          "OOS observations": 777.0
+          "OOS directional accuracy": 0.525706940874036,
+          "OOS observations": 778.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 803,
+            "OOS observations": 804,
             "Evaluation windows": 1317,
-            "Coverage": 0.6097190584662111,
+            "Coverage": 0.6104783599088838,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5180572851805728,
-            "MA accuracy": 0.5155666251556662,
-            "Majority baseline": 0.526774595267746,
-            "Lift vs baseline": -0.008717310087173136
+            "Model accuracy": 0.5186567164179104,
+            "MA accuracy": 0.5161691542288557,
+            "Majority baseline": 0.527363184079602,
+            "Lift vs baseline": -0.008706467661691586
           },
           {
             "Horizon": "5D",
-            "OOS observations": 163,
+            "OOS observations": 157,
             "Evaluation windows": 263,
-            "Coverage": 0.6197718631178707,
+            "Coverage": 0.596958174904943,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5337423312883436,
-            "MA accuracy": 0.50920245398773,
-            "Majority baseline": 0.4601226993865031,
-            "Lift vs baseline": 0.07361963190184051
+            "Model accuracy": 0.5159235668789809,
+            "MA accuracy": 0.4713375796178344,
+            "Majority baseline": 0.46496815286624205,
+            "Lift vs baseline": 0.05095541401273884
           },
           {
             "Horizon": "20D",
-            "OOS observations": 38,
+            "OOS observations": 39,
             "Evaluation windows": 65,
-            "Coverage": 0.5846153846153846,
+            "Coverage": 0.6,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5,
-            "MA accuracy": 0.39473684210526316,
-            "Majority baseline": 0.47368421052631576,
-            "Lift vs baseline": 0.026315789473684237
+            "Model accuracy": 0.5384615384615384,
+            "MA accuracy": 0.48717948717948717,
+            "Majority baseline": 0.46153846153846156,
+            "Lift vs baseline": 0.07692307692307687
           }
         ]
       }
@@ -6351,25 +6351,25 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 157.46400451660156,
-      "live_price": 158.33200073242188,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 157.8990020751953,
+      "live_price": 157.9080047607422,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": -12.0,
+      "score": -11.3,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.389,
-        "Range/neutral": 0.2224,
-        "Bearish": 0.3887
+        "Bullish": 0.3967,
+        "Range/neutral": 0.2304,
+        "Bearish": 0.3728
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "quote yield"
@@ -6378,11 +6378,11 @@
       "market": {
         "yield_spread": 2.02,
         "macro_label": "10Y yield spread",
-        "volatility": 0.11387081360503751,
+        "volatility": 0.11445064967123551,
         "regime": "Range / transition",
         "support20": 153.4239959716797,
         "resistance20": 160.1959991455078,
-        "atr20": 0.7808502197265653,
+        "atr20": 0.8010002136230494,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -11.220266361175101
-          },
-          {
-            "name": "Momentum",
-            "contribution": -2.6003638308207933
+            "contribution": -10.46327900550593
           },
           {
             "name": "RSI",
-            "contribution": 1.1069093273310977
+            "contribution": 2.1183631532716984
+          },
+          {
+            "name": "Momentum",
+            "contribution": -2.01724524819879
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 0.726945295776935
+            "contribution": -0.9743479834837747
           },
           {
             "name": "Rate differential",
@@ -6420,13 +6420,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 158.64199829101562,
-          "ema_fast": 158.85756563793117,
-          "ema_slow": 157.7837938384946,
-          "score": -16.216878853130936
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 159.11199951171875,
@@ -7259,6 +7252,13 @@
           "ema_fast": 156.6541202897295,
           "ema_slow": 158.05408087009647,
           "score": -11.986775568887863
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 157.8990020751953,
+          "ema_fast": 156.77268045977385,
+          "ema_slow": 158.0479993487278,
+          "score": -11.336509083916797
         }
       ],
       "events": {
@@ -7271,6 +7271,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Bank of Japan",
+          "currency": "JPY",
+          "headline": "Statistics on Securities Financing Transactions in Japan",
+          "url": "http://www.boj.or.jp/en/statistics/bis/repo/index.htm",
+          "published_at": "2026-09-23T23:50:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -7291,13 +7298,6 @@
           "headline": "Federal Reserve Board announces termination of enforcement action with SNB Bancshares and Bank of Eufaula",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918b.htm",
           "published_at": "2026-09-18T15:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Change in the Guideline for Money Market Operations",
-          "url": "http://www.boj.or.jp/en/mopo/mpmdeci/mpr_2026/k260918a.pdf",
-          "published_at": "2026-09-18T03:40:00+00:00"
         }
       ],
       "positioning": {
@@ -7306,7 +7306,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -7325,7 +7325,7 @@
           "currency": "JPY",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": 72268.0,
           "open_interest_change": 43167.0,
           "history_observations": 156,
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7371,25 +7371,25 @@
           },
           {
             "Horizon": "5D",
-            "OOS observations": 170,
+            "OOS observations": 165,
             "Evaluation windows": 263,
-            "Coverage": 0.6463878326996197,
+            "Coverage": 0.6273764258555133,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5,
-            "MA accuracy": 0.5352941176470588,
-            "Majority baseline": 0.5705882352941176,
-            "Lift vs baseline": -0.07058823529411762
+            "Model accuracy": 0.5454545454545454,
+            "MA accuracy": 0.6,
+            "Majority baseline": 0.6060606060606061,
+            "Lift vs baseline": -0.06060606060606066
           },
           {
             "Horizon": "20D",
-            "OOS observations": 43,
+            "OOS observations": 42,
             "Evaluation windows": 65,
-            "Coverage": 0.6615384615384615,
+            "Coverage": 0.6461538461538462,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.4418604651162791,
-            "MA accuracy": 0.5581395348837209,
-            "Majority baseline": 0.6511627906976745,
-            "Lift vs baseline": -0.2093023255813954
+            "Model accuracy": 0.5476190476190477,
+            "MA accuracy": 0.5952380952380952,
+            "Majority baseline": 0.6190476190476191,
+            "Lift vs baseline": -0.0714285714285714
           }
         ]
       }
@@ -7399,25 +7399,25 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.4065699577331543,
-      "live_price": 1.4103000164031982,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 1.4102699756622314,
+      "live_price": 1.4102699756622314,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 3.2,
+      "score": 6.4,
       "bias": "Bullish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4368,
-        "Range/neutral": 0.2065,
-        "Bearish": 0.3567
+        "Bullish": 0.429,
+        "Range/neutral": 0.1742,
+        "Bearish": 0.3968
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "quote yield"
@@ -7426,11 +7426,11 @@
       "market": {
         "yield_spread": 1.2850000000000001,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04228639547670507,
+        "volatility": 0.04218298308465391,
         "regime": "Range / transition",
         "support20": 1.377750039100647,
-        "resistance20": 1.4065699577331543,
-        "atr20": 0.003471505641937292,
+        "resistance20": 1.4102699756622314,
+        "atr20": 0.003462505340576214,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -7438,20 +7438,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "Cross-asset driver",
-            "contribution": -5.782093655972771
+            "name": "RSI",
+            "contribution": 6.116642353943396
           },
           {
-            "name": "RSI",
-            "contribution": 5.766985020986436
+            "name": "Cross-asset driver",
+            "contribution": -3.88262397570188
           },
           {
             "name": "Momentum",
-            "contribution": 3.8281706013332943
+            "contribution": 3.7903167264815543
           },
           {
             "name": "Trend",
-            "contribution": -0.6456203218139519
+            "contribution": 0.4236382313339495
           },
           {
             "name": "Rate differential",
@@ -7468,13 +7468,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 1.3850500583648682,
-          "ema_fast": 1.3819690251833303,
-          "ema_slow": 1.376643336384317,
-          "score": -1.0685624501045585
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 1.3822699785232544,
@@ -8306,7 +8299,14 @@
           "close": 1.4065699577331543,
           "ema_fast": 1.3926237435594582,
           "ema_slow": 1.3932350684867534,
-          "score": 3.1674416445330067
+          "score": 3.1241287552852093
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 1.4102699756622314,
+          "ema_fast": 1.3943043370930557,
+          "ema_slow": 1.3939031040622625,
+          "score": 6.447973336057021
         }
       ],
       "events": {
@@ -8354,7 +8354,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -8373,7 +8373,7 @@
           "currency": "CAD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": 16426.0,
           "open_interest_change": 23325.0,
           "history_observations": 156,
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8402,42 +8402,42 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5302013422818792,
-          "OOS observations": 745.0
+          "OOS directional accuracy": 0.5309139784946236,
+          "OOS observations": 744.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 703,
+            "OOS observations": 702,
             "Evaluation windows": 1317,
-            "Coverage": 0.5337889141989369,
+            "Coverage": 0.5330296127562643,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5277382645803699,
-            "MA accuracy": 0.49786628733997157,
-            "Majority baseline": 0.47083926031294454,
-            "Lift vs baseline": 0.056899004267425335
+            "Model accuracy": 0.5284900284900285,
+            "MA accuracy": 0.4985754985754986,
+            "Majority baseline": 0.4700854700854701,
+            "Lift vs baseline": 0.05840455840455838
           },
           {
             "Horizon": "5D",
-            "OOS observations": 134,
+            "OOS observations": 144,
             "Evaluation windows": 263,
-            "Coverage": 0.5095057034220533,
+            "Coverage": 0.5475285171102662,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5,
-            "MA accuracy": 0.4253731343283582,
-            "Majority baseline": 0.47761194029850745,
-            "Lift vs baseline": 0.022388059701492546
+            "Model accuracy": 0.4861111111111111,
+            "MA accuracy": 0.4236111111111111,
+            "Majority baseline": 0.4791666666666667,
+            "Lift vs baseline": 0.00694444444444442
           },
           {
             "Horizon": "20D",
-            "OOS observations": 35,
+            "OOS observations": 36,
             "Evaluation windows": 65,
-            "Coverage": 0.5384615384615384,
+            "Coverage": 0.5538461538461539,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.37142857142857144,
-            "MA accuracy": 0.37142857142857144,
-            "Majority baseline": 0.45714285714285713,
-            "Lift vs baseline": -0.08571428571428569
+            "Model accuracy": 0.3888888888888889,
+            "MA accuracy": 0.3888888888888889,
+            "Majority baseline": 0.4722222222222222,
+            "Lift vs baseline": -0.08333333333333331
           }
         ]
       }
@@ -8447,25 +8447,25 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.7112102508544922,
-      "live_price": 0.7039774656295776,
-      "live_price_at": "2026-09-23T23:00:00+00:00",
+      "price": 0.7035317420959473,
+      "live_price": 0.7035317420959473,
+      "live_price_at": "2026-09-24T04:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 1.9,
+      "score": -6.3,
       "bias": "Bearish",
-      "confidence": "Low",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3731,
-        "Range/neutral": 0.1978,
-        "Bearish": 0.4291
+        "Bullish": 0.3892,
+        "Range/neutral": 0.167,
+        "Bearish": 0.4439
       },
       "sample_size": 120,
       "quality": {
         "grade": "C",
         "completeness": 0.75,
-        "last_price": "2026-09-23T00:00:00",
+        "last_price": "2026-09-24T00:00:00",
         "price_age_days": 0,
         "stale_inputs": [
           "base yield"
@@ -8474,11 +8474,11 @@
       "market": {
         "yield_spread": 0.054999999999999716,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05287150201728283,
+        "volatility": 0.06351053503090853,
         "regime": "Range / transition",
-        "support20": 0.7088101506233215,
+        "support20": 0.7035317420959473,
         "resistance20": 0.722089946269989,
-        "atr20": 0.0017418146133422955,
+        "atr20": 0.002044877409935009,
         "driver": "Copper"
       },
       "model": {
@@ -8486,20 +8486,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "Trend",
-            "contribution": 5.919044915628901
+            "name": "RSI",
+            "contribution": -5.454581164692988
           },
           {
             "name": "Momentum",
-            "contribution": -1.8994757550225776
+            "contribution": -4.971825720498926
           },
           {
-            "name": "RSI",
-            "contribution": -1.8934161412755774
+            "name": "Trend",
+            "contribution": 4.6164106771842
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -0.24620249387610332
+            "contribution": -0.4651925040681405
           },
           {
             "name": "Rate differential",
@@ -8516,13 +8516,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-04-09T00:00:00",
-          "close": 0.703937828540802,
-          "ema_fast": 0.6976314708771401,
-          "ema_slow": 0.696293620077812,
-          "score": 9.798409178567528
-        },
         {
           "date": "2026-04-10T00:00:00",
           "close": 0.7075698375701904,
@@ -9354,7 +9347,14 @@
           "close": 0.7112102508544922,
           "ema_fast": 0.7137107308503414,
           "ema_slow": 0.710747553688218,
-          "score": 1.879950525454643
+          "score": -2.320474220713332
+        },
+        {
+          "date": "2026-09-24T00:00:00",
+          "close": 0.7035317420959473,
+          "ema_fast": 0.7127413033499229,
+          "ema_slow": 0.7104645806845995,
+          "score": -6.275188712075854
         }
       ],
       "events": {
@@ -9402,7 +9402,7 @@
           "currency": "AUD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": 11356.0,
           "open_interest_change": 37673.0,
           "history_observations": 156,
@@ -9421,7 +9421,7 @@
           "currency": "USD",
           "available": true,
           "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 8,
+          "age_days": 9,
           "leveraged_change": -11095.0,
           "open_interest_change": -14114.0,
           "history_observations": 156,
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-23T23:41:42.637604+00:00",
+        "fetched_at": "2026-09-24T04:44:55.352935+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -9450,42 +9450,42 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5118549511854951,
-          "OOS observations": 717.0
+          "OOS directional accuracy": 0.5111731843575419,
+          "OOS observations": 716.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 801,
+            "OOS observations": 800,
             "Evaluation windows": 1317,
-            "Coverage": 0.6082004555808656,
+            "Coverage": 0.6074411541381929,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5068664169787765,
-            "MA accuracy": 0.4868913857677903,
-            "Majority baseline": 0.50187265917603,
-            "Lift vs baseline": 0.004993757802746579
+            "Model accuracy": 0.50625,
+            "MA accuracy": 0.48625,
+            "Majority baseline": 0.5025,
+            "Lift vs baseline": 0.003750000000000031
           },
           {
             "Horizon": "5D",
-            "OOS observations": 163,
+            "OOS observations": 164,
             "Evaluation windows": 263,
-            "Coverage": 0.6197718631178707,
+            "Coverage": 0.623574144486692,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.44785276073619634,
-            "MA accuracy": 0.4662576687116564,
-            "Majority baseline": 0.5521472392638037,
-            "Lift vs baseline": -0.10429447852760737
+            "Model accuracy": 0.47560975609756095,
+            "MA accuracy": 0.4573170731707317,
+            "Majority baseline": 0.5426829268292683,
+            "Lift vs baseline": -0.06707317073170738
           },
           {
             "Horizon": "20D",
-            "OOS observations": 40,
+            "OOS observations": 39,
             "Evaluation windows": 65,
-            "Coverage": 0.6153846153846154,
+            "Coverage": 0.6,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.375,
-            "MA accuracy": 0.4,
-            "Majority baseline": 0.575,
-            "Lift vs baseline": -0.19999999999999996
+            "Model accuracy": 0.4358974358974359,
+            "MA accuracy": 0.5128205128205128,
+            "Majority baseline": 0.5128205128205128,
+            "Lift vs baseline": -0.07692307692307687
           }
         ]
       }
