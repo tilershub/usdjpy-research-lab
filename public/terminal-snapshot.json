@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T18:34:10.477981+00:00",
+  "generated_at": "2026-09-25T22:19:26.888442+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-25T18:34:11.994567+00:00",
+      "fetched_at": "2026-09-25T22:19:28.143348+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+      "fetched_at": "2026-09-25T22:19:28.297274+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-25T18:34:17.252087+00:00",
+      "fetched_at": "2026-09-25T22:19:36.045352+00:00",
       "message": "Policy expectations unavailable: File is not a zip file"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-25T18:34:18.455605+00:00",
+      "fetched_at": "2026-09-25T22:19:37.198204+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-25T18:34:17.626467+00:00",
+      "fetched_at": "2026-09-25T22:19:36.420285+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 4323.7998046875,
-      "live_price": 4323.7998046875,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 4320.5,
+      "live_price": 4320.5,
+      "live_price_at": "2026-09-25T20:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -56.8,
-      "bias": "Bullish",
+      "score": -58.1,
+      "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4205,
-        "Range/neutral": 0.1808,
-        "Bearish": 0.3987
+        "Bullish": 0.4016,
+        "Range/neutral": 0.1837,
+        "Bearish": 0.4147
       },
       "sample_size": 120,
       "quality": {
@@ -90,13 +90,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -2.76,
+        "yield_spread": -2.85,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.19917427740053126,
+        "volatility": 0.19869603659372076,
         "regime": "High volatility",
         "support20": 4298.0,
         "resistance20": 4539.89990234375,
-        "atr20": 45.48002929687506,
+        "atr20": 45.31503906250005,
         "driver": "US dollar index"
       },
       "model": {
@@ -105,27 +105,27 @@
         "audit": [
           {
             "name": "Rate differential",
-            "contribution": -24.979998832754156
+            "contribution": -25.305723976990198
           },
           {
             "name": "Momentum",
-            "contribution": -11.558846745856624
+            "contribution": -11.593870998034127
           },
           {
             "name": "Rate impulse",
-            "contribution": -10.723407781816093
+            "contribution": -11.471349883145377
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -9.831137754987369
+            "contribution": -9.87254337482863
           },
           {
             "name": "Trend",
-            "contribution": 3.3156436333392554
+            "contribution": 3.255630145982968
           },
           {
             "name": "RSI",
-            "contribution": -3.027433622667139
+            "contribution": -3.1555165537685586
           },
           {
             "name": "Policy overlay",
@@ -965,14 +965,14 @@
           "close": 4298.0,
           "ema_fast": 4400.077979031401,
           "ema_slow": 4385.241668566477,
-          "score": -57.41007090037465
+          "score": -58.39889151650286
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 4323.7998046875,
-          "ema_fast": 4392.813390998648,
-          "ema_slow": 4382.832183708478,
-          "score": -56.80518110474212
+          "close": 4320.5,
+          "ema_fast": 4392.499123885554,
+          "ema_slow": 4382.702779603085,
+          "score": -58.143374640783925
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -1005,13 +1012,6 @@
           "headline": "(BOJ Review)The Expansion and Diversification of Private Credit Funds",
           "url": "http://www.boj.or.jp/en/research/wps_rev/rev_2026/rev26e13.htm",
           "published_at": "2026-09-25T05:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "(BOJ Review) Granular Insights into Depositor Dynamics and Deposit Spreads in Japanese G-SIBs' Foreign Currency Deposits",
-          "url": "http://www.boj.or.jp/en/research/wps_rev/rev_2026/rev26e12.htm",
-          "published_at": "2026-09-25T05:00:00+00:00"
         }
       ],
       "positioning": {
@@ -1019,46 +1019,46 @@
         "base": {
           "currency": "XAU",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -1856.0,
-          "open_interest_change": -1328.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -5727.0,
+          "open_interest_change": 2901.0,
           "history_observations": 156,
-          "leveraged_net": 133116.0,
-          "asset_manager_net": -233660.0,
-          "percentile_3y": 0.5256410256410257,
-          "zscore_3y": 0.06386463983660606,
+          "leveraged_net": 127389.0,
+          "asset_manager_net": -236126.0,
+          "percentile_3y": 0.46794871794871795,
+          "zscore_3y": -0.08288976936274679,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Disaggregated (commodities)",
           "speculative_label": "Managed money",
           "intermediary_label": "Swap dealers",
-          "open_interest": 409899.0
+          "open_interest": 412800.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
-        "relative_percentile": 0.12820512820512825,
+        "relative_percentile": 0.04487179487179488,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1113,19 +1113,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 83956.421875,
-      "live_price": 83956.21875,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 83941.8984375,
+      "live_price": 83941.8984375,
+      "live_price_at": "2026-09-25T22:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 47.3,
+      "score": 46.5,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4594,
-        "Range/neutral": 0.1349,
-        "Bearish": 0.4057
+        "Bullish": 0.4815,
+        "Range/neutral": 0.1348,
+        "Bearish": 0.3837
       },
       "sample_size": 120,
       "quality": {
@@ -1136,13 +1136,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -5.11,
+        "yield_spread": -5.18,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.3763993856652281,
+        "volatility": 0.3764471634594739,
         "regime": "High volatility",
         "support20": 75612.5078125,
         "resistance20": 86602.9140625,
-        "atr20": 1156.8949218750015,
+        "atr20": 1157.6210937500014,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -1151,27 +1151,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.47179384826315
+            "contribution": 32.4717804092163
           },
           {
             "name": "Momentum",
-            "contribution": 19.9916235849216
+            "contribution": 19.954237742754742
           },
           {
             "name": "Rate differential",
-            "contribution": -9.896678642873143
+            "contribution": -10.072379815354005
           },
           {
             "name": "RSI",
-            "contribution": 7.273437145690539
+            "contribution": 7.256354758963034
           },
           {
             "name": "Rate impulse",
-            "contribution": -4.771382642564117
+            "contribution": -5.252024024176575
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 2.2366213914949244
+            "contribution": 2.1301077451116432
           },
           {
             "name": "Policy overlay",
@@ -2011,14 +2011,14 @@
           "close": 84379.0625,
           "ema_fast": 80369.36244497278,
           "ema_slow": 76115.9175793402,
-          "score": 48.002814103210426
+          "score": 47.34978989746345
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 83956.421875,
-          "ema_fast": 80710.98715259442,
-          "ema_slow": 76423.38833603275,
-          "score": 47.30541468493294
+          "close": 83941.8984375,
+          "ema_fast": 80709.60396807062,
+          "ema_slow": 76422.81878946412,
+          "score": 46.48807681651514
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -2051,13 +2058,6 @@
           "headline": "(BOJ Review)The Expansion and Diversification of Private Credit Funds",
           "url": "http://www.boj.or.jp/en/research/wps_rev/rev_2026/rev26e13.htm",
           "published_at": "2026-09-25T05:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "(BOJ Review) Granular Insights into Depositor Dynamics and Deposit Spreads in Japanese G-SIBs' Foreign Currency Deposits",
-          "url": "http://www.boj.or.jp/en/research/wps_rev/rev_2026/rev26e12.htm",
-          "published_at": "2026-09-25T05:00:00+00:00"
         }
       ],
       "positioning": {
@@ -2065,46 +2065,46 @@
         "base": {
           "currency": "BTC",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": 1538.0,
-          "open_interest_change": -310.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -1599.0,
+          "open_interest_change": 1542.0,
           "history_observations": 156,
-          "leveraged_net": -6354.0,
-          "asset_manager_net": 2760.0,
-          "percentile_3y": 0.9743589743589743,
-          "zscore_3y": 1.6043849712295533,
-          "crowding": "Crowded long",
-          "stale": false,
-          "report": "CFTC Traders in Financial Futures",
-          "speculative_label": "Leveraged funds",
-          "intermediary_label": "Asset managers",
-          "open_interest": 20773.0
-        },
-        "quote": {
-          "currency": "USD",
-          "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
-          "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -7953.0,
+          "asset_manager_net": 3171.0,
+          "percentile_3y": 0.8589743589743589,
+          "zscore_3y": 1.2599764776525384,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 22315.0
         },
-        "relative_percentile": 0.5769230769230769,
+        "quote": {
+          "currency": "USD",
+          "available": true,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
+          "history_observations": 156,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
+          "crowding": "Balanced",
+          "stale": false,
+          "report": "CFTC Traders in Financial Futures",
+          "speculative_label": "Leveraged funds",
+          "intermediary_label": "Asset managers",
+          "open_interest": 46328.0
+        },
+        "relative_percentile": 0.43589743589743585,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2159,19 +2159,19 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5667648911476135,
-      "live_price": 0.5667648911476135,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 0.5658989548683167,
+      "live_price": 0.5658989548683167,
+      "live_price_at": "2026-09-25T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -29.6,
+      "score": -29.9,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.5073,
-        "Range/neutral": 0.2079,
-        "Bearish": 0.2848
+        "Bullish": 0.5147,
+        "Range/neutral": 0.2075,
+        "Bearish": 0.2778
       },
       "sample_size": 120,
       "quality": {
@@ -2184,13 +2184,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.40000000000000036,
+        "yield_spread": -0.46999999999999975,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05972472687192537,
+        "volatility": 0.05954480800627504,
         "regime": "Range / transition",
-        "support20": 0.5667648911476135,
+        "support20": 0.5658989548683167,
         "resistance20": 0.5922310948371887,
-        "atr20": 0.0020799368619918877,
+        "atr20": 0.0021232336759567324,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Momentum",
-            "contribution": -10.300138366907415
+            "contribution": -10.474073237271304
           },
           {
             "name": "Trend",
-            "contribution": -9.685709531003315
+            "contribution": -9.782328615165252
           },
           {
             "name": "RSI",
-            "contribution": -6.474364057832814
+            "contribution": -6.523021004827756
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -3.1379107950458467
+            "contribution": -3.0934760981126264
           },
           {
             "name": "Rate differential",
@@ -3063,10 +3063,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 0.5667648911476135,
-          "ema_fast": 0.5778565559496344,
-          "ema_slow": 0.581864745917898,
-          "score": -29.598122750789393
+          "close": 0.5658989548683167,
+          "ema_fast": 0.5777740858277965,
+          "ema_slow": 0.5818307876324353,
+          "score": -29.872898955376932
         }
       ],
       "events": {
@@ -3079,6 +3079,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -3099,13 +3106,6 @@
           "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
           "published_at": "2026-09-22T20:30:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -3113,46 +3113,46 @@
         "base": {
           "currency": "NZD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": 15584.0,
-          "open_interest_change": 9144.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -3021.0,
+          "open_interest_change": -33745.0,
           "history_observations": 156,
-          "leveraged_net": -1766.0,
-          "asset_manager_net": 10170.0,
-          "percentile_3y": 0.5576923076923077,
-          "zscore_3y": 0.27423646079573205,
+          "leveraged_net": -4787.0,
+          "asset_manager_net": -11485.0,
+          "percentile_3y": 0.4935897435897436,
+          "zscore_3y": 0.003726986635385888,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 135122.0
+          "open_interest": 101377.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
-        "relative_percentile": 0.1602564102564103,
+        "relative_percentile": 0.07051282051282054,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3207,19 +3207,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3251526355743408,
-      "live_price": 1.32501220703125,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 1.324643611907959,
+      "live_price": 1.324643611907959,
+      "live_price_at": "2026-09-25T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -23.6,
+      "score": -23.8,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3953,
-        "Range/neutral": 0.1492,
-        "Bearish": 0.4554
+        "Bullish": 0.4027,
+        "Range/neutral": 0.1488,
+        "Bearish": 0.4485
       },
       "sample_size": 120,
       "quality": {
@@ -3232,13 +3232,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.1214000000000004,
+        "yield_spread": -0.1913999999999998,
         "macro_label": "10Y yield spread",
-        "volatility": 0.045131659747641314,
+        "volatility": 0.04492157604910122,
         "regime": "Range / transition",
         "support20": 1.3241524696350098,
         "resistance20": 1.3551971912384033,
-        "atr20": 0.0032481431961059876,
+        "atr20": 0.0032226920127868923,
         "driver": "US dollar index"
       },
       "model": {
@@ -3247,19 +3247,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": -7.20099573540134
+            "contribution": -7.278198144332216
           },
           {
             "name": "Momentum",
-            "contribution": -6.898408056721861
+            "contribution": -6.984112418062742
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -5.829234021219634
+            "contribution": -5.874867234396102
           },
           {
             "name": "Trend",
-            "contribution": -3.6260130681217877
+            "contribution": -3.660884382410548
           },
           {
             "name": "Rate differential",
@@ -4111,10 +4111,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 1.3251526355743408,
-          "ema_fast": 1.3424230193184346,
-          "ema_slow": 1.3453334666283787,
-          "score": -23.55465088146462
+          "close": 1.324643611907959,
+          "ema_fast": 1.3423745408740173,
+          "ema_slow": 1.3453135049159715,
+          "score": -23.798062179201608
         }
       ],
       "events": {
@@ -4127,6 +4127,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -4147,13 +4154,6 @@
           "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
           "published_at": "2026-09-22T20:30:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -4161,46 +4161,46 @@
         "base": {
           "currency": "GBP",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -15749.0,
-          "open_interest_change": -4315.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -5639.0,
+          "open_interest_change": -69368.0,
           "history_observations": 156,
-          "leveraged_net": 18878.0,
-          "asset_manager_net": -89211.0,
-          "percentile_3y": 0.17307692307692307,
-          "zscore_3y": -0.8797678718535382,
+          "leveraged_net": 13239.0,
+          "asset_manager_net": -115805.0,
+          "percentile_3y": 0.10897435897435898,
+          "zscore_3y": -1.2140064405948716,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 314293.0
+          "open_interest": 244925.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
-        "relative_percentile": -0.22435897435897434,
+        "relative_percentile": -0.3141025641025641,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4255,19 +4255,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8283200263977051,
-      "live_price": 0.8283200263977051,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 0.8282999992370605,
+      "live_price": 0.8282999992370605,
+      "live_price_at": "2026-09-25T20:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 22.1,
+      "score": 22.4,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4835,
-        "Range/neutral": 0.1903,
-        "Bearish": 0.3262
+        "Bullish": 0.4991,
+        "Range/neutral": 0.1906,
+        "Bearish": 0.3104
       },
       "sample_size": 120,
       "quality": {
@@ -4280,13 +4280,13 @@
         ]
       },
       "market": {
-        "yield_spread": 4.640000000000001,
+        "yield_spread": 4.71,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05472394851936999,
+        "volatility": 0.05470951882527649,
         "regime": "Range / transition",
         "support20": 0.8075100183486938,
-        "resistance20": 0.8283200263977051,
-        "atr20": 0.0023849993944168374,
+        "resistance20": 0.8282999992370605,
+        "atr20": 0.0023839980363846067,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -4295,19 +4295,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 9.571375471288942
+            "contribution": 9.569771892653572
           },
           {
             "name": "RSI",
-            "contribution": 6.898620463621442
+            "contribution": 6.896171399817592
           },
           {
             "name": "Momentum",
-            "contribution": 6.517255547852495
+            "contribution": 6.513064089684428
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -0.8822955219660448
+            "contribution": -0.586052840009915
           },
           {
             "name": "Rate differential",
@@ -5159,10 +5159,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 0.8283200263977051,
-          "ema_fast": 0.817672128557968,
-          "ema_slow": 0.8121574932782245,
-          "score": 22.104955960796833
+          "close": 0.8282999992370605,
+          "ema_fast": 0.8176702212093352,
+          "ema_slow": 0.8121567078993757,
+          "score": 22.392954542145677
         }
       ],
       "events": {
@@ -5175,6 +5175,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -5195,13 +5202,6 @@
           "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
           "published_at": "2026-09-22T20:30:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -5209,46 +5209,46 @@
         "base": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
         "quote": {
           "currency": "CHF",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -1524.0,
-          "open_interest_change": 17630.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -1493.0,
+          "open_interest_change": -37818.0,
           "history_observations": 156,
-          "leveraged_net": -14964.0,
-          "asset_manager_net": -36121.0,
-          "percentile_3y": 0.09615384615384616,
-          "zscore_3y": -1.5052847908566624,
+          "leveraged_net": -16457.0,
+          "asset_manager_net": -35523.0,
+          "percentile_3y": 0.0641025641025641,
+          "zscore_3y": -1.7194127507994603,
           "crowding": "Crowded short",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 171313.0
+          "open_interest": 133495.0
         },
-        "relative_percentile": 0.30128205128205127,
+        "relative_percentile": 0.358974358974359,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5303,19 +5303,19 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.1399909257888794,
-      "live_price": 1.1399909257888794,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 1.139211654663086,
+      "live_price": 1.139211654663086,
+      "live_price_at": "2026-09-25T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -20.7,
+      "score": -21.1,
       "bias": "Bearish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3419,
-        "Range/neutral": 0.2068,
-        "Bearish": 0.4514
+        "Bullish": 0.3644,
+        "Range/neutral": 0.2069,
+        "Bearish": 0.4286
       },
       "sample_size": 120,
       "quality": {
@@ -5328,13 +5328,13 @@
         ]
       },
       "market": {
-        "yield_spread": -1.8890159091000003,
+        "yield_spread": -1.9590159090999997,
         "macro_label": "10Y yield spread",
-        "volatility": 0.042039116483803415,
+        "volatility": 0.041524491876971485,
         "regime": "Range / transition",
         "support20": 1.138187289237976,
         "resistance20": 1.1633858680725098,
-        "atr20": 0.002479285001754778,
+        "atr20": 0.0024403214454651024,
         "driver": "US dollar index"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": -7.039914322985343
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": -5.343464519451331
+            "contribution": -7.22309458107511
           },
           {
             "name": "Momentum",
-            "contribution": -5.328120723737487
+            "contribution": -5.470071670857774
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -5.385294964863093
           },
           {
             "name": "Trend",
-            "contribution": -2.97620572723133
+            "contribution": -3.036199341890284
           },
           {
             "name": "Rate differential",
@@ -6207,10 +6207,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 1.1399909257888794,
-          "ema_fast": 1.1516662142595824,
-          "ema_slow": 1.1538024728000857,
-          "score": -20.687705293405493
+          "close": 1.139211654663086,
+          "ema_fast": 1.1515919979618878,
+          "ema_slow": 1.153771913148094,
+          "score": -21.11466055868626
         }
       ],
       "events": {
@@ -6223,6 +6223,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -6243,13 +6250,6 @@
           "headline": "ECB Executive Board member Isabel Schnabel to resign to take senior role at IMF",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260924~bea1dd9824.en.html",
           "published_at": "2026-09-24T12:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Philip R. Lane: The outlook for the euro area economy",
-          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260924~e0eceef02c.en.pdf",
-          "published_at": "2026-09-24T09:00:00+00:00"
         }
       ],
       "positioning": {
@@ -6257,46 +6257,46 @@
         "base": {
           "currency": "EUR",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": 5129.0,
-          "open_interest_change": -22429.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 1462.0,
+          "open_interest_change": -98346.0,
           "history_observations": 156,
-          "leveraged_net": -28156.0,
-          "asset_manager_net": 251698.0,
-          "percentile_3y": 0.17307692307692307,
-          "zscore_3y": -1.1516312270358806,
+          "leveraged_net": -26694.0,
+          "asset_manager_net": 216483.0,
+          "percentile_3y": 0.1794871794871795,
+          "zscore_3y": -1.0818616032993007,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 920035.0
+          "open_interest": 821689.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
-        "relative_percentile": -0.22435897435897434,
+        "relative_percentile": -0.24358974358974358,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6351,19 +6351,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 157.19400024414062,
-      "live_price": 157.1959991455078,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 157.18499755859375,
+      "live_price": 157.18499755859375,
+      "live_price_at": "2026-09-25T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": -13.5,
+      "score": -13.3,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4125,
-        "Range/neutral": 0.2138,
-        "Bearish": 0.3738
+        "Bullish": 0.4047,
+        "Range/neutral": 0.2061,
+        "Bearish": 0.3892
       },
       "sample_size": 120,
       "quality": {
@@ -6376,13 +6376,13 @@
         ]
       },
       "market": {
-        "yield_spread": 2.1700000000000004,
+        "yield_spread": 2.2399999999999998,
         "macro_label": "10Y yield spread",
-        "volatility": 0.11780708669793916,
+        "volatility": 0.11784645742275175,
         "regime": "Range / transition",
         "support20": 153.4239959716797,
         "resistance20": 160.1959991455078,
-        "atr20": 0.8695503234863302,
+        "atr20": 0.870000457763674,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -9.87338143377791
+            "contribution": -9.87674375015377
           },
           {
             "name": "Momentum",
-            "contribution": -3.11962923606053
+            "contribution": -3.1322222832519917
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -0.650692947449958
+            "contribution": -0.43221396950731233
           },
           {
             "name": "RSI",
-            "contribution": 0.1297974624203114
+            "contribution": 0.10825488866648689
           },
           {
             "name": "Rate differential",
@@ -7255,10 +7255,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 157.19400024414062,
-          "ema_fast": 156.84434333708137,
-          "ema_slow": 158.02829916731625,
-          "score": -13.513906154868087
+          "close": 157.18499755859375,
+          "ema_fast": 156.84348593845786,
+          "ema_slow": 158.0279461208242,
+          "score": -13.332925114246587
         }
       ],
       "events": {
@@ -7271,6 +7271,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -7291,13 +7298,6 @@
           "headline": "(BOJ Review)The Expansion and Diversification of Private Credit Funds",
           "url": "http://www.boj.or.jp/en/research/wps_rev/rev_2026/rev26e13.htm",
           "published_at": "2026-09-25T05:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "(BOJ Review) Granular Insights into Depositor Dynamics and Deposit Spreads in Japanese G-SIBs' Foreign Currency Deposits",
-          "url": "http://www.boj.or.jp/en/research/wps_rev/rev_2026/rev26e12.htm",
-          "published_at": "2026-09-25T05:00:00+00:00"
         }
       ],
       "positioning": {
@@ -7305,46 +7305,46 @@
         "base": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
         "quote": {
           "currency": "JPY",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": 72268.0,
-          "open_interest_change": 43167.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -15747.0,
+          "open_interest_change": -164101.0,
           "history_observations": 156,
-          "leveraged_net": 23170.0,
-          "asset_manager_net": 53845.0,
-          "percentile_3y": 0.967948717948718,
-          "zscore_3y": 1.9039276984462008,
-          "crowding": "Crowded long",
+          "leveraged_net": 7423.0,
+          "asset_manager_net": 41629.0,
+          "percentile_3y": 0.8846153846153846,
+          "zscore_3y": 1.4507068712946518,
+          "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 542802.0
+          "open_interest": 378701.0
         },
-        "relative_percentile": -0.5705128205128205,
+        "relative_percentile": -0.4615384615384615,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7399,19 +7399,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.4147599935531616,
-      "live_price": 1.4147599935531616,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 1.4141000509262085,
+      "live_price": 1.4141000509262085,
+      "live_price_at": "2026-09-25T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 8.2,
+      "score": 7.8,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4124,
-        "Range/neutral": 0.191,
-        "Bearish": 0.3965
+        "Bullish": 0.4204,
+        "Range/neutral": 0.1909,
+        "Bearish": 0.3887
       },
       "sample_size": 120,
       "quality": {
@@ -7424,13 +7424,13 @@
         ]
       },
       "market": {
-        "yield_spread": 1.4350000000000005,
+        "yield_spread": 1.505,
         "macro_label": "10Y yield spread",
-        "volatility": 0.041864518397389694,
+        "volatility": 0.04160419697279677,
         "regime": "Range / transition",
         "support20": 1.377750039100647,
-        "resistance20": 1.4147599935531616,
-        "atr20": 0.0035695016384125144,
+        "resistance20": 1.4141000509262085,
+        "atr20": 0.003536504507064858,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -7439,19 +7439,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": 6.388504371034575
-          },
-          {
-            "name": "Momentum",
-            "contribution": 4.822985065985703
+            "contribution": 6.357104842292603
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -4.63656979333855
+            "contribution": -4.848378991850254
+          },
+          {
+            "name": "Momentum",
+            "contribution": 4.727187857515648
           },
           {
             "name": "Trend",
-            "contribution": 1.622842303486216
+            "contribution": 1.5841480164529658
           },
           {
             "name": "Rate differential",
@@ -8303,10 +8303,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 1.4147599935531616,
-          "ema_fast": 1.396270594119168,
-          "ema_slow": 1.3947289354007302,
-          "score": 8.197761947167944
+          "close": 1.4141000509262085,
+          "ema_fast": 1.3962077424404107,
+          "ema_slow": 1.3947030552977122,
+          "score": 7.820061724410962
         }
       ],
       "events": {
@@ -8319,6 +8319,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -8339,13 +8346,6 @@
           "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
           "published_at": "2026-09-22T20:30:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -8353,46 +8353,46 @@
         "base": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
         "quote": {
           "currency": "CAD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": 16426.0,
-          "open_interest_change": 23325.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -7839.0,
+          "open_interest_change": -47101.0,
           "history_observations": 156,
-          "leveraged_net": -39022.0,
-          "asset_manager_net": -9386.0,
-          "percentile_3y": 0.7051282051282052,
-          "zscore_3y": 0.726626922261892,
+          "leveraged_net": -46861.0,
+          "asset_manager_net": -24121.0,
+          "percentile_3y": 0.5961538461538461,
+          "zscore_3y": 0.371602984594868,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 358186.0
+          "open_interest": 311085.0
         },
-        "relative_percentile": -0.30769230769230776,
+        "relative_percentile": -0.17307692307692307,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8447,19 +8447,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.7031854391098022,
-      "live_price": 0.7031360268592834,
-      "live_price_at": "2026-09-25T18:00:00+00:00",
+      "price": 0.7025925517082214,
+      "live_price": 0.7025925517082214,
+      "live_price_at": "2026-09-25T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -6.5,
+      "score": -6.7,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3967,
-        "Range/neutral": 0.1595,
-        "Bearish": 0.4438
+        "Bullish": 0.3816,
+        "Range/neutral": 0.1672,
+        "Bearish": 0.4512
       },
       "sample_size": 120,
       "quality": {
@@ -8472,13 +8472,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.09500000000000064,
+        "yield_spread": -0.16500000000000004,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06300228939571206,
+        "volatility": 0.06292726836912288,
         "regime": "Range / transition",
-        "support20": 0.7031854391098022,
+        "support20": 0.7025925517082214,
         "resistance20": 0.722089946269989,
-        "atr20": 0.0019941896200180178,
+        "atr20": 0.0020238339900970565,
         "driver": "Copper"
       },
       "model": {
@@ -8486,20 +8486,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "RSI",
-            "contribution": -5.526876002218823
+            "name": "Momentum",
+            "contribution": -5.6465713954173955
           },
           {
-            "name": "Momentum",
-            "contribution": -5.473868994410174
+            "name": "RSI",
+            "contribution": -5.643020209654825
           },
           {
             "name": "Trend",
-            "contribution": 3.373339368920927
+            "contribution": 3.306868225542212
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 1.1616755622176642
+            "contribution": 1.2449052132777882
           },
           {
             "name": "Rate differential",
@@ -9351,10 +9351,10 @@
         },
         {
           "date": "2026-09-25T00:00:00",
-          "close": 0.7031854391098022,
-          "ema_fast": 0.7118205587029793,
-          "ema_slow": 0.7101744619278139,
-          "score": -6.465730065490406
+          "close": 0.7025925517082214,
+          "ema_fast": 0.7117640932361622,
+          "ema_slow": 0.7101512114414774,
+          "score": -6.73781816625222
         }
       ],
       "events": {
@@ -9367,6 +9367,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Federal Reserve Board announces approval of application by Peoples Bancorp Inc.",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260925a.htm",
+          "published_at": "2026-09-25T20:30:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -9387,13 +9394,6 @@
           "headline": "Federal Reserve Board announces approval of application by BancFirst Corporation",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20260922a.htm",
           "published_at": "2026-09-22T20:30:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement actions with former employee of Northstar Bank, former employee of American Express Travel Related Services Company, Inc., and former employee of Regions Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20260918a.htm",
-          "published_at": "2026-09-18T15:00:00+00:00"
         }
       ],
       "positioning": {
@@ -9401,46 +9401,46 @@
         "base": {
           "currency": "AUD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": 11356.0,
-          "open_interest_change": 37673.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": -2409.0,
+          "open_interest_change": -186653.0,
           "history_observations": 156,
-          "leveraged_net": 61135.0,
-          "asset_manager_net": -46396.0,
-          "percentile_3y": 0.9743589743589743,
-          "zscore_3y": 2.0052173733450394,
+          "leveraged_net": 58726.0,
+          "asset_manager_net": -55353.0,
+          "percentile_3y": 0.9487179487179487,
+          "zscore_3y": 1.8868162653747171,
           "crowding": "Crowded long",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 493141.0
+          "open_interest": 306488.0
         },
         "quote": {
           "currency": "USD",
           "available": true,
-          "date": "2026-09-15T00:00:00+00:00",
-          "age_days": 10,
-          "leveraged_change": -11095.0,
-          "open_interest_change": -14114.0,
+          "date": "2026-09-22T00:00:00+00:00",
+          "age_days": 3,
+          "leveraged_change": 414.0,
+          "open_interest_change": 2584.0,
           "history_observations": 156,
-          "leveraged_net": -4909.0,
-          "asset_manager_net": 15802.0,
-          "percentile_3y": 0.3974358974358974,
-          "zscore_3y": -0.24911167390590663,
+          "leveraged_net": -4495.0,
+          "asset_manager_net": 16772.0,
+          "percentile_3y": 0.4230769230769231,
+          "zscore_3y": -0.2065848027365621,
           "crowding": "Balanced",
           "stale": false,
           "report": "CFTC Traders in Financial Futures",
           "speculative_label": "Leveraged funds",
           "intermediary_label": "Asset managers",
-          "open_interest": 43744.0
+          "open_interest": 46328.0
         },
-        "relative_percentile": 0.5769230769230769,
+        "relative_percentile": 0.5256410256410255,
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-25T18:34:12.135987+00:00",
+        "fetched_at": "2026-09-25T22:19:28.297274+00:00",
         "provider_message": ""
       },
       "validation": {
