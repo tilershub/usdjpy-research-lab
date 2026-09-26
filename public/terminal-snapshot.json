@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-26T19:49:53.144801+00:00",
+  "generated_at": "2026-09-26T22:46:28.929039+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-09-26T19:49:55.208726+00:00",
+      "fetched_at": "2026-09-26T22:46:31.194953+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+      "fetched_at": "2026-09-26T22:46:31.464089+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-09-26T19:50:00.520591+00:00",
+      "fetched_at": "2026-09-26T22:46:38.716455+00:00",
       "message": "Policy expectations unavailable: File is not a zip file"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-09-26T19:50:02.515646+00:00",
+      "fetched_at": "2026-09-26T22:46:40.833189+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-09-26T19:50:00.954638+00:00",
+      "fetched_at": "2026-09-26T22:46:39.241521+00:00",
       "message": ""
     }
   },
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1113,19 +1113,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 84007.75,
-      "live_price": 84007.75,
-      "live_price_at": "2026-09-26T19:00:00+00:00",
+      "price": 84269.59375,
+      "live_price": 84269.59375,
+      "live_price_at": "2026-09-26T22:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": 45.2,
+      "score": 46.2,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4455,
-        "Range/neutral": 0.1649,
-        "Bearish": 0.3897
+        "Bullish": 0.4743,
+        "Range/neutral": 0.1423,
+        "Bearish": 0.3834
       },
       "sample_size": 120,
       "quality": {
@@ -1138,11 +1138,11 @@
       "market": {
         "yield_spread": -5.18,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.37604285344013927,
+        "volatility": 0.3758964893479023,
         "regime": "High volatility",
         "support20": 75612.5078125,
         "resistance20": 86602.9140625,
-        "atr20": 1128.0195312500014,
+        "atr20": 1138.3945312500011,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -1151,11 +1151,11 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": 32.471853611055764
+            "contribution": 32.47208947895738
           },
           {
             "name": "Momentum",
-            "contribution": 18.581830791497264
+            "contribution": 19.349949250596943
           },
           {
             "name": "Rate differential",
@@ -1163,7 +1163,7 @@
           },
           {
             "name": "RSI",
-            "contribution": 7.330897400064503
+            "contribution": 7.520911071457704
           },
           {
             "name": "Rate impulse",
@@ -2015,10 +2015,10 @@
         },
         {
           "date": "2026-09-26T00:00:00",
-          "close": 84007.75,
-          "ema_fast": 81031.72873896865,
-          "ema_slow": 76723.77199221293,
-          "score": 45.204475831853024
+          "close": 84269.59375,
+          "ema_fast": 81056.66623896865,
+          "ema_slow": 76734.04037456587,
+          "score": 46.16284383024752
         }
       ],
       "events": {
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2114,7 +2114,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.49206349206349204,
+          "OOS directional accuracy": 0.49272486772486773,
           "OOS observations": 1512.0
         },
         "horizons": [
@@ -2124,9 +2124,9 @@
             "Evaluation windows": 2052,
             "Coverage": 0.8333333333333334,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.48771929824561405,
-            "MA accuracy": 0.49005847953216375,
-            "Majority baseline": 0.4964912280701754,
+            "Model accuracy": 0.48830409356725146,
+            "MA accuracy": 0.49064327485380116,
+            "Majority baseline": 0.49707602339181284,
             "Lift vs baseline": -0.008771929824561375
           },
           {
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-09-26T19:49:55.464434+00:00",
+        "fetched_at": "2026-09-26T22:46:31.464089+00:00",
         "provider_message": ""
       },
       "validation": {
