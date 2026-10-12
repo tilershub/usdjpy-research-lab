@@ -19,6 +19,7 @@ urlpatterns = [
     path("tools/profit-calculator/", website_views.calculator, {"tool": "profit"}),
     path("tools/compounding-calculator/", website_views.calculator, {"tool": "compounding"}),
     path("today/", website_views.today, name="today"),
+    path("research-workspace/", website_views.research_workspace, name="research-workspace"),
     path("journal/", website_views.journal, name="journal"),
     path("tools/trading-plan-builder/", website_views.trading_plan, name="trading-plan"),
     path("", website_views.home, name="home"),
