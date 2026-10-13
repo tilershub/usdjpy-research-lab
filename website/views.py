@@ -65,3 +65,8 @@ def trading_plan(request):
         ("review", "06", "Review Process", "Journaling cadence and weekly/monthly reviews."),
     ]
     return render(request, "website/trading_plan.html", {"title": "Trading Plan Builder", "description": "Build, save and export a six-section trading plan.", "sections": sections})
+
+
+def research_workspace(request):
+    """Trader-first workspace with local notes and dated published source metadata."""
+    return render(request, "website/research_workspace.html")
