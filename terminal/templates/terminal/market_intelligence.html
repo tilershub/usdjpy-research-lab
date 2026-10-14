@@ -170,6 +170,9 @@ function assessment(m){
  if(m.snapshot_old)title="Source update overdue — check current market data";
  txt("mi-assessment-heading",title);
  var lead="The published market regime is "+String(m.regime||"unknown").toLowerCase()+". ";
+ if(m.cross_asset_driver)lead+="A tracked cross-asset input is "+String(m.cross_asset_driver)+". ";
+ var top=(m.drivers||[])[0];
+ if(top)lead+="The largest signed model contribution comes from "+String(top.name)+" ("+fmt(top.contribution,1)+"); this is a model weight, not proven causal impact. ";
  lead+=problems.length?problems.join(" ")+" ":"The publisher labels its directional bias "+String(m.published_bias||"unknown")+". ";
  lead+="This is a research summary, not a trading recommendation.";
  txt("mi-assessment-body",lead);
