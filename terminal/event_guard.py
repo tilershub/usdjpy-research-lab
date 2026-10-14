@@ -89,13 +89,21 @@ def get_bls_scheduled():
         events = parse_official_ical(raw.decode("utf-8"))
     except (OSError, ValueError, HTTPError, URLError, UnicodeError):
         pass
-    if not events:
-        events = [{"name": name, "scheduled_at": datetime.fromisoformat(iso).replace(tzinfo=ET).astimezone(UTC).isoformat(),
-                   "url": BLS_CPI_SCHEDULE, "source": "Verified BLS CPI schedule (limited fallback)"}
-                  for iso, name in VERIFIED_CPI_FALLBACK]
-        source_status = "fallback: CPI dates only; other high-impact events unverified"
-    else:
-        source_status = "official BLS calendar; excludes Fed and other country releases"
+    fallback = [{"name": name, "scheduled_at": datetime.fromisoformat(iso).replace(tzinfo=ET).astimezone(UTC).isoformat(),
+                 "url": BLS_CPI_SCHEDULE, "source": "Verified BLS CPI schedule"}
+                for iso, name in VERIFIED_CPI_FALLBACK]
+    had_live_calendar = bool(events)
+    known = {(e["scheduled_at"], e["name"].lower()) for e in events}
+    # Official verified CPI date protection must work even if the ICS feed
+    # omits or abbreviates a particular CPI event.
+    for fallback_event in fallback:
+        same_time = any(x["scheduled_at"] == fallback_event["scheduled_at"] and
+                        "consumer price" in x["name"].lower() for x in events)
+        if not same_time:
+            events.append(fallback_event)
+    source_status = ("official BLS iCalendar plus verified CPI dates; excludes Fed/other-country events"
+                     if had_live_calendar else
+                     "limited verified BLS CPI schedule fallback; other high-impact events unverified")
     value = {"events": events, "source_status": source_status}
     cache.set("trade90:bls:highimpact:2026-v1", value, 900)
     return value
