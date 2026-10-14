@@ -120,11 +120,11 @@ def recent_high_impact(now=None):
             continue
         hours = (now - t).total_seconds() / 3600
         if -24 <= hours <= 36:
-            candidates.append((abs(hours), hours, event))
+            candidates.append((abs(hours), hours, event, t))
     if not candidates:
         return {"status": "unknown", "source_status": scheduled["source_status"],
                 "message": "No verified release window from the limited BLS feed. Economic risk is NOT cleared."}
-    _, hours, source = min(candidates)
+    _, hours, source, selected_time = min(candidates, key=lambda candidate: candidate[0])
     stage = "upcoming" if hours < 0 else "released_or_due"
     result = {"status": stage, "name": source["name"],
               "scheduled_at": source["scheduled_at"], "source": source["source"],
@@ -136,7 +136,7 @@ def recent_high_impact(now=None):
     # Narrow, dated editorial source note from the BLS primary release. This is
     # not a live price reaction and explicitly expires after 36 hours.
     cpi_at = datetime(2026, 10, 14, 12, 30, tzinfo=UTC)
-    if "consumer price index" in source["name"].lower() and abs((t - cpi_at).total_seconds()) < 60 and hours >= 0:
+    if "consumer price index" in source["name"].lower() and abs((selected_time - cpi_at).total_seconds()) < 60 and hours >= 0:
         result["official_release"] = {
             "headline": "U.S. CPI for September 2026 (official BLS release)",
             "headline_yoy_pct": 3.7, "headline_mom_pct": 0.6,
