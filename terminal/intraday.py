@@ -14,6 +14,7 @@ from urllib.error import HTTPError, URLError
 
 from django.conf import settings
 from django.core.cache import cache
+from .technical_zones import technical_zones
 
 
 SYMBOLS = frozenset({
@@ -171,6 +172,7 @@ def analyze_candles(candles, symbol, interval, *, now=None, provider="Twelve Dat
         "rsi14": round(rsi, 2), "atr14": round(atr, 6),
         "prior20_high": round(high, 6), "prior20_low": round(low, 6),
         "change16_candles_pct": round(change16, 2),
+        "technical_zones": technical_zones(candles, atr),
         "warnings": warnings,
         "interpretation": (
             f"{interval} closing structure: {structure.lower()}; "
