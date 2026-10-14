@@ -8,6 +8,7 @@ from django.views.decorators.http import require_GET
 from .intelligence import build_intelligence
 from .live_quotes import cached_quote
 from .intraday import get_intraday, INTERVALS
+from .event_intelligence import event_evidence
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -112,5 +113,15 @@ def market_intraday(request):
     }.get(payload["status"], 503)
     response = JsonResponse(payload, status=status)
     response["Cache-Control"] = "no-store"
+    response["X-Content-Type-Options"] = "nosniff"
+    return response
+
+
+@require_GET
+def market_events(request):
+    """Verified-source links and explicit economic/geopolitical coverage gaps."""
+    payload = event_evidence()
+    response = JsonResponse(payload)
+    response["Cache-Control"] = "public, max-age=60, s-maxage=120"
     response["X-Content-Type-Options"] = "nosniff"
     return response

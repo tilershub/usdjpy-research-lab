@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from math import isfinite
 
 from .event_guard import recent_high_impact
+from .asset_drivers import research_driver_profile
 
 
 MARKET_NAMES = {
@@ -215,6 +216,7 @@ def market_brief(pair, generated_at, source_status, now, event_context=None):
         "atr20": numeric(market.get("atr20")), "cross_asset_driver": market.get("driver"),
         "macro_label": market.get("macro_label"),
         "model_thesis": str(model.get("thesis") or "")[:300],
+        "instrument_research": research_driver_profile(symbol),
         "drivers": _drivers(pair), "chart": _observations(pair),
         "positioning": {
             "available": bool(positioning.get("available")),
