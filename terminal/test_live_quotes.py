@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 from unittest.mock import patch
 
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, override_settings
 from django.urls import reverse
 
 from .live_quotes import QuoteUnavailable, fetch_quote
@@ -72,6 +72,7 @@ class IndicativeMarketQuoteTests(SimpleTestCase):
         result = fetch_quote("GBP/ZAR", now=self.now)
         self.assertEqual(result["status"], "unavailable")
 
+    @override_settings(TRADE90_QUOTE_REDISTRIBUTION_LICENSED=True)
     @patch("terminal.views.cached_quote")
     def test_public_quote_route(self, cached):
         cached.return_value = {
@@ -83,9 +84,16 @@ class IndicativeMarketQuoteTests(SimpleTestCase):
         self.assertEqual(r["Cache-Control"], "no-store")
         self.assertEqual(r.json()["mid"], 1.20005)
 
+    @override_settings(TRADE90_QUOTE_REDISTRIBUTION_LICENSED=True)
     @patch("terminal.views.cached_quote")
     def test_quote_route_rejects_unavailable(self, cached):
         cached.return_value = {"status": "stale", "symbol": "XAU/USD", "bid": None, "ask": None, "mid": None}
         r = self.client.get(reverse("market-quote"), {"symbol": "XAU/USD"})
         self.assertEqual(r.status_code, 503)
         self.assertIsNone(r.json()["mid"])
+
+    def test_unauthorized_redistribution_is_disabled_by_default(self):
+        with override_settings(TRADE90_QUOTE_REDISTRIBUTION_LICENSED=False):
+            response = self.client.get(reverse("market-quote"), {"symbol": "EUR/USD"})
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.json()["status"], "unavailable")
