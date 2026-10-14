@@ -82,6 +82,13 @@ def market_intelligence_data(request):
 @require_GET
 def market_quote(request):
     """Current indicative quote separated from historical research values."""
+    if not getattr(settings, "TRADE90_QUOTE_REDISTRIBUTION_LICENSED", False):
+        response = JsonResponse({
+            "status": "unavailable",
+            "message": "Direct price redistribution requires a licensed data provider.",
+        }, status=503)
+        response["Cache-Control"] = "no-store"
+        return response
     symbol = (request.GET.get("symbol") or "").upper().strip()
     result = cached_quote(symbol)
     response = JsonResponse(result, status=200 if result["status"] == "current" else 503)
