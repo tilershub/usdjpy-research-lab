@@ -7,6 +7,7 @@ from django.views.decorators.http import require_GET
 
 from .intelligence import build_intelligence
 from .live_quotes import cached_quote
+from .intraday import get_intraday, INTERVALS
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -92,6 +93,24 @@ def market_quote(request):
     symbol = (request.GET.get("symbol") or "").upper().strip()
     result = cached_quote(symbol)
     response = JsonResponse(result, status=200 if result["status"] == "current" else 503)
+    response["Cache-Control"] = "no-store"
+    response["X-Content-Type-Options"] = "nosniff"
+    return response
+
+
+@require_GET
+def market_intraday(request):
+    """License-gated 15-minute or hourly analysis from completed market candles."""
+    symbol = (request.GET.get("symbol") or "").upper().strip()
+    interval = (request.GET.get("interval") or "15min").strip()
+    if interval not in INTERVALS:
+        return JsonResponse({"status": "invalid", "detail": "Unsupported timeframe"}, status=400)
+    payload = get_intraday(symbol, interval)
+    status = {
+        "current": 200, "stale": 200, "not_configured": 503,
+        "unavailable": 503, "pending": 503, "invalid": 400,
+    }.get(payload["status"], 503)
+    response = JsonResponse(payload, status=status)
     response["Cache-Control"] = "no-store"
     response["X-Content-Type-Options"] = "nosniff"
     return response
