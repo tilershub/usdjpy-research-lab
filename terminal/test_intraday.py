@@ -23,7 +23,7 @@ def fixture(symbol="EUR/USD", interval="15min", count=100, now=FIXED):
         close = 1.10 + index * .0001
         values.append({
             "datetime": opened.strftime("%Y-%m-%d %H:%M:%S"),
-            "open": str(close - .00005), "high": str(close + .0001),
+            "open": str(close - .00005), "high": str(close + .00005),
             "low": str(close - .0002), "close": str(close),
         })
     values.insert(0, {
