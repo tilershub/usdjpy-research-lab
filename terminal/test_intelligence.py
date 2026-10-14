@@ -76,7 +76,7 @@ class IntelligenceViewTests(SimpleTestCase):
     def test_research_page_renders(self):
         response = self.client.get(reverse("market-intelligence"))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Three scenarios to review")
+        self.assertContains(response, "Historical scenarios — require current validation")
         self.assertContains(response, "Historical validation")
         self.assertContains(response, "/market-intelligence/data.json")
 
