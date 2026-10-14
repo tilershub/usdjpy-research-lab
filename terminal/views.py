@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 
 from .intelligence import build_intelligence
+from .live_quotes import cached_quote
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -75,4 +76,22 @@ def market_intelligence_data(request):
     result = build_intelligence(_latest())
     response = JsonResponse(result, status=200 if result["status"] == "ok" else 503)
     response["Cache-Control"] = "no-store"
+    return response
+
+
+@require_GET
+def market_quote(request):
+    """Current indicative quote separated from historical research values."""
+    if not getattr(settings, "TRADE90_QUOTE_REDISTRIBUTION_LICENSED", False):
+        response = JsonResponse({
+            "status": "unavailable",
+            "message": "Direct price redistribution requires a licensed data provider.",
+        }, status=503)
+        response["Cache-Control"] = "no-store"
+        return response
+    symbol = (request.GET.get("symbol") or "").upper().strip()
+    result = cached_quote(symbol)
+    response = JsonResponse(result, status=200 if result["status"] == "current" else 503)
+    response["Cache-Control"] = "no-store"
+    response["X-Content-Type-Options"] = "nosniff"
     return response

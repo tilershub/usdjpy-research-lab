@@ -22,6 +22,7 @@ urlpatterns = [
     path("today/", website_views.today, name="today"),
     path("market-intelligence/", terminal_views.market_intelligence, name="market-intelligence"),
     path("market-intelligence/data.json", terminal_views.market_intelligence_data, name="market-intelligence-data"),
+    path("market-intelligence/quote.json", terminal_views.market_quote, name="market-quote"),
     path("research-workspace/", website_views.research_workspace, name="research-workspace"),
     path("journal/", website_views.journal, name="journal"),
     path("tools/trading-plan-builder/", website_views.trading_plan, name="trading-plan"),
