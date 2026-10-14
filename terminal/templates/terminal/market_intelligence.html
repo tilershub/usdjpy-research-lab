@@ -49,17 +49,16 @@
           </section>
           <section class="live-strip" aria-labelledby="mi-live-heading">
             <div class="rowtop">
-              <div><span class="cap" id="mi-live-heading">Indicative market quote · separate from research model</span>
-                <div class="market-status" id="mi-live-status" aria-live="polite">Checking quote source…</div></div>
-              <button id="mi-refresh-quote" class="button secondary" type="button">Refresh quote ↻</button>
+              <div><span class="cap" id="mi-live-heading">Market prices · provider-hosted display</span>
+                <p class="sm muted">Forex and cryptocurrency pricing is displayed by TradingView and can update in real time; individual exchange or metal symbols may be delayed or unavailable.</p>
+              </div>
+              <span class="pill">Powered by TradingView</span>
             </div>
-            <div class="live-grid">
-              <div><span class="tiny">Indicative mid</span><div class="live-price" id="mi-mid">—</div></div>
-              <div><span class="tiny">Bid</span><div class="live-price" id="mi-bid">—</div></div>
-              <div><span class="tiny">Ask</span><div class="live-price" id="mi-ask">—</div></div>
+            <tv-ticker-tape theme="dark" symbols="CMCMARKETS:GOLD,FX:EURUSD,FX:GBPUSD,FX:USDJPY,FX:USDCHF,FX:USDCAD,FX:AUDUSD,FX:NZDUSD,BITSTAMP:BTCUSD"></tv-ticker-tape>
+            <div style="height:240px;margin-top:12px;max-width:100%">
+              <tv-mini-chart id="mi-widget" theme="dark" symbol="CMCMARKETS:GOLD" style="display:block;width:100%;height:100%"></tv-mini-chart>
             </div>
-            <p class="sm muted" style="margin-top:10px" id="mi-quote-source">Looking for a source-timestamped market quote.</p>
-            <p class="tiny" style="margin-top:6px">Auto-refresh attempts every 30 seconds while this page is visible. Indicative dealer/exchange quotes; not broker-executable prices. If the provider is down or the timestamp is stale, no quote is shown. Historic chart and levels remain separate.</p>
+            <p class="tiny muted" style="margin-top:9px">Market data appears inside TradingView widgets under their terms and is display-only. TRADE90 cannot read or use those prices for its model, calculations or alerts. Published analysis and historical levels below are separate, dated research.</p>
           </section>
           <section class="assessment" aria-labelledby="mi-assessment-heading">
             <div class="cap">What matters in this snapshot</div>
@@ -150,10 +149,12 @@
     <p class="trailer">TRADE90 Market Intelligence uses published, time-stamped market research rather than broker execution prices. Economic, price, positioning and policy sources have different update schedules. Information is educational and is not investment advice or a buy/sell recommendation.</p>
   </div>
 </section>
+<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-mini-chart.js"></script>
+<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 <script>
 (function(){
 "use strict";
-var data=null,selected="XAU/USD",quoteCounter=0,watch=["XAU/USD","EUR/USD","BTC/USD"],key="trade90-mi-checkpoints-v1",wkey="trade90-mi-watchlist-v1",baseline={};
+var data=null,selected="XAU/USD",watch=["XAU/USD","EUR/USD","BTC/USD"],key="trade90-mi-checkpoints-v1",wkey="trade90-mi-watchlist-v1",baseline={};
 var $=function(id){return document.getElementById(id);};
 function txt(id,v){$(id).textContent=(v===undefined||v===null||v==="")?"—":String(v);}
 function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]});}
@@ -166,33 +167,14 @@ function safeLoad(k,def){try{var v=JSON.parse(localStorage.getItem(k));return v&
 function safeSave(k,val){try{localStorage.setItem(k,JSON.stringify(val))}catch(e){/* local storage may be disabled; display still works */}}
 function getMarket(){return data&&data.markets.find(function(m){return m.symbol===selected})}
 function snapshot(m){return {generated_at:data.generated_at,price:m.price,price_observed_at:m.price_observed_at,quality_grade:m.quality_grade,model_score:m.model_score,published_bias:m.published_bias,regime:m.regime,support20:m.support20,resistance20:m.resistance20,event_coverage:m.events.coverage,baseline:m.validation.baseline_pct,accuracy:m.validation.accuracy_pct};}
-function resetQuote(reason){
- txt("mi-mid","—");txt("mi-bid","—");txt("mi-ask","—");
- txt("mi-live-status",reason||"Checking quote source…");
- txt("mi-quote-source","No verified current quote. Historical market research below is not live.");
-}
+var liveSymbols={
+  "XAU/USD":"CMCMARKETS:GOLD","EUR/USD":"FX:EURUSD","GBP/USD":"FX:GBPUSD",
+  "USD/JPY":"FX:USDJPY","USD/CHF":"FX:USDCHF","USD/CAD":"FX:USDCAD",
+  "AUD/USD":"FX:AUDUSD","NZD/USD":"FX:NZDUSD","BTC/USD":"BITSTAMP:BTCUSD"
+};
 function updateQuote(){
- if(!data)return;
- var symbol=selected,cycle=++quoteCounter;
- resetQuote("Checking "+symbol+" indicative quote…");
- var abort=new AbortController();
- var timer=setTimeout(function(){abort.abort()},9000);
- fetch("/market-intelligence/quote.json?symbol="+encodeURIComponent(symbol),{
-   credentials:"same-origin",cache:"no-store",signal:abort.signal
- }).then(function(r){return r.json()}).then(function(q){
-   if(cycle!==quoteCounter||selected!==symbol)return;
-   if(!q||q.status!=="current"||q.symbol!==symbol){
-     resetQuote(q&&q.status==="stale"?"Provider quote is stale — unavailable":"Quote unavailable — check your broker");
-     if(q&&q.observed_at)txt("mi-quote-source","Last source observation "+date(q.observed_at)+"; too old to call current.");
-     return;
-   }
-   var m=getMarket(),dec=m?m.decimals:2;
-   txt("mi-mid",fmt(q.mid,dec));txt("mi-bid",fmt(q.bid,dec));txt("mi-ask",fmt(q.ask,dec));
-   txt("mi-live-status","Current indicative quote · provider time verified");
-   txt("mi-quote-source",q.provider+" · "+q.venue+" · Observed "+date(q.observed_at)+" · "+q.age_seconds+" sec old. "+q.basis+".");
- }).catch(function(e){
-   if(cycle===quoteCounter&&selected===symbol)resetQuote("Provider unreachable — no current quote");
- }).finally(function(){clearTimeout(timer)});
+ var element=$("mi-widget");
+ if(element&&liveSymbols[selected])element.setAttribute("symbol",liveSymbols[selected]);
 }
 function buildList(){
  var sorted=data.markets.slice().sort(function(a,b){return Number(watch.includes(b.symbol))-Number(watch.includes(a.symbol))});
@@ -274,8 +256,6 @@ function render(){
  delta(m);
 }
 $("mi-selector").addEventListener("change",function(e){selected=e.target.value;render();updateQuote()});
-$("mi-refresh-quote").addEventListener("click",updateQuote);
-setInterval(function(){if(!document.hidden&&data)updateQuote()},30000);
 $("mi-mark-reviewed").addEventListener("click",function(){var m=getMarket();if(!m)return;baseline[m.symbol]=snapshot(m);safeSave(key,baseline);delta(m);$("mi-delta-about").textContent="Review saved for "+m.symbol+" on "+new Date().toLocaleString()+". New published changes will be shown here."});
 watch=safeLoad(wkey,watch);if(!Array.isArray(watch))watch=["XAU/USD","EUR/USD","BTC/USD"];
 baseline=safeLoad(key,{});if(Array.isArray(baseline))baseline={};
