@@ -91,3 +91,6 @@ WAGTAIL_SITE_NAME = "TRADE90"
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 TERMINAL_SNAPSHOT_PATH = Path(os.environ.get("TERMINAL_SNAPSHOT_PATH", BASE_DIR / "public" / "terminal-snapshot.json"))
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024
+
+# Public intraday provider use requires explicit external-display/derived-data licensing.
+TRADE90_INTRADAY_PUBLIC_LICENSED = os.environ.get("TRADE90_INTRADAY_PUBLIC_LICENSED", "").strip().lower() == "true"

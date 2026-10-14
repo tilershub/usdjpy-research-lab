@@ -10,6 +10,13 @@
 .mi .live-price{font-size:clamp(22px,3vw,32px);font-weight:800;letter-spacing:-.5px;line-height:1.15}
 .mi .live-strip .tiny{color:#bed2df}
 .mi .market-status{font-weight:700;font-size:12px;color:#f5cd8e}
+.mi .intraday-table{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:12px 0}
+.mi .intraday-cell{background:#0e1f32;border:1px solid #38516c;border-radius:10px;padding:12px;min-width:0}
+.mi .intraday-cell small{color:#afc3d8;display:block}.mi .intraday-cell strong{font-size:18px;word-break:break-word}
+.mi .intraday-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:9px}
+.mi .intraday-bar select{padding:8px 10px;background:#0c1b2b;border:1px solid #526e88;border-radius:9px;color:#eaf3ff;font:inherit}
+.mi .intraday-text{color:#d7e5f3;font-size:13px}
+@media(max-width:760px){.mi .intraday-table{grid-template-columns:1fr 1fr}.mi .intraday-cell strong{font-size:16px}}
 .mi .chart{width:100%;height:220px;background:#0d1a2a;border:1px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}.mi svg{display:block;width:100%;height:100%}.mi .scenario{background:#0d1d30;border:1px solid #344c61;border-radius:12px;padding:13px}.mi .scenario h3{margin-bottom:5px}.mi .scenario p{font-size:12px;color:#c1d5e7}.mi .driver{margin:10px 0}.mi .driver-label{display:flex;justify-content:space-between;font-size:12px;gap:10px}.mi .driver-meter{background:#0c1828;border-radius:99px;height:7px;overflow:hidden;margin-top:5px}.mi .driver-meter span{display:block;height:100%;background:#84bbdc;border-radius:99px}.mi .driver-meter span.negative{background:#e9a17e}.mi .news{display:grid;gap:9px}.mi .news a{text-decoration:none;color:#d9eaf9;font-weight:620}.mi .news a:hover{text-decoration:underline}.mi .news-item{padding:9px 0;border-bottom:1px solid var(--line)}.mi .history{display:grid;gap:8px}.mi .history-item{background:#0e1e30;border-left:3px solid #73b8e8;padding:9px 12px;font-size:12px}.mi .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.mi .mini{background:#0f2033;border:1px solid var(--line);border-radius:9px;padding:10px}.mi .mini small{display:block;color:var(--muted)}.mi .mini strong{font-size:19px}.mi .footer-links{display:flex;gap:9px;flex-wrap:wrap}.mi .empty{padding:16px;border:1px dashed #50657d;border-radius:10px;color:var(--muted);background:#101e30;font-size:12px}.mi .loading{min-height:280px;display:grid;place-content:center;text-align:center;padding:28px}.mi .error{border-color:#93615d;color:#ffd9d5}.mi .rowcard{margin-bottom:12px}.mi .market-summary{font-size:12px;color:#aec9dc}.mi #mi-selector{width:100%}.mi .trailer{margin-top:20px;font-size:11px;color:var(--muted)}.mi .riskline{margin-top:7px}
 @media(max-width:1100px){.mi .two{grid-template-columns:1fr}.mi .thirds{grid-template-columns:1fr}.mi .sidebar{position:static}.mi .layout{grid-template-columns:200px 1fr}}
 @media(max-width:760px){.mi{padding-top:18px}.mi .layout{display:block}.mi .sidebar{position:static;margin-bottom:14px;padding:13px}.mi .sidebar .market-list{display:none}.mi .market-select{display:block}.mi .live-grid{grid-template-columns:1fr 1fr}.mi .live-grid>div:first-child{grid-column:1/-1}.mi .facts{grid-template-columns:1fr 1fr}.mi .facts .fact:last-child{grid-column:1/-1}.mi .levels{grid-template-columns:1fr 1fr}.mi .levels .level:last-child{grid-column:1/-1}.mi .top h1{font-size:30px}.mi .market-head h2{font-size:22px}.mi .card{padding:15px}.mi .assessment{padding:16px}.mi .fact strong{font-size:18px}.mi .main{gap:12px}}
@@ -59,6 +66,31 @@
               <tv-mini-chart id="mi-widget" theme="dark" symbol="CMCMARKETS:GOLD" style="display:block;width:100%;height:100%"></tv-mini-chart>
             </div>
             <p class="tiny muted" style="margin-top:9px">Market data appears inside TradingView widgets under their terms and is display-only. TRADE90 cannot read or use those prices for its model, calculations or alerts. Published analysis and historical levels below are separate, dated research.</p>
+          </section>
+          <section class="card" id="mi-intraday" aria-labelledby="mi-intraday-head">
+            <div class="intraday-bar">
+              <div><div class="cap">Technical research from completed intraday candles</div><h2 id="mi-intraday-head">Intraday market structure</h2></div>
+              <label class="sm" for="mi-intraday-interval">Timeframe
+                <select id="mi-intraday-interval"><option value="15min">15 minutes</option><option value="1h">1 hour</option></select>
+              </label>
+            </div>
+            <p id="mi-intraday-state" class="sm muted" style="margin-top:10px" role="status">Connecting to licensed intraday data, when configured…</p>
+            <div id="mi-intraday-body" hidden>
+              <div class="intraday-table">
+                <div class="intraday-cell"><small>Last completed close</small><strong id="mi-i-close">—</strong></div>
+                <div class="intraday-cell"><small>EMA 20 / EMA 50</small><strong id="mi-i-ema">—</strong></div>
+                <div class="intraday-cell"><small>RSI (14)</small><strong id="mi-i-rsi">—</strong></div>
+                <div class="intraday-cell"><small>ATR (14)</small><strong id="mi-i-atr">—</strong></div>
+                <div class="intraday-cell"><small>Prior 20-candle high</small><strong id="mi-i-high">—</strong></div>
+                <div class="intraday-cell"><small>Prior 20-candle low</small><strong id="mi-i-low">—</strong></div>
+                <div class="intraday-cell"><small>16-candle change</small><strong id="mi-i-change">—</strong></div>
+                <div class="intraday-cell"><small>Structure</small><strong id="mi-i-structure">—</strong></div>
+              </div>
+              <p class="intraday-text" id="mi-i-summary"></p>
+              <p class="sm muted" id="mi-i-sources" style="margin-top:8px"></p>
+              <p class="sm muted" id="mi-i-warnings" style="margin-top:6px"></p>
+            </div>
+            <p class="tiny muted" style="margin-top:10px">Different data stream from the dated macro model. Price-based analysis uses validated, fully closed candles; no future candles or broker-executable prices. Public derived-data access is only enabled after provider licensing and secure configuration.</p>
           </section>
           <section class="assessment" aria-labelledby="mi-assessment-heading">
             <div class="cap">What matters in this snapshot</div>
@@ -176,11 +208,48 @@ function updateQuote(){
  var element=$("mi-widget");
  if(element&&liveSymbols[selected])element.setAttribute("symbol",liveSymbols[selected]);
 }
+var intradayCycle=0;
+function requestIntraday(){
+ if(!data)return;
+ var symbol=selected,frame=$("mi-intraday-interval").value,cycle=++intradayCycle;
+ $("mi-intraday-body").hidden=true;
+ txt("mi-intraday-state","Checking "+symbol+" "+frame+" closed candles…");
+ var abort=new AbortController(),timer=setTimeout(function(){abort.abort()},11500);
+ fetch("/market-intelligence/intraday.json?symbol="+encodeURIComponent(symbol)+"&interval="+encodeURIComponent(frame),
+       {credentials:"same-origin",cache:"no-store",signal:abort.signal})
+ .then(function(resp){return resp.json()})
+ .then(function(v){
+   if(cycle!==intradayCycle||selected!==symbol||$("mi-intraday-interval").value!==frame)return;
+   if(v.status!=="current"&&v.status!=="stale"){
+     txt("mi-intraday-state",v.status==="not_configured"?"Live intraday analysis not connected: licensed provider access required.":(v.detail||"Intraday data unavailable."));
+     return;
+   }
+   var decimals=symbol==="XAU/USD"||symbol==="BTC/USD"?2:symbol==="USD/JPY"?3:5;
+   txt("mi-intraday-state",(v.status==="current"?"Latest closed candle available":"Stale intraday observation")+
+       " · "+frame+" · Closed "+date(v.observed_at));
+   txt("mi-i-close",fmt(v.last_completed_close,decimals));
+   txt("mi-i-ema",fmt(v.ema20,decimals)+" / "+fmt(v.ema50,decimals));
+   txt("mi-i-rsi",fmt(v.rsi14,1));
+   txt("mi-i-atr",fmt(v.atr14,decimals));
+   txt("mi-i-high",fmt(v.prior20_high,decimals));
+   txt("mi-i-low",fmt(v.prior20_low,decimals));
+   txt("mi-i-change",fmt(v.change16_candles_pct,2)+"%");
+   txt("mi-i-structure",v.structure);
+   txt("mi-i-summary",v.interpretation);
+   txt("mi-i-sources","Source: "+v.provider+" · "+v.price_basis+" · "+v.candle_count+" validated candles. Not a trade signal.");
+   txt("mi-i-warnings",(v.warnings||[]).join(" "));
+   $("mi-intraday-body").hidden=false;
+ }).catch(function(){
+   if(cycle===intradayCycle&&selected===symbol)txt("mi-intraday-state","Intraday provider unavailable. Dated research below remains separate.");
+ }).finally(function(){clearTimeout(timer)});
+}
+$("mi-intraday-interval").addEventListener("change",requestIntraday);
+setInterval(function(){if(!document.hidden&&data)requestIntraday()},300000);
 function buildList(){
  var sorted=data.markets.slice().sort(function(a,b){return Number(watch.includes(b.symbol))-Number(watch.includes(a.symbol))});
  $("mi-markets").innerHTML=sorted.map(function(m){return '<div class="market-row '+(selected===m.symbol?"active":"")+'"><button class="pick" data-pick="'+esc(m.symbol)+'" type="button"><strong>'+esc(m.symbol)+'</strong><span>'+esc(m.name)+'</span></button><button type="button" class="star" data-star="'+esc(m.symbol)+'" aria-label="Toggle '+esc(m.symbol)+' watchlist">'+(watch.includes(m.symbol)?"★":"☆")+'</button></div>'}).join("");
  var choose=$("mi-selector");choose.innerHTML=data.markets.map(function(m){return '<option value="'+esc(m.symbol)+'">'+esc(m.symbol)+" — "+esc(m.name)+"</option>"}).join("");choose.value=selected;
- $("mi-markets").querySelectorAll("[data-pick]").forEach(function(b){b.addEventListener("click",function(){selected=b.dataset.pick;render();updateQuote();})});
+ $("mi-markets").querySelectorAll("[data-pick]").forEach(function(b){b.addEventListener("click",function(){selected=b.dataset.pick;render();updateQuote();requestIntraday();})});
  $("mi-markets").querySelectorAll("[data-star]").forEach(function(b){b.addEventListener("click",function(){var x=b.dataset.star;watch=watch.includes(x)?watch.filter(function(z){return z!==x}):watch.concat([x]);safeSave(wkey,watch);buildList()})});
 }
 function chart(m){
@@ -255,7 +324,7 @@ function render(){
  $("mi-full").href="/tools/fx-research-terminal/";
  delta(m);
 }
-$("mi-selector").addEventListener("change",function(e){selected=e.target.value;render();updateQuote()});
+$("mi-selector").addEventListener("change",function(e){selected=e.target.value;render();updateQuote();requestIntraday()});
 $("mi-mark-reviewed").addEventListener("click",function(){var m=getMarket();if(!m)return;baseline[m.symbol]=snapshot(m);safeSave(key,baseline);delta(m);$("mi-delta-about").textContent="Review saved for "+m.symbol+" on "+new Date().toLocaleString()+". New published changes will be shown here."});
 watch=safeLoad(wkey,watch);if(!Array.isArray(watch))watch=["XAU/USD","EUR/USD","BTC/USD"];
 baseline=safeLoad(key,{});if(Array.isArray(baseline))baseline={};
@@ -266,7 +335,7 @@ fetch("/market-intelligence/data.json",{cache:"no-store",credentials:"same-origi
  var latest=result.snapshot_age_hours;var stale=latest==null||latest>36;
  var banner=$("mi-feed-status");banner.textContent=stale?"Publication overdue — verify current data":"Published research available";banner.className="pill "+(stale?"warn":"ok");
  txt("mi-feed-date","Research published "+date(result.generated_at));
- render();updateQuote();
+ render();updateQuote();requestIntraday();
 }).catch(function(err){$("mi-loading").className="card loading error";$("mi-loading").textContent="Market Intelligence could not load verified research. "+String(err.message||"Please try again later.")+" The notebook and calculators remain available."}).finally(function(){clearTimeout(timeout)});
 })();
 </script>
