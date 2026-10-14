@@ -3,6 +3,9 @@ from datetime import timezone as dt_timezone
 
 from django.conf import settings
 from django.http import JsonResponse
+from django.views.decorators.http import require_GET
+
+from .intelligence import build_intelligence
 from django.shortcuts import render
 from django.utils import timezone
 from django.utils.dateparse import parse_datetime
@@ -58,3 +61,18 @@ def snapshot(request):
     if payload is None:
         return JsonResponse({"status": "unavailable", "detail": "No verified market snapshot has been published."}, status=503)
     return JsonResponse(payload)
+
+
+@require_GET
+def market_intelligence(request):
+    """Public research-first interface; no account or database migrations required."""
+    return render(request, "terminal/market_intelligence.html")
+
+
+@require_GET
+def market_intelligence_data(request):
+    """A compact, provenance-aware view of the existing publisher snapshot."""
+    result = build_intelligence(_latest())
+    response = JsonResponse(result, status=200 if result["status"] == "ok" else 503)
+    response["Cache-Control"] = "no-store"
+    return response

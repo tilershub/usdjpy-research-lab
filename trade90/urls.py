@@ -5,6 +5,7 @@ from django.urls import include, path
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from website import views as website_views
+from terminal import views as terminal_views
 
 urlpatterns = [
     path("health/", website_views.health, name="health"),
@@ -19,6 +20,8 @@ urlpatterns = [
     path("tools/profit-calculator/", website_views.calculator, {"tool": "profit"}),
     path("tools/compounding-calculator/", website_views.calculator, {"tool": "compounding"}),
     path("today/", website_views.today, name="today"),
+    path("market-intelligence/", terminal_views.market_intelligence, name="market-intelligence"),
+    path("market-intelligence/data.json", terminal_views.market_intelligence_data, name="market-intelligence-data"),
     path("research-workspace/", website_views.research_workspace, name="research-workspace"),
     path("journal/", website_views.journal, name="journal"),
     path("tools/trading-plan-builder/", website_views.trading_plan, name="trading-plan"),

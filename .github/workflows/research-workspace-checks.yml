@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - "website/**"
+      - "terminal/**"
+      - "templates/base.html"
       - "trade90/urls.py"
       - ".github/workflows/research-workspace-checks.yml"
   workflow_dispatch:
@@ -24,4 +26,4 @@ jobs:
       - name: Check Django configuration
         run: python manage.py check --settings=trade90.settings.dev
       - name: Test research workspace
-        run: python manage.py test website.test_research_workspace --settings=trade90.settings.dev --verbosity 2
+        run: python manage.py test website.test_research_workspace terminal.test_intelligence --settings=trade90.settings.dev --verbosity 2
