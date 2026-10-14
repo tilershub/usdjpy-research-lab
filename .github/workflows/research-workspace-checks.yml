@@ -26,4 +26,4 @@ jobs:
       - name: Check Django configuration
         run: python manage.py check --settings=trade90.settings.dev
       - name: Test research workspace
-        run: python manage.py test website.test_research_workspace terminal.test_intelligence terminal.test_live_quotes terminal.test_intraday --settings=trade90.settings.dev --verbosity 2
+        run: python manage.py test website.test_research_workspace terminal.test_intelligence terminal.test_live_quotes terminal.test_intraday terminal.test_event_guard --settings=trade90.settings.dev --verbosity 2

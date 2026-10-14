@@ -6,6 +6,8 @@ publisher's snapshot, and missing source coverage remains explicitly unknown.
 from datetime import datetime, timezone
 from math import isfinite
 
+from .event_guard import recent_high_impact
+
 
 MARKET_NAMES = {
     "XAU/USD": "Gold", "EUR/USD": "Euro / US Dollar",
@@ -89,7 +91,7 @@ def _drivers(pair):
     return sorted(results, key=lambda d: abs(d["contribution"]), reverse=True)[:5]
 
 
-def market_brief(pair, generated_at, source_status, now):
+def market_brief(pair, generated_at, source_status, now, event_context=None):
     symbol = pair.get("symbol")
     if symbol not in MARKET_NAMES:
         return None
@@ -164,6 +166,33 @@ def market_brief(pair, generated_at, source_status, now):
     if symbol == "XAU/USD" and "futures" in basis.lower():
         quality_warnings.append("Gold reference is COMEX futures, not spot CFD: broker execution levels will differ.")
 
+    # A recently scheduled major US macro release invalidates the *currentness*
+    # of a pre-release directional label. We never auto-flip bullish to bearish
+    # without an observed, licensed intraday data series.
+    macro_release = event_context if isinstance(event_context, dict) else {}
+    near_event = macro_release.get("status") in ("upcoming", "released_or_due")
+    event_time = as_utc(macro_release.get("scheduled_at"))
+    pre_event_snapshot = (
+        near_event and event_time is not None and
+        (snapshot_time is None or snapshot_time < event_time)
+    )
+    if pre_event_snapshot:
+        quality_warnings.insert(0,
+            "High-impact BLS event occurred after this snapshot or is imminent. "
+            "The historical bias has NOT been recalculated for the release.")
+    elif near_event:
+        quality_warnings.insert(0,
+            "High-impact U.S. event window: the historical model is not confirmed "
+            "to incorporate the release or current market reaction.")
+    if conflicting:
+        quality_warnings.insert(0,
+            "Historical Bullish/Bearish classification is contradicted by "
+            "the signed model score. Do not treat it as a current bias.")
+    quality_warnings.insert(0,
+        "No verified current-session OHLC evidence in this publisher snapshot. "
+        "Bias and levels are historical; no current direction is established.")
+
+
     return {
         "symbol": symbol, "slug": symbol.replace("/", "").lower(),
         "name": MARKET_NAMES[symbol], "asset_class": pair.get("asset_class"),
@@ -174,6 +203,10 @@ def market_brief(pair, generated_at, source_status, now):
         "quality_grade": grade, "stale_inputs": stale_inputs,
         "model_score": score, "published_bias": bias,
         "score_bias_conflict": conflicting, "confidence_label": pair.get("confidence"),
+        "published_bias_use": "historical_only",
+        "current_direction": "Not established",
+        "high_impact_event": macro_release if near_event else None,
+        "pre_event_snapshot": bool(pre_event_snapshot),
         "scenario_frequencies": {"bullish": bullish, "neutral": neutral, "bearish": bearish},
         "frequency_margin": diff,
         "regime": market.get("regime") or "Unknown",
@@ -215,7 +248,8 @@ def build_intelligence(snapshot, now=None):
         return {"status": "unavailable", "markets": [], "detail": "Published snapshot has no markets."}
     generated_at = snapshot.get("generated_at")
     source_status = snapshot.get("sources") or {}
-    markets = [market_brief(p, generated_at, source_status, now)
+    high_impact = recent_high_impact(now)
+    markets = [market_brief(p, generated_at, source_status, now, high_impact)
                for p in pairs if isinstance(p, dict)]
     markets = [m for m in markets if m is not None]
     if not markets:
@@ -225,6 +259,8 @@ def build_intelligence(snapshot, now=None):
         "generated_at": generated_at,
         "snapshot_age_hours": round(max(0, (now - as_utc(generated_at)).total_seconds() / 3600), 1) if as_utc(generated_at) else None,
         "cadence": snapshot.get("cadence"),
+        "high_impact": high_impact,
+        "assessment_integrity": "Historical daily research, NOT a live recommendation. Major BLS releases temporarily supersede old model labels.",
         "sources": {
             "calendar": {"provider": (source_status.get("calendar") or {}).get("provider"),
                          "status": (source_status.get("calendar") or {}).get("mode") or "unknown"},
