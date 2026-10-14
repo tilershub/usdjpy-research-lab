@@ -15,6 +15,16 @@ BLS_EVENTS = {
         "scheduled_at": "2026-10-14T12:30:00+00:00",
         "url": "https://www.bls.gov/schedule/news_release/cpi.htm",
         "source": "Bureau of Labor Statistics"
+    }, {
+        "name": "Producer Price Index",
+        "scheduled_at": "2026-10-15T12:30:00+00:00",
+        "url": "https://www.bls.gov/schedule/news_release/ppi.htm",
+        "source": "Bureau of Labor Statistics"
+    }, {
+        "name": "Consumer Price Index",
+        "scheduled_at": "2026-11-10T13:30:00+00:00",
+        "url": "https://www.bls.gov/schedule/news_release/cpi.htm",
+        "source": "Bureau of Labor Statistics"
     }],
 }
 
@@ -58,6 +68,10 @@ END:VCALENDAR"""
         self.assertEqual(event["status"], "released_or_due")
         self.assertEqual(event["official_release"]["headline_yoy_pct"], 3.7)
         self.assertEqual(event["official_release"]["core_mom_pct"], 0.3)
+        self.assertEqual(event["name"], "Consumer Price Index")
+        self.assertEqual(event["scheduled_at"], "2026-10-14T12:30:00+00:00")
+        self.assertEqual(event["official_release"]["source_url"],
+                         "https://www.bls.gov/news.release/archives/cpi_10142026.htm")
         self.assertNotIn("gold", event["message"].lower())
         with patch("terminal.intelligence.recent_high_impact", return_value=event):
             result = build_intelligence(example_snapshot(), now=now)
