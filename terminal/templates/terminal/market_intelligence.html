@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block title %}Market Intelligence | TRADE90{% endblock %}
+{% block description %}Evidence-led market research for gold, forex and Bitcoin. Published context, scenarios, data-quality warnings and change tracking. Not trade signals.{% endblock %}
+{% block content %}
+<style>
+.mi{--bg:#0d1726;--panel:#142338;--line:#2e435c;--muted:#a3b9cc;--light:#eaf3ff;--accent:#7dc7ff;--green:#9ce9c9;--yellow:#f5cd8e;--red:#ffaaa5;background:#0b1422;color:var(--light);padding:26px 0 60px;font:14px/1.55 system-ui,-apple-system,Segoe UI,sans-serif;min-height:75vh}
+.mi *{box-sizing:border-box}.mi .wrap{max-width:1450px;margin:auto;padding:0 18px}
+.mi a{color:var(--accent)}.mi h1,.mi h2,.mi h3,.mi p{margin:0}.mi h1{font-size:clamp(27px,4vw,43px);line-height:1.1;letter-spacing:-.9px}.mi h2{font-size:19px;line-height:1.3}.mi h3{font-size:15px}.mi .muted{color:var(--muted)}.mi .sm{font-size:12px}.mi .tiny{font-size:11px}.mi .cap{text-transform:uppercase;letter-spacing:1.2px;font-size:11px;font-weight:750;color:#9bc7e9}.mi .card{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:19px}.mi .top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:19px}.mi .top p{color:var(--muted);max-width:700px;margin-top:10px}.mi .status{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.mi .pill{border-radius:999px;border:1px solid #41617b;padding:5px 10px;font-size:11px;background:#20354b;color:#d5e5f7}.mi .pill.warn{border-color:#856132;color:var(--yellow);background:#3a3022}.mi .pill.ok{border-color:#327f6f;color:var(--green)}.mi .layout{display:grid;grid-template-columns:235px minmax(0,1fr);gap:18px}.mi .sidebar{align-self:start;position:sticky;top:85px}.mi .market-list{display:grid;gap:7px;margin-top:12px}.mi .market-row{display:flex;align-items:stretch;border:1px solid #334961;border-radius:10px;background:#122238;overflow:hidden}.mi .market-row.active{border-color:#69b1e6;background:#173b58}.mi .market-row button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}.mi .market-row .pick{flex:1;text-align:left;padding:10px 12px}.mi .market-row .pick strong{display:block}.mi .market-row .pick span{font-size:11px;color:var(--muted)}.mi .market-row .star{font-size:19px;padding:5px 12px;color:var(--yellow)}.mi button:focus-visible,.mi a:focus-visible,.mi select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.mi .button{font:inherit;display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#225d87;border:1px solid #429ed4;color:#fff;border-radius:9px;padding:9px 13px;font-size:12px;font-weight:750;cursor:pointer;text-decoration:none}.mi .button.secondary{background:#18314a;border-color:#395c79;color:#cfe9fe}.mi .button:hover{filter:brightness(1.13)}.mi .market-select{display:none;background:#122238;border:1px solid #45647f;border-radius:10px;color:var(--light);padding:10px 12px;width:100%;margin:11px 0 0}.mi .main{display:grid;gap:16px;min-width:0}.mi .market-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.mi .market-head h2{font-size:25px}.mi .market-head .cap{display:block;margin-bottom:3px}.mi .assessment{background:linear-gradient(125deg,#18314a,#152537);border:1px solid #48657c;border-radius:16px;padding:20px}.mi .assessment h3{font-size:23px;margin:4px 0 9px}.mi .assessment p{max-width:960px;color:#d2e3f4}.mi .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:17px}.mi .fact{padding:12px;border:1px solid #496178;border-radius:11px;background:rgba(10,23,38,.65)}.mi .fact small{display:block;color:var(--muted);font-size:11px}.mi .fact strong{display:block;font-size:20px;margin-top:2px}.mi .two{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.mi .thirds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.mi .rowtop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}.mi .disclosure{background:#30281e;color:#f7dbaf;border:1px solid #87683f;border-radius:10px;padding:12px;font-size:12px}.mi .warning-list{margin:9px 0 0;padding-left:18px}.mi .warning-list li{margin:6px 0}.mi .levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.mi .level{background:#0e1d30;border:1px solid var(--line);border-radius:11px;padding:12px}.mi .level span{display:block;color:var(--muted);font-size:11px}.mi .level strong{display:block;font-size:20px;margin-top:3px}.mi .chart{width:100%;height:220px;background:#0d1a2a;border:1px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}.mi svg{display:block;width:100%;height:100%}.mi .scenario{background:#0d1d30;border:1px solid #344c61;border-radius:12px;padding:13px}.mi .scenario h3{margin-bottom:5px}.mi .scenario p{font-size:12px;color:#c1d5e7}.mi .driver{margin:10px 0}.mi .driver-label{display:flex;justify-content:space-between;font-size:12px;gap:10px}.mi .driver-meter{background:#0c1828;border-radius:99px;height:7px;overflow:hidden;margin-top:5px}.mi .driver-meter span{display:block;height:100%;background:#84bbdc;border-radius:99px}.mi .driver-meter span.negative{background:#e9a17e}.mi .news{display:grid;gap:9px}.mi .news a{text-decoration:none;color:#d9eaf9;font-weight:620}.mi .news a:hover{text-decoration:underline}.mi .news-item{padding:9px 0;border-bottom:1px solid var(--line)}.mi .history{display:grid;gap:8px}.mi .history-item{background:#0e1e30;border-left:3px solid #73b8e8;padding:9px 12px;font-size:12px}.mi .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.mi .mini{background:#0f2033;border:1px solid var(--line);border-radius:9px;padding:10px}.mi .mini small{display:block;color:var(--muted)}.mi .mini strong{font-size:19px}.mi .footer-links{display:flex;gap:9px;flex-wrap:wrap}.mi .empty{padding:16px;border:1px dashed #50657d;border-radius:10px;color:var(--muted);background:#101e30;font-size:12px}.mi .loading{min-height:280px;display:grid;place-content:center;text-align:center;padding:28px}.mi .error{border-color:#93615d;color:#ffd9d5}.mi .rowcard{margin-bottom:12px}.mi .market-summary{font-size:12px;color:#aec9dc}.mi #mi-selector{width:100%}.mi .trailer{margin-top:20px;font-size:11px;color:var(--muted)}.mi .riskline{margin-top:7px}
+@media(max-width:1100px){.mi .two{grid-template-columns:1fr}.mi .thirds{grid-template-columns:1fr}.mi .sidebar{position:static}.mi .layout{grid-template-columns:200px 1fr}}
+@media(max-width:760px){.mi{padding-top:18px}.mi .layout{display:block}.mi .sidebar{position:static;margin-bottom:14px;padding:13px}.mi .sidebar .market-list{display:none}.mi .market-select{display:block}.mi .facts{grid-template-columns:1fr 1fr}.mi .facts .fact:last-child{grid-column:1/-1}.mi .levels{grid-template-columns:1fr 1fr}.mi .levels .level:last-child{grid-column:1/-1}.mi .top h1{font-size:30px}.mi .market-head h2{font-size:22px}.mi .card{padding:15px}.mi .assessment{padding:16px}.mi .fact strong{font-size:18px}.mi .main{gap:12px}}
+</style>
+<section class="mi" id="market-intelligence">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <div class="cap">TRADE90 · Evidence-first research</div>
+        <h1>Market Intelligence</h1>
+        <p>Know what changed, which evidence matters, and what needs checking before your next trade. Automatically organized from dated, published market observations.</p>
+      </div>
+      <div class="status" aria-live="polite">
+        <span class="pill" id="mi-feed-status">Connecting to published research…</span>
+        <span class="pill" id="mi-feed-date">Publication time unavailable</span>
+      </div>
+    </div>
+    <div class="layout">
+      <aside class="sidebar card" aria-label="Market selection">
+        <div class="cap">Select instrument</div>
+        <label class="sm muted" for="mi-selector">Choose the market to research</label>
+        <select id="mi-selector" class="market-select" aria-label="Select market"></select>
+        <div class="market-list" id="mi-markets"></div>
+        <p class="sm muted" style="margin-top:12px">★ Star your watchlist markets. Saved in this browser.</p>
+        <div class="rowtop" style="margin-top:17px"><span class="cap">My tools</span></div>
+        <div class="footer-links">
+          <a href="/research-workspace/" class="button secondary">Research notebook ↗</a>
+          <a href="/tools/position-size-calculator/" class="button secondary">Position size ↗</a>
+        </div>
+      </aside>
+      <div class="main" id="mi-main">
+        <div class="card loading" id="mi-loading" role="status">Loading the latest published research briefing…</div>
+        <div id="mi-content" hidden>
+          <section class="market-head">
+            <div><div class="cap">Market briefing · <span id="mi-instrument-meta"></span></div><h2 id="mi-symbol"></h2></div>
+            <div class="status"><span class="pill" id="mi-quality"></span><span class="pill" id="mi-observed"></span></div>
+          </section>
+          <section class="assessment" aria-labelledby="mi-assessment-heading">
+            <div class="cap">What matters in this snapshot</div>
+            <h3 id="mi-assessment-heading"></h3>
+            <p id="mi-assessment-body"></p>
+            <div class="facts">
+              <div class="fact"><small>Published closing reference</small><strong id="mi-close"></strong><small id="mi-price-basis"></small></div>
+              <div class="fact"><small>Market regime</small><strong id="mi-regime"></strong><small id="mi-volatility"></small></div>
+              <div class="fact"><small>Economic event coverage</small><strong id="mi-event"></strong><small id="mi-event-note">Unknown does not mean no events</small></div>
+            </div>
+          </section>
+          <div class="two">
+            <section class="card">
+              <div class="rowtop"><h2>Price structure</h2><span class="sm muted">End-of-day publisher history</span></div>
+              <div class="chart" id="mi-chart" role="img" aria-label="Historical closing price chart"></div>
+              <div class="levels">
+                <div class="level"><span>20-session support</span><strong id="mi-support"></strong></div>
+                <div class="level"><span>20-session resistance</span><strong id="mi-resistance"></strong></div>
+                <div class="level"><span>20-session ATR</span><strong id="mi-atr"></strong></div>
+              </div>
+              <p id="mi-basis-note" class="sm muted" style="margin-top:10px"></p>
+            </section>
+            <section class="card">
+              <div class="rowtop"><h2>Evidence quality</h2><span class="pill" id="mi-warning-count"></span></div>
+              <div class="disclosure" id="mi-quality-summary"></div>
+              <ul class="warning-list sm" id="mi-warnings"></ul>
+              <p class="sm muted riskline">A high completeness grade does not establish directional accuracy. Verify the publisher, observation time and pricing basis.</p>
+            </section>
+          </div>
+          <section class="card">
+            <div class="rowtop"><h2>Three scenarios to review</h2><span class="sm muted">Conditions for further research, not orders</span></div>
+            <div class="thirds">
+              <div class="scenario"><h3>↗ Upside scenario</h3><p id="mi-upside"></p></div>
+              <div class="scenario"><h3>↘ Downside scenario</h3><p id="mi-downside"></p></div>
+              <div class="scenario"><h3>⏸ Wait / no-trade case</h3><p id="mi-no-trade"></p></div>
+            </div>
+          </section>
+          <div class="two">
+            <section class="card">
+              <div class="rowtop"><h2>Model evidence</h2><span class="sm muted">Not a trading signal</span></div>
+              <p class="sm muted" id="mi-model-description"></p>
+              <div class="mini-grid" style="margin-top:13px">
+                <div class="mini"><small>Publisher bias</small><strong id="mi-bias"></strong></div>
+                <div class="mini"><small>Signed model score</small><strong id="mi-score"></strong></div>
+                <div class="mini"><small>Historical bullish frequency</small><strong id="mi-bull"></strong></div>
+                <div class="mini"><small>Historical bearish frequency</small><strong id="mi-bear"></strong></div>
+              </div>
+              <p class="sm muted" style="margin-top:12px">These scenario frequencies and the model score are different outputs. They are not a guaranteed probability of your next trade.</p>
+              <div style="margin-top:16px"><h3>Largest model contributions</h3><div id="mi-drivers"></div></div>
+            </section>
+            <section class="card">
+              <div class="rowtop"><h2>Historical validation</h2><span class="pill">Five-day horizon</span></div>
+              <div class="mini-grid">
+                <div class="mini"><small>Out-of-sample accuracy</small><strong id="mi-accuracy"></strong></div>
+                <div class="mini"><small>Majority-class baseline</small><strong id="mi-baseline"></strong></div>
+              </div>
+              <p class="sm" id="mi-validation-msg" style="margin-top:12px"></p>
+              <p class="sm muted" id="mi-validation-n"></p>
+              <p class="sm muted" style="margin-top:9px">Historical validation excludes broker spreads, slippage and costs and does not establish a tradable edge.</p>
+              <div class="rowtop" style="margin-top:20px"><h3>Positioning context</h3></div>
+              <p class="sm" id="mi-position"></p>
+            </section>
+          </div>
+          <div class="two">
+            <section class="card">
+              <div class="rowtop"><h2>Changes since your review</h2><button class="button secondary" id="mi-mark-reviewed" type="button">Mark reviewed</button></div>
+              <p class="sm muted" id="mi-delta-about">Compares published research fields saved in this browser, not manual notes.</p>
+              <div class="history" id="mi-delta" style="margin-top:11px"></div>
+            </section>
+            <section class="card">
+              <div class="rowtop"><h2>Official-source updates</h2><span class="sm muted">Currency-relevant only</span></div>
+              <div id="mi-news" class="news"></div>
+              <p class="sm muted" style="margin-top:12px">These are source releases, not automated sentiment judgments or proof of market impact.</p>
+            </section>
+          </div>
+          <section class="card">
+            <div class="rowtop"><h2>Continue your research</h2></div>
+            <p class="sm muted" style="margin-bottom:12px">Review the underlying technical model, document your thesis, and size a trade using your broker’s actual specifications.</p>
+            <div class="footer-links">
+              <a class="button" id="mi-full" href="/tools/fx-research-terminal/">Explore technical details ↗</a>
+              <a class="button secondary" href="/research-workspace/">Write my research plan ↗</a>
+              <a class="button secondary" href="/tools/position-size-calculator/">Calculate risk ↗</a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <p class="trailer">TRADE90 Market Intelligence uses published, time-stamped market research rather than broker execution prices. Economic, price, positioning and policy sources have different update schedules. Information is educational and is not investment advice or a buy/sell recommendation.</p>
+  </div>
+</section>
+<script>
+(function(){
+"use strict";
+var data=null,selected="XAU/USD",watch=["XAU/USD","EUR/USD","BTC/USD"],key="trade90-mi-checkpoints-v1",wkey="trade90-mi-watchlist-v1",baseline={};
+var $=function(id){return document.getElementById(id);};
+function txt(id,v){$(id).textContent=(v===undefined||v===null||v==="")?"—":String(v);}
+function esc(t){return String(t==null?"":t).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]});}
+function n(v){return typeof v==="number"&&Number.isFinite(v)?v:null;}
+function fmt(v,d){return n(v)===null?"Unavailable":new Intl.NumberFormat("en-US",{minimumFractionDigits:d,maximumFractionDigits:d}).format(v);}
+function pct(v){return n(v)===null?"Unavailable":fmt(v,1)+"%";}
+function date(v){if(!v)return "Unknown date";var d=new Date(v);return Number.isNaN(d.valueOf())?String(v):d.toLocaleString(undefined,{dateStyle:"medium",timeStyle:"short"});}
+function isHttp(link){try{var u=new URL(link);return u.protocol==="https:"||u.protocol==="http:"}catch(e){return false}}
+function safeLoad(k,def){try{var v=JSON.parse(localStorage.getItem(k));return v&&typeof v==="object"?v:def}catch(e){return def}}
+function safeSave(k,val){try{localStorage.setItem(k,JSON.stringify(val))}catch(e){/* local storage may be disabled; display still works */}}
+function getMarket(){return data&&data.markets.find(function(m){return m.symbol===selected})}
+function snapshot(m){return {generated_at:data.generated_at,price:m.price,price_observed_at:m.price_observed_at,quality_grade:m.quality_grade,model_score:m.model_score,published_bias:m.published_bias,regime:m.regime,support20:m.support20,resistance20:m.resistance20,event_coverage:m.events.coverage,baseline:m.validation.baseline_pct,accuracy:m.validation.accuracy_pct};}
+function buildList(){
+ var sorted=data.markets.slice().sort(function(a,b){return Number(watch.includes(b.symbol))-Number(watch.includes(a.symbol))});
+ $("mi-markets").innerHTML=sorted.map(function(m){return '<div class="market-row '+(selected===m.symbol?"active":"")+'"><button class="pick" data-pick="'+esc(m.symbol)+'" type="button"><strong>'+esc(m.symbol)+'</strong><span>'+esc(m.name)+'</span></button><button type="button" class="star" data-star="'+esc(m.symbol)+'" aria-label="Toggle '+esc(m.symbol)+' watchlist">'+(watch.includes(m.symbol)?"★":"☆")+'</button></div>'}).join("");
+ var choose=$("mi-selector");choose.innerHTML=data.markets.map(function(m){return '<option value="'+esc(m.symbol)+'">'+esc(m.symbol)+" — "+esc(m.name)+"</option>"}).join("");choose.value=selected;
+ $("mi-markets").querySelectorAll("[data-pick]").forEach(function(b){b.addEventListener("click",function(){selected=b.dataset.pick;render();})});
+ $("mi-markets").querySelectorAll("[data-star]").forEach(function(b){b.addEventListener("click",function(){var x=b.dataset.star;watch=watch.includes(x)?watch.filter(function(z){return z!==x}):watch.concat([x]);safeSave(wkey,watch);buildList()})});
+}
+function chart(m){
+ var a=m.chart||[];if(a.length<2){$("mi-chart").textContent="Historical chart unavailable.";return;}
+ var y=a.map(function(v){return v.close}),min=Math.min.apply(null,y),max=Math.max.apply(null,y),span=max-min||1,w=700,h=210,p=22;
+ var coords=a.map(function(v,i){return [p+i*(w-2*p)/(a.length-1),h-p-((v.close-min)/span)*(h-2*p)]});
+ var line=coords.map(function(c){return c.map(function(v){return v.toFixed(1)}).join(",")}).join(" ");
+ $("mi-chart").innerHTML='<svg viewBox="0 0 '+w+' '+h+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Last '+a.length+' published closing observations from '+esc(a[0].date)+' to '+esc(a[a.length-1].date)+'"><line x1="'+p+'" y1="'+(h-p)+'" x2="'+(w-p)+'" y2="'+(h-p)+'" stroke="#527084" stroke-width="1"/><polyline fill="none" stroke="#83c9f8" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round" points="'+line+'"/><text x="'+p+'" y="15" font-size="12" fill="#a9c9e1">'+esc(fmt(max,m.decimals))+'</text><text x="'+p+'" y="'+(h-5)+'" font-size="11" fill="#a9c9e1">'+esc(a[0].date)+'</text><text x="'+(w-p)+'" y="'+(h-5)+'" text-anchor="end" font-size="11" fill="#a9c9e1">'+esc(a[a.length-1].date)+'</text></svg>';
+}
+function assessment(m){
+ var problems=[];
+ if(m.score_bias_conflict)problems.push("The published bias and signed model score conflict.");
+ if(n(m.validation.lift_pp)!==null&&m.validation.lift_pp<=0)problems.push("Five-day model validation did not outperform its simple baseline.");
+ if(n(m.frequency_margin)!==null&&Math.abs(m.frequency_margin)<10)problems.push("Bullish and bearish historical frequencies are close.");
+ var title=problems.length?"Mixed evidence — review before forming a view":"Review the published context before acting";
+ if(m.snapshot_old)title="Source update overdue — check current market data";
+ txt("mi-assessment-heading",title);
+ var lead="The published market regime is "+String(m.regime||"unknown").toLowerCase()+". ";
+ lead+=problems.length?problems.join(" ")+" ":"The publisher labels its directional bias "+String(m.published_bias||"unknown")+". ";
+ lead+="This is a research summary, not a trading recommendation.";
+ txt("mi-assessment-body",lead);
+}
+function compare(m){
+ var current=snapshot(m),old=baseline[m.symbol],changes=[];
+ if(!old){baseline[m.symbol]=current;safeSave(key,baseline);return {first:true,changes:[]}}
+ if(old.generated_at===current.generated_at)return {first:false,changes:[]};
+ function cmp(k,desc){if(old[k]!==current[k]&&old[k]!=null&&current[k]!=null){changes.push(desc+": "+String(old[k])+" → "+String(current[k]));}}
+ cmp("price_observed_at","Price observation date");cmp("price","Closing reference");cmp("model_score","Model score");cmp("published_bias","Publisher bias");cmp("regime","Market regime");cmp("support20","20-session support");cmp("resistance20","20-session resistance");cmp("quality_grade","Data grade");cmp("event_coverage","Event coverage");cmp("accuracy","Published model accuracy");
+ return {first:false,changes:changes};
+}
+function delta(m){
+ var result=compare(m),el=$("mi-delta");
+ if(result.first){el.innerHTML='<div class="empty">First visit: the current dated snapshot is saved as a comparison baseline. Return after another publication to see meaningful changes.</div>';return;}
+ if(!result.changes.length){el.innerHTML='<div class="empty">No tracked differences since your last reviewed snapshot. This does not mean every underlying market observation is unchanged.</div>';return;}
+ el.innerHTML=result.changes.map(function(x){return '<div class="history-item">'+esc(x)+'</div>'}).join("");
+}
+function render(){
+ var m=getMarket();if(!m)return;
+ buildList();
+ txt("mi-symbol",m.name+" · "+m.symbol);
+ txt("mi-instrument-meta",(m.asset_class||"Market")+" · "+m.price_basis);
+ txt("mi-quality","Source quality "+m.quality_grade);
+ txt("mi-observed","Price observed "+date(m.price_observed_at));
+ assessment(m);
+ txt("mi-close",fmt(m.price,m.decimals));txt("mi-price-basis",m.price_basis+" · not a live broker quote");
+ txt("mi-regime",m.regime);
+ txt("mi-volatility","Published annualized volatility: "+pct(m.volatility_annualized));
+ txt("mi-event",m.events.level==="Unknown"?"Unknown":m.events.level);txt("mi-event-note",m.events.coverage==="Available"?"Check exact upcoming release details in the full terminal":"Event feed unavailable: check an independent calendar");
+ txt("mi-support",fmt(m.support20,m.decimals));txt("mi-resistance",fmt(m.resistance20,m.decimals));txt("mi-atr",fmt(m.atr20,m.decimals));
+ txt("mi-basis-note",m.price_note||"Reference levels belong to the stated publisher price basis; they are not broker-execution levels.");
+ chart(m);
+ var warnings=m.warnings||[];
+ txt("mi-warning-count",warnings.length+" research caveat"+(warnings.length===1?"":"s"));
+ txt("mi-quality-summary",warnings.length?"Important limitations affect this snapshot; read before using the levels or model outputs.":"No automatic feed warnings detected. Validate the original sources before making decisions.");
+ $("mi-warnings").innerHTML=warnings.length?warnings.map(function(x){return "<li>"+esc(x)+"</li>"}).join(""):"<li>No flagged data gaps in the publisher summary; no trade edge is implied.</li>";
+ txt("mi-upside",n(m.resistance20)===null?"Resistance reference is unavailable. Validate market structure before forming an upside scenario.":"If updated price evidence sustains above the published resistance reference ("+fmt(m.resistance20,m.decimals)+"), reassess momentum and external macro support before forming a view.");
+ txt("mi-downside",n(m.support20)===null?"Support reference is unavailable. Validate downside structure before forming a scenario.":"If updated price evidence breaks below the published support reference ("+fmt(m.support20,m.decimals)+"), reassess downside volatility and model inputs. This is not a stop or entry order.");
+ var blockers=[];if(m.events.coverage!=="Available")blockers.push("event-risk coverage is unknown");if(m.snapshot_old)blockers.push("snapshot is old");if(m.score_bias_conflict)blockers.push("published model outputs conflict");if(m.validation.lift_pp!==null&&m.validation.lift_pp<=0)blockers.push("historical validation lacks an edge");
+ txt("mi-no-trade",blockers.length?"Consider standing aside while "+blockers.join(", ")+". A no-trade decision is a valid research outcome.":"Wait if current quotes, event risks, or personal risk limits cannot be verified; do not trade based on a delayed snapshot.");
+ txt("mi-model-description",m.model_thesis||"Publisher model input summary unavailable.");
+ txt("mi-bias",m.published_bias);txt("mi-score",fmt(m.model_score,1));txt("mi-bull",pct(m.scenario_frequencies.bullish));txt("mi-bear",pct(m.scenario_frequencies.bearish));
+ var ds=m.drivers||[],largest=Math.max(1,...ds.map(function(d){return Math.abs(d.contribution||0)}));
+ $("mi-drivers").innerHTML=ds.length?ds.map(function(d){var w=Math.max(1,100*Math.abs(d.contribution)/largest);return '<div class="driver"><div class="driver-label"><span>'+esc(d.name)+'</span><strong>'+esc(fmt(d.contribution,1))+'</strong></div><div class="driver-meter"><span class="'+(d.contribution<0?"negative":"")+'" style="width:'+w.toFixed(1)+'%"></span></div></div>'}).join(""):"<p class='empty'>No model contribution audit available.</p>";
+ txt("mi-accuracy",pct(m.validation.accuracy_pct));txt("mi-baseline",pct(m.validation.baseline_pct));txt("mi-validation-msg",m.validation.message);txt("mi-validation-n","Test observations: "+(m.validation.observations==null?"not supplied":m.validation.observations)+". Sample accuracy is not a trading return.");
+ var pos=m.positioning||{};
+ txt("mi-position",pos.available?"CFTC positioning as of "+date(pos.as_of)+". Crowding: "+String(pos.crowding||"unspecified")+". Weekly and delayed; not a timing signal.":"Positioning unavailable; no crowding conclusion supported.");
+ var items=(m.news||[]).filter(function(x){return isHttp(x.url)});
+ $("mi-news").innerHTML=items.length?items.map(function(x){return '<div class="news-item"><a target="_blank" rel="noopener noreferrer" href="'+esc(x.url)+'">'+esc(x.headline)+'</a><p class="sm muted">'+esc(x.source)+" · "+esc(x.currency)+" · "+esc(date(x.published_at))+"</p></div>"}).join(""):"<div class='empty'>No currency-matched official source releases in this publication. This does not mean no relevant news exists.</div>";
+ $("mi-full").href="/tools/fx-research-terminal/";
+ delta(m);
+}
+$("mi-selector").addEventListener("change",function(e){selected=e.target.value;render()});
+$("mi-mark-reviewed").addEventListener("click",function(){var m=getMarket();if(!m)return;baseline[m.symbol]=snapshot(m);safeSave(key,baseline);delta(m);$("mi-delta-about").textContent="Review saved for "+m.symbol+" on "+new Date().toLocaleString()+". New published changes will be shown here."});
+watch=safeLoad(wkey,watch);if(!Array.isArray(watch))watch=["XAU/USD","EUR/USD","BTC/USD"];
+baseline=safeLoad(key,{});if(Array.isArray(baseline))baseline={};
+var controller=new AbortController(),timeout=setTimeout(function(){controller.abort()},12000);
+fetch("/market-intelligence/data.json",{cache:"no-store",credentials:"same-origin",signal:controller.signal}).then(function(r){return r.json().then(function(j){if(!r.ok)throw Error(j.detail||"Research feed unavailable");return j;})}).then(function(result){
+ if(result.status!=="ok"||!Array.isArray(result.markets)||!result.markets.length)throw Error("No usable published instruments.");
+ data=result;$("mi-loading").hidden=true;$("mi-content").hidden=false;
+ var latest=result.snapshot_age_hours;var stale=latest==null||latest>36;
+ var banner=$("mi-feed-status");banner.textContent=stale?"Publication overdue — verify current data":"Published research available";banner.className="pill "+(stale?"warn":"ok");
+ txt("mi-feed-date","Research published "+date(result.generated_at));
+ render();
+}).catch(function(err){$("mi-loading").className="card loading error";$("mi-loading").textContent="Market Intelligence could not load verified research. "+String(err.message||"Please try again later.")+" The notebook and calculators remain available."}).finally(function(){clearTimeout(timeout)});
+})();
+</script>
+{% endblock %}
