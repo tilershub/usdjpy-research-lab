@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-07T13:57:32.280807+00:00",
+  "generated_at": "2026-11-07T18:44:17.291965+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-11-07T13:57:34.154255+00:00",
+      "fetched_at": "2026-11-07T18:44:18.727754+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+      "fetched_at": "2026-11-07T18:44:18.768088+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-11-07T13:57:40.535613+00:00",
+      "fetched_at": "2026-11-07T18:44:27.294705+00:00",
       "message": "Policy expectations unavailable: HTTP Error 404: Not Found"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-11-07T13:57:44.761116+00:00",
+      "fetched_at": "2026-11-07T18:44:29.540772+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-11-07T13:57:41.317694+00:00",
+      "fetched_at": "2026-11-07T18:44:28.657194+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 75836.5703125,
-      "live_price": 75836.5703125,
-      "live_price_at": "2026-11-07T13:00:00+00:00",
+      "price": 75721.953125,
+      "live_price": 75721.953125,
+      "live_price_at": "2026-11-07T18:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": -54.7,
+      "score": -63.1,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.454,
-        "Range/neutral": 0.2617,
-        "Bearish": 0.2843
+        "Bullish": 0.4952,
+        "Range/neutral": 0.1825,
+        "Bearish": 0.3223
       },
       "sample_size": 120,
       "quality": {
@@ -92,11 +92,11 @@
       "market": {
         "yield_spread": -4.84,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.3358778613779911,
+        "volatility": 0.335629266624736,
         "regime": "High volatility",
-        "support20": 75746.9296875,
+        "support20": 75721.953125,
         "resistance20": 84011.96875,
-        "atr20": 1137.775000000002,
+        "atr20": 1134.5417968750014,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -105,11 +105,11 @@
         "audit": [
           {
             "name": "Momentum",
-            "contribution": -19.180459403941065
+            "contribution": -23.47532800885455
           },
           {
             "name": "Trend",
-            "contribution": -17.631140696531027
+            "contribution": -21.58240601201057
           },
           {
             "name": "Cross-asset driver",
@@ -117,7 +117,7 @@
           },
           {
             "name": "RSI",
-            "contribution": -6.471184927516256
+            "contribution": -6.622579980016066
           },
           {
             "name": "Rate differential",
@@ -969,10 +969,10 @@
         },
         {
           "date": "2026-11-07T00:00:00",
-          "close": 75836.5703125,
-          "ema_fast": 78795.36381413264,
-          "ema_slow": 79585.54753715589,
-          "score": -54.67020101539856
+          "close": 75721.953125,
+          "ema_fast": 78784.44789151358,
+          "ema_slow": 79581.05274548921,
+          "score": -63.06772998829139
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Christine Lagarde: Interview with Yomiuri Shimbun",
+          "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html",
+          "published_at": "2026-11-07T14:00:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -1005,13 +1012,6 @@
           "headline": "(IMES Newsletter) 2026 BoC - Philadelphia Fed - BOJ Joint Workshop",
           "url": "http://www.boj.or.jp/en/about/release_2026/rel261106b.htm",
           "published_at": "2026-11-06T07:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "IMES Discussion Paper Series (2026)",
-          "url": "http://www.boj.or.jp/en/research/imes/dps/dps26.htm",
-          "published_at": "2026-11-06T02:00:00+00:00"
         }
       ],
       "positioning": {
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1068,7 +1068,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.49264705882352944,
+          "OOS directional accuracy": 0.49331550802139035,
           "OOS observations": 1496.0
         },
         "horizons": [
@@ -1078,10 +1078,10 @@
             "Evaluation windows": 2052,
             "Coverage": 0.8265107212475633,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.48879716981132076,
-            "MA accuracy": 0.49115566037735847,
-            "Majority baseline": 0.4982311320754717,
-            "Lift vs baseline": -0.009433962264150941
+            "Model accuracy": 0.4893867924528302,
+            "MA accuracy": 0.49174528301886794,
+            "Majority baseline": 0.49764150943396224,
+            "Lift vs baseline": -0.00825471698113206
           },
           {
             "Horizon": "5D",
@@ -2032,6 +2032,13 @@
       },
       "news": [
         {
+          "source": "European Central Bank",
+          "currency": "EUR",
+          "headline": "Christine Lagarde: Interview with Yomiuri Shimbun",
+          "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html",
+          "published_at": "2026-11-07T14:00:00+00:00"
+        },
+        {
           "source": "Bank of Japan",
           "currency": "JPY",
           "headline": "Speech by Governor UEDA at the 2026 Michel Camdessus Central Banking Lecture, International Monetary Fund",
@@ -2051,13 +2058,6 @@
           "headline": "(IMES Newsletter) 2026 BoC - Philadelphia Fed - BOJ Joint Workshop",
           "url": "http://www.boj.or.jp/en/about/release_2026/rel261106b.htm",
           "published_at": "2026-11-06T07:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "IMES Discussion Paper Series (2026)",
-          "url": "http://www.boj.or.jp/en/research/imes/dps/dps26.htm",
-          "published_at": "2026-11-06T02:00:00+00:00"
         }
       ],
       "positioning": {
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6226,6 +6226,13 @@
         {
           "source": "European Central Bank",
           "currency": "EUR",
+          "headline": "Christine Lagarde: Interview with Yomiuri Shimbun",
+          "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html",
+          "published_at": "2026-11-07T14:00:00+00:00"
+        },
+        {
+          "source": "European Central Bank",
+          "currency": "EUR",
           "headline": "ECB publishes consolidated banking data for end-June 2026",
           "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html",
           "published_at": "2026-11-06T09:00:00+00:00"
@@ -6243,13 +6250,6 @@
           "headline": "Isabel Schnabel: Navigating stormy waters: reflections on monetary policy",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105_1~5e97d9d5a0.en.html",
           "published_at": "2026-11-05T08:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Piero Cipollone: Shaping the future of money",
-          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105~6495a0df6f.en.html",
-          "published_at": "2026-11-05T07:30:00+00:00"
         }
       ],
       "positioning": {
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-07T13:57:34.404378+00:00",
+        "fetched_at": "2026-11-07T18:44:18.768088+00:00",
         "provider_message": ""
       },
       "validation": {
