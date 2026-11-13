@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-13T15:20:36.435901+00:00",
+  "generated_at": "2026-11-13T21:57:26.668112+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-11-13T15:20:38.810439+00:00",
+      "fetched_at": "2026-11-13T21:57:28.659375+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+      "fetched_at": "2026-11-13T21:57:28.998059+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-11-13T15:21:33.457746+00:00",
+      "fetched_at": "2026-11-13T21:57:46.209719+00:00",
       "message": "Policy expectations unavailable: HTTP Error 404: Not Found"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-11-13T15:21:35.440125+00:00",
+      "fetched_at": "2026-11-13T21:57:48.214439+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-11-13T15:21:34.513939+00:00",
+      "fetched_at": "2026-11-13T21:57:46.735170+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 68675.2421875,
-      "live_price": 68675.2421875,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 68300.8203125,
+      "live_price": 68295.6875,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": -81.3,
-      "bias": "Bearish",
+      "score": -83.9,
+      "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3747,
-        "Range/neutral": 0.2236,
-        "Bearish": 0.4017
+        "Bullish": 0.3954,
+        "Range/neutral": 0.2305,
+        "Bearish": 0.3741
       },
       "sample_size": 120,
       "quality": {
@@ -90,13 +90,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -4.98,
+        "yield_spread": -5.1,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.3552956902733805,
+        "volatility": 0.3615175711690563,
         "regime": "High volatility",
-        "support20": 68675.2421875,
+        "support20": 68300.8203125,
         "resistance20": 81267.5859375,
-        "atr20": 1298.046093750001,
+        "atr20": 1316.767187500001,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -105,27 +105,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -31.69682392856408
+            "contribution": -31.729993284044642
           },
           {
             "name": "Momentum",
-            "contribution": -25.63241957578178
+            "contribution": -25.653963045288833
           },
           {
             "name": "RSI",
-            "contribution": -9.258433736079187
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": -8.409708587135999
+            "contribution": -9.30591972426815
           },
           {
             "name": "Rate differential",
-            "contribution": -6.724244021207633
+            "contribution": -8.09623770256057
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -7.323800158283152
           },
           {
             "name": "Rate impulse",
-            "contribution": 0.377547052233596
+            "contribution": -1.8352694584450169
           },
           {
             "name": "Policy overlay",
@@ -965,14 +965,14 @@
           "close": 71342.96875,
           "ema_fast": 76747.83901554909,
           "ema_slow": 78516.49138637638,
-          "score": -77.18203796975102
+          "score": -80.76722958974577
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 68675.2421875,
-          "ema_fast": 75979.02027002061,
-          "ema_slow": 78130.56004524397,
-          "score": -81.34408279653508
+          "close": 68300.8203125,
+          "ema_fast": 75943.36104383014,
+          "ema_slow": 78115.87683445966,
+          "score": -83.94518337289036
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -1005,13 +1012,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1113,19 +1113,19 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 3890.60009765625,
-      "live_price": 3890.60009765625,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 3883.0,
+      "live_price": 3883.0,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -70.6,
+      "score": -75.9,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3356,
-        "Range/neutral": 0.1761,
-        "Bearish": 0.4883
+        "Bullish": 0.3871,
+        "Range/neutral": 0.1759,
+        "Bearish": 0.437
       },
       "sample_size": 120,
       "quality": {
@@ -1136,13 +1136,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -2.78,
+        "yield_spread": -2.86,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.25271619760931924,
+        "volatility": 0.2523146278270875,
         "regime": "High volatility",
-        "support20": 3885.300048828125,
+        "support20": 3883.0,
         "resistance20": 4160.10009765625,
-        "atr20": 50.80505371093761,
+        "atr20": 50.65505371093761,
         "driver": "US dollar index"
       },
       "model": {
@@ -1151,27 +1151,27 @@
         "audit": [
           {
             "name": "Rate differential",
-            "contribution": -21.715940271528098
+            "contribution": -22.824119979073497
           },
           {
             "name": "Trend",
-            "contribution": -21.60444938665179
+            "contribution": -21.61742003729113
           },
           {
             "name": "Momentum",
-            "contribution": -13.846692340896947
+            "contribution": -13.968242052138416
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -6.855852537791342
+            "contribution": -7.908535054615913
           },
           {
             "name": "RSI",
-            "contribution": -5.053778161095009
+            "contribution": -5.184698920637455
           },
           {
             "name": "Rate impulse",
-            "contribution": -1.504783961533247
+            "contribution": -4.349696830107551
           },
           {
             "name": "Policy overlay",
@@ -2011,14 +2011,14 @@
           "close": 3885.300048828125,
           "ema_fast": 4054.719503125445,
           "ema_slow": 4153.3031061695965,
-          "score": -67.96176487462948
+          "score": -72.03646572566628
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 3890.60009765625,
-          "ema_fast": 4039.0890835569503,
-          "ema_slow": 4143.001027404367,
-          "score": -70.58149665949644
+          "close": 3883.0,
+          "ema_fast": 4038.3652647325457,
+          "ema_slow": 4142.702984359024,
+          "score": -75.85271287386396
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -2051,13 +2058,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2114,7 +2114,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5229468599033816,
+          "OOS directional accuracy": 0.5241545893719807,
           "OOS observations": 828.0
         },
         "horizons": [
@@ -2124,10 +2124,10 @@
             "Evaluation windows": 1257,
             "Coverage": 0.7406523468575974,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.523093447905478,
-            "MA accuracy": 0.5402792696025779,
-            "Majority baseline": 0.5445757250268528,
-            "Lift vs baseline": -0.02148227712137485
+            "Model accuracy": 0.5241675617615468,
+            "MA accuracy": 0.5413533834586466,
+            "Majority baseline": 0.5435016111707841,
+            "Lift vs baseline": -0.01933404940923733
           },
           {
             "Horizon": "5D",
@@ -2159,19 +2159,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.6787945032119751,
-      "live_price": 0.6787945032119751,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 0.6776444911956787,
+      "live_price": 0.6776444911956787,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -37.1,
+      "score": -42.5,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4215,
-        "Range/neutral": 0.1982,
-        "Bearish": 0.3803
+        "Bullish": 0.428,
+        "Range/neutral": 0.2153,
+        "Bearish": 0.3567
       },
       "sample_size": 120,
       "quality": {
@@ -2184,13 +2184,13 @@
         ]
       },
       "market": {
-        "yield_spread": 0.30299999999999994,
+        "yield_spread": 0.18300000000000072,
         "macro_label": "10Y yield spread",
-        "volatility": 0.08599992737376237,
+        "volatility": 0.08801780498634217,
         "regime": "Range / transition",
-        "support20": 0.6787945032119751,
+        "support20": 0.6776444911956787,
         "resistance20": 0.7057999968528748,
-        "atr20": 0.0031480818986892875,
+        "atr20": 0.0032055824995041054,
         "driver": "Copper"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -16.69338924769769
+            "contribution": -21.59861292490155
           },
           {
             "name": "Trend",
-            "contribution": -9.683472202858582
+            "contribution": -9.781632371228046
           },
           {
             "name": "RSI",
-            "contribution": -6.076597694448427
+            "contribution": -6.156473571909497
           },
           {
             "name": "Momentum",
-            "contribution": -4.64265752850327
+            "contribution": -5.010668116417209
           },
           {
             "name": "Rate differential",
@@ -3063,10 +3063,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 0.6787945032119751,
-          "ema_fast": 0.694313652695755,
-          "ema_slow": 0.6994280465448627,
-          "score": -37.09611667350797
+          "close": 0.6776444911956787,
+          "ema_fast": 0.6942041277418219,
+          "ema_slow": 0.6993829480344197,
+          "score": -42.547386984456296
         }
       ],
       "events": {
@@ -3079,6 +3079,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -3099,13 +3106,6 @@
           "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
           "published_at": "2026-11-12T16:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of two applications by Mutual Federal Bancorp, MHC, and MFB Bancorp, Inc.",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20261109a.htm",
-          "published_at": "2026-11-09T21:00:00+00:00"
         }
       ],
       "positioning": {
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3207,19 +3207,19 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.553924560546875,
-      "live_price": 0.553924560546875,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 0.5525166988372803,
+      "live_price": 0.5525166988372803,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -31.7,
+      "score": -30.6,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4697,
-        "Range/neutral": 0.1651,
-        "Bearish": 0.3652
+        "Bullish": 0.4828,
+        "Range/neutral": 0.1759,
+        "Bearish": 0.3414
       },
       "sample_size": 120,
       "quality": {
@@ -3232,13 +3232,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.040000000000000036,
+        "yield_spread": -0.15999999999999925,
         "macro_label": "10Y yield spread",
-        "volatility": 0.08873801056329658,
+        "volatility": 0.09056895956905787,
         "regime": "Range / transition",
-        "support20": 0.553924560546875,
+        "support20": 0.5525166988372803,
         "resistance20": 0.5704994797706604,
-        "atr20": 0.0025252044200897348,
+        "atr20": 0.002595597505569471,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -3247,19 +3247,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -12.420670645461124
+            "contribution": -12.546728348834815
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -10.38289556013166
+            "contribution": -8.192121325952625
           },
           {
             "name": "RSI",
-            "contribution": -4.994965174239733
+            "contribution": -5.2863868574431265
           },
           {
             "name": "Momentum",
-            "contribution": -3.917823881326817
+            "contribution": -4.543928954857563
           },
           {
             "name": "Rate differential",
@@ -4111,10 +4111,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 0.553924560546875,
-          "ema_fast": 0.5616862625591362,
-          "ema_slow": 0.5670955553761732,
-          "score": -31.716355261159336
+          "close": 0.5525166988372803,
+          "ema_fast": 0.5615521804915558,
+          "ema_slow": 0.5670403451130519,
+          "score": -30.569165487088128
         }
       ],
       "events": {
@@ -4127,6 +4127,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -4147,13 +4154,6 @@
           "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
           "published_at": "2026-11-12T16:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of two applications by Mutual Federal Bancorp, MHC, and MFB Bancorp, Inc.",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20261109a.htm",
-          "published_at": "2026-11-09T21:00:00+00:00"
         }
       ],
       "positioning": {
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4255,19 +4255,19 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.1052166223526,
-      "live_price": 1.1052166223526,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 1.102657437324524,
+      "live_price": 1.102657437324524,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -28.2,
+      "score": -30.1,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4368,
-        "Range/neutral": 0.1664,
-        "Bearish": 0.3968
+        "Bullish": 0.4685,
+        "Range/neutral": 0.1513,
+        "Bearish": 0.3802
       },
       "sample_size": 120,
       "quality": {
@@ -4280,13 +4280,13 @@
         ]
       },
       "market": {
-        "yield_spread": -1.7590159091000004,
+        "yield_spread": -1.8790159090999996,
         "macro_label": "10Y yield spread",
-        "volatility": 0.056345715559258575,
+        "volatility": 0.05861205084262124,
         "regime": "Range / transition",
-        "support20": 1.1052166223526,
+        "support20": 1.102657437324524,
         "resistance20": 1.1234945058822632,
-        "atr20": 0.0031814932823181264,
+        "atr20": 0.003309452533721932,
         "driver": "US dollar index"
       },
       "model": {
@@ -4295,19 +4295,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -11.858785905858513
-          },
-          {
-            "name": "RSI",
-            "contribution": -6.466943067906924
+            "contribution": -11.993935419638575
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -6.29384047443442
+            "contribution": -7.224596475650577
+          },
+          {
+            "name": "RSI",
+            "contribution": -6.74056088386711
           },
           {
             "name": "Momentum",
-            "contribution": -3.5999175155302474
+            "contribution": -4.134717846262202
           },
           {
             "name": "Rate differential",
@@ -5159,10 +5159,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 1.1052166223526,
-          "ema_fast": 1.1185004505135467,
-          "ema_slow": 1.127967093574734,
-          "score": -28.219486963730105
+          "close": 1.102657437324524,
+          "ema_fast": 1.118256718606111,
+          "ema_slow": 1.1278667333775545,
+          "score": -30.093810625418463
         }
       ],
       "events": {
@@ -5175,6 +5175,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -5195,13 +5202,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5303,19 +5303,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.42399001121521,
-      "live_price": 1.423949956893921,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 1.4266999959945679,
+      "live_price": 1.4264400005340576,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 21.0,
+      "score": 22.0,
       "bias": "Bullish",
-      "confidence": "Moderate",
+      "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4431,
-        "Range/neutral": 0.2076,
-        "Bearish": 0.3493
+        "Bullish": 0.4194,
+        "Range/neutral": 0.2228,
+        "Bearish": 0.3578
       },
       "sample_size": 120,
       "quality": {
@@ -5328,13 +5328,13 @@
         ]
       },
       "market": {
-        "yield_spread": 1.0975000000000006,
+        "yield_spread": 1.2174999999999998,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05010858340572142,
+        "volatility": 0.050195947065846354,
         "regime": "Range / transition",
         "support20": 1.397029995918274,
-        "resistance20": 1.4247900247573853,
-        "atr20": 0.003349512815475479,
+        "resistance20": 1.4266999959945679,
+        "atr20": 0.003405010700225847,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": 11.544188521707648
+            "contribution": 11.62729569689487
           },
           {
             "name": "RSI",
-            "contribution": 5.592465312757816
+            "contribution": 5.949934459672455
           },
           {
             "name": "Trend",
-            "contribution": 3.0505672880379517
+            "contribution": 3.204547780105184
           },
           {
             "name": "Momentum",
-            "contribution": 0.7825398811415172
+            "contribution": 1.2359425831188742
           },
           {
             "name": "Rate differential",
@@ -6207,10 +6207,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 1.42399001121521,
-          "ema_fast": 1.4101773703747558,
-          "ema_slow": 1.4072338542597673,
-          "score": 20.969761003644933
+          "close": 1.4266999959945679,
+          "ema_fast": 1.4104354641632662,
+          "ema_slow": 1.4073401281726834,
+          "score": 22.017720519791382
         }
       ],
       "events": {
@@ -6223,6 +6223,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -6243,13 +6250,6 @@
           "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
           "published_at": "2026-11-12T16:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of two applications by Mutual Federal Bancorp, MHC, and MFB Bancorp, Inc.",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20261109a.htm",
-          "published_at": "2026-11-09T21:00:00+00:00"
         }
       ],
       "positioning": {
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6306,7 +6306,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.527369826435247,
+          "OOS directional accuracy": 0.5287049399198932,
           "OOS observations": 749.0
         },
         "horizons": [
@@ -6316,10 +6316,10 @@
             "Evaluation windows": 1317,
             "Coverage": 0.5398633257403189,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5246132208157525,
-            "MA accuracy": 0.4978902953586498,
-            "Majority baseline": 0.4613220815752461,
-            "Lift vs baseline": 0.06329113924050633
+            "Model accuracy": 0.5260196905766527,
+            "MA accuracy": 0.49929676511954996,
+            "Majority baseline": 0.459915611814346,
+            "Lift vs baseline": 0.06610407876230667
           },
           {
             "Horizon": "5D",
@@ -6351,19 +6351,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8363000154495239,
-      "live_price": 0.8362699747085571,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 0.8387899994850159,
+      "live_price": 0.8385300040245056,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 14.1,
+      "score": 16.5,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3754,
-        "Range/neutral": 0.148,
-        "Bearish": 0.4765
+        "Bullish": 0.386,
+        "Range/neutral": 0.1449,
+        "Bearish": 0.4692
       },
       "sample_size": 120,
       "quality": {
@@ -6376,13 +6376,13 @@
         ]
       },
       "market": {
-        "yield_spread": 4.390000000000001,
+        "yield_spread": 4.51,
         "macro_label": "10Y yield spread",
-        "volatility": 0.07181683620347341,
+        "volatility": 0.07490817458715206,
         "regime": "Range / transition",
         "support20": 0.8153799772262573,
-        "resistance20": 0.8363000154495239,
-        "atr20": 0.0030865043401718337,
+        "resistance20": 0.8387899994850159,
+        "atr20": 0.0032110035419464266,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": 5.984042795617787
+            "contribution": 6.397547326712861
           },
           {
             "name": "Trend",
-            "contribution": 4.292755300880285
+            "contribution": 4.540628241471719
           },
           {
             "name": "Momentum",
-            "contribution": 2.436184481873677
+            "contribution": 3.1167148329876264
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 1.4140709926299029
+            "contribution": 2.4760183785856067
           },
           {
             "name": "Rate differential",
@@ -7255,10 +7255,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 0.8363000154495239,
-          "ema_fast": 0.8249377216831912,
-          "ema_slow": 0.822614236574142,
-          "score": 14.127053571001651
+          "close": 0.8387899994850159,
+          "ema_fast": 0.8251748630199047,
+          "ema_slow": 0.8227118830069063,
+          "score": 16.530908779757812
         }
       ],
       "events": {
@@ -7271,6 +7271,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -7291,13 +7298,6 @@
           "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
           "published_at": "2026-11-12T16:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of two applications by Mutual Federal Bancorp, MHC, and MFB Bancorp, Inc.",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20261109a.htm",
-          "published_at": "2026-11-09T21:00:00+00:00"
         }
       ],
       "positioning": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7399,19 +7399,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.323766827583313,
-      "live_price": 1.323766827583313,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 1.321300745010376,
+      "live_price": 1.321300745010376,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -12.2,
+      "score": -14.3,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.46,
-        "Range/neutral": 0.1821,
-        "Bearish": 0.3579
+        "Bullish": 0.4763,
+        "Range/neutral": 0.1838,
+        "Bearish": 0.3398
       },
       "sample_size": 120,
       "quality": {
@@ -7424,13 +7424,13 @@
         ]
       },
       "market": {
-        "yield_spread": 0.26209999999999933,
+        "yield_spread": 0.14210000000000012,
         "macro_label": "10Y yield spread",
-        "volatility": 0.061043319461569684,
+        "volatility": 0.0625164834854631,
         "regime": "Range / transition",
-        "support20": 1.323766827583313,
+        "support20": 1.321300745010376,
         "resistance20": 1.3477089405059814,
-        "atr20": 0.004278135299682649,
+        "atr20": 0.0044014394283294995,
         "driver": "US dollar index"
       },
       "model": {
@@ -7439,19 +7439,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -5.5859046429495
+            "contribution": -6.4119685207623
           },
           {
             "name": "RSI",
-            "contribution": -4.601449717212765
+            "contribution": -5.1125869398192885
           },
           {
             "name": "Trend",
-            "contribution": -1.272321075129308
+            "contribution": -1.4467233557015928
           },
           {
             "name": "Momentum",
-            "contribution": -0.7864967216133428
+            "contribution": -1.3305840369386583
           },
           {
             "name": "Rate differential",
@@ -8303,10 +8303,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 1.323766827583313,
-          "ema_fast": 1.3352331176869967,
-          "ema_slow": 1.3362386576005225,
-          "score": -12.246172156904915
+          "close": 1.321300745010376,
+          "ema_fast": 1.3349982526800503,
+          "ema_slow": 1.3361419484800152,
+          "score": -14.30186285322184
         }
       ],
       "events": {
@@ -8319,6 +8319,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -8339,13 +8346,6 @@
           "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
           "published_at": "2026-11-12T16:00:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board announces approval of two applications by Mutual Federal Bancorp, MHC, and MFB Bancorp, Inc.",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/orders20261109a.htm",
-          "published_at": "2026-11-09T21:00:00+00:00"
         }
       ],
       "positioning": {
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8447,19 +8447,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 159.76300048828125,
-      "live_price": 159.76300048828125,
-      "live_price_at": "2026-11-13T15:00:00+00:00",
+      "price": 159.68600463867188,
+      "live_price": 159.68600463867188,
+      "live_price_at": "2026-11-13T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": 9.8,
+      "score": 10.1,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4459,
-        "Range/neutral": 0.2524,
-        "Bearish": 0.3018
+        "Bullish": 0.4654,
+        "Range/neutral": 0.2531,
+        "Bearish": 0.2814
       },
       "sample_size": 120,
       "quality": {
@@ -8472,13 +8472,13 @@
         ]
       },
       "market": {
-        "yield_spread": 1.9300000000000006,
+        "yield_spread": 2.05,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06328751184465702,
+        "volatility": 0.06334452566387222,
         "regime": "Range / transition",
         "support20": 156.49400329589844,
-        "resistance20": 159.76300048828125,
-        "atr20": 0.4771987915039085,
+        "resistance20": 159.73399353027344,
+        "atr20": 0.4781478881835957,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -8487,19 +8487,19 @@
         "audit": [
           {
             "name": "RSI",
-            "contribution": 4.968634230465999
+            "contribution": 4.81761911947603
           },
           {
             "name": "Momentum",
-            "contribution": 2.416613821781961
+            "contribution": 2.304691469595605
           },
           {
             "name": "Trend",
-            "contribution": 1.55810632285903
+            "contribution": 1.5182599286988063
           },
           {
             "name": "Cross-asset driver",
-            "contribution": 0.8484425955779418
+            "contribution": 1.485611027151364
           },
           {
             "name": "Rate differential",
@@ -9351,10 +9351,10 @@
         },
         {
           "date": "2026-11-13T00:00:00",
-          "close": 159.76300048828125,
-          "ema_fast": 158.28806699334865,
-          "ema_slow": 158.1202954904577,
-          "score": 9.791796970684931
+          "close": 159.68600463867188,
+          "ema_fast": 158.28073405529062,
+          "ema_slow": 158.11727604537495,
+          "score": 10.126181544921806
         }
       ],
       "events": {
@@ -9367,6 +9367,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Agencies extend comment period for proposed third-party risk management guidance",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20261113a.htm",
+          "published_at": "2026-11-13T21:15:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -9387,13 +9394,6 @@
           "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
           "published_at": "2026-11-12T16:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Japanese Government Bonds Held by the Bank of Japan",
-          "url": "http://www.boj.or.jp/en/statistics/boj/other/mei/release/2026/mei261110.xlsx",
-          "published_at": "2026-11-12T08:00:00+00:00"
         }
       ],
       "positioning": {
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-13T15:20:39.021672+00:00",
+        "fetched_at": "2026-11-13T21:57:28.998059+00:00",
         "provider_message": ""
       },
       "validation": {
