@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-18T13:06:35.698630+00:00",
+  "generated_at": "2026-11-18T21:25:53.603702+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-11-18T13:06:37.161282+00:00",
+      "fetched_at": "2026-11-18T21:25:55.262900+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+      "fetched_at": "2026-11-18T21:25:55.345429+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-11-18T13:06:45.717617+00:00",
+      "fetched_at": "2026-11-18T21:26:22.226835+00:00",
       "message": "Policy expectations unavailable: HTTP Error 404: Not Found"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-11-18T13:06:46.850920+00:00",
+      "fetched_at": "2026-11-18T21:26:23.555883+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-11-18T13:06:46.232248+00:00",
+      "fetched_at": "2026-11-18T21:26:22.811506+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 64003.91015625,
-      "live_price": 64003.91015625,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 62421.421875,
+      "live_price": 62421.421875,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": -90.4,
+      "score": -89.8,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4089,
-        "Range/neutral": 0.2147,
-        "Bearish": 0.3763
+        "Bullish": 0.4076,
+        "Range/neutral": 0.2155,
+        "Bearish": 0.3769
       },
       "sample_size": 120,
       "quality": {
@@ -90,13 +90,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -5.12,
+        "yield_spread": -5.1,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.39248181164032114,
+        "volatility": 0.4053707184308918,
         "regime": "High volatility",
-        "support20": 64003.91015625,
+        "support20": 62421.421875,
         "resistance20": 80405.2890625,
-        "atr20": 1376.2447265625012,
+        "atr20": 1455.3691406250014,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -105,27 +105,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -32.47072229610485
+            "contribution": -32.47236485594579
           },
           {
             "name": "Momentum",
-            "contribution": -25.71677962239433
+            "contribution": -25.74083855256253
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -13.863419515254117
+            "contribution": -13.50399669550836
           },
           {
             "name": "RSI",
-            "contribution": -9.464078282681513
+            "contribution": -9.57848293942473
           },
           {
             "name": "Rate differential",
-            "contribution": -6.793598292522216
+            "contribution": -6.632435491122557
           },
           {
             "name": "Rate impulse",
-            "contribution": -2.095792680986805
+            "contribution": -1.8227301002355394
           },
           {
             "name": "Policy overlay",
@@ -965,14 +965,14 @@
           "close": 64893.9453125,
           "ema_fast": 72269.57297735734,
           "ema_slow": 76145.77785721097,
-          "score": -90.42096944830452
+          "score": -89.95299695497044
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 64003.91015625,
-          "ema_fast": 71482.36699439475,
-          "ema_slow": 75669.62618266349,
-          "score": -90.40439068994384
+          "close": 62421.421875,
+          "ema_fast": 71331.65382475188,
+          "ema_slow": 75607.5678186929,
+          "score": -89.75084863479951
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -1005,13 +1012,6 @@
           "headline": "Philip R. Lane: The practice and science of monetary policy communication: the ECB experience",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261117~7f5d3b1a0e.en.pdf",
           "published_at": "2026-11-17T18:30:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Release of Latest \"Loans and Bills Discounted by Sector\" and \"Loans to Households\" Data",
-          "url": "http://www.boj.or.jp/en/statistics/outline/notice_2026/not261117a.htm",
-          "published_at": "2026-11-16T23:50:00+00:00"
         }
       ],
       "positioning": {
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1113,19 +1113,19 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 3747.0,
-      "live_price": 3746.5,
-      "live_price_at": "2026-11-18T12:00:00+00:00",
+      "price": 3727.89990234375,
+      "live_price": 3727.89990234375,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -81.9,
+      "score": -80.6,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4461,
-        "Range/neutral": 0.171,
-        "Bearish": 0.3829
+        "Bullish": 0.4351,
+        "Range/neutral": 0.1712,
+        "Bearish": 0.3936
       },
       "sample_size": 120,
       "quality": {
@@ -1136,13 +1136,13 @@
         "stale_inputs": []
       },
       "market": {
-        "yield_spread": -2.92,
+        "yield_spread": -2.89,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.2705567393746128,
+        "volatility": 0.27719240099769643,
         "regime": "High volatility",
-        "support20": 3747.0,
+        "support20": 3727.89990234375,
         "resistance20": 4114.5,
-        "atr20": 56.38005371093762,
+        "atr20": 57.33505859375011,
         "driver": "US dollar index"
       },
       "model": {
@@ -1151,27 +1151,27 @@
         "audit": [
           {
             "name": "Rate differential",
-            "contribution": -23.193345587185707
+            "contribution": -22.859472560595073
           },
           {
             "name": "Trend",
-            "contribution": -22.058098236994034
+            "contribution": -22.07224942547646
           },
           {
             "name": "Momentum",
-            "contribution": -15.048184002403866
+            "contribution": -15.1526342734318
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -9.793080210525
+            "contribution": -9.583987612143288
           },
           {
             "name": "RSI",
-            "contribution": -6.143218092931466
+            "contribution": -6.2220853437773
           },
           {
             "name": "Rate impulse",
-            "contribution": -5.622669489134629
+            "contribution": -4.679138871244008
           },
           {
             "name": "Policy overlay",
@@ -2011,14 +2011,14 @@
           "close": 3864.199951171875,
           "ema_fast": 4006.0628511094837,
           "ema_slow": 4120.9853835871245,
-          "score": -78.07076475148988
+          "score": -76.7714875112801
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 3747.0,
-          "ema_fast": 3981.390198622866,
-          "ema_slow": 4106.31929011312,
-          "score": -81.8585956191747
+          "close": 3727.89990234375,
+          "ema_fast": 3979.5711417032235,
+          "ema_slow": 4105.57026667562,
+          "score": -80.56956808666793
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -2051,13 +2058,6 @@
           "headline": "Philip R. Lane: The practice and science of monetary policy communication: the ECB experience",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261117~7f5d3b1a0e.en.pdf",
           "published_at": "2026-11-17T18:30:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Release of Latest \"Loans and Bills Discounted by Sector\" and \"Loans to Households\" Data",
-          "url": "http://www.boj.or.jp/en/statistics/outline/notice_2026/not261117a.htm",
-          "published_at": "2026-11-16T23:50:00+00:00"
         }
       ],
       "positioning": {
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2159,19 +2159,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.6731740236282349,
-      "live_price": 0.6731740236282349,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 0.6715916991233826,
+      "live_price": 0.6715916991233826,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -52.0,
+      "score": -52.9,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.438,
-        "Range/neutral": 0.2261,
-        "Bearish": 0.3358
+        "Bullish": 0.4339,
+        "Range/neutral": 0.2223,
+        "Bearish": 0.3438
       },
       "sample_size": 120,
       "quality": {
@@ -2184,13 +2184,13 @@
         ]
       },
       "market": {
-        "yield_spread": 0.14499999999999957,
+        "yield_spread": 0.16500000000000004,
         "macro_label": "10Y yield spread",
-        "volatility": 0.07646347121687788,
+        "volatility": 0.0764443515441526,
         "regime": "Trending",
-        "support20": 0.6731740236282349,
+        "support20": 0.6715916991233826,
         "resistance20": 0.7057999968528748,
-        "atr20": 0.002988710999488841,
+        "atr20": 0.0030678272247314556,
         "driver": "Copper"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -19.931582474208714
+            "contribution": -20.236970218364224
           },
           {
             "name": "Trend",
-            "contribution": -15.39006325846223
+            "contribution": -15.510483220020632
           },
           {
             "name": "Momentum",
-            "contribution": -10.27496852542812
+            "contribution": -10.667196032440778
           },
           {
             "name": "RSI",
-            "contribution": -6.425070851995725
+            "contribution": -6.490492598349102
           },
           {
             "name": "Rate differential",
@@ -3063,10 +3063,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 0.6731740236282349,
-          "ema_fast": 0.6893807578737245,
-          "ema_slow": 0.6967168268785549,
-          "score": -52.02168511009479
+          "close": 0.6715916991233826,
+          "ema_fast": 0.6892300603018339,
+          "ema_slow": 0.6966547749371881,
+          "score": -52.90514206917473
         }
       ],
       "events": {
@@ -3079,6 +3079,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -3099,13 +3106,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3207,19 +3207,19 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5498130917549133,
-      "live_price": 0.5498130917549133,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 0.5492392778396606,
+      "live_price": 0.5492392778396606,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -48.3,
+      "score": -48.9,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3986,
-        "Range/neutral": 0.1586,
-        "Bearish": 0.4428
+        "Bullish": 0.3978,
+        "Range/neutral": 0.1598,
+        "Bearish": 0.4424
       },
       "sample_size": 120,
       "quality": {
@@ -3232,13 +3232,13 @@
         ]
       },
       "market": {
-        "yield_spread": -0.11000000000000032,
+        "yield_spread": -0.08999999999999986,
         "macro_label": "10Y yield spread",
-        "volatility": 0.08369077595458144,
+        "volatility": 0.08359557362420601,
         "regime": "Trending",
-        "support20": 0.5498130917549133,
+        "support20": 0.5492392778396606,
         "resistance20": 0.5704994797706604,
-        "atr20": 0.0024482548236847024,
+        "atr20": 0.002476945519447338,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -3247,19 +3247,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -16.871821430515443
+            "contribution": -16.92400341022619
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -16.266758439100897
+            "contribution": -16.48662069199267
           },
           {
             "name": "Momentum",
-            "contribution": -9.408508156315827
+            "contribution": -9.638938309384447
           },
           {
             "name": "RSI",
-            "contribution": -5.780872532777204
+            "contribution": -5.860432521241625
           },
           {
             "name": "Rate differential",
@@ -4111,10 +4111,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 0.5498130917549133,
-          "ema_fast": 0.5589057860313452,
-          "ema_slow": 0.5652803265227284,
-          "score": -48.32796055870937
+          "close": 0.5492392778396606,
+          "ema_fast": 0.5588511370870355,
+          "ema_slow": 0.5652578240162479,
+          "score": -48.90999493284493
         }
       ],
       "events": {
@@ -4127,6 +4127,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -4147,13 +4154,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4255,19 +4255,19 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.0968520641326904,
-      "live_price": 1.0968520641326904,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 1.0975743532180786,
+      "live_price": 1.0975743532180786,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -33.4,
+      "score": -33.0,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.478,
-        "Range/neutral": 0.1897,
-        "Bearish": 0.3322
+        "Bullish": 0.5008,
+        "Range/neutral": 0.1743,
+        "Bearish": 0.3249
       },
       "sample_size": 120,
       "quality": {
@@ -4280,13 +4280,13 @@
         ]
       },
       "market": {
-        "yield_spread": -1.8990159091,
+        "yield_spread": -1.8790159090999996,
         "macro_label": "10Y yield spread",
-        "volatility": 0.056391926591889345,
+        "volatility": 0.05620169482696999,
         "regime": "Range / transition",
-        "support20": 1.0968520641326904,
+        "support20": 1.0975743532180786,
         "resistance20": 1.1234945058822632,
-        "atr20": 0.003434795141220106,
+        "atr20": 0.0033986806869506945,
         "driver": "US dollar index"
       },
       "model": {
@@ -4295,19 +4295,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -13.39394072160807
-          },
-          {
-            "name": "Cross-asset driver",
-            "contribution": -7.215542030090608
+            "contribution": -13.36090775357856
           },
           {
             "name": "RSI",
-            "contribution": -7.215233366712771
+            "contribution": -7.171758939756407
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -7.064778935961481
           },
           {
             "name": "Momentum",
-            "contribution": -5.539672551639791
+            "contribution": -5.403855379622478
           },
           {
             "name": "Rate differential",
@@ -5159,10 +5159,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 1.0968520641326904,
-          "ema_fast": 1.113566821103684,
-          "ema_slow": 1.1247571885325018,
-          "score": -33.36438867005124
+          "close": 1.0975743532180786,
+          "ema_fast": 1.1136356105403875,
+          "ema_slow": 1.1247855135946738,
+          "score": -33.00130100891893
         }
       ],
       "events": {
@@ -5175,6 +5175,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "European Central Bank",
           "currency": "EUR",
@@ -5195,13 +5202,6 @@
           "headline": "Philip R. Lane: The practice and science of monetary policy communication: the ECB experience",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261117~7f5d3b1a0e.en.pdf",
           "published_at": "2026-11-17T18:30:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Frank Elderson: Smart supervision for small banks",
-          "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261116_1~11dd7f62af.en.html",
-          "published_at": "2026-11-16T13:00:00+00:00"
         }
       ],
       "positioning": {
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5303,19 +5303,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.4303200244903564,
-      "live_price": 1.4302799701690674,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 1.4321000576019287,
+      "live_price": 1.4321000576019287,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 27.6,
+      "score": 29.1,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4579,
-        "Range/neutral": 0.1831,
-        "Bearish": 0.359
+        "Bullish": 0.4457,
+        "Range/neutral": 0.1681,
+        "Bearish": 0.3862
       },
       "sample_size": 120,
       "quality": {
@@ -5328,13 +5328,13 @@
         ]
       },
       "market": {
-        "yield_spread": 1.2452380952,
+        "yield_spread": 1.2252380951999995,
         "macro_label": "10Y yield spread",
-        "volatility": 0.04381552356274154,
+        "volatility": 0.04388544191136406,
         "regime": "Range / transition",
         "support20": 1.397029995918274,
-        "resistance20": 1.4303200244903564,
-        "atr20": 0.002950012683868429,
+        "resistance20": 1.4321000576019287,
+        "atr20": 0.003039014339447042,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": 11.999016045249785
+            "contribution": 12.987806298559963
           },
           {
             "name": "RSI",
-            "contribution": 6.233170040221776
+            "contribution": 6.337275878440201
           },
           {
             "name": "Trend",
-            "contribution": 5.523676674213979
+            "contribution": 5.617994489825298
           },
           {
             "name": "Momentum",
-            "contribution": 3.884330499509662
+            "contribution": 4.15283731030566
           },
           {
             "name": "Rate differential",
@@ -6207,10 +6207,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 1.4303200244903564,
-          "ema_fast": 1.4152281530583757,
-          "ema_slow": 1.409769890577532,
-          "score": 27.6401932591952
+          "close": 1.4321000576019287,
+          "ema_fast": 1.4153976800213826,
+          "ema_slow": 1.4098396957975936,
+          "score": 29.095913977131122
         }
       ],
       "events": {
@@ -6223,6 +6223,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -6243,13 +6250,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6351,19 +6351,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3164303302764893,
-      "live_price": 1.3164303302764893,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 1.31483793258667,
+      "live_price": 1.31483793258667,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -22.5,
+      "score": -23.0,
       "bias": "Bearish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4153,
-        "Range/neutral": 0.1649,
-        "Bearish": 0.4198
+        "Bullish": 0.4235,
+        "Range/neutral": 0.1501,
+        "Bearish": 0.4265
       },
       "sample_size": 120,
       "quality": {
@@ -6376,13 +6376,13 @@
         ]
       },
       "market": {
-        "yield_spread": 0.2192999999999996,
+        "yield_spread": 0.23930000000000007,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05541499400240235,
+        "volatility": 0.05579886573140055,
         "regime": "Range / transition",
-        "support20": 1.3164303302764893,
+        "support20": 1.31483793258667,
         "resistance20": 1.3477089405059814,
-        "atr20": 0.0038728475570679022,
+        "atr20": 0.00395246744155887,
         "driver": "US dollar index"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -7.871500396462482
+            "contribution": -7.707031566503433
           },
           {
             "name": "RSI",
-            "contribution": -6.003291815948883
+            "contribution": -6.216959136017795
           },
           {
             "name": "Momentum",
-            "contribution": -4.456168801375102
+            "contribution": -4.772255367352501
           },
           {
             "name": "Trend",
-            "contribution": -4.191893659606293
+            "contribution": -4.300715091252913
           },
           {
             "name": "Rate differential",
@@ -7255,10 +7255,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 1.3164303302764893,
-          "ema_fast": 1.3308937348809833,
-          "ema_slow": 1.3342419980255698,
-          "score": -22.522854673392757
+          "close": 1.31483793258667,
+          "ema_fast": 1.3307420779581434,
+          "ema_slow": 1.3341795510573415,
+          "score": -22.99696116112664
         }
       ],
       "events": {
@@ -7271,6 +7271,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -7291,13 +7298,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7399,19 +7399,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8428099751472473,
-      "live_price": 0.8428099751472473,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 0.8435199856758118,
+      "live_price": 0.8435199856758118,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 6.4,
-      "bias": "Bearish",
+      "score": 6.8,
+      "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3822,
-        "Range/neutral": 0.2298,
-        "Bearish": 0.388
+        "Bullish": 0.3974,
+        "Range/neutral": 0.2148,
+        "Bearish": 0.3877
       },
       "sample_size": 120,
       "quality": {
@@ -7424,13 +7424,13 @@
         ]
       },
       "market": {
-        "yield_spread": 4.61,
+        "yield_spread": 4.59,
         "macro_label": "10Y yield spread",
-        "volatility": 0.0688084209810516,
+        "volatility": 0.0692869424414492,
         "regime": "Range / transition",
         "support20": 0.8153799772262573,
-        "resistance20": 0.8428099751472473,
-        "atr20": 0.0029960036277771164,
+        "resistance20": 0.8435199856758118,
+        "atr20": 0.003031504154205338,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -7439,19 +7439,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -12.992729560729765
+            "contribution": -12.866885459863846
           },
           {
             "name": "Trend",
-            "contribution": 7.719006577725405
+            "contribution": 7.781328072187284
           },
           {
             "name": "RSI",
-            "contribution": 6.942078730525792
+            "contribution": 7.008383268616337
           },
           {
             "name": "Momentum",
-            "contribution": 4.708601426185702
+            "contribution": 4.88123518553459
           },
           {
             "name": "Rate differential",
@@ -8303,10 +8303,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 0.8428099751472473,
-          "ema_fast": 0.8289992817797556,
-          "ema_slow": 0.8246380300862515,
-          "score": 6.376957173707135
+          "close": 0.8435199856758118,
+          "ema_fast": 0.8290669018300951,
+          "ema_slow": 0.8246658736363912,
+          "score": 6.804061066474366
         }
       ],
       "events": {
@@ -8319,6 +8319,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "Federal Reserve",
           "currency": "USD",
@@ -8339,13 +8346,6 @@
           "headline": "Federal Reserve announces revised tentative schedule of Federal Open Market Committee meetings in 2027",
           "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261112a.htm",
           "published_at": "2026-11-12T17:45:00+00:00"
-        },
-        {
-          "source": "Federal Reserve",
-          "currency": "USD",
-          "headline": "Federal Reserve Board issues enforcement action with former employee of United Community Bank",
-          "url": "https://www.federalreserve.gov/newsevents/pressreleases/enforcement20261112a.htm",
-          "published_at": "2026-11-12T16:00:00+00:00"
         }
       ],
       "positioning": {
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8447,19 +8447,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 159.40199279785156,
-      "live_price": 159.40199279785156,
-      "live_price_at": "2026-11-18T13:00:00+00:00",
+      "price": 159.35499572753906,
+      "live_price": 159.3489990234375,
+      "live_price_at": "2026-11-18T21:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": 0.8,
+      "score": 0.6,
       "bias": "Bearish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3628,
-        "Range/neutral": 0.2485,
-        "Bearish": 0.3886
+        "Bullish": 0.356,
+        "Range/neutral": 0.2632,
+        "Bearish": 0.3808
       },
       "sample_size": 120,
       "quality": {
@@ -8472,13 +8472,13 @@
         ]
       },
       "market": {
-        "yield_spread": 2.365,
+        "yield_spread": 2.3449999999999998,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06106804669772117,
+        "volatility": 0.06114877755548893,
         "regime": "Range / transition",
         "support20": 156.49400329589844,
         "resistance20": 159.875,
-        "atr20": 0.4409996032714866,
+        "atr20": 0.4433494567871116,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -8487,19 +8487,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -7.795637736437858
+            "contribution": -7.720131275918307
           },
           {
             "name": "RSI",
-            "contribution": 3.75229758510335
+            "contribution": 3.58926764657229
           },
           {
             "name": "Trend",
-            "contribution": 3.1075415386993925
+            "contribution": 3.083785157142689
           },
           {
             "name": "Momentum",
-            "contribution": 1.7022280099054525
+            "contribution": 1.6325792828748196
           },
           {
             "name": "Rate differential",
@@ -9351,10 +9351,10 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 159.40199279785156,
-          "ema_fast": 158.6247792492757,
-          "ema_slow": 158.28738588043083,
-          "score": 0.7664293972703371
+          "close": 159.35499572753906,
+          "ema_fast": 158.62030333781735,
+          "ema_slow": 158.28554285806564,
+          "score": 0.5855008106714905
         }
       ],
       "events": {
@@ -9367,6 +9367,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Federal Reserve",
+          "currency": "USD",
+          "headline": "Minutes of the Federal Open Market Committee, October 27-28, 2026",
+          "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20261118a.htm",
+          "published_at": "2026-11-18T19:00:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -9387,13 +9394,6 @@
           "headline": "BOJ Current Account Balances by Sector (Oct.)",
           "url": "http://www.boj.or.jp/en/statistics/boj/other/cabs/cabs.xlsx",
           "published_at": "2026-11-16T08:00:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Speech by Board Member TAKATA at a Meeting Held by the Tokushima Association of Corporate Executives (Economic Activity, Prices, and Monetary Policy in Japan: Japan's Money and Capital Market Transformation -- Will a Paradigm Shift Occur?)",
-          "url": "http://www.boj.or.jp/en/about/press/koen_2026/ko261116a.htm",
-          "published_at": "2026-11-16T04:00:00+00:00"
         }
       ],
       "positioning": {
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-18T13:06:37.267515+00:00",
+        "fetched_at": "2026-11-18T21:25:55.345429+00:00",
         "provider_message": ""
       },
       "validation": {
