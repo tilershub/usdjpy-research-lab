@@ -1,36 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-19T03:20:58.103029+00:00",
+  "generated_at": "2026-11-19T12:57:47.320419+00:00",
   "cadence": "Research model, events and positioning refresh every six hours; source series retain their published cadence",
   "sources": {
     "calendar": {
       "provider": "Trading Economics",
       "mode": "unavailable",
-      "fetched_at": "2026-11-19T03:21:00.175362+00:00",
+      "fetched_at": "2026-11-19T12:57:48.732025+00:00",
       "message": "Calendar retrieval failed; check provider access."
     },
     "positioning": {
       "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
       "cadence": "Weekly; positions as of Tuesday, published Friday",
-      "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+      "fetched_at": "2026-11-19T12:57:48.847095+00:00",
       "message": ""
     },
     "policy_expectations": {
       "provider": "Atlanta Fed Market Probability Tracker",
       "cadence": "Business daily, derived from CME 3-month SOFR options",
-      "fetched_at": "2026-11-19T03:21:24.167092+00:00",
+      "fetched_at": "2026-11-19T12:58:07.601723+00:00",
       "message": "Policy expectations unavailable: HTTP Error 404: Not Found"
     },
     "policy_calendar": {
       "provider": "Federal Reserve FOMC meeting calendar",
       "cadence": "Published years ahead; decision days only",
-      "fetched_at": "2026-11-19T03:21:25.909084+00:00",
+      "fetched_at": "2026-11-19T12:58:11.110278+00:00",
       "message": ""
     },
     "news": {
       "provider": "Central bank press releases (Bank of Japan, Federal Reserve, European Central Bank)",
       "cadence": "Continuous; official primary sources",
-      "fetched_at": "2026-11-19T03:21:24.850086+00:00",
+      "fetched_at": "2026-11-19T12:58:10.023053+00:00",
       "message": ""
     }
   },
@@ -67,19 +67,19 @@
       "base": "BTC",
       "quote": "USD",
       "asset_class": "Crypto",
-      "price": 62542.640625,
-      "live_price": 62542.640625,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 63804.0390625,
+      "live_price": 63804.0390625,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Composite",
       "price_note": "Yahoo Finance BTC-USD composite; individual exchange prices can differ.",
       "decimals": 2,
-      "score": -89.7,
-      "bias": "Bullish",
+      "score": -86.4,
+      "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4076,
-        "Range/neutral": 0.2155,
-        "Bearish": 0.3769
+        "Bullish": 0.3884,
+        "Range/neutral": 0.2214,
+        "Bearish": 0.3902
       },
       "sample_size": 120,
       "quality": {
@@ -92,11 +92,11 @@
       "market": {
         "yield_spread": -5.1,
         "macro_label": "US 10Y nominal yield",
-        "volatility": 0.40374214903433586,
+        "volatility": 0.40701249724692856,
         "regime": "High volatility",
-        "support20": 62542.640625,
+        "support20": 62987.265625,
         "resistance20": 80405.2890625,
-        "atr20": 1449.3082031250012,
+        "atr20": 1439.0707031250015,
         "driver": "Nasdaq risk proxy"
       },
       "model": {
@@ -105,27 +105,27 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -32.472249952358055
+            "contribution": -32.475530304793125
           },
           {
             "name": "Momentum",
-            "contribution": -25.73960643112017
+            "contribution": -25.710170287630355
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -13.50399669550836
+            "contribution": -9.993960041092143
           },
           {
             "name": "RSI",
-            "contribution": -9.571225366418854
+            "contribution": -9.28772731390958
           },
           {
             "name": "Rate differential",
-            "contribution": -6.632435491122548
+            "contribution": -6.6013607823421205
           },
           {
             "name": "Rate impulse",
-            "contribution": -1.8227301002355394
+            "contribution": -2.356166262113547
           },
           {
             "name": "Policy overlay",
@@ -134,13 +134,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-07-22T00:00:00",
-          "close": 66100.796875,
-          "ema_fast": 64211.28434534688,
-          "ema_slow": 65089.663893428115,
-          "score": -12.355549284577029
-        },
         {
           "date": "2026-07-23T00:00:00",
           "close": 65044.8125,
@@ -968,11 +961,18 @@
           "score": -89.95299695497043
         },
         {
+          "date": "2026-11-18T00:00:00",
+          "close": 62987.265625,
+          "ema_fast": 71385.54370570426,
+          "ema_slow": 75629.75776967329,
+          "score": -89.70806236151198
+        },
+        {
           "date": "2026-11-19T00:00:00",
-          "close": 62542.640625,
-          "ema_fast": 71343.19846760902,
-          "ema_slow": 75612.32149516349,
-          "score": -89.74224403676354
+          "close": 63804.0390625,
+          "ema_fast": 70663.49564444671,
+          "ema_slow": 75166.00409488218,
+          "score": -86.42491499188087
         }
       ],
       "events": {
@@ -985,6 +985,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Bank of Japan",
+          "currency": "JPY",
+          "headline": "Developments in Real Exports and Real Imports",
+          "url": "http://www.boj.or.jp/en/research/research_data/reri/index.htm",
+          "published_at": "2026-11-19T07:00:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -1004,13 +1011,6 @@
           "currency": "EUR",
           "headline": "Boris Vuj\u010di\u0107: Financial Stability Review - November 2026",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261118~86f1e8147e.en.pdf",
-          "published_at": "2026-11-18T09:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
-          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html",
           "published_at": "2026-11-18T09:00:00+00:00"
         }
       ],
@@ -1058,7 +1058,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -1068,20 +1068,20 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.49198931909212285,
-          "OOS observations": 1498.0
+          "OOS directional accuracy": 0.4916611074049366,
+          "OOS observations": 1499.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 1697,
-            "Evaluation windows": 2051,
-            "Coverage": 0.8274012676743052,
+            "OOS observations": 1698,
+            "Evaluation windows": 2052,
+            "Coverage": 0.827485380116959,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.48850913376546845,
-            "MA accuracy": 0.4908662345315262,
-            "Majority baseline": 0.49616971125515613,
-            "Lift vs baseline": -0.007660577489687681
+            "Model accuracy": 0.4882214369846879,
+            "MA accuracy": 0.4905771495877503,
+            "Majority baseline": 0.49646643109540634,
+            "Lift vs baseline": -0.00824499411071844
           },
           {
             "Horizon": "5D",
@@ -1113,36 +1113,36 @@
       "base": "XAU",
       "quote": "USD",
       "asset_class": "Commodity",
-      "price": 3702.10009765625,
-      "live_price": 3702.10009765625,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 3717.0,
+      "live_price": 3717.0,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "COMEX futures",
       "price_note": "COMEX front-month futures history. Spot CFD quotes, contract rolls and financing can differ; these levels are not spot execution prices.",
       "decimals": 2,
-      "score": -81.4,
+      "score": -83.7,
       "bias": "Bullish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4421,
-        "Range/neutral": 0.1711,
-        "Bearish": 0.3869
+        "Bullish": 0.4584,
+        "Range/neutral": 0.1703,
+        "Bearish": 0.3713
       },
       "sample_size": 120,
       "quality": {
         "grade": "A",
         "completeness": 1.0,
-        "last_price": "2026-11-18T00:00:00",
-        "price_age_days": 1,
+        "last_price": "2026-11-19T00:00:00",
+        "price_age_days": 0,
         "stale_inputs": []
       },
       "market": {
         "yield_spread": -2.89,
         "macro_label": "US 10Y real yield",
-        "volatility": 0.2876155880990349,
+        "volatility": 0.2652505272943984,
         "regime": "High volatility",
-        "support20": 3702.10009765625,
+        "support20": 3717.0,
         "resistance20": 4114.5,
-        "atr20": 58.62504882812512,
+        "atr20": 53.40004882812512,
         "driver": "US dollar index"
       },
       "model": {
@@ -1151,27 +1151,27 @@
         "audit": [
           {
             "name": "Rate differential",
-            "contribution": -22.859472560595073
+            "contribution": -22.757893985994965
           },
           {
             "name": "Trend",
-            "contribution": -22.090453042825697
+            "contribution": -22.173814033654608
           },
           {
             "name": "Momentum",
-            "contribution": -15.267213402587485
+            "contribution": -14.650337189147638
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -10.162921353622936
-          },
-          {
-            "name": "RSI",
-            "contribution": -6.3124707172402665
+            "contribution": -9.835519499011346
           },
           {
             "name": "Rate impulse",
-            "contribution": -4.679138871244008
+            "contribution": -8.00287680007982
+          },
+          {
+            "name": "RSI",
+            "contribution": -6.26908079805705
           },
           {
             "name": "Policy overlay",
@@ -1180,13 +1180,6 @@
         ]
       },
       "history": [
-        {
-          "date": "2026-06-01T00:00:00",
-          "close": 4506.2998046875,
-          "ema_fast": 4579.726645496161,
-          "ema_slow": 4659.3924583100825,
-          "score": -63.490011257189146
-        },
         {
           "date": "2026-06-02T00:00:00",
           "close": 4519.89990234375,
@@ -2015,10 +2008,17 @@
         },
         {
           "date": "2026-11-18T00:00:00",
-          "close": 3702.10009765625,
-          "ema_fast": 3977.114017447271,
-          "ema_slow": 4104.558509629051,
-          "score": -81.37166994811545
+          "close": 3741.89990234375,
+          "ema_fast": 3980.904475036557,
+          "ema_slow": 4106.119286283463,
+          "score": -80.66125433085887
+        },
+        {
+          "date": "2026-11-19T00:00:00",
+          "close": 3717.0,
+          "ema_fast": 3955.7707155092658,
+          "ema_slow": 4090.85970642921,
+          "score": -83.68952230594542
         }
       ],
       "events": {
@@ -2031,6 +2031,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Bank of Japan",
+          "currency": "JPY",
+          "headline": "Developments in Real Exports and Real Imports",
+          "url": "http://www.boj.or.jp/en/research/research_data/reri/index.htm",
+          "published_at": "2026-11-19T07:00:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -2050,13 +2057,6 @@
           "currency": "EUR",
           "headline": "Boris Vuj\u010di\u0107: Financial Stability Review - November 2026",
           "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261118~86f1e8147e.en.pdf",
-          "published_at": "2026-11-18T09:00:00+00:00"
-        },
-        {
-          "source": "European Central Bank",
-          "currency": "EUR",
-          "headline": "Risks from AI valuations, fiscal imbalances and geoeconomic tensions weigh on financial stability outlook",
-          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261118~83c5c60158.en.html",
           "published_at": "2026-11-18T09:00:00+00:00"
         }
       ],
@@ -2104,7 +2104,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -2114,20 +2114,20 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.524788391777509,
-          "OOS observations": 827.0
+          "OOS directional accuracy": 0.5253623188405797,
+          "OOS observations": 828.0
         },
         "horizons": [
           {
             "Horizon": "1D",
-            "OOS observations": 930,
-            "Evaluation windows": 1256,
-            "Coverage": 0.7404458598726115,
+            "OOS observations": 931,
+            "Evaluation windows": 1257,
+            "Coverage": 0.7406523468575974,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.524731182795699,
-            "MA accuracy": 0.5419354838709678,
-            "Majority baseline": 0.5451612903225806,
-            "Lift vs baseline": -0.02043010752688168
+            "Model accuracy": 0.5252416756176155,
+            "MA accuracy": 0.5424274973147154,
+            "Majority baseline": 0.5445757250268528,
+            "Lift vs baseline": -0.01933404940923733
           },
           {
             "Horizon": "5D",
@@ -2159,19 +2159,19 @@
       "base": "AUD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.6668444871902466,
-      "live_price": 0.6668444871902466,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 0.6714112758636475,
+      "live_price": 0.6714112758636475,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -55.0,
+      "score": -53.5,
       "bias": "Bullish",
-      "confidence": "Low",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4095,
-        "Range/neutral": 0.2322,
-        "Bearish": 0.3583
+        "Bullish": 0.4335,
+        "Range/neutral": 0.2172,
+        "Bearish": 0.3493
       },
       "sample_size": 120,
       "quality": {
@@ -2186,11 +2186,11 @@
       "market": {
         "yield_spread": 0.16500000000000004,
         "macro_label": "10Y yield spread",
-        "volatility": 0.08008365612323688,
+        "volatility": 0.07456913109533377,
         "regime": "Trending",
-        "support20": 0.6668444871902466,
+        "support20": 0.6714112758636475,
         "resistance20": 0.7057999968528748,
-        "atr20": 0.0032162934541702373,
+        "atr20": 0.0029879540205001933,
         "driver": "Copper"
       },
       "model": {
@@ -2199,19 +2199,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -19.63347586611958
+            "contribution": -19.55452034694353
           },
           {
             "name": "Trend",
-            "contribution": -16.585140350719303
+            "contribution": -16.278300749392947
           },
           {
             "name": "Momentum",
-            "contribution": -12.114170414499544
+            "contribution": -11.206901675663676
           },
           {
             "name": "RSI",
-            "contribution": -6.628585714251452
+            "contribution": -6.486803577186224
           },
           {
             "name": "Rate differential",
@@ -3059,14 +3059,14 @@
           "close": 0.6739770770072937,
           "ema_fast": 0.6894572391479206,
           "ema_slow": 0.6967483191679297,
-          "score": -52.10523281023933
+          "score": -52.030306101571014
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 0.6668444871902466,
-          "ema_fast": 0.6873036437233802,
-          "ema_slow": 0.6955756198746873,
-          "score": -54.96137234558988
+          "close": 0.6714112758636475,
+          "ema_fast": 0.6877385759779897,
+          "ema_slow": 0.6957547096265854,
+          "score": -53.52652634918638
         }
       ],
       "events": {
@@ -3152,7 +3152,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -3207,19 +3207,19 @@
       "base": "NZD",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 0.5487871766090393,
-      "live_price": 0.5487871766090393,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 0.5528527498245239,
+      "live_price": 0.5528832674026489,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -49.1,
+      "score": -45.8,
       "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3851,
-        "Range/neutral": 0.1602,
-        "Bearish": 0.4546
+        "Bullish": 0.4111,
+        "Range/neutral": 0.1371,
+        "Bearish": 0.4519
       },
       "sample_size": 120,
       "quality": {
@@ -3234,11 +3234,11 @@
       "market": {
         "yield_spread": -0.08999999999999986,
         "macro_label": "10Y yield spread",
-        "volatility": 0.08021808294194817,
+        "volatility": 0.08448590110844263,
         "regime": "Trending",
-        "support20": 0.5487871766090393,
+        "support20": 0.5498070120811462,
         "resistance20": 0.5701807141304016,
-        "atr20": 0.0023635685443878277,
+        "atr20": 0.0024648636579513656,
         "driver": "Global risk proxy"
       },
       "model": {
@@ -3247,7 +3247,7 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -17.379606716226807
+            "contribution": -17.023844269124158
           },
           {
             "name": "Cross-asset driver",
@@ -3255,11 +3255,11 @@
           },
           {
             "name": "Momentum",
-            "contribution": -10.781644282738597
+            "contribution": -9.24304729902498
           },
           {
             "name": "RSI",
-            "contribution": -5.927573681260108
+            "contribution": -4.5211735360688
           },
           {
             "name": "Rate differential",
@@ -4111,10 +4111,10 @@
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 0.5487871766090393,
-          "ema_fast": 0.5579415850713906,
-          "ema_slow": 0.5646333072612039,
-          "score": -49.11869473688419
+          "close": 0.5528527498245239,
+          "ema_fast": 0.5583287825204843,
+          "ema_slow": 0.5647927415049484,
+          "score": -45.817935160876615
         }
       ],
       "events": {
@@ -4200,7 +4200,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -4210,7 +4210,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.506953223767383,
+          "OOS directional accuracy": 0.5056890012642224,
           "OOS observations": 791.0
         },
         "horizons": [
@@ -4220,10 +4220,10 @@
             "Evaluation windows": 1317,
             "Coverage": 0.6492027334851936,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5052631578947369,
-            "MA accuracy": 0.5087719298245614,
-            "Majority baseline": 0.47251461988304094,
-            "Lift vs baseline": 0.032748538011695916
+            "Model accuracy": 0.504093567251462,
+            "MA accuracy": 0.5076023391812865,
+            "Majority baseline": 0.47368421052631576,
+            "Lift vs baseline": 0.030409356725146275
           },
           {
             "Horizon": "5D",
@@ -4255,19 +4255,19 @@
       "base": "EUR",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.0960105657577515,
-      "live_price": 1.0960105657577515,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 1.0998680591583252,
+      "live_price": 1.0998680591583252,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -38.9,
-      "bias": "Bearish",
+      "score": -36.9,
+      "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.3636,
-        "Range/neutral": 0.2203,
-        "Bearish": 0.4161
+        "Bullish": 0.4308,
+        "Range/neutral": 0.1859,
+        "Bearish": 0.3833
       },
       "sample_size": 120,
       "quality": {
@@ -4282,11 +4282,11 @@
       "market": {
         "yield_spread": -1.8790159090999996,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05613490775716337,
+        "volatility": 0.056065434588302654,
         "regime": "Trending",
-        "support20": 1.0960105657577515,
+        "support20": 1.0992876291275024,
         "resistance20": 1.1234945058822632,
-        "atr20": 0.0034371376037597794,
+        "atr20": 0.0033023059368133697,
         "driver": "US dollar index"
       },
       "model": {
@@ -4295,19 +4295,19 @@
         "audit": [
           {
             "name": "Trend",
-            "contribution": -16.72762932541847
+            "contribution": -16.519633265090203
           },
           {
             "name": "Cross-asset driver",
-            "contribution": -7.831544039425903
+            "contribution": -7.236664238410382
           },
           {
             "name": "RSI",
-            "contribution": -7.274750540721785
+            "contribution": -6.932095219142478
           },
           {
             "name": "Momentum",
-            "contribution": -7.107410963901745
+            "contribution": -6.225825667218166
           },
           {
             "name": "Rate differential",
@@ -5155,14 +5155,14 @@
           "close": 1.0992876291275024,
           "ema_fast": 1.1137987796746185,
           "ema_slow": 1.1248527008852396,
-          "score": -32.893110461176555
+          "score": -32.64392239765738
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 1.0960105657577515,
-          "ema_fast": 1.1121046640634884,
-          "ema_slow": 1.1237216367625928,
-          "score": -38.9413348694679
+          "close": 1.0998680591583252,
+          "ema_fast": 1.1124720443873526,
+          "ema_slow": 1.1238729110135959,
+          "score": -36.91421838986123
         }
       ],
       "events": {
@@ -5248,7 +5248,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -5258,7 +5258,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5186666666666667,
+          "OOS directional accuracy": 0.5173333333333333,
           "OOS observations": 750.0
         },
         "horizons": [
@@ -5268,10 +5268,10 @@
             "Evaluation windows": 1317,
             "Coverage": 0.639331814730448,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5154394299287411,
-            "MA accuracy": 0.49643705463182897,
-            "Majority baseline": 0.47862232779097386,
-            "Lift vs baseline": 0.03681710213776729
+            "Model accuracy": 0.5142517814726841,
+            "MA accuracy": 0.49524940617577196,
+            "Majority baseline": 0.47980997624703087,
+            "Lift vs baseline": 0.034441805225653266
           },
           {
             "Horizon": "5D",
@@ -5303,19 +5303,19 @@
       "base": "USD",
       "quote": "CAD",
       "asset_class": "FX",
-      "price": 1.4354499578475952,
-      "live_price": 1.4355000257492065,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 1.4298299551010132,
+      "live_price": 1.4298299551010132,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 31.7,
+      "score": 29.8,
       "bias": "Bullish",
       "confidence": "Low",
       "probabilities": {
-        "Bullish": 0.4301,
-        "Range/neutral": 0.1904,
-        "Bearish": 0.3795
+        "Bullish": 0.4314,
+        "Range/neutral": 0.1826,
+        "Bearish": 0.386
       },
       "sample_size": 120,
       "quality": {
@@ -5330,11 +5330,11 @@
       "market": {
         "yield_spread": 1.2252380951999995,
         "macro_label": "10Y yield spread",
-        "volatility": 0.044051673297245277,
+        "volatility": 0.042970206177060946,
         "regime": "Range / transition",
         "support20": 1.397029995918274,
-        "resistance20": 1.4354499578475952,
-        "atr20": 0.003085505962371851,
+        "resistance20": 1.4299099445343018,
+        "atr20": 0.0028125047683716055,
         "driver": "WTI crude oil"
       },
       "model": {
@@ -5343,19 +5343,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": 13.860760493494158
+            "contribution": 13.339468891566302
           },
           {
             "name": "RSI",
-            "contribution": 6.497341601671133
+            "contribution": 6.1910541036904805
           },
           {
             "name": "Trend",
-            "contribution": 6.360002224255499
+            "contribution": 6.069851312680213
           },
           {
             "name": "Momentum",
-            "contribution": 4.997574044331191
+            "contribution": 4.18184272533491
           },
           {
             "name": "Rate differential",
@@ -6203,14 +6203,14 @@
           "close": 1.4299099445343018,
           "ema_fast": 1.4151890978244657,
           "ema_slow": 1.4097538090106279,
-          "score": 28.66656066816977
+          "score": 28.028322417464388
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 1.4354499578475952,
-          "ema_fast": 1.417118703540954,
-          "ema_slow": 1.4107615011218815,
-          "score": 31.71567836375198
+          "close": 1.4298299551010132,
+          "ema_fast": 1.4165834651841367,
+          "ema_slow": 1.4105411088573097,
+          "score": 29.782217033271905
         }
       ],
       "events": {
@@ -6296,7 +6296,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -6306,7 +6306,7 @@
           "Directional accuracy is not a CFD strategy return after broker costs."
         ],
         "walk_forward": {
-          "OOS directional accuracy": 0.5324503311258278,
+          "OOS directional accuracy": 0.5311258278145695,
           "OOS observations": 755.0
         },
         "horizons": [
@@ -6316,10 +6316,10 @@
             "Evaluation windows": 1317,
             "Coverage": 0.5421412300683371,
             "Validation method": "Non-overlapping; training-only majority baseline",
-            "Model accuracy": 0.5294117647058824,
-            "MA accuracy": 0.5028011204481793,
-            "Majority baseline": 0.46078431372549017,
-            "Lift vs baseline": 0.06862745098039219
+            "Model accuracy": 0.5280112044817927,
+            "MA accuracy": 0.5014005602240896,
+            "Majority baseline": 0.46218487394957986,
+            "Lift vs baseline": 0.06582633053221287
           },
           {
             "Horizon": "5D",
@@ -6351,19 +6351,19 @@
       "base": "GBP",
       "quote": "USD",
       "asset_class": "FX",
-      "price": 1.3124909400939941,
-      "live_price": 1.3124909400939941,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 1.3158068656921387,
+      "live_price": 1.3158761262893677,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": -25.6,
-      "bias": "Bullish",
+      "score": -23.6,
+      "bias": "Bearish",
       "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.46,
-        "Range/neutral": 0.1341,
-        "Bearish": 0.4058
+        "Bullish": 0.3958,
+        "Range/neutral": 0.1492,
+        "Bearish": 0.4549
       },
       "sample_size": 120,
       "quality": {
@@ -6378,11 +6378,11 @@
       "market": {
         "yield_spread": 0.23930000000000007,
         "macro_label": "10Y yield spread",
-        "volatility": 0.05840127961934936,
+        "volatility": 0.05615865917555881,
         "regime": "Range / transition",
-        "support20": 1.3124909400939941,
+        "support20": 1.3158068656921387,
         "resistance20": 1.3477089405059814,
-        "atr20": 0.004161560535430937,
+        "atr20": 0.0039957642555237104,
         "driver": "US dollar index"
       },
       "model": {
@@ -6391,19 +6391,19 @@
         "audit": [
           {
             "name": "Cross-asset driver",
-            "contribution": -8.543502588464621
+            "contribution": -7.8945428055386
           },
           {
             "name": "RSI",
-            "contribution": -6.337451467799881
+            "contribution": -5.908719496136579
           },
           {
             "name": "Momentum",
-            "contribution": -5.646248776685518
+            "contribution": -5.013216906914354
           },
           {
             "name": "Trend",
-            "contribution": -5.043062623309195
+            "contribution": -4.819608674134864
           },
           {
             "name": "Rate differential",
@@ -7251,14 +7251,14 @@
           "close": 1.3204981088638306,
           "ema_fast": 1.331281142365492,
           "ema_slow": 1.334401518754485,
-          "score": -20.716677189083086
+          "score": -20.444835665243986
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 1.3124909400939941,
-          "ema_fast": 1.329491599292016,
-          "ema_slow": 1.3335422803756423,
-          "score": -25.570265456259214
+          "close": 1.3158068656921387,
+          "ema_fast": 1.3298074017299346,
+          "ema_slow": 1.3336723166736089,
+          "score": -23.636087882724397
         }
       ],
       "events": {
@@ -7344,7 +7344,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -7399,19 +7399,19 @@
       "base": "USD",
       "quote": "CHF",
       "asset_class": "FX",
-      "price": 0.8440700173377991,
-      "live_price": 0.8440700173377991,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 0.8423600196838379,
+      "live_price": 0.8423600196838379,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 5,
-      "score": 11.1,
-      "bias": "Bullish",
-      "confidence": "Low",
+      "score": 13.9,
+      "bias": "Bearish",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.4191,
-        "Range/neutral": 0.1681,
-        "Bearish": 0.4128
+        "Bullish": 0.3912,
+        "Range/neutral": 0.156,
+        "Bearish": 0.4529
       },
       "sample_size": 120,
       "quality": {
@@ -7426,11 +7426,11 @@
       "market": {
         "yield_spread": 4.59,
         "macro_label": "10Y yield spread",
-        "volatility": 0.06779011966010869,
+        "volatility": 0.06734070187083653,
         "regime": "Range / transition",
         "support20": 0.8153799772262573,
-        "resistance20": 0.8440700173377991,
-        "atr20": 0.002977505326271073,
+        "resistance20": 0.8423600196838379,
+        "atr20": 0.002892005443573014,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -7438,20 +7438,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "Cross-asset driver",
-            "contribution": -9.980649594324131
-          },
-          {
             "name": "Trend",
-            "contribution": 8.634560430959839
+            "contribution": 8.490997873416154
           },
           {
             "name": "RSI",
-            "contribution": 7.073096314401776
+            "contribution": 6.905168844038698
+          },
+          {
+            "name": "Cross-asset driver",
+            "contribution": -6.536700222079312
           },
           {
             "name": "Momentum",
-            "contribution": 5.405209712361046
+            "contribution": 5.002885981849509
           },
           {
             "name": "Rate differential",
@@ -8303,10 +8303,10 @@
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 0.8440700173377991,
-          "ema_fast": 0.8303036167631432,
-          "ema_slow": 0.8253427993485003,
-          "score": 11.13221686339853
+          "close": 0.8423600196838379,
+          "ema_fast": 0.8301407598437184,
+          "ema_slow": 0.8252757406169724,
+          "score": 13.862352477225052
         }
       ],
       "events": {
@@ -8392,7 +8392,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
@@ -8447,19 +8447,19 @@
       "base": "USD",
       "quote": "JPY",
       "asset_class": "FX",
-      "price": 159.5070037841797,
-      "live_price": 159.5019989013672,
-      "live_price_at": "2026-11-19T03:00:00+00:00",
+      "price": 159.90699768066406,
+      "live_price": 159.90699768066406,
+      "live_price_at": "2026-11-19T12:00:00+00:00",
       "price_basis": "Spot",
       "price_note": "Yahoo Finance end-of-day market price",
       "decimals": 3,
-      "score": 3.7,
+      "score": 7.3,
       "bias": "Bullish",
-      "confidence": "Low",
+      "confidence": "Moderate",
       "probabilities": {
-        "Bullish": 0.3799,
-        "Range/neutral": 0.253,
-        "Bearish": 0.3671
+        "Bullish": 0.4392,
+        "Range/neutral": 0.2165,
+        "Bearish": 0.3444
       },
       "sample_size": 120,
       "quality": {
@@ -8474,11 +8474,11 @@
       "market": {
         "yield_spread": 2.3449999999999998,
         "macro_label": "10Y yield spread",
-        "volatility": 0.060793836685543175,
+        "volatility": 0.06121369050941185,
         "regime": "Range / transition",
         "support20": 156.49400329589844,
-        "resistance20": 159.875,
-        "atr20": 0.42924957275390846,
+        "resistance20": 159.90699768066406,
+        "atr20": 0.44924926757812733,
         "driver": "VIX risk stress"
       },
       "model": {
@@ -8486,20 +8486,20 @@
         "price_note": "Yahoo Finance end-of-day market price",
         "audit": [
           {
-            "name": "Cross-asset driver",
-            "contribution": -5.988389756594478
+            "name": "RSI",
+            "contribution": 4.8797312722877075
           },
           {
-            "name": "RSI",
-            "contribution": 4.1027370816826965
+            "name": "Cross-asset driver",
+            "contribution": -3.9220201332475866
           },
           {
             "name": "Trend",
-            "contribution": 3.4767457361813126
+            "contribution": 3.6768379577853683
           },
           {
             "name": "Momentum",
-            "contribution": 2.059190859534699
+            "contribution": 2.640748195804927
           },
           {
             "name": "Rate differential",
@@ -9351,10 +9351,10 @@
         },
         {
           "date": "2026-11-19T00:00:00",
-          "close": 159.5070037841797,
-          "ema_fast": 158.71759018045825,
-          "ema_slow": 158.33905735934698,
-          "score": 3.6502839208042284
+          "close": 159.90699768066406,
+          "ema_fast": 158.7556848372663,
+          "ema_slow": 158.35474339450323,
+          "score": 7.275297292630414
         }
       ],
       "events": {
@@ -9367,6 +9367,13 @@
         "upcoming": []
       },
       "news": [
+        {
+          "source": "Bank of Japan",
+          "currency": "JPY",
+          "headline": "Developments in Real Exports and Real Imports",
+          "url": "http://www.boj.or.jp/en/research/research_data/reri/index.htm",
+          "published_at": "2026-11-19T07:00:00+00:00"
+        },
         {
           "source": "Bank of Japan",
           "currency": "JPY",
@@ -9387,13 +9394,6 @@
           "headline": "Release of Latest \"Loans and Bills Discounted by Sector\" and \"Loans to Households\" Data",
           "url": "http://www.boj.or.jp/en/statistics/outline/notice_2026/not261117a.htm",
           "published_at": "2026-11-16T23:50:00+00:00"
-        },
-        {
-          "source": "Bank of Japan",
-          "currency": "JPY",
-          "headline": "Highlights of the Outlook for Economic Activity and Prices (October 2026)",
-          "url": "http://www.boj.or.jp/en/mopo/outlook/highlight/ten202610.htm",
-          "published_at": "2026-11-16T08:00:00+00:00"
         }
       ],
       "positioning": {
@@ -9440,7 +9440,7 @@
         "warning": "",
         "provider": "CFTC Commitments of Traders (TFF + Disaggregated)",
         "cadence": "Weekly; positions as of Tuesday, published Friday",
-        "fetched_at": "2026-11-19T03:21:00.488176+00:00",
+        "fetched_at": "2026-11-19T12:57:48.847095+00:00",
         "provider_message": ""
       },
       "validation": {
